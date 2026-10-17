@@ -66,3 +66,16 @@ Geen aankoop, betaald abonnement, gevoelige machtiging, externe koppeling of pub
 5. Rapporteer welke bestaande acties nu aandacht vereisen en welke wijzigingen zijn aangebracht. Start geen externe koppelingen of aankopen.
 
 **Gebruik:** lees samen met `RitKompas_Astra_Opperagent_Complete_Opdracht.md` en de bijgewerkte masterprompt. Bij strijdige eisen: registreer het conflict en vraag goedkeuring voor materiële keuzes.
+
+---
+
+## NIEUWSTE ROLVERDELING: SOL DAGELIJKS, ASTRA ALLEEN BIJ BELANGRIJKE BESLUITEN
+
+Deze sectie vervangt eerdere verwijzingen naar Astra als permanente Opper-agent.
+
+- Sol is dagelijkse Opper-agent, vaste contactpersoon en eindverantwoordelijke voor persoonlijke acties.
+- Operator Agent onderhoudt OWNER_ACTIONS.md namens Sol; Tool Scout onderzoekt eerst bestaande en gratis oplossingen.
+- Astra wordt alleen ingeschakeld voor belangrijke technische beslissingen, niet standaard bij iedere fase.
+- Interne modelselectie, usage-bewaking, routing en technische reviews horen niet in OWNER_ACTIONS.md. Alleen een noodzakelijke persoonlijke instelling, toestemming of uitgave wordt een ACT-taak.
+- Als Codex modellen niet automatisch kan wisselen, meldt Sol welke handmatige stap werkelijk nodig is. Claim geen niet-bestaande functies.
+- Behoud alle bestaande ACT-nummers, taken en historie.
