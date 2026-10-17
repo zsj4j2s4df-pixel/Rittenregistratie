@@ -403,3 +403,17 @@ Vink af zodra Claude's analyse en de Codex-prompt het bevatten:
 ## 22. OWNER_ACTIONS — AANGEPASTE WERKWIJZE
 
 De Astra Opper-agent blijft het enige vaste aanspreekpunt. De Operator Agent onderhoudt `OWNER_ACTIONS.md` uitsluitend voor persoonlijke acties van de opdrachtgever, met behoud van bestaande ACT-nummers en historie. Tool Scout onderzoekt eerst bestaande en gratis alternatieven. Interne modelkeuze, agentcoördinatie, implementatie en controles worden niet als persoonlijke taak geregistreerd, behalve wanneer kosten, machtigingen of wezenlijke besluiten expliciete toestemming vereisen. Controleer `OWNER_ACTIONS.md` tijdens de Markdown-audit en na iedere fase. Zie `OWNER_ACTIONS_ASTRA_AANVULLING.md` voor de volledige wijzigingsinstructie.
+
+---
+
+## NIEUWSTE PROCESAFSPRAAK: SOL ALS DAGELIJKSE OPPER-AGENT (17 oktober 2026)
+
+Deze afspraak gaat voor op oudere procespassages over Astra als permanente Opper-agent en Claude-eerst. Alle functionele, privacy-, veiligheids- en toestemmingseisen blijven bestaan.
+
+1. Sol leidt dagelijks de Markdown-audit, controle van eerder gebouwd werk en alle volgende ontwikkelfases.
+2. Astra wordt alleen gevraagd bij belangrijke architectuur-, beveiligings- of andere zwaarwegende technische beslissingen, nooit automatisch na iedere fase.
+3. Model Strategy adviseert het lichtste werkelijk beschikbare model dat de vereiste kwaliteit haalt. Sol coördineert subagents en twee securityreviews.
+4. Vermijd herhaalde volledige context, onnodige parallelle agents en dubbele audits. Gebruik compacte beslisdossiers voor Astra.
+5. Indien instelbaar: Medium redeneerinspanning als standaard, Low voor eenvoudige taken, High voor complexe beslissingen. Codex moet beschikbaarheid verifiëren en mag geen automatische modelwissel of usage-limiet verzinnen.
+6. OWNER_ACTIONS blijft alleen voor persoonlijke acties. Alle bestaande functionele eisen blijven behouden.
+7. Zie sectie 7 van RitKompas_Astra_Opperagent_Complete_Opdracht.md voor de uitvoeringsregels.
