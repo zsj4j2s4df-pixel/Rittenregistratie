@@ -88,3 +88,19 @@ Bij iedere gate lever je: (1) wat gelezen/gecontroleerd is, (2) welke bestanden 
 ## 6. Verplichte OWNER_ACTIONS-aanvulling
 
 Gebruik `OWNER_ACTIONS_ASTRA_AANVULLING.md` tijdens FASE B als gerichte wijzigingsinstructie voor het bestaande `OWNER_ACTIONS.md`. Behoud bestaande ACT-nummers en historie. Alleen persoonlijk noodzakelijke acties horen hierin; modelrouting, technische taken en kwaliteitscontroles blijven bij agents. De Operator Agent onderhoudt het bestand onder eindverantwoordelijkheid van de Astra Opper-agent, na vooronderzoek door Tool Scout.
+
+---
+
+## 7. NIEUWSTE BESLUIT: ZUINIGE MODELSTRATEGIE (17 oktober 2026)
+
+Deze sectie heeft voorrang boven alle eerdere teksten die Astra als dagelijkse Opper-agent aanwijzen. De fasen A-E blijven geldig.
+
+- Sol is voortaan de dagelijkse Opper-agent en het vaste aanspreekpunt. Sol voert eerst de Markdown-audit uit, controleert daarna bestaand werk en coördineert vervolgens de ontwikkeling.
+- Astra is alleen adviseur bij belangrijke beslissingen: fundamentele architectuurwijzigingen, complexe beveiligings- of privacykeuzes, ernstige vastgelopen problemen of ingrijpende onomkeerbare technische keuzes. Geen automatische Astra-review aan het einde van elke fase.
+- Model Strategy kiest per taak het lichtste daadwerkelijk beschikbare model dat voldoende kwaliteit levert. Sol beslist over taakverdeling. Twee securityreviews blijven verplicht; Astra is daarvoor niet standaard nodig.
+- Voor Astra maakt Sol eerst een kort beslisdossier met probleem, opties, relevante code en tests, risico's en een concrete vraag. Laat niet onnodig alle projectdocumenten opnieuw lezen.
+- Vermijd onnodige parallelle subagents, herhaalde volledige audits en omvangrijke context. Kwaliteit en veiligheid blijven belangrijker dan snelheid.
+- Als redeneerinspanning selecteerbaar is: Medium als dagelijkse standaard, Low bij eenvoudige taken en High uitsluitend voor complexe kwesties. Dit is geen usage-percentage.
+- Codex controleert zelf welke modellen en instellingen werkelijk beschikbaar zijn. Automatische modelrouting of usage-budgetten mogen niet als bestaand worden voorgesteld zonder bewijs. Indien niet mogelijk: leg de handmatige stappen uit.
+- Kosten, gevoelige machtigingen, externe koppelingen en onomkeerbare handelingen blijven afhankelijk van toestemming van de opdrachtgever.
+- Alle oudere formuleringen 'Astra als Opper-agent' of 'onder Astra-regie' betekenen vanaf nu 'Sol als Opper-agent, Astra uitsluitend voor belangrijke besluiten'. Ook OWNER_ACTIONS volgt deze wijziging.
