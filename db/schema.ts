@@ -119,3 +119,13 @@ export const tripCreateRequests = sqliteTable('trip_create_requests', {
   requestJson: text('request_json').notNull(),
   responseJson: text('response_json').notNull(),
 }, table => [primaryKey({ columns: [table.vehicleId, table.userId, table.requestId] })]);
+
+export const reportSnapshots = sqliteTable('report_snapshots', {
+ id: text('id').primaryKey(),
+ vehicleId: text('vehicle_id').notNull().references(() => vehicles.id),
+ createdBy: text('created_by').notNull().references(() => users.id),
+ createdAt: integer('created_at').notNull(),
+ requestId: text('request_id').notNull(),
+ requestJson: text('request_json').notNull(),
+ snapshotJson: text('snapshot_json').notNull(),
+}, table => [uniqueIndex('idx_report_request').on(table.vehicleId,table.createdBy,table.requestId),index('idx_report_vehicle_time').on(table.vehicleId,table.createdAt)]);
