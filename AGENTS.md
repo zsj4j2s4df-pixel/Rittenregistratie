@@ -4,6 +4,8 @@ Nieuwste gebruikersbesluit, 18 oktober 2026: **Codex Cloud is hoofdontwikkelaar;
 
 Start met RESUME.md, CLOUD_TASKS.md, DEVELOPMENT_PROGRESS.md en CLOUD_HANDOVER.md. Lees daarna alleen de relevante eisen/testgevallen en code; herhaal geen volledige inventaris zonder aanleiding. Alle functionele wensen in de bijgewerkte masterprompt blijven behouden. Sol is voorkeur voor dagelijkse regie indien beschikbaar, Astra alleen voor belangrijke afwegingen. Geen modelwissel, agentoverdracht of automatische sessiesynchronisatie claimen zonder bewijs.
 
+Nieuwste publicatieopdracht: eigenaar autoriseert aanmaken en publiceren van RitKompas in het gekoppelde Cloudflare-account. Gekozen adres conform antwoord eigenaar: https://rittenregistratie.zsj4j2s4df.workers.dev. Dit autoriseert geen kosten, betaalgegevens, nieuwe externe accounts of main-merge. Bestaande andere Workers/accountsubdomain niet wijzigen.
+
 ## Zelfstandig toegestaan
 
 Samenhangende code-, test-, bugfix- en documenttaken op eigen branches; commits en pull requests; taken, besluiten en hervatpunt bijwerken. Gebruik synthetische gegevens. Als een reviewer niet beschikbaar is, neem veilig werk zelf over en markeer dat als eigen controle, niet onafhankelijk.

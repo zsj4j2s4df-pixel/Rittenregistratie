@@ -1,4 +1,4 @@
-import { listAccessibleVehicles } from './vehicle-service.ts';
+import { listAccessibleVehicles, listVehicleDrivers } from './vehicle-service.ts';
 import { createReportService, type ReportRequest } from './report-service.ts';
 import { createSettingsService, type SettingsEdit } from './settings-service.ts';
 import type { Principal } from './access-policy.ts';
@@ -63,6 +63,14 @@ export function createTripHttpHandler(options: {
         for(const key of url.searchParams.keys())if(!['limit','offset'].includes(key)||url.searchParams.getAll(key).length!==1)throw new TripServiceError(400,'Ongeldige query.');
         const page=(key:string,fallback:number)=>{const value=url.searchParams.get(key);if(value===null)return fallback;if(!/^\d+$/.test(value))throw new TripServiceError(400,'Ongeldige paginering.');return Number(value);};
         return response(200,{vehicles:await listAccessibleVehicles(options.db,()=>options.resolveSession?.(request)??Promise.resolve(null),page('limit',50),page('offset',0),options.clock)});
+      }
+      const driversMatch=/^\/api\/vehicles\/([^/]+)\/drivers$/.exec(url.pathname);
+      if(driversMatch){
+        const vehicleId=segment(driversMatch[1]);
+        if(request.method!=='GET')return response(405,{error:'Methode niet toegestaan.'},{Allow:'GET'});
+        for(const key of url.searchParams.keys())if(!['limit','offset'].includes(key)||url.searchParams.getAll(key).length!==1)throw new TripServiceError(400,'Ongeldige query.');
+        const page=(key:string,fallback:number)=>{const value=url.searchParams.get(key);if(value===null)return fallback;if(!/^\d+$/.test(value))throw new TripServiceError(400,'Ongeldige paginering.');return Number(value);};
+        return response(200,{drivers:await listVehicleDrivers(options.db,()=>options.resolveSession?.(request)??Promise.resolve(null),vehicleId,page('limit',50),page('offset',0),options.clock)});
       }
       const reportMatch = /^\/api\/vehicles\/([^/]+)\/reports(?:\/([^/]+)(\/csv)?)?$/.exec(url.pathname);
       if (reportMatch) {

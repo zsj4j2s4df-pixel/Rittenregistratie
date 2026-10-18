@@ -2,6 +2,14 @@
 
 Cloud leidt RitKompas; Mac doet iOS/hardware. Eigenaar behoudt merge-/kosten-/account-/productiebesluiten. GitHub is bron van waarheid, alleen zsj4j2s4df-pixel/Rittenregistratie. Alle123REQ-ID’s/21scenario’s/mastereisen behouden.
 
+## Nieuwste hervatpunt: Cloudflare gepubliceerd
+
+Draft-PR #14: https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/14, base cloud/cloud-005-central-web (#13), eerste releasecommit6484a22b8c3d128aa83fbb66a36158dd7d97e412.23/23bestanden exact remote teruggelezen. Vervolggroep op dezelfde draftbranch: scoped actieve bestuurderslijst zonder email/auth-ID, bestuurderkeuze bij invoer/rapport en ritfilters op Amsterdamdatum/classificatie/bestuurder/adres/doel.119tests/type/lint/build en uitgebreide centrale browser PASS. Nieuwste Workerdeployment99e7ef93427c4a77979caa6afc83c978. Main opnieuw d37d8c9 ongewijzigd; ruleset25339571 actief met PR/deletion/nonfastforward en geenbypass,0verplichteapprovals.
+
+Adres https://rittenregistratie.zsj4j2s4df.workers.dev, Worker rittenregistratie + EU-D1 UUID5cee8499-45cf-47a4-8960-4b43e4ab8204. Acht migraties0000–0007 bevestigd, users0/trips0. Centrale adres-/tariefCRUD en ritcorrectie/historie gebouwd;117tests/type/lint/build/D1/centrale browser PASS, live demo/Chromium en geslotenAPI503 PASS. ACCESS_ISSUER/AUDIENCE bewust afwezig; echte login NIET GETEST. Owneractie: ZeroTrust/Access kosteloos activeren; gekoppelde GitHubidentiteit nog eigenaar. Geen mainmerge. Publicatie geautoriseerd, geen nieuwe toestemming vragen voor deze bestaande Worker.
+
+Zie docs/TRANSFER/CLOUD_RELEASE.md voor exact deploybewijs en reproductie. Nieuwe draftbranch cloud/cloud-005-cloudflare-release op echte #13-head7fc9eccff54a177380426794ff88d832bf0f0baa. Oudere tekst hieronder is historie waar ingehaald. Volgende lokale taken: coherente sync en duurzame pendingqueue, detectie/deduplicatie, backups/read-onlyMCP/centralePDF. Geen algemeneaccountblokkade.
+
 ## Actuele code en PR-keten
 #1audit → #2eisenregister → #3Macoverdracht → #4Cloudsmoke → #5integriteitsguards → #6demoweb/rapporten → #7serverkern → #8idempotenteinvoer → #9HTTPadapter → #10settings/Accessvoorbereiding → #11serverrapporten → #12APIruntime → #13centraleweb.
 Nieuwe PR’s blijven draft/open; nooit mergen, forcepushen, bases herschrijven of rechtstreeks main bijwerken.
@@ -13,13 +21,13 @@ Nieuwe PR’s blijven draft/open; nooit mergen, forcepushen, bases herschrijven 
 
 31/31bestanden van drie laatste groepen exact remote teruggelezen op codeheadfa7d31c. Deze hervat/checkpointactualisatie volgt als documentcommit op dezelfde#13branch. main opnieuw d37d8c913aaa253d6297cf57d3379d40c5795573, ongewijzigd. Werkmap was oorspronkelijk blobgeverifieerde snapshot: NOOIT lokale synthetische gitgeschiedenis pushen. GitHubcommits met echteparent/tree/expected_sha, geenforce.
 
-## Volgende uitvoerbare lokale taak
+## Vorige uitvoerbare lokale taak (adres/tarief/correctie inmiddels gebouwd)
 Centrale adres-/tariefCRUD en ritcorrectie/historie boven bestaande services; daarna bestuurder/filters, correcte sync/cursors/pendingqueue, detectie-inname/deduplicatie, herstel/backups/read-onlyMCP en serverPDF. In /beheer zijn deze volledige flows nog niet gebouwd. Pendingcodes alleengeheugen: aangebodenreconnect behoudt ze, handmatig browserafsluiten/reloadtijdensonzekerewrite is nog geen herstelbareofflinequeue. Gepagineerdlijstlezen is geen coherentemulti-requestsnapshot. Geen alles-klaarclaim of algemeneaccountblokkade.
 
 ## Persoonlijke acties / externe blokkade
 Eigenaar koos Cloudflareonderzoek en aparteagenttoegang; dezelfdekeuze niet opnieuw vragen. OWNER_ACTIONS.md bevat concrete koppelstappen, SEPARATE_AGENT_ACCESS.md en CLOUDFLARE_RESEARCH.md onder docs/TRANSFER bevatten onderzoek, STAGING_RUNBOOK.md de voorwaarden. Huidige connector is opnieuwbevestigd eigenaarlogin296047649; geen wisselactie beschikbaar. Aparte ingelogde accountkoppeling moet persoonlijk worden uitgevoerd via ondersteundeintegratie, geen geheimentokens inchat.
 Ruleset25339571 opnieuw active, PR/deletion/nonfastforward, geenbypass,0verplichteapprovals. DriegevraagderegelsAFGEROND; identiteitsscheiding/eigenaarsreview OPEN. Geenagentmerge.
-Cloudflare niet geactiveerd; geen readycredentials/bindings voorremoteaccount. Workers/D1-EU/Access slechts onderzocht. AccessFree vraagt betaalgegevens volgensofficiëleonboarding; geen aankoop/account/deployzondertoestemming. Echteproviderlogin, remoteDB/sync, WorkerCPU/quota/geografischeprivacy, logoutrevocation, nativeapp/iPhone/Jeep/CarPlay/OBD2 NIETGETEST. Rootweb blijftdemo; /beheer toont bij ontbrekendeconfiggeslotenfout, nooitvoorbeeldritten.
+Historie vóór nieuwste publicatiegroep: Cloudflare niet geactiveerd; geen readycredentials/bindings voorremoteaccount. Workers/D1-EU/Access slechts onderzocht. AccessFree vraagt betaalgegevens volgensofficiëleonboarding; geen aankoop/account/deployzondertoestemming. Echteproviderlogin, remoteDB/sync, WorkerCPU/quota/geografischeprivacy, logoutrevocation, nativeapp/iPhone/Jeep/CarPlay/OBD2 NIETGETEST. Rootweb blijftdemo; /beheer toont bij ontbrekendeconfiggeslotenfout, nooitvoorbeeldritten.
 
 ## Reproductie
 Node24.19.0/Linux,pnpm11.25.0,bestaande frozenlockfiledependencies. node --experimental-strip-types --test tests/*.test.mjs; pnpm exec tsc --noEmit; pnpm lint; pnpm build; node --experimental-strip-types tests/d1-runtime-smoke.mjs. Builtlocalserver: tests/api-closed-smoke.mjs. Browser: tests/central-browser-smoke.mjs en tests/browser-smoke.mjs met APP_URL,geïsoleerdePLAYWRIGHT_MODULE/BROWSER_EXECUTABLE. Zie transferrapporten voor bewijsgrenzen. Geen sessies/models/instellingen gemigreerd.

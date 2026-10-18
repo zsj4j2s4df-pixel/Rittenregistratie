@@ -19,7 +19,7 @@ Keuze/opdracht is al ontvangen, geen herbevestiging nodig.
 3. Controleer of jouw GitHub-appverbinding een ondersteunde koppeling onder dat aparte account biedt. Alleen als dat daadwerkelijk ondersteund is die identiteit koppelen; een App registreren verandert de huidige connector niet. Exacte accountwisselschermen zijn hier niet bevestigd; niet blind de huidige verbinding verbreken of sleutels aanmaken.
 4. Na koppeling laat Cloud de daadwerkelijke login en PR-auteur teruglezen. Pas daarna een echte vereiste onafhankelijke review inrichten/testen; huidige PR’s zijn onder eigenaaridentiteit gemaakt en kunnen niet als twee onafhankelijke personen worden goedgekeurd. Zie SEPARATE_AGENT_ACCESS.md voor Appoptie/limieten. Geen agentmerge.
 
-Cloudflare hoeft nu niet geactiveerd en er is geen aankoop nodig. Voor een echte online proef zijn persoonlijk account/voorwaarden en aparte stagingtoestemming nodig; Access Free vraagt volgens officiële onboarding betaalgegevens. Onderzoek en lokale code/tests gaan daar niet aan vooraf voorbij. Geen betaalgegevens via chat.
+Nieuwere opdracht uitgevoerd: Cloudflare is gekoppeld; eigenaar autoriseerde publicatie. Worker rittenregistratie en EU-D1 zijn aangemaakt, webapp gepubliceerd op https://rittenregistratie.zsj4j2s4df.workers.dev. Geen betaalde upgrade of R2 geactiveerd. Access-organisatie ontbreekt (API9999), centrale API blijft503. Zie CLOUD_RELEASE.md voor actuele persoonlijke loginactie. Geen betaalgegevens of tokens via chat.
 
 ## Nummerconflict en historie
 
@@ -81,3 +81,13 @@ Bestaand alternatief zonder nieuwe koppeling: behoud de huidige drie actieve reg
 - Status: NOG NIET AAN DE BEURT. Native iOS-code en installatie zijn niet gereed; geen aankoop of hardwaretest nu vragen.
 - Na een gereed en lokaal gebouwd pakket: Mac controleert bestaande Apple-mogelijkheden en legt toegestane installatieopties, eventuele kosten/verlenging en teststappen voor drie iPhones voor. Eigenaar beslist vóór account/abonnement/distributie.
 - Daarna echte rit/GPS/achtergrond/batterij/Jeep-signalen testen. CarPlay/OBD2 niet als beschikbaar aannemen. Geen echte GPS-/persoonsgegevens naar openbare GitHub uploaden.
+
+## Eerstvolgende persoonlijke actie: echte login
+
+Cloudflare Zero Trust/Access is nog niet geactiveerd in dit account (GET Access organizations: fout9999, Enable Access via dashboard). Open Cloudflare-dashboard → Zero Trust/Access. Alleen een kosteloze configuratie kiezen; bij betaalverplichting eerst stoppen. Maak geen nieuw extern account voor deze stap en deel geen tokens, wachtwoorden of betaalgegevens. De eigenaar moet voorwaarden/identiteit/allowlist persoonlijk bepalen. Na activatie kan Cloud de bestaande organisatie en applicatie controleren en de login technisch aansluiten.
+
+Beperk de toepassing tot rittenregistratie.zsj4j2s4df.workers.dev/beheer en /api/* met expliciete eigenaar-allowlist; geen Everyone/bypass. Audience en issuer zijn openbare configuratie, geen geheimen. Cloud koppelt daarna alleen expliciet toegestane interne gebruikers en voertuigrechten; geen automatische beheerder voor iedere login. Echte login en echte multi-user-sync zijn nu NIET GETEST.
+
+ACT-002: handmatige instelling UITGEVOERD; technische bevestiging eerder PASS (active ruleset25339571: PR/deletion/non-fast-forward). Onafhankelijke identiteit/eigenaarsreview blijft OPEN; gedeelde GitHub-identiteit is niet door een ruleset opgelost. Geen main-merge.
+
+Hercontrole18oktober2026 na publicatie: ruleset25339571 nogactive, drie gevraagde regels en geenbypass bevestigd; mainhead d37d8c9 ongewijzigd. AccessGET opnieuw9999; read subscriptions10000Authenticationerror, geen kosten/abonnementen gewijzigd.
