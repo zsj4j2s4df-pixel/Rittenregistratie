@@ -1,5 +1,7 @@
 # Cloud-checkpoint — 18 oktober 2026
 
+Nieuwste groep: [SETTINGS_STORAGE](SETTINGS_STORAGE.md),89tests/type/lint/build/lokaleD1 PASS. Cloudflareonderzoek en aparteagenttoegangplan op verzoek eigenaar uitgewerkt; niet geactiveerd. Settings zijn als serverkern duurzaam, web nog demo.
+
 Dit is een gedeeltelijke implementatie, geen voltooide RitKompas-app. Bestaande 123 REQ-ID's/21 scenario's blijven gelden. Geen nieuwe totaalaudit: onderstaande delta verbindt de uitgevoerde groepen met bestaande eisen en concrete resterende stappen.
 
 ## Op GitHub ter controle

@@ -45,3 +45,13 @@ test('internal provider/database failures are hidden; HTTP configuration require
  for(const value of ['http://public.example','https://ritkompas.example/','https://ritkompas.example/path'])assert.throws(()=>createTripHttpHandler({db,origin:value}));
  assert.doesNotThrow(()=>createTripHttpHandler({db,origin:'http://localhost:4173'}));
 });
+
+test('HTTP settings share authentication, CSRF, field bounds, revision conflicts and audit',async t=>{
+ const {handle}=handler(t);const url=origin+'/api/vehicles/v/settings';const payload={revision:0,plate:'ab-12-cd',addresses:[],rates:[],reason:'Synthetic settings'};
+ const make=(body,extra={})=>new Request(url,{method:'PATCH',headers:{origin,'x-csrf-protection':'1','content-type':'application/json',...extra},body:JSON.stringify(body)});
+ assert.equal((await handle(make(payload,{origin:'https://evil.example'}))).status,403);
+ assert.equal((await handle(make({...payload,actor:'spoofed'}))).status,400);
+ const saved=await handle(make(payload));assert.equal(saved.status,200);assert.equal((await saved.json()).settings.plate,'AB-12-CD');
+ assert.equal((await handle(make(payload))).status,409);assert.equal((await handle(new Request(url))).status,200);const h=await handle(new Request(url+'/history'));assert.equal((await h.json()).history.length,1);
+ assert.equal((await handle(new Request(origin+'/api/vehicles/other-v/settings'))).status,403);assert.equal((await handle(new Request(url+'?extra=1'))).status,400);
+});

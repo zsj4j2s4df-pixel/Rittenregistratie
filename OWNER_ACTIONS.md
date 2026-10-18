@@ -7,6 +7,8 @@ Alleen noodzakelijke persoonlijke handelingen horen hier. Technische taken en mo
 Geen geheimen, aankopen of koppelingen opnemen als reeds goedgekeurd zonder expliciet besluit.
 
 ## Nu
+Nieuwste eigenaarbesluit: **Cloudflare onderzoeken en aparte agenttoegang inrichten**. Deze keuzes zijn ontvangen; niet opnieuw dezelfde keuze vragen. Onderzoek klaar: docs/TRANSFER/CLOUDFLARE_RESEARCH.md en SEPARATE_AGENT_ACCESS.md. Huidige connector heeft geen identiteitswisselactie; een aparte identiteit is dus nog niet operationeel. Benodigde ingelogde account-/koppelstap blijft bij eigenaar, met concreet plan hieronder. Geen betaald product/Cloudflare-account of nieuwe koppeling geactiveerd.
+
 ACT-002: de eigenaar heeft de main-ruleset handmatig ingesteld. De drie gevraagde regels zijn via de GitHub-API bevestigd. Onafhankelijke eigenaarcontrole blijft open omdat agent en eigenaar dezelfde GitHub-identiteit gebruiken en geen goedkeurende review vereist is. Geen herhaling van de handmatige instelling gevraagd. Geen nieuwe aankopen of koppelingen aangegaan.
 
 ## Nummerconflict en historie
@@ -21,7 +23,7 @@ Cloud gebruikte ACT-001 voor codeoverdracht; Mac gebruikte zelfstandig ACT-001 v
 - **Technische controle van de drie gevraagde regels: AFGEROND via read-only API-inzage.** Ruleset `25339571`, “RitKompas - bescherm main”, is `active`, target `branch`, omvat `~DEFAULT_BRANCH` zonder uitsluitingen; de repositorymetadata bevestigt dat de default branch `main` is. Regels: `pull_request`, `deletion`, `non_fast_forward`. Geen bypass-actoren; `current_user_can_bypass: never`.
 - **Identiteit gecontroleerd: NIET GESCHEIDEN.** De geauthenticeerde connector-login is `zsj4j2s4df-pixel`, dezelfde eigenaar en PR-auteur als in de repository. Geen andere identiteit aangemaakt of gekoppeld.
 - **Onafhankelijke eigenaargoedkeuring: OPEN.** `required_approving_review_count: 0`, geen verplichte reviewers, geen code-owner-review of last-push-approval. De PR-verplichting dwingt dus geen afzonderlijke menselijke goedkeuring af. Geen merge-/verwijder-/forcepush-test uitgevoerd om dit te bewijzen; er is niets aan main gewijzigd.
-- **Overkoepelende status: BESLUIT EIGENAAR NODIG** — voorstel hieronder beschikbaar; niet opnieuw wachten op de al uitgevoerde instelling. Een nieuwe account/koppeling of bevoegdheidswijziging vereist eerst toestemming. Tot die tijd beslist uitsluitend de eigenaar over merges en blijven nieuwe agent-PR's draft.
+- **Overkoepelende status: KEUZE ONTVANGEN, INRICHTING OPEN** — aparte agenttoegang opgedragen, uitvoeringsplan in SEPARATE_AGENT_ACCESS.md; niet opnieuw wachten op de al uitgevoerde instelling. Een nieuwe account/koppeling of bevoegdheidswijziging vereist eerst toestemming. Tot die tijd beslist uitsluitend de eigenaar over merges en blijven nieuwe agent-PR's draft.
 - **Bewijs:** [MAIN_SECURITY_CHECK.md](docs/TRANSFER/MAIN_SECURITY_CHECK.md). De eerdere PR-creditblokkade is opgelost; draft-PR #4 is via dezelfde GitHub-tool aangemaakt. De historische beperking is niet omzeild. Geen hoofdbranch gewijzigd.
 
 ### Historie vóór de actuele instelling
@@ -58,11 +60,11 @@ Aanbevolen: aparte beperkt bevoegde agentidentiteit (bijvoorbeeld een geschikte 
 
 Bestaand alternatief zonder nieuwe koppeling: behoud de huidige drie actieve regels, laat alle agent-PR's draft/open en merge uitsluitend zelf na controle. Dit blijft procedurele eigenaarcontrole onder dezelfde identiteit. Je hoeft main-bescherming niet opnieuw in te stellen.
 
-## ACT-003 — Hosting en accountkoppeling kiezen vóór externe inrichting
-- Status: BESLUIT NODIG vóór accounts, gevoelige koppelingen of productie; lokale programmeertaken kunnen doorgaan.
+## ACT-003 — Cloudflare-onderzoek gekozen, externe inrichting nog niet gestart
+- Status: ONDERZOEK AFGEROND op verzoek; Cloudflare niet geactiveerd. Zie CLOUDFLARE_RESEARCH.md. Lokale ontwikkeling kan doorgaan.
 - Aanbevolen onderzoeksspoor: bestaande Cloudflare Workers/D1-stack behouden en een beheerde, server-verifieerbare login kiezen; geen ongetekende identiteitheaders. Cloudflare is nog niet door jou bevestigd. Kies welke bestaande privéaccounts (geen werkgeveraccount zonder toestemming) je eventueel wilt gebruiken; deel geen inloggegevens.
 - Alternatief: eigen hosting/database en eigen accounts. Dit vraagt een aparte vergelijking/migratie en meer beheer; geen stilzwijgende stackwijziging.
-- Jouw volgende stap: bevestig of Cloudflare als doel onderzocht mag blijven en welke bestaande loginprovider gewenst is, of vraag een concrete vergelijking vóór keuze. Alleen een keuze is nog geen toestemming voor abonnementen of productiepublicatie.
+- Jouw volgende stap vóór externe activatie: beoordeel het concrete voorstel Workers + D1 met EU-jurisdictie en mogelijke Access-login. Access Free vraagt volgens officiële onboarding betaalgegevens; voer die uitsluitend zelf in als je hiervoor kiest. Geen betaalgegevens in chat. Geen nieuwe toestemming voor onderzoek nodig. Externe activering/productie blijven afzonderlijk.
 - Kosten: geen dienst gestart of bedrag gegarandeerd. Vóór activeren moeten actuele tarieven, quota, bewaartermijnen, herstel en persoonsgegevensvoorwaarden concreet ter goedkeuring worden aangeboden.
 
 ## ACT-004 — Native distributie en praktijktests (later, met Mac)
