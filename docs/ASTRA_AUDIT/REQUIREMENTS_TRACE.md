@@ -1,5 +1,7 @@
 # Eisen en bewijs — CLOUD-006
 
+Actuele implementatiedelta (geen wijziging van eisen): [CLOUD_CHECKPOINT](../TRANSFER/CLOUD_CHECKPOINT.md). De historische ONTBREEKT-kolom hieronder blijft de nulmeting; actuele test- en gedeeltelijke implementatiebewijzen staan in de delta.
+
 > **Overdrachtupdate 18 oktober 2026:** de Mac-code en tests zijn nu op de overdrachtsbranch aangeleverd. Onderstaande nulmeting blijft historie; 'code ontbreekt' geldt voor de toen gecontroleerde basis, niet deze branch. Actuele status: [DEVELOPMENT_PROGRESS](../../DEVELOPMENT_PROGRESS.md), codebewijs: [MAC_CODE_MAPPING](../TRANSFER/MAC_CODE_MAPPING.md). Bestaande eisen-/test-ID's blijven behouden; geen volledige testcase of onafhankelijke review wordt hiermee alsnog geslaagd verklaard. Cloud leidt de ontwikkeling, eigenaar beslist over merges.
 
 Datum: 18 oktober 2026. Bronbasis: commit d37d8c913aaa253d6297cf57d3379d40c5795573.

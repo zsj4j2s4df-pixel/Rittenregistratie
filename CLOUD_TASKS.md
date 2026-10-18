@@ -14,6 +14,8 @@
 | CLOUD-007 | IN UITVOERING — veilige Mac→GitHub-overdracht op handover/mac-to-cloud-20261018, base cloud/cloud-006-documentatie |
 | CLOUD-008 | TER CONTROLE — 32/32 tests, typecheck/lint/build PASS; draft-PR #4; eerdere omgevingblokkades opgelost |
 
+Open technische taken met acceptatie: [CLOUD_CHECKPOINT](docs/TRANSFER/CLOUD_CHECKPOINT.md). Deze checkpoint is geen volledige oplevering; providerkeuze blokkeert niet alle lokale ontwikkeling.
+
 ### Actuele uitvoering na omgevingsherstel
 
 Draft-PR #4: https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/4 . Bestaande lockfile-dependencies geïnstalleerd; supply-chaincontrole, typecheck, lint en build PASS. Eerdere credit-/proxy-/installatiefouten hieronder zijn historie. ACT-002 technisch gecontroleerd; eigenaaridentiteit nog gedeeld. RESUME is het actuele hervatpunt.
@@ -28,7 +30,7 @@ Eigenaar: bestaande Cloud agent, dagelijks beschikbaar model (Sol voorkeur, sele
 
 Uitgevoerd op overdrachtscommit `8b50e9109b51770f6cf4d0eec25eac38c17e4b76`: baseline31, smoke32 PASS; standaardrunner, type/lint/build werken na omgevingsherstel. Draft-PR #4 gepubliceerd, geen pending creditblokkade. Bewijs: docs/TRANSFER/CLOUD_PROOF.md.
 
-**Opleverketen:** #1 → #2 → #3 overdracht → #4 smoke → #5 integriteitsguards → #6 web/rapporten → draft #7 serverkern → draft #8 idempotente ritinvoer → HTTP-branch cloud/cloud-005-http-adapter (base #8).
+**Opleverketen:** #1 → #2 → #3 overdracht → #4 smoke → #5 integriteitsguards → #6 web/rapporten → draft #7 serverkern → draft #8 idempotente ritinvoer → draft #9 HTTP-adapter (base #8).
 
 **ACT-002:** drie main-regels bevestigd; gedeelde identiteit/onafhankelijke approval OPEN. Zie docs/TRANSFER/MAIN_SECURITY_CHECK.md en OWNER_ACTIONS.md. Geen instellingen opnieuw laten doen.
 
