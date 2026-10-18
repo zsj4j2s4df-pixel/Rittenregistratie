@@ -8,6 +8,13 @@
       "when": 1792148913265,
       "tag": "0000_medical_maestro",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1792329939165,
+      "tag": "0001_guard_trip_integrity",
+      "breakpoints": true
     }
   ]
 }

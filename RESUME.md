@@ -6,7 +6,7 @@ Cloud leidt; eigenaar beslist over merges, kosten, gevoelige koppelingen en prod
 - CLOUD-008: 82/82 bronblobs geverifieerd; 31/31 baseline, 32/32 na CSV-regressie PASS. Draft-PR #4 tegen handover/mac-to-cloud-20261018; eerdere keten #1 → #2 → #3 behouden.
 - De eerdere proxy-, dependency- en PR-creditblokkades zijn in deze uitvoering opgelost: frozen-lockfile-installatie met bestaande packages en supply-chain-controle PASS; typecheck, lint en webbuild PASS. Geen stackwijziging of extra dienst.
 - ACT-002: eigenaarinstelling en drie actieve main-regels bevestigd. Connectoridentiteit blijft gelijk aan eigenaar; geen verplichte onafhankelijke approval. Geen merge door agents.
-- CLOUD-002/004: vervolgtaakgroep voor database-integriteit en aanvullende regressies; eigen branch/PR op deze smoke-branch. Oude migratie niet wijzigen, geen live database migreren.
+- CLOUD-002/004: TER CONTROLE op cloud/cloud-002-004-integrity, base cloud/cloud-008-handover-smoke. Additieve migratie 0001 plus vijf regressiecases; 37/37 tests en typecheck/lint/build PASS. Oude migratie ongewijzigd, geen live database migreren. Zie docs/TRANSFER/INTEGRITY_FIX.md.
 
 ## Werkspoor
 Remote smoke-head vóór documentactualisatie: 1830e7efd7d08553ad5b44864b18833fa906d3a0, gebaseerd op 8b50e9109b51770f6cf4d0eec25eac38c17e4b76. De overdrachtsbranch bevat daarnaast 5874bc3 (alleen GITHUB_PROOF.md); behouden. Lokale Git-map begon als blobgeverifieerde snapshot, geen geclonede remote geschiedenis. Remote commits via GitHub-connector met juiste parent; lokale snapshotgeschiedenis niet pushen.

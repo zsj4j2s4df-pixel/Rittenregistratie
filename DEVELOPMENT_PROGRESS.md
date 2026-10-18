@@ -1,5 +1,9 @@
 # Actuele voortgang — 18 oktober 2026
 
+## Nieuwste codegroep — CLOUD-002/004
+
+Omgevingsblokkades opgelost; draft-PR #4 bewaart de smoke en actuele ACT-002-controle. Werkbranch cloud/cloud-002-004-integrity: additieve migratie 0001 met INSERT/UPDATE-bewaking; vijf nieuwe in-memory regressietests, 37/37 tests PASS, typecheck/lint en webbuild PASS. Oude migratie/data behouden; geen live migratie. Bewijs: docs/TRANSFER/INTEGRITY_FIX.md. Volgende groep: CLOUD-005, rapportage/webbediening. Oudere blokkeringsmeldingen hieronder zijn historie.
+
 > **Actuele aanvulling, 18 oktober 2026:** omgevingsherstel bevestigd. Dependencyinstallatie met ongewijzigde lockfile en supply-chaincontrole PASS; 32/32 tests, TypeScript, lint en webbuild PASS. Draft-PR #4 is aangemaakt. Oudere proxy-/credits-/NIET GETEST-vermeldingen hieronder blijven historie van eerdere pogingen. Geen main-merge, nieuwe account of productiepublicatie.
 
 ## Laatste status — eigenaarregels gecontroleerd, publicatieblokkade bereikt
