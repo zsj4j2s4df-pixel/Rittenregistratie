@@ -10,7 +10,7 @@
 | CLOUD-006 | TER CONTROLE — PR #2 afhankelijk van #1; 123 REQ-ID's/21 scenario's behouden, actuele codebasis nu aangeleverd |
 | CLOUD-002 / CLOUD-004 | TER CONTROLE — additieve databaseguards, vijf regressiecases; 37/37 tests en typecheck/lint/build PASS; verdere API/UI-dekking open |
 | CLOUD-003 | GEDEELTELIJK UITGEVOERD — twee gerichte serverkernreviews en één rapportagereview; volledige productieauth/privacyreview open |
-| CLOUD-005 | IN UITVOERING — PR #6 web/rapportage; serverkern/ritinvoer TER CONTROLE: 101 tests + lokale D1 + type/lint/build PASS; settingsopslag/Accessvoorbereiding TER CONTROLE, duurzame UI/login/sync open |
+| CLOUD-005 | IN UITVOERING — PR #6 web/rapportage; serverkern/ritinvoer TER CONTROLE: 105 tests + lokale D1 + type/lint/build PASS; settingsopslag/Accessvoorbereiding TER CONTROLE, duurzame UI/login/sync open |
 | CLOUD-007 | IN UITVOERING — veilige Mac→GitHub-overdracht op handover/mac-to-cloud-20261018, base cloud/cloud-006-documentatie |
 | CLOUD-008 | TER CONTROLE — 32/32 tests, typecheck/lint/build PASS; draft-PR #4; eerdere omgevingblokkades opgelost |
 
@@ -38,7 +38,9 @@ Uitgevoerd op overdrachtscommit `8b50e9109b51770f6cf4d0eec25eac38c17e4b76`: base
 
 **Rapportgroep TER CONTROLE:** cloud/cloud-005-server-reports, base #10.101tests/type/lint/build/lokaleD1 PASS; SERVER_REPORTS.md.
 
-**Volgende technische groep:** API-runtimeadapter standaard gesloten bij ontbrekende configuratie; daarna geverifieerde sessionprovider en UI-sync. Providerbesluit is alleen nodig voor externe inrichting, niet voor alle lokale code. Native/hardware apart. Geen mastereisen vervallen.
+**API-runtimegroep TER CONTROLE:** cloud/cloud-005-api-runtime, base #11;105tests/type/lint/build +builtNode503smoke/lokaleD1PASS, API_RUNTIME.md.
+
+**Volgende technische groep:** web/backendadapter en voertuigselectie/centralebeheerinterface; daarna geverifieerde sessionprovider en UI-sync. Providerbesluit is alleen nodig voor externe inrichting, niet voor alle lokale code. Native/hardware apart. Geen mastereisen vervallen.
 
 **HTTP-bewijs:** docs/TRANSFER/TRIP_HTTP.md. Providerneutrale adapter met CSRF-/requestgrenzen; geen publieke API geactiveerd.
 
