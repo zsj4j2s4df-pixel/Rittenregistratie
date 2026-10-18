@@ -25,7 +25,14 @@ try {
  await assert.rejects(()=>service.edit('v','t',{...edit,expectedRevision:1,distanceKm:40}),/forced audit failure/);
  assert.equal((await service.get('v','t')).revision,1);assert.equal((await service.get('v','t')).distance_km,30);assert.equal((await service.history('v','t')).length,1);
  await db.prepare('DROP TRIGGER test_reject_audit').run();
+ const creation={...edit,requestId:'local-d1-create-0001'};
+ const [created,retried]=await Promise.all([service.create('v',creation),service.create('v',creation)]);
+ assert.deepEqual(created,retried);assert.equal((await service.history('v',created.id)).length,1);assert.equal((await service.list('v')).length,2);
+ await assert.rejects(()=>service.create('v',{...creation,distanceKm:31}),e=>e.status===409);
+ await db.prepare("CREATE TRIGGER test_reject_create BEFORE INSERT ON audit_logs BEGIN SELECT RAISE(ABORT,'forced create failure'); END").run();
+ await assert.rejects(()=>service.create('v',{...creation,requestId:'local-d1-create-0002'}),/forced create failure/);
+ assert.equal((await service.list('v')).length,2);assert.equal((await db.prepare('SELECT count(*) AS n FROM trip_create_requests').first()).n,1);
  await db.prepare('UPDATE vehicle_memberships SET active=0').run();
  await assert.rejects(()=>service.list('v'),e=>e.status===403);
- console.log('PASS local workerd/D1: migrations, fail-closed session, edit+audit, provenance, stale conflict, atomic rollback, revocation. NOT production D1/auth.');
+ console.log('PASS local workerd/D1: migrations, fail-closed session, edit+audit, provenance, stale conflict, atomic rollback, concurrent idempotent creation, creation rollback, revocation. NOT production D1/auth.');
 } finally { await mf.dispose(); }

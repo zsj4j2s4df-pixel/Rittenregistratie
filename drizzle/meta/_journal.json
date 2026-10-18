@@ -36,6 +36,13 @@
       "when": 1792331550025,
       "tag": "0004_distance_provenance",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1792331760653,
+      "tag": "0005_trip_create_receipts",
+      "breakpoints": true
     }
   ]
 }

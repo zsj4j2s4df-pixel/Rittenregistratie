@@ -1,6 +1,10 @@
 # Actuele voortgang — 18 oktober 2026
 
-## Nieuwste backendgroep — CLOUD-005
+## Nieuwste aanmaakgroep — CLOUD-005
+
+cloud/cloud-005-server-create, base server-core/draft-PR #7: handmatige serverrit met scoped retry-idempotentie, atomische rit/receipt/audit en oorspronkelijke response.65/65tests, lokale D1 inclusief gelijktijdige retry en auditrollback, typecheck/lint/build PASS. Eén gerichte onafhankelijke review: geen concrete fout. Nog geen publieke login/API. Bewijs: docs/TRANSFER/SERVER_CREATE.md. Volgende groep: veilige HTTP-adapter.
+
+## Backendgroep — CLOUD-005
 
 Serverkern cloud/cloud-005-server-core, base cloud/cloud-005-reporting (PR #6): voertuiggebonden rechten, ingetrokken toegang, revisionconflicten, atomische correctie/audit, bronbehoud en databaseguards. 61/61 tests, typecheck/lint/build en echte lokale workerd/D1-binding PASS. Twee gerichte reviews vonden dezelfde afstandsbronfout; opgelost met regressie en hercontrole. Geen productieauth of duurzame webopslag aangesloten. Bewijs: docs/TRANSFER/SERVER_CORE.md. Volgende technisch uitvoerbare groep: serverritinvoer met retry-idempotentie; daarna instellingen/rapporten en sync. OWNER_ACTIONS bevat uitsluitend persoonlijke keuzes.
 
