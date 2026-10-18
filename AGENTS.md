@@ -6,6 +6,8 @@ Start met RESUME.md, CLOUD_TASKS.md, DEVELOPMENT_PROGRESS.md en CLOUD_HANDOVER.m
 
 Nieuwste publicatieopdracht: eigenaar autoriseert aanmaken en publiceren van RitKompas in het gekoppelde Cloudflare-account. Gekozen adres conform antwoord eigenaar: https://rittenregistratie.zsj4j2s4df.workers.dev. Dit autoriseert geen kosten, betaalgegevens, nieuwe externe accounts of main-merge. Bestaande andere Workers/accountsubdomain niet wijzigen.
 
+Nieuwste beperking na eerdere publicatie: eigenaar heeft Zero Trust Free geactiveerd, vraagt exacte Access-instructies en zelfstandige ontwikkeling, maar **geen nieuwe live publicatie zonder zijn toestemming**. Kosten blijven verboden. Code/tests/docs en draft-GitHubupdates blijven toegestaan; geen Cloudflare-mutaties uitvoeren op basis van de oudere publicatietoestemming.
+
 ## Zelfstandig toegestaan
 
 Samenhangende code-, test-, bugfix- en documenttaken op eigen branches; commits en pull requests; taken, besluiten en hervatpunt bijwerken. Gebruik synthetische gegevens. Als een reviewer niet beschikbaar is, neem veilig werk zelf over en markeer dat als eigen controle, niet onafhankelijk.

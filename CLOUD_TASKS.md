@@ -131,3 +131,9 @@ GitHub Issues niet aangemaakt: deze lijst volstaat voorlopig.
 - Resultaat: REQUIREMENTS_TRACE.md (123 eisen/voorwaarden), TEST_PLAN.md (21 scenario's), gerichte leeswijzers met behoud van originele broninhoud; FEASIBILITY_RESEARCH.md met 18 officiële bronnen en beperkingen, SECURITY_PRECHECK.md en CODE_AUDIT.md.
 - Testbewijs: broninhoud exact behouden, ID's en interne links gecontroleerd, bestanden na opslag teruggelezen; geen app-tests uitgevoerd. Zie PROGRESS.md voor de uiteindelijke validatie.
 - Blokkade: Mac-review/acceptatie open; materiële fiscale en platformkeuzes niet genomen. Branch gebaseerd op CLOUD-001, eigen PR met die branch als base; eerst PR #1 beoordelen.
+
+## Nieuwste Access-controle en publicatiebeperking
+
+Eigenaar bevestigt Zero Trust Free actief. Read-only API bevestigt organisatie snowy-snowflake-4760.cloudflareaccess.com; apps nog leeg, bestaande IdP type cloudflare. Hosting en exacte APP_ORIGIN opnieuw vanaf GitHub gecontroleerd: https://rittenregistratie.zsj4j2s4df.workers.dev, Workers+D1, geen eigen domein nodig voor proef. iPhone-invulvelden en veilige fallback: docs/TRANSFER/ACCESS_IPHONE_SETUP.md. Oude actie “Access activeren” is uitgevoerd; volgende eigenaaractie is app/destination/expliciete allowlist opslaan. Nog geen echte loginclaim.
+
+Nieuwste instructie: **geen nieuwe livepublicatie zonder toestemming, geen kosten**; oudere publicatieopdracht is voor volgende releases niet voldoende. Tijdens deze taak alleen read-only Cloudflare. Zelfstandig toegevoegd: offline Access-configuratiecontrole vóór latere aansluiting,122Node-tests/type/lint PASS; geen appdeploy of accountprovisioning. Draft-GitHubwijzigingen toegestaan, main ongemoeid.
