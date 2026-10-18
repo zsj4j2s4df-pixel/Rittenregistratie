@@ -71,7 +71,7 @@ GitHub Issues niet aangemaakt: deze lijst volstaat voorlopig.
 - Afhankelijkheden: vervolgbranch baseren op beoordeeld CLOUD-001-resultaat of expliciet die branch gebruiken; vermijd gelijktijdige edits.
 - Acceptatie/tests: alle mastereisen traceerbaar, relatieve documentlinks gecontroleerd, diff behoudt wensen; materiële keuzes apart ter besluitvorming.
 - Security: fiscale claims en iOS-mogelijkheden niet als bewezen presenteren zonder actuele officiële bronnen.
-- Usage: gemiddeld ingeschat; werkelijk verbruik onbekend. Branch: bij start cloud/cloud-006-documentatie. Issue/PR: geen.
+- Usage: gemiddeld ingeschat; werkelijk verbruik onbekend. Branch: cloud/cloud-006-documentatie. PR: https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/2 .
 - Resultaat: REQUIREMENTS_TRACE.md (123 eisen/voorwaarden), TEST_PLAN.md (21 scenario's), gerichte leeswijzers met behoud van originele broninhoud; FEASIBILITY_RESEARCH.md met 18 officiële bronnen en beperkingen, SECURITY_PRECHECK.md en CODE_AUDIT.md.
 - Testbewijs: broninhoud exact behouden, ID's en interne links gecontroleerd, bestanden na opslag teruggelezen; geen app-tests uitgevoerd. Zie PROGRESS.md voor de uiteindelijke validatie.
 - Blokkade: Mac-review/acceptatie open; materiële fiscale en platformkeuzes niet genomen. Branch gebaseerd op CLOUD-001, eigen PR met die branch als base; eerst PR #1 beoordelen.

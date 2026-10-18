@@ -126,8 +126,7 @@ Dit register beschrijft eisen, geen gerealiseerde functionaliteit. Alle hieronde
 | REQ-119 | 22 — Persoonlijke acties | Operator onderhoudt namens Sol; technische/model/controlewerkzaamheden blijven bij agents | ONTBREEKT | T-02; NIET GETEST |
 | REQ-120 | laatste procesafspraak — Regie | Sol dagelijks, Astra alleen zwaarwegende besluiten; Mac coördineert/integreert/accepteert, Cloud levert afgebakende PR's | ONTBREEKT | T-02; NIET GETEST |
 | REQ-121 | laatste procesafspraak — Regie | Lichtste geschikt beschikbare model; geen onnodige parallelle agents; selecteerbare redeneerinstelling controleren | ONTBREEKT | T-02; NIET GETEST |
-| REQ-122 | laatste procesafspraak — Regie | Twee onafhankelijke securityreviews blijven vereist; geen automatische modelrouting/usage-grens claimen | ONTBREEKT | T-02; NIET GETEST |
-
+| REQ-122 | laatste procesafspraak — Regie | Twee onafhankelijke securityreviews blijven vereist; geen automatische modelrouting/usage-grens claimen | ONTBREEKT | T-02; NIET GETEST | 
 | REQ-123 | 0 — Algemene spelregels | Helder Nederlands; alle wensen behouden; veranderlijke feiten met actuele officiële bron/datum; feit/aanname/onderzoek scheiden; geen onbewezen uitvoering of fiscale garantie | Procescontrole in documentreview | T-02; documentcontrole uitgevoerd, app NIET GETEST |
 
 ## Controle van behoud
