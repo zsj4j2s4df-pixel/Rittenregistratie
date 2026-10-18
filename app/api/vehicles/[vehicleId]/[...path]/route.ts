@@ -1,16 +1,4 @@
-import { createConfiguredApi, type RuntimeBindings } from '../../../../../lib/server-handler.ts';
-
-let configured: ReturnType<typeof createConfiguredApi> | undefined;
-async function handle(request:Request) {
- if(!configured){
-  let bindings:RuntimeBindings={};
-  // Workers provides bindings. Node previews do not support the cloudflare:
-  // scheme; keep that unsupported runtime closed instead of crashing on import.
-  try { const { env } = await import('cloudflare:workers'); bindings=env as RuntimeBindings; } catch { /* no Worker bindings */ }
-  configured=createConfiguredApi(bindings);
- }
- return configured(request);
-}
+import { handleApiRequest as handle } from '../../../../../lib/worker-api.ts';
 export const dynamic='force-dynamic';
 export const GET=handle;
 export const POST=handle;

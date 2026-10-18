@@ -41,6 +41,7 @@ try {
  const patch={...edit,expectedRevision:1,distanceKm:35};
  assert.equal((await handle(new Request(origin+'/api/vehicles/v/trips/t',{method:'PATCH',headers:{origin,'x-csrf-protection':'1','content-type':'application/json'},body:JSON.stringify(patch)}))).status,200);
  assert.equal((await service.get('v','t')).distance_km,35);
+ const vehicleList=await handle(new Request(origin+'/api/vehicles'));assert.equal(vehicleList.status,200);assert.equal((await vehicleList.json()).vehicles[0].id,'v');
  const settingsUrl=origin+'/api/vehicles/v/settings';
  const settings={revision:0,plate:'TEST-01',addresses:[{id:'synthetic',label:'Test',address:'Synthetic A',enabled:true,note:''}],rates:[{id:'zero',microsPerKm:0,validFrom:'2026-01-01'}],reason:'Local settings'};
  const savedSettings=await handle(new Request(settingsUrl,{method:'PATCH',headers:{origin,'x-csrf-protection':'1','content-type':'application/json'},body:JSON.stringify(settings)}));

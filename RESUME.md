@@ -22,10 +22,13 @@ Draft-PR #10 https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/10 , clo
 Draft-PR #11 https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/11 , cloud/cloud-005-server-reports, base #10/head4082d51: additieve0007/reportSnapshots met immutabletrigger, coherentebronsnapshot, retry/audit/rechten, Amsterdamdatering, integergeld/unknowncounts, veiligeCSV.101tests/type/lint/build/lokaleD1 PASS; gerichte overlapreviewfout gefixt/hercontrolePASS. Zie docs/TRANSFER/SERVER_REPORTS.md. Nog geen publieke API/webkoppeling/serverPDF.
 
 ## Nieuwste API-runtimegroep
-cloud/cloud-005-api-runtime, base #11: app-APIroute met expliciete DB/origin/Accessconfig; ontbrekend503, geconfigureerdzonderJWT401. DynamischeWorkerimport voorkomt Node500.105tests/type/lint/build PASS; builtlocalAPI503-smokePASS; lokaleD1PASS. Zie API_RUNTIME.md. Geen remoteactivering/websync.
+Draft-PR #12 https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/12 , cloud/cloud-005-api-runtime, base #11: app-APIroute met expliciete DB/origin/Accessconfig; ontbrekend503, geconfigureerdzonderJWT401. DynamischeWorkerimport voorkomt Node500.105tests/type/lint/build PASS; builtlocalAPI503-smokePASS; lokaleD1PASS. Zie API_RUNTIME.md. Geen remoteactivering/websync.
+
+## Nieuwste centrale webgroep
+cloud/cloud-005-central-web, base #12/head5873ad4: /beheer met alleenbackendvoertuigen/ritten, handmatigeinvoer, kenteken, vaste rapporten/CSV en veiligereconnect.111tests/type/lint/build PASS; centraleChromium→HTTP→SQLite syntheticidentity PASS incl responseverlies→reconnect→retry; demobrowser/closedAPI/D1regressiesPASS. Zie CENTRAL_WEB.md. Nog geen echte Access/login/remoteDB of volledige centrale CRUD/sync.
 
 ## Volgende technische taak
-Web/backendadapter en voertuigselectie/centralebeheerinterface; vervolgens geverifieerde sessions en publiek aansluiten na toestemming, UI-sync, detectie-inname/deduplicatie, back-up/herstel en read-only MCP. Nog niet gebouwd: geen volledige-appclaim. Providerbesluit blokkeert niet alle lokale implementaties.
+Centrale adres-/tariefCRUD, ritcorrectie-/historiebediening; vervolgens geverifieerde sessions en publiek aansluiten na toestemming, UI-sync, detectie-inname/deduplicatie, back-up/herstel en read-only MCP. Nog niet gebouwd: geen volledige-appclaim. Providerbesluit blokkeert niet alle lokale implementaties.
 
 ## Controles en omgeving
 Node24.19.0/Linux x86_64, pnpm11.25.0. Frozen lockfile-installatie/supply-chaincheck PASS; eerdere credits/proxy/dependencyblokkades opgelost. Run node --experimental-strip-types --test tests/*.test.mjs; node --experimental-strip-types tests/d1-runtime-smoke.mjs; pnpm exec tsc --noEmit; pnpm lint; pnpm build. Browsercheck tests/browser-smoke.mjs gebruikt geïsoleerde Playwright/Chromium, zie REPORTING_WEB.md.

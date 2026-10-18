@@ -1,6 +1,10 @@
 # Actuele voortgang — 18 oktober 2026
 
-## Nieuwste API-runtimegroep
+## Nieuwste centrale webgroep
+
+/beheer communiceert met echte gedeelde backend, geen demodatafallback. Vehiclelist/privacy, manualtrip/0stand, plate/revision, vaste report/CSV.111tests/type/lint/build PASS. Centrale browsertest met gesimuleerde identiteit en echteHTTP/SQLite: lostresponse→reconnect→retry zonderduplicaat, reload, concurrent409, CSV, mobile/theme PASS. Reconnectreviewbevinding en 2browserbugs gefixt, hercontrolePASS. Geen liveCloudflarelogin/remoteDB, fullCRUD/sync/native niet af. Zie CENTRAL_WEB.md.
+
+## API-runtimegroep — draft-PR #12
 
 AppAPIroutes aangesloten met geldigeWorkerconfig/geverifieerde identiteit. Ontbrekend/ongeldig503; Node500door Workerimport opgelost.105tests/type/lint/build en builtNode503-smokePASS; lokaleD1PASS. Geen site/deploy/account, demo tijdelijk. Zie API_RUNTIME.md. Volgende groep:web/backendadapter.
 

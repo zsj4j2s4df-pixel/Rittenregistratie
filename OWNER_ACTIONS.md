@@ -11,6 +11,16 @@ Nieuwste eigenaarbesluit: **Cloudflare onderzoeken en aparte agenttoegang inrich
 
 ACT-002: de eigenaar heeft de main-ruleset handmatig ingesteld. De drie gevraagde regels zijn via de GitHub-API bevestigd. Onafhankelijke eigenaarcontrole blijft open omdat agent en eigenaar dezelfde GitHub-identiteit gebruiken en geen goedkeurende review vereist is. Geen herhaling van de handmatige instelling gevraagd. Geen nieuwe aankopen of koppelingen aangegaan.
 
+## Eerstvolgende persoonlijke stap — aparte GitHub-koppeling
+
+Keuze/opdracht is al ontvangen, geen herbevestiging nodig.
+1. Gebruik een afzonderlijk GitHub-account voor de agent (of maak dat zelf aan als het nog niet bestaat); houd je eigenaaraccount privé als beslisser. Geef geen wachtwoord/passkey/token in chat.
+2. Nodig het aparte account alleen voor Rittenregistratie uit via de repository-instellingen voor collaborators. Minimale benodigde schrijfrechten, geen owner/admin of main-bypass. Nog geen regels uitschakelen.
+3. Controleer of jouw GitHub-appverbinding een ondersteunde koppeling onder dat aparte account biedt. Alleen als dat daadwerkelijk ondersteund is die identiteit koppelen; een App registreren verandert de huidige connector niet. Exacte accountwisselschermen zijn hier niet bevestigd; niet blind de huidige verbinding verbreken of sleutels aanmaken.
+4. Na koppeling laat Cloud de daadwerkelijke login en PR-auteur teruglezen. Pas daarna een echte vereiste onafhankelijke review inrichten/testen; huidige PR’s zijn onder eigenaaridentiteit gemaakt en kunnen niet als twee onafhankelijke personen worden goedgekeurd. Zie SEPARATE_AGENT_ACCESS.md voor Appoptie/limieten. Geen agentmerge.
+
+Cloudflare hoeft nu niet geactiveerd en er is geen aankoop nodig. Voor een echte online proef zijn persoonlijk account/voorwaarden en aparte stagingtoestemming nodig; Access Free vraagt volgens officiële onboarding betaalgegevens. Onderzoek en lokale code/tests gaan daar niet aan vooraf voorbij. Geen betaalgegevens via chat.
+
 ## Nummerconflict en historie
 
 Cloud gebruikte ACT-001 voor codeoverdracht; Mac gebruikte zelfstandig ACT-001 voor toestelinventarisatie. Beide originele nummers blijven behouden met broncontext: deze lijst bevat Cloud ACT-001; [Mac ACT-001](docs/MAC_SNAPSHOT_2026-10-18/OWNER_ACTIONS.md) is de afgeronde eerste inventarisatie van iPhone 11 Pro en nieuwere toestellen. Geen taak stil overschreven of opnieuw aan jou gevraagd.

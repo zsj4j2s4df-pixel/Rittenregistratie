@@ -50,3 +50,28 @@ nav { display:grid; gap:6px; }.nav-item { border:0; background:transparent; colo
   .sidebar,.topbar,.demo-banner,.toast,.no-print{display:none!important}.report-page{padding:0!important;max-width:none!important}.print-report{margin:0}.print-report header strong{color:black}.print-report *{color:black!important;text-shadow:none!important;box-shadow:none!important}
   .report-scroll{overflow:visible}.print-report{padding:0;border:0}.report-data{min-width:0;table-layout:fixed;font-size:8pt}.report-data th,.report-data td{border:1px solid #aaa;padding:5px;white-space:normal;overflow-wrap:anywhere}.report-data thead{display:table-header-group}.report-data tr{break-inside:avoid}.report-warnings{font-size:9pt}.report-actions{display:none!important}
 }
+
+.central-shell { display:block; min-height:100vh; }
+.central-shell .workspace { margin:0 auto; max-width:1280px; padding:24px; }
+.central-shell .panel { margin:20px 0; padding:20px; border:1px solid var(--line); border-radius:16px; }
+.central-shell form { margin:16px 0; }
+.central-shell label { display:flex; flex-direction:column; gap:6px; }
+.central-shell input,.central-shell select { max-width:100%; padding:10px; border-radius:8px; }
+.central-shell button { min-height:42px; padding:8px 14px; }
+.central-table { overflow-x:auto; }
+.central-table table { min-width:700px; width:100%; }
+.central-table td,.central-table th { padding:12px; text-align:left; }
+@media(max-width:650px) { .central-shell .workspace { padding:12px; } .central-shell .topbar { flex-wrap:wrap; gap:16px; } }
+
+.central-shell .editor-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+.central-shell input,.central-shell select { background:var(--panel2); color:var(--text); border:1px solid var(--line); font:inherit; }
+.central-shell button { background:var(--panel2); color:var(--text); border:1px solid var(--line); border-radius:8px; }
+.central-shell button:disabled { opacity:.55; cursor:wait; }
+.central-shell a { color:var(--accent); }
+@media(max-width:650px) { .central-shell .editor-grid { grid-template-columns:1fr; } .central-shell .top-actions { flex-wrap:wrap; } }
+.central-shell { overflow-wrap:anywhere; }
+.central-shell .topbar { height:auto; min-height:105px; padding:20px 0; gap:16px; flex-wrap:wrap; }
+.central-shell .top-actions { flex-wrap:wrap; }
+@media(max-width:650px) { .central-shell .topbar { min-height:0; padding:16px 0; } }
+
+.central-launch { color:var(--accent); font-weight:700; text-decoration:underline; }
