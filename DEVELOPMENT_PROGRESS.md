@@ -1,6 +1,10 @@
 # Actuele voortgang — 18 oktober 2026
 
-## Nieuwste groep — duurzame instellingen en Cloudflare-voorbereiding, draft-PR #10
+## Nieuwste serverrapportgroep
+
+Coherente bronselectie en duurzame onveranderlijke rapporten met scoped retry, audit, exportrechten en CSV.101tests/type/lint/build en lokaleD1 PASS.Over-middernacht-overlapfout gerepareerd na onafhankelijke review; hercontrolePASS. Geen publieke login/serverPDF/websync. Bewijs SERVER_REPORTS.md. Volgende veilige groep: gesloten runtimeadapter.
+
+## Eerdere groep — duurzame instellingen en Cloudflare-voorbereiding, draft-PR #10
 
 Eigenaarkeuzes ontvangen: Cloudflare onderzoeken, aparteagenttoegang. Officiële bronnen onderzocht en ownerstappen beschreven; geen externe activatie. Backendsettingsopslag met voertuigscope, revision en audit +settingsHTTP +cryptografische AccessRS256-resolver voorbereid.89/89tests, type/lint/build en lokale D1HTTP/settings/rollback/synthetische identiteit PASS.2legacyreviewfouten hersteld met regressies en hercontrole; Accessgerichte review geen concrete fout. Web blijft demo, echte providerlogin/sync/native niet getest. Zie docs/TRANSFER/SETTINGS_STORAGE.md. Volgende technische groep: duurzame serverrapporten/exportrechten.
 

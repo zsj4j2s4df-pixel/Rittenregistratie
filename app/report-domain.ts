@@ -1,3 +1,4 @@
+import { milliKm, reimbursementCents } from '../lib/report-values.ts';
 import { validateLog, overlapIssues, validDate, type Trip } from './trip-domain.ts';
 import { csvCell } from './trip-utils.ts';
 
@@ -45,10 +46,8 @@ export function prepareReport(trips: readonly Trip[], options: ReportOptions): R
     const rate = options.rates.find(r => trip.date >= r.validFrom && trip.date <= (r.validUntil ?? '9999-12-31'));
     const applicable = trip.classification === 'Zakelijk';
     if (applicable && !rate) warnings.push(`Rit ${trip.id}: geen tarief voor deze datum; vergoeding niet berekend.`);
-    const milliKm = Math.round(trip.distance * 1000);
-    if (!Number.isSafeInteger(milliKm) || Math.abs(milliKm / 1000 - trip.distance) > 1e-9) throw new Error('Rapportafstand ondersteunt maximaal drie decimalen en moet veilig berekenbaar zijn.');
-    const cents = applicable && rate ? Number((BigInt(milliKm) * BigInt(rate.microsPerKm) + BigInt(5_000_000)) / BigInt(10_000_000)) : null;
-    if (cents !== null && !Number.isSafeInteger(cents)) throw new Error('Vergoeding valt buiten het veilig berekenbare bereik.');
+    milliKm(trip.distance);
+    const cents = applicable && rate ? reimbursementCents(trip.distance, rate.microsPerKm) : null;
     return Object.freeze({ ...trip, rateMicros: applicable && rate ? rate.microsPerKm : null, amountCents: cents });
   });
   const sum = (classification?: string) => {

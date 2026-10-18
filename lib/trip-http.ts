@@ -1,3 +1,4 @@
+import { createReportService, type ReportRequest } from './report-service.ts';
 import { createSettingsService, type SettingsEdit } from './settings-service.ts';
 import type { Principal } from './access-policy.ts';
 import { createTripService, TripServiceError } from './trip-service.ts';
@@ -18,7 +19,7 @@ export function createTripHttpHandler(options: {
   function response(status: number, body: unknown, extra: Record<string,string> = {}) {
     return new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff', 'Vary': 'Origin, Cookie', ...extra } });
   }
-  async function json(request: Request, create: boolean | 'settings') {
+  async function json(request: Request, create: boolean | 'settings' | 'report') {
     if (request.headers.get('origin') !== origin.origin || request.headers.get('x-csrf-protection') !== '1' || request.headers.get('sec-fetch-site') === 'cross-site') throw new TripServiceError(403, 'Ongeldige aanvraagherkomst.');
     if (request.headers.get('content-type')?.split(';')[0].trim().toLowerCase() !== 'application/json') throw new TripServiceError(415, 'JSON vereist.');
     const length = request.headers.get('content-length');
@@ -42,7 +43,7 @@ export function createTripHttpHandler(options: {
       for (const chunk of chunks) { bytes.set(chunk, offset); offset += chunk.byteLength; }
       body = JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(bytes));
     } catch { throw new TripServiceError(400, 'Ongeldige JSON.'); }
-    const allowed = create === 'settings' ? ['revision','plate','addresses','rates','reason'] : create ? [...editKeys.filter(k=>k!=='expectedRevision'), 'requestId'] : editKeys;
+    const allowed = create === 'report' ? ['requestId','from','until','driverId'] : create === 'settings' ? ['revision','plate','addresses','rates','reason'] : create ? [...editKeys.filter(k=>k!=='expectedRevision'), 'requestId'] : editKeys;
     if (!body || typeof body !== 'object' || Array.isArray(body) || Object.keys(body).some(k=>!allowed.includes(k))) throw new TripServiceError(400, 'Onbekende invoervelden.');
     return body;
   }
@@ -56,6 +57,20 @@ export function createTripHttpHandler(options: {
     try {
       const url = new URL(request.url);
       if (url.origin !== origin.origin) return response(403, { error: 'Ongeldige aanvraagherkomst.' });
+      const reportMatch = /^\/api\/vehicles\/([^/]+)\/reports(?:\/([^/]+)(\/csv)?)?$/.exec(url.pathname);
+      if (reportMatch) {
+        const vehicleId=segment(reportMatch[1]),id=reportMatch[2]?segment(reportMatch[2]):null;
+        const allowed=id?['GET']:['GET','POST'];
+        if(!allowed.includes(request.method))return response(405,{error:'Methode niet toegestaan.'},{Allow:allowed.join(', ')});
+        const permitted=!id&&request.method==='GET'?['limit','offset']:[];
+        for(const key of url.searchParams.keys())if(!permitted.includes(key)||url.searchParams.getAll(key).length!==1)throw new TripServiceError(400,'Ongeldige query.');
+        const service=createReportService(options.db,()=>options.resolveSession?.(request)??Promise.resolve(null),options.clock);
+        if(request.method==='POST')return response(201,{report:await service.create(vehicleId,await json(request,'report') as ReportRequest)});
+        if(reportMatch[3])return new Response(await service.csv(vehicleId,id!),{headers:{'Content-Type':'text/csv; charset=utf-8','Content-Disposition':'attachment; filename="ritkompas-rapport.csv"','Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Vary':'Origin, Cookie'}});
+        if(id)return response(200,{report:await service.get(vehicleId,id)});
+        const page=(key:string,fallback:number)=>{const value=url.searchParams.get(key);if(value===null)return fallback;if(!/^\d+$/.test(value))throw new TripServiceError(400,'Ongeldige paginering.');return Number(value);};
+        return response(200,{reports:await service.list(vehicleId,page('limit',50),page('offset',0))});
+      }
       const settingsMatch = /^\/api\/vehicles\/([^/]+)\/settings(\/history)?$/.exec(url.pathname);
       if (settingsMatch) {
         const vehicleId = segment(settingsMatch[1]);

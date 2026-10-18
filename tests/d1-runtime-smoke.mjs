@@ -49,6 +49,16 @@ try {
  await db.prepare("CREATE TRIGGER reject_settings_audit BEFORE INSERT ON audit_logs BEGIN SELECT RAISE(ABORT,'settings rollback'); END").run();
  const rejected=await handle(new Request(settingsUrl,{method:'PATCH',headers:{origin,'x-csrf-protection':'1','content-type':'application/json'},body:JSON.stringify({...settings,revision:1,plate:'FAIL-01'})}));assert.equal(rejected.status,500);
  assert.equal((await (await handle(new Request(settingsUrl))).json()).settings.plate,'TEST-01');
+ const reportUrl=origin+'/api/vehicles/v/reports';
+ const reportRequest={requestId:'local-report-request-0001',from:'1970-01-01',until:'1970-01-01',driverId:null};
+ const reportPost=()=>new Request(reportUrl,{method:'POST',headers:{origin,'x-csrf-protection':'1','content-type':'application/json'},body:JSON.stringify(reportRequest)});
+ await db.prepare('DROP TRIGGER reject_settings_audit').run();
+ const reportResponse=await handle(reportPost());assert.equal(reportResponse.status,201);const durableReport=(await reportResponse.json()).report;
+ const replayedReport=await handle(reportPost());assert.equal((await replayedReport.json()).report.id,durableReport.id);
+ assert.equal((await handle(new Request(reportUrl+'/'+durableReport.id+'/csv'))).status,200);
+ await assert.rejects(()=>db.prepare("UPDATE report_snapshots SET snapshot_json='{}'").run(),/report_snapshot_immutable/);
+ await db.prepare("CREATE TRIGGER reject_report_audit BEFORE INSERT ON audit_logs WHEN NEW.entity_type='report' BEGIN SELECT RAISE(ABORT,'report rollback'); END").run();
+ const reportFailure=await handle(new Request(reportUrl,{method:'POST',headers:{origin,'x-csrf-protection':'1','content-type':'application/json'},body:JSON.stringify({...reportRequest,requestId:'local-report-request-0002'})}));assert.equal(reportFailure.status,500);assert.equal((await db.prepare('SELECT count(*) AS n FROM report_snapshots').first()).n,1);
  const issuer='https://synthetic-team.cloudflareaccess.com';const audience='synthetic-app';
  await db.prepare("UPDATE users SET external_auth_id=? WHERE id='u'").bind(JSON.stringify([issuer,'synthetic-sub'])).run();
  const pair=await crypto.subtle.generateKey({name:'RSASSA-PKCS1-v1_5',modulusLength:2048,publicExponent:new Uint8Array([1,0,1]),hash:'SHA-256'},true,['sign','verify']);
@@ -66,5 +76,5 @@ try {
  assert.equal((await verifiedHandle(authedRequest())).status,403);
  assert.equal((await handle(new Request(origin+'/api/vehicles/v/trips'))).status,403);
  await assert.rejects(()=>service.list('v'),e=>e.status===403);
- console.log('PASS local workerd/D1: migrations, fail-closed session, edit+audit, provenance, stale conflict, atomic rollback, concurrent idempotent creation, creation rollback, HTTP read/write, durable settings/rollback, synthetic signed Access identity, revocation. NOT production D1/auth.');
+ console.log('PASS local workerd/D1: migrations, fail-closed session, edit+audit, provenance, stale conflict, atomic rollback, concurrent idempotent creation, creation rollback, HTTP read/write, durable settings/rollback, immutable reports/CSV/rollback, synthetic signed Access identity, revocation. NOT production D1/auth.');
 } finally { await mf.dispose(); }

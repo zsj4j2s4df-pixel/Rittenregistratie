@@ -10,7 +10,7 @@
 | CLOUD-006 | TER CONTROLE — PR #2 afhankelijk van #1; 123 REQ-ID's/21 scenario's behouden, actuele codebasis nu aangeleverd |
 | CLOUD-002 / CLOUD-004 | TER CONTROLE — additieve databaseguards, vijf regressiecases; 37/37 tests en typecheck/lint/build PASS; verdere API/UI-dekking open |
 | CLOUD-003 | GEDEELTELIJK UITGEVOERD — twee gerichte serverkernreviews en één rapportagereview; volledige productieauth/privacyreview open |
-| CLOUD-005 | IN UITVOERING — PR #6 web/rapportage; serverkern/ritinvoer TER CONTROLE: 89 tests + lokale D1 + type/lint/build PASS; settingsopslag/Accessvoorbereiding TER CONTROLE, duurzame UI/login/sync open |
+| CLOUD-005 | IN UITVOERING — PR #6 web/rapportage; serverkern/ritinvoer TER CONTROLE: 101 tests + lokale D1 + type/lint/build PASS; settingsopslag/Accessvoorbereiding TER CONTROLE, duurzame UI/login/sync open |
 | CLOUD-007 | IN UITVOERING — veilige Mac→GitHub-overdracht op handover/mac-to-cloud-20261018, base cloud/cloud-006-documentatie |
 | CLOUD-008 | TER CONTROLE — 32/32 tests, typecheck/lint/build PASS; draft-PR #4; eerdere omgevingblokkades opgelost |
 
@@ -36,13 +36,15 @@ Uitgevoerd op overdrachtscommit `8b50e9109b51770f6cf4d0eec25eac38c17e4b76`: base
 
 **Nieuwe settingsgroep — draft-PR #10:** cloud/cloud-005-settings-storage, base #9: duurzame instellingen, voertuigscope/audit en voorbereide cryptografische Access-resolver.89tests/type/lint/build/lokale D1 PASS, zie SETTINGS_STORAGE.md. Cloudflareonderzoek en apartagentplan gereed, geen accounts/deploys.
 
-**Volgende technische groep:** duurzame serverrapporten met voertuigscope en exportrechten; daarna geverifieerde sessionprovider en UI-sync. Providerbesluit is alleen nodig voor externe inrichting, niet voor alle lokale code. Native/hardware apart. Geen mastereisen vervallen.
+**Rapportgroep TER CONTROLE:** cloud/cloud-005-server-reports, base #10.101tests/type/lint/build/lokaleD1 PASS; SERVER_REPORTS.md.
+
+**Volgende technische groep:** API-runtimeadapter standaard gesloten bij ontbrekende configuratie; daarna geverifieerde sessionprovider en UI-sync. Providerbesluit is alleen nodig voor externe inrichting, niet voor alle lokale code. Native/hardware apart. Geen mastereisen vervallen.
 
 **HTTP-bewijs:** docs/TRANSFER/TRIP_HTTP.md. Providerneutrale adapter met CSRF-/requestgrenzen; geen publieke API geactiveerd.
 
 **Aanmaakbewijs:** docs/TRANSFER/SERVER_CREATE.md. Idempotente aanmaak en gelijktijdige retry/rollback lokaal in D1 PASS.
 
-**Backendbewijs:** docs/TRANSFER/SERVER_CORE.md; 65/71 tests, lokale workerd/D1, typecheck/lint/build PASS. Twee gerichte serverkernreviews, geen volledige securityacceptatie.
+**Backendbewijs:** docs/TRANSFER/SERVER_CORE.md; 61/61 tests, lokale workerd/D1, typecheck/lint/build PASS. Twee gerichte serverkernreviews, geen volledige securityacceptatie.
 
 ## Historische taakbeschrijvingen (actuele status hierboven gaat voor)
 
