@@ -1,3 +1,9 @@
+> **Actuele leeswijzer — CLOUD-006, 18 oktober 2026.** De oorspronkelijke tekst hieronder blijft behouden als eisenbasis en historie. Nieuwste expliciete gebruikersbesluiten gaan voor. Voor de uitvoering gelden de laatste Sol-procesafspraken uit de masterprompt en §7 van de Opper-agent-opdracht: Sol dagelijks, Astra uitsluitend bij belangrijke besluiten. De Mac-agent coördineert, integreert en accepteert; Cloud mag afgebakend documentonderzoek en controles uitvoeren wanneer Mac afwezig is, met eigen branch en PR. Oudere Claude-eerst- en permanente Astra-formuleringen zijn historische procesinstructies. Dit verandert geen functionele wens, kostenbevoegdheid of publicatierecht.
+>
+> Documentstatus en conflicten: [documentreview](docs/ASTRA_AUDIT/DOCUMENT_REVIEW.md). Eisen/code/teststatus: [eisenregister](docs/ASTRA_AUDIT/REQUIREMENTS_TRACE.md). Cloudwerk: [takenlijst](CLOUD_TASKS.md). Geen bewijs van code, hosting of een geslaagde iPhone-test uit deze instructies afleiden.
+
+> Historische statuszin: de passage “nog niet in de GitHub-repository doorgevoerd” beschrijft de situatie tijdens het opstellen. Deze versie is aantoonbaar op GitHub gelezen; dit zegt niets over eventuele andere lokale Mac-wijzigingen.
+
 # MASTERPROMPT: JEEP WRANGLER 4XE RITTENREGISTRATIE-APP
 
 > Eén samenvattende, complete opdracht. Bedoeld voor Claude (onafhankelijke analyse en planning) én Codex (bouwen en testen). Dit bestand vervangt de losse bronbestanden: de oorspronkelijke Codex-prompt (22 hoofdstukken), de Master-aanvullingen A–J, het projectoverzicht (Excel) en de drie design-mockups. Bij tegenstrijdigheid geldt de nieuwste expliciete wens; meld elk conflict.
