@@ -1,6 +1,6 @@
 # Volledige overdracht RitKompas naar Codex Cloud
 
-> Actuele Cloud-update: draft-PR’s #4–#10 bevatten aanvullende implementatie,89tests/type/lint/build/lokaleD1 PASS. Zie RESUME.md en docs/TRANSFER/SETTINGS_STORAGE.md. Onderstaande31tests/7tabellen en eerdere toegangsblokkades beschrijven de oorspronkelijke overdracht, niet de nieuwste code. Web blijft demo; geen productie of native oplevering.
+> Actuele Cloud-update: draft-PR’s #4–#13 bevatten aanvullende implementatie,111tests/type/lint/build/lokaleD1 PASS. Zie RESUME.md en docs/TRANSFER/SETTINGS_STORAGE.md. Onderstaande31tests/7tabellen en eerdere toegangsblokkades beschrijven de oorspronkelijke overdracht, niet de nieuwste code. Web blijft demo; geen productie of native oplevering.
 
 Datum: 18 oktober 2026. Repository: `zsj4j2s4df-pixel/Rittenregistratie`. Status: overdracht ter controle; pas compleet na geverifieerde upload, Cloud-proef en vastgelegde eigenaarcontrole. Geen automatische merge.
 

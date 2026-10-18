@@ -1,46 +1,25 @@
 # Hervatpunt — 18 oktober 2026
 
-Cloud leidt; Mac ondersteunt iOS/hardware; eigenaar beslist over main-merge, kosten, accounts/koppelingen en productie. GitHub is bron van waarheid, alleen Rittenregistratie. Alle mastereisen behouden.
+Cloud leidt RitKompas; Mac doet iOS/hardware. Eigenaar behoudt merge-/kosten-/account-/productiebesluiten. GitHub is bron van waarheid, alleen zsj4j2s4df-pixel/Rittenregistratie. Alle123REQ-ID’s/21scenario’s/mastereisen behouden.
 
-## Gepubliceerd werkspoor
-- #1 documentaudit → #2 eisenregister → draft #3 overdracht (handover/mac-to-cloud-20261018, head5874bc3). Niet herhalen, mergen of bases herschrijven.
-- Draft #4 cloud/cloud-008-handover-smoke, base overdracht, head988c35b: bron82/82 geverifieerd, baseline31/smoke32 tests PASS, type/lint/build PASS, ACT-002 gecontroleerd.
-- Draft #5 cloud/cloud-002-004-integrity, base smoke, heade367a86: additieve guards en vijf regressies,37tests PASS.
-- Draft #6 cloud/cloud-005-reporting, base integriteit, head0c8c520: demo-ritinvoer, adres-/tariefbeheer, kenteken, historische rapporten, CSV/browser-PDF en routeweergave;50tests en Chromium desktop/mobiel/CSV/PDF PASS. Webstate is tijdelijk.
-- Serverkern cloud/cloud-005-server-core, base reporting; voertuigautorisatie, revisions en atomische audit.61tests + lokale workerd/D1-binding + type/lint/build PASS. Twee scoped reviews, afstandsherkomstfix hercontrole PASS. Zie docs/TRANSFER/SERVER_CORE.md. Draft-PR #7: https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/7 .
+## Actuele code en PR-keten
+#1audit → #2eisenregister → #3Macoverdracht → #4Cloudsmoke → #5integriteitsguards → #6demoweb/rapporten → #7serverkern → #8idempotenteinvoer → #9HTTPadapter → #10settings/Accessvoorbereiding → #11serverrapporten → #12APIruntime → #13centraleweb.
+Nieuwe PR’s blijven draft/open; nooit mergen, forcepushen, bases herschrijven of rechtstreeks main bijwerken.
 
-- Serverritinvoer cloud/cloud-005-server-create, base server-core/#7: scoped retryreceipt, oorspronkelijke response, atomische trip/receipt/audit.65tests + D1 concurrency/rollback + type/lint/build PASS; gerichte review PASS. Zie SERVER_CREATE.md. Draft-PR #8: https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/8 .
+- #10 cloud/cloud-005-settings-storage, head4082d51: scopedsettings en AccessRS256-verificatie voorbereid,89testsPASS. Onderzoek Cloudflare/aparteagent afgerond, geen accounts/deploys.
+- #11 https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/11 — cloud/cloud-005-server-reports, headef43bd7, base#10. Coherente onveranderlijke snapshots, integergeld/unknowncounts, Amsterdamdates, scoped retry/audit/CSV en grensoverschrijdende overlap.101tests/type/lint/build/D1PASS. SERVER_REPORTS.md.
+- #12 https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/12 — cloud/cloud-005-api-runtime, head5873ad4, base#11. API standaard503bij ontbrekendeconfig;401zonderJWTwanneerconfigured. Dynamische Workerimport voorkomt Node500, echtebuiltAPI-smokePASS.105tests/type/lint/build/D1 en demobrowserPASS. API_RUNTIME.md.
+- #13 https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/13 — cloud/cloud-005-central-web, codeheadfa7d31c23cddd6c7b826b7e960ebb54ac38b379a, base#12. /beheer met vehiclelist/privacyscope, manualtrip/0stand, kenteken/revision, vastreport/CSV en veilige reconnect.111tests/type/lint/buildPASS. CentraleChromium→HTTP→SQLite metsyntheticidentityPASS inclusief responseverlies→reconnect→retry zonderdubbel, reload, conflict409, report/CSV en mobiel/theme. Demobrowser/closedAPI/D1PASS. CENTRAL_WEB.md.
 
-- HTTP-adapter cloud/cloud-005-http-adapter, base create/#8: CSRF, JSON16KiB, no-store/noCORS, perrequestresolver, veilige errors.71tests + D1 HTTP-read/write + type/lint/build PASS. Niet publiek gemount. Zie TRIP_HTTP.md. Draft-PR #9: https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/9 .
+31/31bestanden van drie laatste groepen exact remote teruggelezen op codeheadfa7d31c. Deze hervat/checkpointactualisatie volgt als documentcommit op dezelfde#13branch. main opnieuw d37d8c913aaa253d6297cf57d3379d40c5795573, ongewijzigd. Werkmap was oorspronkelijk blobgeverifieerde snapshot: NOOIT lokale synthetische gitgeschiedenis pushen. GitHubcommits met echteparent/tree/expected_sha, geenforce.
 
-## Nieuwste uitvoering na eigenaarkeuze
-Eigenaar koos Cloudflare onderzoeken en aparte agenttoegang. Onderzoeken klaar in CLOUDFLARE_RESEARCH.md en SEPARATE_AGENT_ACCESS.md; geen account/deploy/koppeling geactiveerd. Betaalgegevens nodig voor Access Free volgens officiële onboarding; eigenaarbesluit vóór activatie. Connector blijft eigenaaridentiteit, mist wisselactie; plan vraagt ingelogde persoonlijke koppelstap, niet dezelfde keuze opnieuw.
+## Volgende uitvoerbare lokale taak
+Centrale adres-/tariefCRUD en ritcorrectie/historie boven bestaande services; daarna bestuurder/filters, correcte sync/cursors/pendingqueue, detectie-inname/deduplicatie, herstel/backups/read-onlyMCP en serverPDF. In /beheer zijn deze volledige flows nog niet gebouwd. Pendingcodes alleengeheugen: aangebodenreconnect behoudt ze, handmatig browserafsluiten/reloadtijdensonzekerewrite is nog geen herstelbareofflinequeue. Gepagineerdlijstlezen is geen coherentemulti-requestsnapshot. Geen alles-klaarclaim of algemeneaccountblokkade.
 
-Draft-PR #10 https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/10 , cloud/cloud-005-settings-storage, base #9/head511c8f3: additieve0006, duurzame scopedsettings/metadata/audit/revisions, settingsHTTP en voorbereide AccessRS256-resolver.89tests +type/lint/build +lokale D1 PASS. Twee concrete settingsreviewfouten opgelost/hercontrolePASS; gerichte Accessreview geen concrete fout. Zie SETTINGS_STORAGE.md. Nog geen publieke login/opslag voor web; web is demo.
+## Persoonlijke acties / externe blokkade
+Eigenaar koos Cloudflareonderzoek en aparteagenttoegang; dezelfdekeuze niet opnieuw vragen. OWNER_ACTIONS.md bevat concrete koppelstappen, SEPARATE_AGENT_ACCESS.md en CLOUDFLARE_RESEARCH.md onder docs/TRANSFER bevatten onderzoek, STAGING_RUNBOOK.md de voorwaarden. Huidige connector is opnieuwbevestigd eigenaarlogin296047649; geen wisselactie beschikbaar. Aparte ingelogde accountkoppeling moet persoonlijk worden uitgevoerd via ondersteundeintegratie, geen geheimentokens inchat.
+Ruleset25339571 opnieuw active, PR/deletion/nonfastforward, geenbypass,0verplichteapprovals. DriegevraagderegelsAFGEROND; identiteitsscheiding/eigenaarsreview OPEN. Geenagentmerge.
+Cloudflare niet geactiveerd; geen readycredentials/bindings voorremoteaccount. Workers/D1-EU/Access slechts onderzocht. AccessFree vraagt betaalgegevens volgensofficiëleonboarding; geen aankoop/account/deployzondertoestemming. Echteproviderlogin, remoteDB/sync, WorkerCPU/quota/geografischeprivacy, logoutrevocation, nativeapp/iPhone/Jeep/CarPlay/OBD2 NIETGETEST. Rootweb blijftdemo; /beheer toont bij ontbrekendeconfiggeslotenfout, nooitvoorbeeldritten.
 
-## Nieuwste rapportgroep
-Draft-PR #11 https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/11 , cloud/cloud-005-server-reports, base #10/head4082d51: additieve0007/reportSnapshots met immutabletrigger, coherentebronsnapshot, retry/audit/rechten, Amsterdamdatering, integergeld/unknowncounts, veiligeCSV.101tests/type/lint/build/lokaleD1 PASS; gerichte overlapreviewfout gefixt/hercontrolePASS. Zie docs/TRANSFER/SERVER_REPORTS.md. Nog geen publieke API/webkoppeling/serverPDF.
-
-## Nieuwste API-runtimegroep
-Draft-PR #12 https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/12 , cloud/cloud-005-api-runtime, base #11: app-APIroute met expliciete DB/origin/Accessconfig; ontbrekend503, geconfigureerdzonderJWT401. DynamischeWorkerimport voorkomt Node500.105tests/type/lint/build PASS; builtlocalAPI503-smokePASS; lokaleD1PASS. Zie API_RUNTIME.md. Geen remoteactivering/websync.
-
-## Nieuwste centrale webgroep
-cloud/cloud-005-central-web, base #12/head5873ad4: /beheer met alleenbackendvoertuigen/ritten, handmatigeinvoer, kenteken, vaste rapporten/CSV en veiligereconnect.111tests/type/lint/build PASS; centraleChromium→HTTP→SQLite syntheticidentity PASS incl responseverlies→reconnect→retry; demobrowser/closedAPI/D1regressiesPASS. Zie CENTRAL_WEB.md. Nog geen echte Access/login/remoteDB of volledige centrale CRUD/sync.
-
-## Volgende technische taak
-Centrale adres-/tariefCRUD, ritcorrectie-/historiebediening; vervolgens geverifieerde sessions en publiek aansluiten na toestemming, UI-sync, detectie-inname/deduplicatie, back-up/herstel en read-only MCP. Nog niet gebouwd: geen volledige-appclaim. Providerbesluit blokkeert niet alle lokale implementaties.
-
-## Controles en omgeving
-Node24.19.0/Linux x86_64, pnpm11.25.0. Frozen lockfile-installatie/supply-chaincheck PASS; eerdere credits/proxy/dependencyblokkades opgelost. Run node --experimental-strip-types --test tests/*.test.mjs; node --experimental-strip-types tests/d1-runtime-smoke.mjs; pnpm exec tsc --noEmit; pnpm lint; pnpm build. Browsercheck tests/browser-smoke.mjs gebruikt geïsoleerde Playwright/Chromium, zie REPORTING_WEB.md.
-
-ACT-002 handmatige instelling en PR/deletion/non-fast-forward-regels AFGEROND via API; connector en eigenaar delen identiteit, onafhankelijke approval niet afgedwongen. Geen agentmerge. OWNER_ACTIONS bevat opties voor gescheiden bevoegdheden en hosting/auth; niets geactiveerd. Productielogin/opslag/sync/back-up, native iOS, echte iPhone/Jeep/CarPlay/OBD2 NIET GETEST.
-
-Lokale git is blobgeverifieerde snapshot, geen echte remote ancestry: NOOIT lokale geschiedenis pushen. Remote commits via connector met werkelijke parent/tree en expected_sha zonder force. Geen sessies/models/instellingen gemigreerd.
-
-
-## Laatste opslagcontrole
-Backendgroepen #7/#8/#9 staan remote; 23/23 betrokken backend-/voortgangsbestanden zijn exact teruggelezen op HTTP-head d42bc91273dcd451db96a6a714a22f9db1e4f4da. main opnieuw gecontroleerd: ongewijzigd d37d8c913aaa253d6297cf57d3379d40c5795573. Deze laatste documentactualisatie is een opvolgcommit op dezelfde HTTP-branch, geen nieuwe codegroep. Zie docs/TRANSFER/CLOUD_CHECKPOINT.md voor concrete open taken. Geen volledige oplevering of blokkade van alle lokale ontwikkeling claimen.
-
-
-## Laatste bewijs nieuwe groep
-Codehead723e317c733055faf88d08f6485b318b9579de22:21/21 gewijzigde bestanden exact via GitHub teruggelezen. main opnieuw ongewijzigd d37d8c913aaa253d6297cf57d3379d40c5795573. Laatste89tests/type/lint/build en D1-smoke PASS; Wrangler4.92.0 d1 create --help bevestigt --jurisdiction eu (alleen help uitgevoerd, geen remotecreate). Stagingvoorwaarden: docs/TRANSFER/STAGING_RUNBOOK.md. Researchkeuze niet opnieuw vragen; praktische connector/accountinrichting blijft persoonlijk. Serverrapporten en overige lokale implementatie zijn nog uitvoerbaar, geen alles-klaarclaim.
+## Reproductie
+Node24.19.0/Linux,pnpm11.25.0,bestaande frozenlockfiledependencies. node --experimental-strip-types --test tests/*.test.mjs; pnpm exec tsc --noEmit; pnpm lint; pnpm build; node --experimental-strip-types tests/d1-runtime-smoke.mjs. Builtlocalserver: tests/api-closed-smoke.mjs. Browser: tests/central-browser-smoke.mjs en tests/browser-smoke.mjs met APP_URL,geïsoleerdePLAYWRIGHT_MODULE/BROWSER_EXECUTABLE. Zie transferrapporten voor bewijsgrenzen. Geen sessies/models/instellingen gemigreerd.

@@ -30,17 +30,17 @@ Eigenaar: bestaande Cloud agent, dagelijks beschikbaar model (Sol voorkeur, sele
 
 Uitgevoerd op overdrachtscommit `8b50e9109b51770f6cf4d0eec25eac38c17e4b76`: baseline31, smoke32 PASS; standaardrunner, type/lint/build werken na omgevingsherstel. Draft-PR #4 gepubliceerd, geen pending creditblokkade. Bewijs: docs/TRANSFER/CLOUD_PROOF.md.
 
-**Opleverketen:** #1 → #2 → #3 overdracht → #4 smoke → #5 integriteitsguards → #6 web/rapporten → draft #7 serverkern → draft #8 idempotente ritinvoer → draft #9 HTTP-adapter (base #8) → draft #10 settings/Accessvoorbereiding (base #9).
+**Opleverketen:** #1 → #2 → #3 overdracht → #4 smoke → #5 integriteitsguards → #6 web/rapporten → draft #7 serverkern → draft #8 idempotente ritinvoer → draft #9 HTTP-adapter (base #8) → draft #10 settings/Accessvoorbereiding → draft #11 serverrapporten → draft #12 APIruntime → draft #13 centraleweb.
 
 **ACT-002:** drie main-regels bevestigd; gedeelde identiteit/onafhankelijke approval OPEN. Zie docs/TRANSFER/MAIN_SECURITY_CHECK.md en OWNER_ACTIONS.md. Geen instellingen opnieuw laten doen.
 
 **Nieuwe settingsgroep — draft-PR #10:** cloud/cloud-005-settings-storage, base #9: duurzame instellingen, voertuigscope/audit en voorbereide cryptografische Access-resolver.89tests/type/lint/build/lokale D1 PASS, zie SETTINGS_STORAGE.md. Cloudflareonderzoek en apartagentplan gereed, geen accounts/deploys.
 
-**Rapportgroep TER CONTROLE:** cloud/cloud-005-server-reports, base #10.101tests/type/lint/build/lokaleD1 PASS; SERVER_REPORTS.md.
+**Rapportgroep TER CONTROLE — draft-PR #11:** cloud/cloud-005-server-reports, base #10.101tests/type/lint/build/lokaleD1 PASS; SERVER_REPORTS.md.
 
-**API-runtimegroep TER CONTROLE:** cloud/cloud-005-api-runtime, base #11;105tests/type/lint/build +builtNode503smoke/lokaleD1PASS, API_RUNTIME.md.
+**API-runtimegroep TER CONTROLE — draft-PR #12:** cloud/cloud-005-api-runtime, base #11;105tests/type/lint/build +builtNode503smoke/lokaleD1PASS, API_RUNTIME.md.
 
-**Centrale webgroep TER CONTROLE:** cloud/cloud-005-central-web, base #12;111tests/type/lint/build en centrale browser met echteHTTP/SQLite +syntheticidentity PASS, CENTRAL_WEB.md. Reconnectreviewfout, CSVdownload en mobieleheader gefixt.
+**Centrale webgroep TER CONTROLE — draft-PR #13:** cloud/cloud-005-central-web, base #12;111tests/type/lint/build en centrale browser met echteHTTP/SQLite +syntheticidentity PASS, CENTRAL_WEB.md. Reconnectreviewfout, CSVdownload en mobieleheader gefixt.
 
 **Volgende technische groep:** centrale adres-/tariefCRUD en ritcorrectie/historie; daarna geverifieerde sessionprovider en UI-sync. Providerbesluit is alleen nodig voor externe inrichting, niet voor alle lokale code. Native/hardware apart. Geen mastereisen vervallen.
 

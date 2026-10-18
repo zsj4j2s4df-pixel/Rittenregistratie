@@ -1,8 +1,10 @@
 # Actuele voortgang — 18 oktober 2026
 
-## Nieuwste centrale webgroep
+## Nieuwste centrale webgroep — draft-PR #13
 
 /beheer communiceert met echte gedeelde backend, geen demodatafallback. Vehiclelist/privacy, manualtrip/0stand, plate/revision, vaste report/CSV.111tests/type/lint/build PASS. Centrale browsertest met gesimuleerde identiteit en echteHTTP/SQLite: lostresponse→reconnect→retry zonderduplicaat, reload, concurrent409, CSV, mobile/theme PASS. Reconnectreviewbevinding en 2browserbugs gefixt, hercontrolePASS. Geen liveCloudflarelogin/remoteDB, fullCRUD/sync/native niet af. Zie CENTRAL_WEB.md.
+
+Opslagcontrole:31/31betrokkenbestanden uit#11/#12/#13 exact remote teruggelezen opfa7d31c23cddd6c7b826b7e960ebb54ac38b379a. main ongewijzigd d37d8c913aaa253d6297cf57d3379d40c5795573. Huidige login opnieuw eigenaar296047649, rulesetactive/3regels/0approvals. Persoonlijke koppelstappen OWNER_ACTIONS.md, nietafgeronde functies RESUME.md. Geen extraaccount/kosten/publicatie/merge.
 
 ## API-runtimegroep — draft-PR #12
 
