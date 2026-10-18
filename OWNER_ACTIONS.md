@@ -15,9 +15,10 @@ Geen persoonlijke handeling nodig voor de lopende documentaudit.
 - Kosten: geen aanschaf vereist; bestaande GitHub-repository gebruiken.
 - Gratis/bestaand alternatief: wachten op Mac-agent, die lokale code en wijzigingen controleert en veilig via Git aanlevert.
 - Verantwoordelijke: Mac-agent; Cloud hervat controle na beschikbaarstelling.
-- Status: WACHT OP AGENT.
+- Status: VERVALLEN.
 - Concrete stappen: bij terugkeer controleert Mac de juiste projectmap, remote en lokale wijzigingen; controleert op geheimen en persoonsgegevens; levert bestaande code zonder overschrijven via een eigen branch/PR aan.
 - Controle: verwachte broncode, configuratie en eventuele tests zichtbaar in GitHub; Cloud controleert commit en bestandslijst.
 - Laatste controle: 18 oktober 2026.
 - Besluitverwijzing: docs/ASTRA_AUDIT/DECISIONS.md.
+- Correctie CLOUD-006: dit blijkt een technische overdrachtstaak voor de Mac-agent, geen noodzakelijke persoonlijke actie. ACT-001 blijft als historie behouden; werk en blokkade volgen CLOUD-002/003/004. Geen handeling van Jesse gevraagd.
 - Geen wachtwoorden, tokens, sleutels of echte ritgegevens uploaden.

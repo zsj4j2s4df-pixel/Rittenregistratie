@@ -28,3 +28,9 @@ De gebruiker meldt dat de Mac-agent momenteel niet beschikbaar is en dat Cloud u
 FASE A: nulmeting vastgelegd.
 FASE B: eerste documentcontrole vastgelegd; volledige eisentraceerbaarheid en gerichte broncorrecties nog open. Gate B niet afgerond.
 FASE C–E: niet gestart. Geen applicatiebouw of onafhankelijke securityreview geclaimd.
+
+## Aanvulling CLOUD-006
+
+Nieuwe taakbranch cloud/cloud-006-documentatie start vanaf f8f241278baf5a8d71444c132bfc7bfbf5157ff1 (CLOUD-001).
+De nulmeting hierboven blijft historie. Nieuwe leeswijzers corrigeren procesinterpretatie zonder oorspronkelijke broninhoud te wissen. Zie REQUIREMENTS_TRACE.md, TEST_PLAN.md, FEASIBILITY_RESEARCH.md, SECURITY_PRECHECK.md en PROGRESS.md.
+Gate B blijft TER CONTROLE; ontbrekende appcode en Mac-acceptatie blokkeren FASE C–E. Documentonderzoek heeft geen architectuurkeuze of werkende implementatie opgeleverd.

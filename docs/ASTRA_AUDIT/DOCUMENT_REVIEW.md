@@ -20,3 +20,22 @@ Functionele eisen blijven behouden. Deze PR voegt inventaris, bevindingen, beslu
 
 ## Validatie
 Bestandslijst op GitHub gecontroleerd; alle vier bronbestanden gelezen. Geen code of uitvoerbare tests aanwezig in de basis. Applicatietests: NIET GETEST.
+
+## Vervolgcontrole CLOUD-006
+
+| ID | Ernst | Bevinding | Afhandeling |
+|---|---|---|---|
+| DOC-01/02/06 | Middel | Historische procesrollen en Mac-afwezigheid | Alle vier bronnen krijgen een actuele leeswijzer. Originele inhoud blijft exact behouden; Mac-acceptatie niet overgenomen door Cloud. |
+| DOC-03 | Middel | Verouderde GitHub-statuszin | Historische status expliciet verklaard boven de masterprompt. |
+| DOC-04 | Middel | Oude masterpromptnaam | Werkende verwijzing naar aanwezige bijgewerkte masterprompt toegevoegd; historie behouden. |
+| DOC-05/07/09 | Hoog/middel | Code, losse bronassets en uitvoeringsbewijs ontbreken | CODE_AUDIT.md en eisen/testregister benoemen beperkingen; geen fictieve voltooiing. |
+| DOC-10 | Middel | ACT-001 uit CLOUD-001 is een agentoverdracht, geen noodzakelijke persoonlijke actie | Op VERVALLEN gezet met behoud van nummer en volledige historie; technische blokkade blijft in CLOUD_TASKS.md. |
+| DOC-11 | Hoog vóór fiscale acceptatie | S09 noemt privé-omrijkilometers en afwijkende route; context is niet automatisch passend voor privéauto/VOF | Onderzoek en voorstel vastgelegd in FEASIBILITY_RESEARCH.md; geen materiële fiscale eis stil toegevoegd. |
+| DOC-12 | Middel | Notification-acties en ritstartdetectie zijn verschillende mogelijkheden | Officiële bronnen ondersteunen actieknoppen; Jeep-trigger blijft praktijkonderzoek. |
+| DOC-13 | Middel | CarPlay op voorhand afwijzen zou te sterk zijn | Actuele Apple-pagina noemt driving task apps/widgets/Live Activities; specifieke categorie/entitlement/OS en interface blijven onbewezen. |
+
+## Eindstatus van deze documenttaak
+
+123 eisen/voorwaarden en 21 concrete testscenario's vastgelegd. De 26 oorspronkelijke behoudchecklistregels staan ongewijzigd in de bron. Officiële bronnen gecontroleerd voor de grootste platform-, fiscale en kostenrisico's; gedeeltelijk ontoegankelijke pagina's expliciet gemarkeerd. Dit is geen volledige bevestiging van alle technische claims of adaptercompatibiliteit.
+
+Redactionele wijzigingen zijn omkeerbaar en behouden de bron. De voorgestelde fiscale uitwerking, hosting-/authkeuze, appnaam en distributie zijn niet besloten. Documentwerk TER CONTROLE; Gate B-acceptatie door Mac staat open. FASE C–E niet gestart.
