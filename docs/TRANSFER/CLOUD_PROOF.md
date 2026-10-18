@@ -1,5 +1,7 @@
 # CLOUD-008 — bewijs van echte Cloud-overdrachtstest
 
+> **Actuele aanvulling, 18 oktober 2026:** omgevingsherstel bevestigd. Dependencyinstallatie met ongewijzigde lockfile en supply-chaincontrole PASS; 32/32 tests, TypeScript, lint en webbuild PASS. Draft-PR #4 is aangemaakt. Oudere proxy-/credits-/NIET GETEST-vermeldingen hieronder blijven historie van eerdere pogingen. Geen main-merge, nieuwe account of productiepublicatie.
+
 Datum: 18 oktober 2026 (Europe/Amsterdam). Eigen controle in de bestaande Cloud-run; geen onafhankelijke review.
 
 ## Bron, runtime en werkspoor
@@ -67,4 +69,6 @@ Geen sessie, modelselectie, instellingen, accountrechten of agentorganisatie gem
 
 ## Hervatten
 
-CLOUD-008 is technisch uitgevoerd en staat TER CONTROLE via een draft-PR met de overdrachtsbranch als base. De proxy-/registryblokkade verhindert Cloud-typecheck/lint/build, maar niet het al uitgevoerde dependencyvrije testwerk of gerichte voorbereiding van CLOUD-002/004. Volgende veilige stap: die code-/testrisico's gericht vastleggen, daarna dependencies en checks hervatten zodra de ondersteunde netwerktoegang functioneert. Niet de stack vervangen om deze omgeving groen te laten lijken.
+CLOUD-008 is technisch uitgevoerd. Remote commit `1830e7efd7d08553ad5b44864b18833fa906d3a0` bevat de zeven smoke-bestanden; alle zeven zijn exact teruggelezen. **De draft-PR is niet aangemaakt**: automatische goedkeuringscontrole meldde “Your workspace is out of credits. Add credits to continue.” Dit is een reviewfout, geen inhoudelijke onveiligheidsbeoordeling; geen alternatieve route gebruikt. Geen PR-nummer of afgeronde PR-oplevering claimen.
+
+De proxy-/registryblokkade verhindert daarnaast Cloud-typecheck/lint/build. Gerichte CLOUD-002/004-voorbereiding en 32/32 scoped coveragetests zijn lokaal afgerond; zie CLOUD_002_004_PREPARATION.md. Nieuwe ACT-002-controle: de drie gevraagde main-regels zijn technisch bevestigd; onafhankelijke eigenaaridentiteit blijft open, zie MAIN_SECURITY_CHECK.md. Deze aanvullingen zijn lokaal/pending upload vanwege de werkelijke goedkeurings-/usageblokkade. Eerst die blokkade oplossen, daarna draft-PR/pending bewijs publiceren en pas vervolgens de volgende implementatiegroep. Niet de stack of beveiliging vervangen om deze omgeving groen te laten lijken.
