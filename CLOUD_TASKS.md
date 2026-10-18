@@ -8,9 +8,9 @@
 |---|---|
 | CLOUD-001 | TER CONTROLE — PR #1 behouden; documentstructuur door Mac bekeken, geen merge/volledige inhoudelijke acceptatie |
 | CLOUD-006 | TER CONTROLE — PR #2 afhankelijk van #1; 123 REQ-ID's/21 scenario's behouden, actuele codebasis nu aangeleverd |
-| CLOUD-002 / CLOUD-004 | IN UITVOERING — gerichte integriteitsreparatie en regressies na geslaagde smoke; geen live migratie |
+| CLOUD-002 / CLOUD-004 | TER CONTROLE — additieve databaseguards, vijf regressiecases; 37/37 tests en typecheck/lint/build PASS; verdere API/UI-dekking open |
 | CLOUD-003 | KLAAR VOOR CLOUD na CLOUD-008 — gerichte securityreview; onafhankelijkheid alleen claimen bij echte tweede uitvoering |
-| CLOUD-005 | BACKLOG — afbakenen na codecontrole; geen nieuwe app genereren |
+| CLOUD-005 | KLAAR VOOR CLOUD — rapportage en ontbrekende webbediening op bestaande demo uitbreiden; serverauth/opslag apart onderbouwen |
 | CLOUD-007 | IN UITVOERING — veilige Mac→GitHub-overdracht op handover/mac-to-cloud-20261018, base cloud/cloud-006-documentatie |
 | CLOUD-008 | TER CONTROLE — 32/32 tests, typecheck/lint/build PASS; draft-PR #4; eerdere omgevingblokkades opgelost |
 
