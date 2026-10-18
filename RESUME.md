@@ -3,6 +3,7 @@
 Cloud leidt; eigenaar beslist over merges, kosten, gevoelige koppelingen en productie. Mac ondersteunt iOS/hardware. GitHub is centraal. Alleen Rittenregistratie.
 
 ## Actuele status
+- CLOUD-005 webgroep TER CONTROLE: cloud/cloud-005-reporting, base cloud/cloud-002-004-integrity (draft-PR #5). 50/50 tests + typecheck/lint/build en Chromium desktop/mobiel/CSV/PDF PASS. Zie REPORTING_WEB.md. Volgende groep: serverrepository met objectrechten, versiecontrole en audit; geen productieauth veronderstellen.
 - CLOUD-008: 82/82 bronblobs geverifieerd; 31/31 baseline, 32/32 na CSV-regressie PASS. Draft-PR #4 tegen handover/mac-to-cloud-20261018; eerdere keten #1 → #2 → #3 behouden.
 - De eerdere proxy-, dependency- en PR-creditblokkades zijn in deze uitvoering opgelost: frozen-lockfile-installatie met bestaande packages en supply-chain-controle PASS; typecheck, lint en webbuild PASS. Geen stackwijziging of extra dienst.
 - ACT-002: eigenaarinstelling en drie actieve main-regels bevestigd. Connectoridentiteit blijft gelijk aan eigenaar; geen verplichte onafhankelijke approval. Geen merge door agents.
