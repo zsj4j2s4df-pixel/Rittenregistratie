@@ -1,5 +1,7 @@
 # Code-audit — geblokkeerd
 
+> **Overdrachtupdate 18 oktober 2026:** de Mac-code en tests zijn nu op de overdrachtsbranch aangeleverd. Onderstaande nulmeting blijft historie; 'code ontbreekt' geldt voor de toen gecontroleerde basis, niet deze branch. Actuele status: [DEVELOPMENT_PROGRESS](../../DEVELOPMENT_PROGRESS.md), codebewijs: [MAC_CODE_MAPPING](../TRANSFER/MAC_CODE_MAPPING.md). Bestaande eisen-/test-ID's blijven behouden; geen volledige testcase of onafhankelijke review wordt hiermee alsnog geslaagd verklaard. Cloud leidt de ontwikkeling, eigenaar beslist over merges.
+
 Datum: 18 oktober 2026.
 Gecontroleerde basiscommit main: d37d8c913aaa253d6297cf57d3379d40c5795573.
 De recursieve GitHub-bestandslijst bevatte uitsluitend de vier oorspronkelijke Markdown-bestanden. De documentbranches voegen documentatie toe, geen appcode.

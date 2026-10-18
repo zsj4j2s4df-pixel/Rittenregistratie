@@ -1,0 +1,251 @@
+{
+  "date": "2026-10-18",
+  "description": "Copied source manifest before handover-specific edits; local absolute project path redacted.",
+  "files": [
+    {
+      "source": "app/chatgpt-auth.ts",
+      "target": "app/chatgpt-auth.ts",
+      "sha256": "4e88890c4371746be327cc0afbd6c2431bf14dd000fcedd2b804c30a6b879c57"
+    },
+    {
+      "source": "app/globals.css",
+      "target": "app/globals.css",
+      "sha256": "90a80e818d6e7c906b933055406c2eb61d2b58c315d1bb6cb5c780d85817e330"
+    },
+    {
+      "source": "app/layout.tsx",
+      "target": "app/layout.tsx",
+      "sha256": "c36d02e87d525a1e80d6a6486bb3845ea59766f9225f53621f7644b44f0b2cc4"
+    },
+    {
+      "source": "app/page.tsx",
+      "target": "app/page.tsx",
+      "sha256": "74f7c400715da807e1b16ee1b3002400efc3ecdc32b17065e7718e7a3a8fe02d"
+    },
+    {
+      "source": "app/trip-domain.ts",
+      "target": "app/trip-domain.ts",
+      "sha256": "b9224779af4639d8345804b77f63a7aa2beed35bffc03800155b436fdd460750"
+    },
+    {
+      "source": "app/trip-editor.tsx",
+      "target": "app/trip-editor.tsx",
+      "sha256": "e0c4e49b15bb790c76a740ff0df90673d8004d26495ccf14b4a90e9e7542bc03"
+    },
+    {
+      "source": "app/trip-utils.ts",
+      "target": "app/trip-utils.ts",
+      "sha256": "f825a5fe2ee4d4dd834a3093c3a74802584312a4219885cbb461eca490aa50be"
+    },
+    {
+      "source": "db/env.d.ts",
+      "target": "db/env.d.ts",
+      "sha256": "1723a1488b36046bd2b41abeb0f928f50cba17c6702fca09ba65de3f17cdd258"
+    },
+    {
+      "source": "db/index.ts",
+      "target": "db/index.ts",
+      "sha256": "991de9c107b00a37ad6540bf3540e2efe1eb2c30a04203daf4bd36f83f62d230"
+    },
+    {
+      "source": "db/schema.ts",
+      "target": "db/schema.ts",
+      "sha256": "90acfbc21bbdfbae2143a7f43b5444042d4ec177b8e49122038142be6e3d16ef"
+    },
+    {
+      "source": "drizzle/0000_medical_maestro.sql",
+      "target": "drizzle/0000_medical_maestro.sql",
+      "sha256": "4605c0ad8d1ee191f2a1ef658c2ca376853f169bec5a9d4946c8689c4c4b30a9"
+    },
+    {
+      "source": "drizzle/meta/0000_snapshot.json",
+      "target": "drizzle/meta/0000_snapshot.json",
+      "sha256": "de948269086a8428bef97da5cecca530db04890420fc9203770449db742c6354"
+    },
+    {
+      "source": "drizzle/meta/_journal.json",
+      "target": "drizzle/meta/_journal.json",
+      "sha256": "9ddd7f82225ed2b82e2f17c54f99b85fec70cfe9e64367cb6e09c8e028327024"
+    },
+    {
+      "source": "lib/access-policy.ts",
+      "target": "lib/access-policy.ts",
+      "sha256": "d8396552cf5c6be2af0168ff95a4724420aa3cd6ec9e236f55a48e2f320a08a5"
+    },
+    {
+      "source": "tests/access-policy.test.mjs",
+      "target": "tests/access-policy.test.mjs",
+      "sha256": "31756041f06ea7a7d34286cfc65486a02e1444f607b431328db215ca2d89a4b9"
+    },
+    {
+      "source": "tests/schema.test.mjs",
+      "target": "tests/schema.test.mjs",
+      "sha256": "3c9518390b9550ef6cd98d932a491c14a955277d3b9c059bcafa897cc7fc19e5"
+    },
+    {
+      "source": "tests/trip-domain.test.mjs",
+      "target": "tests/trip-domain.test.mjs",
+      "sha256": "0982ae6734a07772bd44d7aaaed706a38d785c4c101bc2ff4fba0690ee43aa5b"
+    },
+    {
+      "source": "tests/trip-utils.test.mjs",
+      "target": "tests/trip-utils.test.mjs",
+      "sha256": "b91c4daa0b725c5e42c9ac450896846ce01616d3cc6f0582ed290e56a7b61094"
+    },
+    {
+      "source": "bronnen/Jeep_4xe_Rittenregistratie_Masterprompt_BIJGEWERKT.md",
+      "target": "bronnen/Jeep_4xe_Rittenregistratie_Masterprompt_BIJGEWERKT.md",
+      "sha256": "9f224acdfba20e370da352f3ea51b8483bd4bb5df33636166fbe89f44270c46c"
+    },
+    {
+      "source": "bronnen/OWNER_ACTIONS_ASTRA_AANVULLING.md",
+      "target": "bronnen/OWNER_ACTIONS_ASTRA_AANVULLING.md",
+      "sha256": "2e61467da5afc4f4534b3ea366f67b1a474d12f98a138235f8d6898e8dcfea51"
+    },
+    {
+      "source": "bronnen/RitKompas_Astra_Opperagent_Complete_Opdracht.md",
+      "target": "bronnen/RitKompas_Astra_Opperagent_Complete_Opdracht.md",
+      "sha256": "f357ff838f2eed71915537ca15aa3509d94699cb75f404ca264025b82b8190dc"
+    },
+    {
+      "source": ".gitignore",
+      "target": ".gitignore",
+      "sha256": "14c2d4b7781dcd266e563c4f08880637ae620c7e8a182246a23b138e5f791e8e"
+    },
+    {
+      "source": ".openai/hosting.json",
+      "target": ".openai/hosting.json",
+      "sha256": "89610cb100afd3db32d865423a69a3fe2de1da54150570ea979a63143a6d5bdd"
+    },
+    {
+      "source": "package.json",
+      "target": "package.json",
+      "sha256": "429cccafba44225fdeef48ffc1415c7651775d933102ea6c0c1fa264bd8ec406"
+    },
+    {
+      "source": "pnpm-lock.yaml",
+      "target": "pnpm-lock.yaml",
+      "sha256": "340783a14190adeef47026f01a892aa961ba6d135a3b1975c0d8a5ff06b5229c"
+    },
+    {
+      "source": "pnpm-workspace.yaml",
+      "target": "pnpm-workspace.yaml",
+      "sha256": "fb4cd1144091d2d15ef21d607c27abe15bc40a45e1b7828ae50e232eabde3e78"
+    },
+    {
+      "source": "next.config.ts",
+      "target": "next.config.ts",
+      "sha256": "d063bebef3a4878ae82f9f9547c2c9675b8b6945ab23702932dcb63a011a9fc9"
+    },
+    {
+      "source": "eslint.config.mjs",
+      "target": "eslint.config.mjs",
+      "sha256": "5c697206f302dadc0c8b7b2f7a707257dab15129a2149872b0f84ea1ac17d263"
+    },
+    {
+      "source": "vite.config.ts",
+      "target": "vite.config.ts",
+      "sha256": "0388f7be4819d7e40a8957c845ab1bbbcfde6e42cbfb506bfe55af7558a23c63"
+    },
+    {
+      "source": "drizzle.config.ts",
+      "target": "drizzle.config.ts",
+      "sha256": "9a41cce699b66a99925d6cf0d0e8a50802a420138a71b41959bb823e0402ff86"
+    },
+    {
+      "source": "tsconfig.json",
+      "target": "tsconfig.json",
+      "sha256": "c780dae6a57367299eb692588299f3ff31231c163d00fa03c9d1cd40c8550646"
+    },
+    {
+      "source": "public/favicon.svg",
+      "target": "public/favicon.svg",
+      "sha256": "e6d2e59b7b5bbb0342e0fb496dfc262decbfe4426bbb7b047aec8d467d1dc6f7"
+    },
+    {
+      "source": "docs/APPARAAT_TESTMATRIX.md",
+      "target": "docs/MAC_SNAPSHOT_2026-10-18/docs/APPARAAT_TESTMATRIX.md",
+      "sha256": "1d71b37a2fc366e8cfb9cbdc9fdab8d0bde766efcafb423d61a016914e1626a2"
+    },
+    {
+      "source": "docs/ARCHITECTUUR.md",
+      "target": "docs/MAC_SNAPSHOT_2026-10-18/docs/ARCHITECTUUR.md",
+      "sha256": "973ce3fbc06b5be22ece15685319b64c3468dbca5873bc6f215d529e4af391a0"
+    },
+    {
+      "source": "docs/ASTRA_AUDIT/CODE_AUDIT.md",
+      "target": "docs/MAC_SNAPSHOT_2026-10-18/docs/ASTRA_AUDIT/CODE_AUDIT.md",
+      "sha256": "d340c7c2960daa289c7a3740df53cfc9a9b8c5911098e83ce4e9bf196e5faa88"
+    },
+    {
+      "source": "docs/ASTRA_AUDIT/DECISIONS.md",
+      "target": "docs/MAC_SNAPSHOT_2026-10-18/docs/ASTRA_AUDIT/DECISIONS.md",
+      "sha256": "0bea0f147567ff365e7372bdf8734b3e579f6f6c47df26daa76e7025b4c29d65"
+    },
+    {
+      "source": "docs/ASTRA_AUDIT/DOCUMENT_REVIEW.md",
+      "target": "docs/MAC_SNAPSHOT_2026-10-18/docs/ASTRA_AUDIT/DOCUMENT_REVIEW.md",
+      "sha256": "bc46fd341a81c2582919c16c89e32adc74f8e3b760d27bcdbeaf4d9dff373da2"
+    },
+    {
+      "source": "docs/ASTRA_AUDIT/INVENTARIS.md",
+      "target": "docs/MAC_SNAPSHOT_2026-10-18/docs/ASTRA_AUDIT/INVENTARIS.md",
+      "sha256": "42e1a5da7300a8890e576e6696b875b5876895e4e8bf244f7be36f23af9ee1d6"
+    },
+    {
+      "source": "docs/ASTRA_AUDIT/MODEL_STRATEGY.md",
+      "target": "docs/MAC_SNAPSHOT_2026-10-18/docs/ASTRA_AUDIT/MODEL_STRATEGY.md",
+      "sha256": "581abedbe49670ad9983f4c1a32f0b82fcb667b9894a012c230ccf87418db3b3"
+    },
+    {
+      "source": "docs/ASTRA_AUDIT/PROGRESS.md",
+      "target": "docs/MAC_SNAPSHOT_2026-10-18/docs/ASTRA_AUDIT/PROGRESS.md",
+      "sha256": "caa93a76a4e1e19d0fbb1e5093bccbce7b71ff2be968a2fb8f18542512584a91"
+    },
+    {
+      "source": "docs/ASTRA_AUDIT/REQUIREMENTS_TRACE.md",
+      "target": "docs/MAC_SNAPSHOT_2026-10-18/docs/ASTRA_AUDIT/REQUIREMENTS_TRACE.md",
+      "sha256": "1e8d46435569cc344117f7885b4cea987cca92551368699bfbe721a25fd73ba0"
+    },
+    {
+      "source": "docs/ASTRA_AUDIT/TESTS_2026-10-17.md",
+      "target": "docs/MAC_SNAPSHOT_2026-10-18/docs/ASTRA_AUDIT/TESTS_2026-10-17.md",
+      "sha256": "9c152296d20ad4103b95e856a3dd6babd4e7ea5fc2f0177e4db505a8f781dc3d"
+    },
+    {
+      "source": "docs/BACKEND_VEILIGHEIDSONTWERP.md",
+      "target": "docs/MAC_SNAPSHOT_2026-10-18/docs/BACKEND_VEILIGHEIDSONTWERP.md",
+      "sha256": "7aedc86b7cf648f139016751cd5ee05daf04e8a3d1a102db527e2e9fa452dab9"
+    },
+    {
+      "source": "docs/IOS_ONDERZOEK.md",
+      "target": "docs/MAC_SNAPSHOT_2026-10-18/docs/IOS_ONDERZOEK.md",
+      "sha256": "4cb2aa3ecd7064c1513d441fa7b25af7d95be5cbcaf55babc21b482b8a52e52f"
+    },
+    {
+      "source": "docs/MASTERPROMPT.md",
+      "target": "docs/MAC_SNAPSHOT_2026-10-18/docs/MASTERPROMPT.md",
+      "sha256": "5cc452b2a5c02aa1ce5c4e8aaa77be9d2e097c8bd8e5856995df5c0d04921498"
+    },
+    {
+      "source": "docs/TESTPLAN.md",
+      "target": "docs/MAC_SNAPSHOT_2026-10-18/docs/TESTPLAN.md",
+      "sha256": "8b0c5a1d9922d63054fcde639928bc412c58fbfb1320a213a897a20ab41f7683"
+    },
+    {
+      "source": "docs/TESTRESULTATEN.md",
+      "target": "docs/MAC_SNAPSHOT_2026-10-18/docs/TESTRESULTATEN.md",
+      "sha256": "8ef48ec6eada7b882774a98e427bcd34fadc3e929bde36e312da1eb1bc64e00d"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/MAC_SNAPSHOT_2026-10-18/README.md",
+      "sha256": "70771d11686e2d709848e0708a040e3ea79e26f0abe7000cff04be2f9e9b9977"
+    },
+    {
+      "source": "OWNER_ACTIONS.md",
+      "target": "docs/MAC_SNAPSHOT_2026-10-18/OWNER_ACTIONS.md",
+      "sha256": "e9706732b3379e1f121cdaf6b4d3f21eababaf6c48b5542e0ea91b1d2b656053"
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+# Requires an enabled protected-branch rule; this file alone enforces nothing.
+# Same-account agent PR authors cannot approve their own PRs; see ACT-002.
+* @zsj4j2s4df-pixel

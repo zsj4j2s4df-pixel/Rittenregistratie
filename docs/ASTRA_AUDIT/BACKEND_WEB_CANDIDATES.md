@@ -1,5 +1,7 @@
 # Voorbereidende inventaris voor CLOUD-005
 
+> **Overdrachtupdate 18 oktober 2026:** de Mac-code en tests zijn nu op de overdrachtsbranch aangeleverd. Onderstaande nulmeting blijft historie; 'code ontbreekt' geldt voor de toen gecontroleerde basis, niet deze branch. Actuele status: [DEVELOPMENT_PROGRESS](../../DEVELOPMENT_PROGRESS.md), codebewijs: [MAC_CODE_MAPPING](../TRANSFER/MAC_CODE_MAPPING.md). Bestaande eisen-/test-ID's blijven behouden; geen volledige testcase of onafhankelijke review wordt hiermee alsnog geslaagd verklaard. Cloud leidt de ontwikkeling, eigenaar beslist over merges.
+
 Status: concept, geen toegewezen implementatietaken. Geen bestaande backend/webcode beschikbaar.
 Eerst toepasselijke gates, bestaande stack en code beoordelen. Geen provider, database, API-pad of framework gekozen.
 Iedere later toegewezen taak krijgt eigen CLOUD-nummer, afgebakende bestanden, branch, kosteninschatting en PR.
