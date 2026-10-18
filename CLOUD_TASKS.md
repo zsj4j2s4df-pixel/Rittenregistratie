@@ -1,6 +1,6 @@
 # Cloud-taken — RitKompas
 
-## Actuele regie en status — overdracht 18 oktober 2026
+## Actuele regie en status — 18 oktober 2026
 
 **Cloud is hoofdontwikkelaar, Mac ondersteunt lokale/iOS/hardwaretaken, eigenaar beslist over belangrijke handelingen.** Deze nieuwe expliciete opdracht vervangt de oudere Mac-hoofdrol hieronder. GitHub is centraal. Sol indien beschikbaar; Astra uitsluitend belangrijke besluiten. Geen extra betaalde diensten/runs, geen main-merge zonder eigenaar. Eén samenhangende run heeft voorkeur.
 
@@ -8,11 +8,15 @@
 |---|---|
 | CLOUD-001 | TER CONTROLE — PR #1 behouden; documentstructuur door Mac bekeken, geen merge/volledige inhoudelijke acceptatie |
 | CLOUD-006 | TER CONTROLE — PR #2 afhankelijk van #1; 123 REQ-ID's/21 scenario's behouden, actuele codebasis nu aangeleverd |
-| CLOUD-002 / CLOUD-004 | KLAAR VOOR CLOUD na CLOUD-008 — combineer codekwaliteit/testdekking, hergebruik Mac-code en tests |
+| CLOUD-002 / CLOUD-004 | IN UITVOERING — gerichte integriteitsreparatie en regressies na geslaagde smoke; geen live migratie |
 | CLOUD-003 | KLAAR VOOR CLOUD na CLOUD-008 — gerichte securityreview; onafhankelijkheid alleen claimen bij echte tweede uitvoering |
 | CLOUD-005 | BACKLOG — afbakenen na codecontrole; geen nieuwe app genereren |
 | CLOUD-007 | IN UITVOERING — veilige Mac→GitHub-overdracht op handover/mac-to-cloud-20261018, base cloud/cloud-006-documentatie |
-| CLOUD-008 | KLAAR VOOR CLOUD zodra overdrachtscommit beschikbaar — één kleine overdrachtstest in bestaande Cloud agent |
+| CLOUD-008 | TER CONTROLE — 32/32 tests, typecheck/lint/build PASS; draft-PR #4; eerdere omgevingblokkades opgelost |
+
+### Actuele uitvoering na omgevingsherstel
+
+Draft-PR #4: https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/4 . Bestaande lockfile-dependencies geïnstalleerd; supply-chaincontrole, typecheck, lint en build PASS. Eerdere credit-/proxy-/installatiefouten hieronder zijn historie. ACT-002 technisch gecontroleerd; eigenaaridentiteit nog gedeeld. RESUME is het actuele hervatpunt.
 
 ### CLOUD-007 — Veilige overdracht
 
@@ -21,6 +25,14 @@ Eigenaar: Mac, controle Cloud/projecteigenaar. Prioriteit hoog; usage onbekend. 
 ### CLOUD-008 — Echte Cloud-overdrachtstest
 
 Eigenaar: bestaande Cloud agent, dagelijks beschikbaar model (Sol voorkeur, selectie niet verondersteld). Prioriteit hoog; usage onbekend, één gecombineerde run zonder nieuwe betaalde omgeving. Scope: branch lezen, tests draaien, kleine CSV-regressietest voor tellerstanden inclusief nul en toelichting toevoegen, commit/PR, voortgang/hervatpunt. Branch: cloud/cloud-008-handover-smoke, base handover/mac-to-cloud-20261018. Acceptatie: concrete commit, testuitvoer, terugleesbaar bestand en PR; ontbrekende runtime/installatiebevoegdheid expliciet NIET GETEST. Geen nieuw framework, geen secrets/productiedata en geen merge. Daarna veilige CLOUD-002/004-groep indien ruimte/toegang, met afzonderlijk commitbewijs.
+
+Uitgevoerd op overdrachtscommit `8b50e9109b51770f6cf4d0eec25eac38c17e4b76`. Resultaat en exacte runtime/beperkingen: [CLOUD_PROOF](docs/TRANSFER/CLOUD_PROOF.md). Baseline 31/31; na één nieuwe CSV-regressietest 32/32, met `--test-isolation=none`. Projectdependencies ontbreken en lockfile-installatie faalt bij registrymetadata; geen Cloud-type/lint/build-PASS. ACT-002 blijft open; eigenaarcontrole en draft-PR behouden. Geen model-/sessiemigratie of extra betaalde run.
+
+**Actueel opleverpunt:** de zeven smoke-bestanden staan op GitHub-commit `1830e7efd7d08553ad5b44864b18833fa906d3a0` en zijn exact teruggelezen. PR-aanmaak is niet uitgevoerd: automatische goedkeuringscontrole meldt workspacecredits op. Er is dus nog geen CLOUD-008-PR-nummer. Geen alternatieve schrijfroute gebruikt. Deze actualisatie, ACT-002-resultaat en gerichte CLOUD-002/004-voorbereiding zijn lokaal/pending upload, geen reeds gepubliceerde status.
+
+**ACT-002-controle:** eigenaarinstelling uitgevoerd; actieve main-ruleset 25339571 bevestigt PR-verplichting, verwijder- en forcepushblokkade. Connectoridentiteit gelijk aan eigenaar en nul verplichte approvals; onafhankelijke eigenaarcontrole blijft open. Zie [beveiligingsbewijs](docs/TRANSFER/MAIN_SECURITY_CHECK.md).
+
+**Volgende groep:** [CLOUD-002/004-voorbereiding](docs/TRANSFER/CLOUD_002_004_PREPARATION.md), nog geen afgeronde codekwaliteitgate. Eerst usage-/goedkeuringsblokkade oplossen en pending documenten via goedgekeurde GitHub-tools publiceren; vervolgens gerichte schema-/auth-/integratietests en dependencychecks, zonder nieuwe kosten/accounts of main-merge.
 
 ## Historische taakbeschrijvingen (actuele status hierboven gaat voor)
 

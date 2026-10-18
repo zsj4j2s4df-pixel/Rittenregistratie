@@ -7,13 +7,24 @@ Alleen noodzakelijke persoonlijke handelingen horen hier. Technische taken en mo
 Geen geheimen, aankopen of koppelingen opnemen als reeds goedgekeurd zonder expliciet besluit.
 
 ## Nu
-ACT-002 vraagt eigenaarcontrole van GitHub-bescherming. De technische overdracht en Cloud-proef blijven agentwerk. Geen nieuwe aankopen gevraagd.
+ACT-002: de eigenaar heeft de main-ruleset handmatig ingesteld. De drie gevraagde regels zijn via de GitHub-API bevestigd. Onafhankelijke eigenaarcontrole blijft open omdat agent en eigenaar dezelfde GitHub-identiteit gebruiken en geen goedkeurende review vereist is. Geen herhaling van de handmatige instelling gevraagd. Geen nieuwe aankopen of koppelingen aangegaan.
 
 ## Nummerconflict en historie
 
 Cloud gebruikte ACT-001 voor codeoverdracht; Mac gebruikte zelfstandig ACT-001 voor toestelinventarisatie. Beide originele nummers blijven behouden met broncontext: deze lijst bevat Cloud ACT-001; [Mac ACT-001](docs/MAC_SNAPSHOT_2026-10-18/OWNER_ACTIONS.md) is de afgeronde eerste inventarisatie van iPhone 11 Pro en nieuwere toestellen. Geen taak stil overschreven of opnieuw aan jou gevraagd.
 
 ## ACT-002 — Technische eigenaarcontrole op GitHub vastleggen
+
+### Actuele deelstatus — 18 oktober 2026, na bevestiging eigenaar
+
+- **Handmatige instelling: AFGEROND.** De eigenaar bevestigt dat hij via Safari op zijn iPhone de ruleset heeft aangemaakt.
+- **Technische controle van de drie gevraagde regels: AFGEROND via read-only API-inzage.** Ruleset `25339571`, “RitKompas - bescherm main”, is `active`, target `branch`, omvat `~DEFAULT_BRANCH` zonder uitsluitingen; de repositorymetadata bevestigt dat de default branch `main` is. Regels: `pull_request`, `deletion`, `non_fast_forward`. Geen bypass-actoren; `current_user_can_bypass: never`.
+- **Identiteit gecontroleerd: NIET GESCHEIDEN.** De geauthenticeerde connector-login is `zsj4j2s4df-pixel`, dezelfde eigenaar en PR-auteur als in de repository. Geen andere identiteit aangemaakt of gekoppeld.
+- **Onafhankelijke eigenaargoedkeuring: OPEN.** `required_approving_review_count: 0`, geen verplichte reviewers, geen code-owner-review of last-push-approval. De PR-verplichting dwingt dus geen afzonderlijke menselijke goedkeuring af. Geen merge-/verwijder-/forcepush-test uitgevoerd om dit te bewijzen; er is niets aan main gewijzigd.
+- **Overkoepelende status: WACHT OP AGENT** voor een onderbouwd inrichtingsvoorstel voor gescheiden bevoegdheden; niet opnieuw wachten op de al uitgevoerde instelling. Een nieuwe account/koppeling of bevoegdheidswijziging vereist eerst toestemming. Tot die tijd beslist uitsluitend de eigenaar over merges en blijven nieuwe agent-PR's draft.
+- **Bewijs:** [MAIN_SECURITY_CHECK.md](docs/TRANSFER/MAIN_SECURITY_CHECK.md). De eerdere PR-creditblokkade is opgelost; draft-PR #4 is via dezelfde GitHub-tool aangemaakt. De historische beperking is niet omzeild. Geen hoofdbranch gewijzigd.
+
+### Historie vóór de actuele instelling
 
 - **Waarom persoonlijk:** de connector kan code schrijven, maar branch-protectioninspectie geeft 403; de browser is niet ingelogd. De huidige connector maakt PR's onder jouw eigen GitHub-account. Een auteur kan zijn eigen PR niet als onafhankelijke reviewer goedkeuren; CODEOWNERS alleen lost dit niet op.
 - **Vooronderzoek:** repository is public, adminrechten vermeld; rulesetlijst leeg. Geen instellingen gewijzigd of toegangsrechten uitgebreid. Zie CLOUD_HANDOVER voor officiële GitHub-bronnen.

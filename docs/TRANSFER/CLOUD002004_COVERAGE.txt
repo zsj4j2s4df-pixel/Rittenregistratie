@@ -1,0 +1,53 @@
+✔ verified active membership grants all defined actions equally (1.565184ms)
+✔ missing disabled expired or nonfinite session fails closed (0.141207ms)
+✔ other vehicle or user cannot access trips (0.171433ms)
+✔ revoked membership and unknown roles or actions are denied (0.269124ms)
+✔ overlap never treats priority or unconfirmed driver as proof (0.8664ms)
+✔ conflicting confirmed drivers remain unknown (0.122328ms)
+✔ same confirmed driver does not automatically merge trips (0.088857ms)
+✔ different vehicles and adjacent intervals are separate (0.166055ms)
+✔ invalid detection timestamps require review (0.198184ms)
+✔ existing migration executes in isolated SQLite and creates seven application tables (1.657666ms)
+✔ foreign keys reject an address owned by a nonexistent user (1.023021ms)
+✔ external identity cannot be assigned to two local user rows (0.688347ms)
+✔ complete coherent private trip has no field issues (0.680014ms)
+✔ calendar dates reject impossible days and accept leap day (0.122879ms)
+✔ time order, invalid minutes, equal times and midnight need correction (0.119694ms)
+✔ distance rejects zero, negative, infinity and NaN (0.2668ms)
+✔ missing data remains missing; unknown driver and classification are flagged (0.122608ms)
+✔ invalid classifications, drivers and incomplete routes are rejected (0.209502ms)
+✔ odometer order errors, invalid values and mismatches are distinct (0.128667ms)
+✔ business purpose is a warning; never invented (0.083428ms)
+✔ overlapping vehicle trips flagged regardless of driver, not auto merged (0.181048ms)
+✔ adjacent trips and separate dates are not overlaps (0.122238ms)
+✔ edit creates immutable before/after history and revision without trusting actor (0.309565ms)
+✔ stale revisions cannot overwrite previous changes (0.134727ms)
+✔ invalid edit, missing reason, missing trip and invalid timestamp leave data untouched (0.204654ms)
+✔ provenance cannot be upgraded through an edit (0.18925ms)
+✔ percentage follows classification and handles no trips (0.309115ms)
+✔ CSV quotes commas, quotes and embedded newlines (0.126134ms)
+✔ CSV neutralizes formula prefixes including whitespace (0.112964ms)
+✔ demo export explicitly marks data and missing plate (0.204384ms)
+✔ demo export preserves explicit odometers including zero and safely quotes formula-like purpose (0.112974ms)
+✔ duration belongs to selected trip; invalid and overnight times remain unknown (0.210132ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 32
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 67.190206
+ℹ start of coverage report
+ℹ ------------------------------------------------------------------
+ℹ file              | line % | branch % | funcs % | uncovered lines
+ℹ ------------------------------------------------------------------
+ℹ app               |        |          |         |
+ℹ  trip-domain.ts   | 100.00 |    92.96 |  100.00 |
+ℹ  trip-utils.ts    | 100.00 |   100.00 |  100.00 |
+ℹ lib               |        |          |         |
+ℹ  access-policy.ts | 100.00 |   100.00 |  100.00 |
+ℹ ------------------------------------------------------------------
+ℹ all files         | 100.00 |    96.06 |  100.00 |
+ℹ ------------------------------------------------------------------
+ℹ end of coverage report
