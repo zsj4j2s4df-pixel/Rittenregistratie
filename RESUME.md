@@ -16,7 +16,7 @@ Cloud leidt; Mac ondersteunt iOS/hardware; eigenaar beslist over main-merge, kos
 ## Nieuwste uitvoering na eigenaarkeuze
 Eigenaar koos Cloudflare onderzoeken en aparte agenttoegang. Onderzoeken klaar in CLOUDFLARE_RESEARCH.md en SEPARATE_AGENT_ACCESS.md; geen account/deploy/koppeling geactiveerd. Betaalgegevens nodig voor Access Free volgens officiële onboarding; eigenaarbesluit vóór activatie. Connector blijft eigenaaridentiteit, mist wisselactie; plan vraagt ingelogde persoonlijke koppelstap, niet dezelfde keuze opnieuw.
 
-cloud/cloud-005-settings-storage, base #9/head511c8f3: additieve0006, duurzame scopedsettings/metadata/audit/revisions, settingsHTTP en voorbereide AccessRS256-resolver.89tests +type/lint/build +lokale D1 PASS. Twee concrete settingsreviewfouten opgelost/hercontrolePASS; gerichte Accessreview geen concrete fout. Zie SETTINGS_STORAGE.md. Nog geen publieke login/opslag voor web; web is demo.
+Draft-PR #10 https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/10 , cloud/cloud-005-settings-storage, base #9/head511c8f3: additieve0006, duurzame scopedsettings/metadata/audit/revisions, settingsHTTP en voorbereide AccessRS256-resolver.89tests +type/lint/build +lokale D1 PASS. Twee concrete settingsreviewfouten opgelost/hercontrolePASS; gerichte Accessreview geen concrete fout. Zie SETTINGS_STORAGE.md. Nog geen publieke login/opslag voor web; web is demo.
 
 ## Volgende technische taak
 Duurzame serverrapporten/snapshots met voertuigscope, integergeld en exportautorisatie; vervolgens geverifieerde sessions en publiek aansluiten na toestemming, UI-sync, detectie-inname/deduplicatie, back-up/herstel en read-only MCP. Nog niet gebouwd: geen volledige-appclaim. Providerbesluit blokkeert niet alle lokale implementaties.
@@ -31,3 +31,7 @@ Lokale git is blobgeverifieerde snapshot, geen echte remote ancestry: NOOIT loka
 
 ## Laatste opslagcontrole
 Backendgroepen #7/#8/#9 staan remote; 23/23 betrokken backend-/voortgangsbestanden zijn exact teruggelezen op HTTP-head d42bc91273dcd451db96a6a714a22f9db1e4f4da. main opnieuw gecontroleerd: ongewijzigd d37d8c913aaa253d6297cf57d3379d40c5795573. Deze laatste documentactualisatie is een opvolgcommit op dezelfde HTTP-branch, geen nieuwe codegroep. Zie docs/TRANSFER/CLOUD_CHECKPOINT.md voor concrete open taken. Geen volledige oplevering of blokkade van alle lokale ontwikkeling claimen.
+
+
+## Laatste bewijs nieuwe groep
+Codehead723e317c733055faf88d08f6485b318b9579de22:21/21 gewijzigde bestanden exact via GitHub teruggelezen. main opnieuw ongewijzigd d37d8c913aaa253d6297cf57d3379d40c5795573. Laatste89tests/type/lint/build en D1-smoke PASS; Wrangler4.92.0 d1 create --help bevestigt --jurisdiction eu (alleen help uitgevoerd, geen remotecreate). Stagingvoorwaarden: docs/TRANSFER/STAGING_RUNBOOK.md. Researchkeuze niet opnieuw vragen; praktische connector/accountinrichting blijft persoonlijk. Serverrapporten en overige lokale implementatie zijn nog uitvoerbaar, geen alles-klaarclaim.

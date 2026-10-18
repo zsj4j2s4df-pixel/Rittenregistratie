@@ -1,8 +1,10 @@
 # Actuele voortgang — 18 oktober 2026
 
-## Nieuwste groep — duurzame instellingen en Cloudflare-voorbereiding
+## Nieuwste groep — duurzame instellingen en Cloudflare-voorbereiding, draft-PR #10
 
 Eigenaarkeuzes ontvangen: Cloudflare onderzoeken, aparteagenttoegang. Officiële bronnen onderzocht en ownerstappen beschreven; geen externe activatie. Backendsettingsopslag met voertuigscope, revision en audit +settingsHTTP +cryptografische AccessRS256-resolver voorbereid.89/89tests, type/lint/build en lokale D1HTTP/settings/rollback/synthetische identiteit PASS.2legacyreviewfouten hersteld met regressies en hercontrole; Accessgerichte review geen concrete fout. Web blijft demo, echte providerlogin/sync/native niet getest. Zie docs/TRANSFER/SETTINGS_STORAGE.md. Volgende technische groep: duurzame serverrapporten/exportrechten.
+
+Nieuwe groep:21/21 bestanden exact teruggelezen op723e317c733055faf88d08f6485b318b9579de22, main ongewijzigd. Staging/accountvoorwaarden concreet in STAGING_RUNBOOK.md; geen externe resources aangemaakt.
 
 ## Opslagcontrole
 

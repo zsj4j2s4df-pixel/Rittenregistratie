@@ -30,11 +30,11 @@ Eigenaar: bestaande Cloud agent, dagelijks beschikbaar model (Sol voorkeur, sele
 
 Uitgevoerd op overdrachtscommit `8b50e9109b51770f6cf4d0eec25eac38c17e4b76`: baseline31, smoke32 PASS; standaardrunner, type/lint/build werken na omgevingsherstel. Draft-PR #4 gepubliceerd, geen pending creditblokkade. Bewijs: docs/TRANSFER/CLOUD_PROOF.md.
 
-**Opleverketen:** #1 → #2 → #3 overdracht → #4 smoke → #5 integriteitsguards → #6 web/rapporten → draft #7 serverkern → draft #8 idempotente ritinvoer → draft #9 HTTP-adapter (base #8).
+**Opleverketen:** #1 → #2 → #3 overdracht → #4 smoke → #5 integriteitsguards → #6 web/rapporten → draft #7 serverkern → draft #8 idempotente ritinvoer → draft #9 HTTP-adapter (base #8) → draft #10 settings/Accessvoorbereiding (base #9).
 
 **ACT-002:** drie main-regels bevestigd; gedeelde identiteit/onafhankelijke approval OPEN. Zie docs/TRANSFER/MAIN_SECURITY_CHECK.md en OWNER_ACTIONS.md. Geen instellingen opnieuw laten doen.
 
-**Nieuwe settingsgroep:** cloud/cloud-005-settings-storage, base #9: duurzame instellingen, voertuigscope/audit en voorbereide cryptografische Access-resolver.89tests/type/lint/build/lokale D1 PASS, zie SETTINGS_STORAGE.md. Cloudflareonderzoek en apartagentplan gereed, geen accounts/deploys.
+**Nieuwe settingsgroep — draft-PR #10:** cloud/cloud-005-settings-storage, base #9: duurzame instellingen, voertuigscope/audit en voorbereide cryptografische Access-resolver.89tests/type/lint/build/lokale D1 PASS, zie SETTINGS_STORAGE.md. Cloudflareonderzoek en apartagentplan gereed, geen accounts/deploys.
 
 **Volgende technische groep:** duurzame serverrapporten met voertuigscope en exportrechten; daarna geverifieerde sessionprovider en UI-sync. Providerbesluit is alleen nodig voor externe inrichting, niet voor alle lokale code. Native/hardware apart. Geen mastereisen vervallen.
 
