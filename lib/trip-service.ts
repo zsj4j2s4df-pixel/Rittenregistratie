@@ -10,6 +10,7 @@ export type TripEdit = {
   startAddress: string; endAddress: string; classification: 'private' | 'business' | 'review'; driverId: string | null;
   odometerStart: number | null; odometerEnd: number | null; purpose: string | null; reason: string;
 };
+export type TripCreate = Omit<TripEdit, 'expectedRevision'> & { requestId: string };
 export class TripServiceError extends Error {
   status: number;
   constructor(status: number, message: string) { super(message); this.status = status; }
@@ -45,6 +46,55 @@ export function createTripService(db: Pick<D1Database, 'prepare' | 'batch'>, res
     if (edit.odometerStart !== null && edit.odometerEnd !== null && edit.odometerEnd < edit.odometerStart) throw new TripServiceError(400, 'Tellerstanden staan in ongeldige volgorde.');
   }
   return {
+    async create(vehicleId: string, input: TripCreate) {
+      const principal = await authorize(vehicleId);
+      validate(input && { ...input, expectedRevision: 0 });
+      if (typeof input.requestId !== 'string' || !/^[a-zA-Z0-9_-]{16,128}$/.test(input.requestId)) throw new TripServiceError(400, 'Ongeldige herhaalcode.');
+      const requestJson = JSON.stringify({ startedAt: input.startedAt, endedAt: input.endedAt, distanceKm: input.distanceKm,
+        startAddress: input.startAddress.trim(), endAddress: input.endAddress.trim(), classification: input.classification,
+        driverId: input.driverId, odometerStart: input.odometerStart, odometerEnd: input.odometerEnd,
+        purpose: input.purpose?.trim() ?? null, reason: input.reason.trim() });
+      async function receipt() {
+        const row = await db.prepare(`SELECT request_json,response_json FROM trip_create_requests WHERE vehicle_id=? AND user_id=? AND request_id=? AND ${membership}`)
+          .bind(vehicleId, principal.userId, input.requestId, principal.userId, vehicleId).first<{request_json:string;response_json:string}>();
+        if (!row) return null;
+        if (row.request_json !== requestJson) throw new TripServiceError(409, 'Herhaalcode is al gebruikt voor andere ritgegevens.');
+        return JSON.parse(row.response_json) as StoredTrip;
+      }
+      const previous = await receipt();
+      if (previous) return previous;
+      if (input.driverId !== null && !await db.prepare(`SELECT 1 WHERE ${membership}`).bind(input.driverId, vehicleId).first()) throw new TripServiceError(400, 'Bestuurder heeft geen actieve toegang tot dit voertuig.');
+      const now = clock();
+      if (!Number.isFinite(now) || principal.sessionExpiresAt <= now) throw new TripServiceError(401, 'Aanmelden vereist.');
+      const occurredAt = Math.floor(now / 1000);
+      if (!Number.isSafeInteger(occurredAt)) throw new TripServiceError(500, 'Ongeldige servertijd.');
+      const tripId = crypto.randomUUID();
+      const mutationId = crypto.randomUUID();
+      const after = { id: tripId, vehicle_id: vehicleId, driver_id: input.driverId, status: 'provisional', classification: input.classification,
+        started_at: input.startedAt, ended_at: input.endedAt, start_address: input.startAddress.trim(), end_address: input.endAddress.trim(),
+        distance_km: input.distanceKm, distance_source: 'manual', distance_origin_json: null, route_type: 'estimated',
+        purpose: input.purpose?.trim() ?? null, customer: null, notes: null, confidence: null, needs_review: 1,
+        created_by: principal.userId, updated_at: occurredAt, revision: 0, last_mutation_id: mutationId,
+        odometer_start: input.odometerStart, odometer_end: input.odometerEnd };
+      // All three statements share one D1 transaction. Concurrent retries see the
+      // first receipt and cannot insert another trip. Failed audit rolls all back.
+      const columns = Object.keys(after);
+      await db.batch([
+        db.prepare(`INSERT INTO trips(${columns.join(',')}) SELECT ${columns.map(()=>'?').join(',')}
+          WHERE ${membership} AND (? IS NULL OR ${membership}) AND NOT EXISTS
+          (SELECT 1 FROM trip_create_requests WHERE vehicle_id=? AND user_id=? AND request_id=?)`)
+          .bind(...Object.values(after), principal.userId, vehicleId, input.driverId, input.driverId, vehicleId, vehicleId, principal.userId, input.requestId),
+        db.prepare(`INSERT INTO trip_create_requests(vehicle_id,user_id,request_id,trip_id,request_json,response_json)
+          SELECT ?,?,?,?,?,? WHERE EXISTS (SELECT 1 FROM trips WHERE id=? AND last_mutation_id=?)`)
+          .bind(vehicleId, principal.userId, input.requestId, tripId, requestJson, JSON.stringify(after), tripId, mutationId),
+        db.prepare(`INSERT INTO audit_logs(actor_id,entity_type,entity_id,action,old_value_json,new_value_json,occurred_at)
+          SELECT ?,'trip',?,'create',NULL,?,? WHERE EXISTS (SELECT 1 FROM trips WHERE id=? AND last_mutation_id=?)`)
+          .bind(principal.userId, tripId, JSON.stringify({ ...after, correction_reason: input.reason.trim() }), occurredAt, tripId, mutationId),
+      ]);
+      const saved = await receipt();
+      if (!saved) throw new TripServiceError(409, 'Toegangsrechten zijn gewijzigd; laad opnieuw.');
+      return saved;
+    },
     async list(vehicleId: string, limit = 50, offset = 0) {
       const principal = await authorize(vehicleId);
       if (!Number.isSafeInteger(limit) || limit < 1 || limit > 100 || !Number.isSafeInteger(offset) || offset < 0 || offset > 100_000) throw new TripServiceError(400, 'Ongeldige paginering.');

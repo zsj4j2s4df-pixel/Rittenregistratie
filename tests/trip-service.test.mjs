@@ -7,7 +7,7 @@ import { createTripService } from '../lib/trip-service.ts';
 // SQLite adapter exercises real SQL and atomic rollback. It is not a deployed D1 test.
 function setup(t, resolver = async () => ({userId:'u',disabled:false,sessionExpiresAt:2_000_000})) {
  const sqlite=new DatabaseSync(':memory:');t.after(()=>sqlite.close());sqlite.exec('PRAGMA foreign_keys=ON');
- for(const name of ['0000_medical_maestro','0001_guard_trip_integrity','0002_server_trip_core','0003_guard_trip_revisions','0004_distance_provenance'])sqlite.exec(readFileSync(new URL(`../drizzle/${name}.sql`,import.meta.url),'utf8'));
+ for(const name of ['0000_medical_maestro','0001_guard_trip_integrity','0002_server_trip_core','0003_guard_trip_revisions','0004_distance_provenance','0005_trip_create_receipts'])sqlite.exec(readFileSync(new URL(`../drizzle/${name}.sql`,import.meta.url),'utf8'));
  sqlite.exec("INSERT INTO users(id,external_auth_id,name,driver_priority,created_at) VALUES ('u','test-u','Test U',1,1),('other','test-o','Test O',2,1)");
  sqlite.exec("INSERT INTO vehicles(id,display_name,created_at) VALUES ('v','Test V',1),('other-v','Other V',1)");
  sqlite.exec("INSERT INTO vehicle_memberships(user_id,vehicle_id) VALUES ('u','v')");
@@ -67,4 +67,22 @@ test('distance corrections mark manual source and retain first GPS measurement t
  assert.equal(corrected.distance_source,'manual');assert.equal(corrected.route_type,'recorded');assert.deepEqual(JSON.parse(corrected.distance_origin_json),{distanceKm:20,source:'gps'});
  const again=await service.edit('v','t',{...edit,expectedRevision:2,distanceKm:40});assert.equal(again.distance_origin_json,corrected.distance_origin_json);
  const history=await service.history('v','t');assert.equal(history.length,3);assert.equal(JSON.parse(history[1].old_value_json).distance_source,'gps');assert.equal(JSON.parse(history[1].new_value_json).distance_source,'manual');
+});
+
+const creation={...edit,requestId:'synthetic-request-0001'};
+test('manual creation assigns server IDs, provenance and actor, with a single audited retry receipt',async t=>{
+ const {service}=setup(t);const first=await service.create('v',{...creation,id:'spoofed',created_by:'other',distance_source:'gps',route_type:'recorded'});
+ assert.notEqual(first.id,'spoofed');assert.equal(first.created_by,'u');assert.equal(first.distance_source,'manual');assert.equal(first.route_type,'estimated');assert.equal(first.status,'provisional');assert.equal(first.odometer_start,0);
+ assert.deepEqual(await service.create('v',creation),first);assert.equal((await service.list('v')).length,2);const history=await service.history('v',first.id);assert.equal(history.length,1);assert.equal(history[0].action,'create');assert.equal(history[0].old_value_json,null);
+ await service.edit('v',first.id,{...edit,distanceKm:30});assert.deepEqual(await service.create('v',creation),first); // replay the original result, not a later edit
+});
+test('concurrent identical creates commit one trip/audit; conflicting retry data is rejected',async t=>{
+ const {service}=setup(t);const [a,b]=await Promise.all([service.create('v',creation),service.create('v',creation)]);assert.deepEqual(a,b);assert.equal((await service.list('v')).length,2);assert.equal((await service.history('v',a.id)).length,1);await assert.rejects(()=>service.create('v',{...creation,distanceKm:40}),status(409));
+});
+test('creation audit failure rolls back trip and receipt, permitting a clean retry',async t=>{
+ const {sqlite,service}=setup(t);sqlite.exec("CREATE TRIGGER test_reject_create_audit BEFORE INSERT ON audit_logs BEGIN SELECT RAISE(ABORT,'create audit failure'); END");await assert.rejects(()=>service.create('v',creation),/create audit failure/);assert.equal((await service.list('v')).length,1);assert.equal(sqlite.prepare('SELECT count(*) AS n FROM trip_create_requests').get().n,0);sqlite.exec('DROP TRIGGER test_reject_create_audit');assert.ok((await service.create('v',creation)).id);
+});
+test('creation validates fields, driver and scoped request ID; revoked access writes nothing',async t=>{
+ const {sqlite,db,service}=setup(t);for(const patch of [{requestId:'short'},{requestId:"abcdefghijklmnop';"},{driverId:'other'},{distanceKm:0}])await assert.rejects(()=>service.create('v',{...creation,...patch}),status(400));
+ const original=db.batch;db.batch=async statements=>{sqlite.exec('UPDATE vehicle_memberships SET active=0');return original(statements);};await assert.rejects(()=>service.create('v',creation),status(409));assert.equal(sqlite.prepare('SELECT count(*) AS n FROM trips').get().n,2);assert.equal(sqlite.prepare('SELECT count(*) AS n FROM audit_logs').get().n,0);
 });

@@ -104,3 +104,13 @@ export const auditLogs = sqliteTable('audit_logs', {
   newValueJson: text('new_value_json'),
   occurredAt: integer('occurred_at', { mode: 'timestamp' }).notNull(),
 }, table => [index('idx_audit_entity_time').on(table.entityType, table.entityId, table.occurredAt)]);
+
+// Scoped retry receipts prevent duplicate manual trips after network retries.
+export const tripCreateRequests = sqliteTable('trip_create_requests', {
+  vehicleId: text('vehicle_id').notNull().references(() => vehicles.id),
+  userId: text('user_id').notNull().references(() => users.id),
+  requestId: text('request_id').notNull(),
+  tripId: text('trip_id').notNull().references(() => trips.id),
+  requestJson: text('request_json').notNull(),
+  responseJson: text('response_json').notNull(),
+}, table => [primaryKey({ columns: [table.vehicleId, table.userId, table.requestId] })]);
