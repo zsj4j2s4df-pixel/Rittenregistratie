@@ -2,6 +2,10 @@
 
 Gedeeltelijke implementatie, geen complete RitKompas-app.123REQ-ID’s/21scenario’s en masterwensen behouden. GitHub centraal; main niet veranderd.
 
+## Nieuwste publicatie
+
+Zie [CLOUD_RELEASE](CLOUD_RELEASE.md): centrale CRUD/correctie/historie,117tests en live Worker/EU-D1. Werkelijke login ontbreekt, API blijft gesloten. Oudere status hieronder is historie waar ingehaald.
+
 ## Nieuwste werk
 | PR | Scope | Bewijs |
 |---|---|---|

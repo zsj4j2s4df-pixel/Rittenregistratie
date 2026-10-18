@@ -1,0 +1,34 @@
+'use client';
+import { useEffect, useState } from 'react';
+import type { FormEvent } from 'react';
+import { BackendError, createBackendClient, type BackendTrip, type TripHistoryEntry } from '../backend-client';
+import type { TripEdit } from '../../lib/trip-service';
+import { correctionInput, correctionTime } from './trip-correction-values';
+
+const api=createBackendClient();
+type Props={trip:BackendTrip;vehicleId:string;busy:boolean;onSave:(input:TripEdit)=>Promise<void>};
+const fields:Record<string,string>={started_at:'Vertrek (UTC)',ended_at:'Aankomst (UTC)',start_address:'Vertrekadres',end_address:'Aankomstadres',distance_km:'Afstand (km)',classification:'Classificatie',driver_id:'Bestuurder-ID',odometer_start:'Beginstand (km)',odometer_end:'Eindstand (km)',purpose:'Ritdoel',status:'Ritstatus',route_type:'Routeherkomst',distance_source:'Afstandsherkomst',revision:'Versie'};
+const words:Record<string,string>={private:'Privé',business:'Zakelijk',review:'Te controleren',provisional:'Voorlopig',final:'Definitief',detection:'Detectie',manual:'Handmatig',gps:'GPS',odometer:'Kilometerteller',estimated:'Geschat',recorded:'Opgenomen',calculated:'Berekend'};
+function snapshot(value:string|null):Record<string,unknown>|null {if(value===null)return null;try{const parsed=JSON.parse(value);return parsed&&typeof parsed==='object'&&!Array.isArray(parsed)?parsed:null;}catch{return null;}}
+function show(key:string,value:unknown){if(value===null||value===undefined||value==='')return 'Onbekend / niet ingevuld';if((key==='started_at'||key==='ended_at')&&typeof value==='number'){try{return new Date(value*1000).toISOString();}catch{return 'Ongeldige tijd';}}return typeof value==='string'?(words[value]??value):String(value);}
+function HistoryItem({entry}:{entry:TripHistoryEntry}){
+ const before=snapshot(entry.old_value_json),after=snapshot(entry.new_value_json);
+ return <li><p>{new Date(entry.occurred_at*1000).toLocaleString('nl-NL',{timeZone:'Europe/Amsterdam'})} · {entry.action==='create'?'Aangemaakt':entry.action==='update'?'Gecorrigeerd':entry.action}</p><p>Account-ID van uitvoerder: {entry.actor_id}. De accountnaam is hier niet opgehaald.</p>{typeof after?.correction_reason==='string'&&<p>Reden: {after.correction_reason}</p>}{!after?<p>Historiegegevens kunnen niet worden gelezen.</p>:<div className="central-table"><table><thead><tr><th>Veld</th><th>Voor</th><th>Na</th></tr></thead><tbody>{Object.entries(fields).filter(([key])=>!before||before[key]!==after[key]).map(([key,label])=><tr key={key}><th scope="row">{label}</th><td>{before?show(key,before[key]):'Nog niet aangemaakt'}</td><td>{show(key,after[key])}</td></tr>)}</tbody></table></div>}</li>;
+}
+export default function TripCorrection(props:Props){return <CorrectionForm key={props.vehicleId+':'+props.trip.id+':'+props.trip.revision} {...props}/>;}
+function CorrectionForm({trip,vehicleId,busy,onSave}:Props){
+ const [history,setHistory]=useState<TripHistoryEntry[]>([]),[historyError,setHistoryError]=useState(''),[error,setError]=useState(''),[notice,setNotice]=useState(''),[saving,setSaving]=useState(false),[loading,setLoading]=useState(true),[reload,setReload]=useState(0);
+ useEffect(()=>{let cancelled=false;api.history(vehicleId,trip.id).then(entries=>{if(!cancelled){setHistory(entries);setHistoryError('');setLoading(false);}}).catch(e=>{if(!cancelled){setHistoryError(e instanceof Error?e.message:'Historie laden mislukt.');setLoading(false);}});return()=>{cancelled=true;};},[vehicleId,trip.id,trip.revision,reload]);
+ async function submit(event:FormEvent<HTMLFormElement>){event.preventDefault();if(busy||saving)return;const data=new FormData(event.currentTarget);setError('');setNotice('');setSaving(true);try{await onSave(correctionInput(trip,data));setNotice('Correctie opgeslagen. De oorspronkelijke rapporten blijven behouden.');setReload(n=>n+1);}catch(e){setError(e instanceof BackendError&&e.status===409?'De rit is intussen gewijzigd. Vernieuw de gegevens en controleer de laatste versie vóór je opnieuw corrigeert.':e instanceof Error?e.message:'Correctie opslaan mislukt.');}finally{setSaving(false);}}
+ const disabled=busy||saving;
+ return <section className="panel"><h2>Rit corrigeren en historie</h2><p>Huidige versie: {trip.revision}. Bestuurder: {trip.driver_id===null?'Onbekend (blijft onbekend)':`account-ID ${trip.driver_id} (blijft behouden)`}.</p><p>Tijden hieronder zijn in UTC, inclusief seconden. De bestaande tijdstippen blijven exact behouden zolang je ze niet wijzigt. Ontbrekende gegevens worden niet geschat. Vul ontbrekende verplichte velden in om te corrigeren.</p>
+ {error&&<p role="alert">{error} Er wordt niets automatisch opnieuw verstuurd.</p>}{notice&&<p role="status">{notice}</p>}
+ <form className="editor-grid" onSubmit={submit}>
+ <label>Vertrek (UTC)<input name="startedAt" type="datetime-local" step="1" required defaultValue={correctionTime(trip.started_at)} disabled={disabled}/></label><label>Aankomst (UTC)<input name="endedAt" type="datetime-local" step="1" required defaultValue={correctionTime(trip.ended_at)} disabled={disabled}/></label>
+ <label>Vertrekadres<input name="startAddress" maxLength={450} required defaultValue={trip.start_address??''} disabled={disabled}/></label><label>Aankomstadres<input name="endAddress" maxLength={450} required defaultValue={trip.end_address??''} disabled={disabled}/></label>
+ <label>Afstand (km)<input name="distanceKm" type="number" min="0.001" step="any" required defaultValue={trip.distance_km??''} disabled={disabled}/></label><label>Classificatie<select name="classification" defaultValue={trip.classification} disabled={disabled}><option value="private">Privé</option><option value="business">Zakelijk</option><option value="review">Te controleren</option></select></label>
+ <label>Beginstand (optioneel)<input name="odometerStart" type="number" min="0" step="any" defaultValue={trip.odometer_start??''} disabled={disabled}/></label><label>Eindstand (optioneel)<input name="odometerEnd" type="number" min="0" step="any" defaultValue={trip.odometer_end??''} disabled={disabled}/></label>
+ <label>Ritdoel (optioneel)<input name="purpose" maxLength={1000} defaultValue={trip.purpose??''} disabled={disabled}/></label><label>Reden correctie<input name="reason" maxLength={500} required disabled={disabled}/></label><button disabled={disabled}>Correctie opslaan</button></form>
+ <h3>Opgeslagen historie</h3><button disabled={disabled||loading} onClick={()=>setReload(n=>n+1)}>Historie vernieuwen</button>{loading&&<p role="status">Historie laden…</p>}{historyError&&<p role="alert">{historyError}</p>}{!loading&&!historyError&&!history.length&&<p>Geen historie geregistreerd.</p>}<ol>{history.map(entry=><HistoryItem key={entry.id} entry={entry}/>)}</ol>{history.length===100&&<p>De laatste 100 wijzigingen worden getoond; oudere historie blijft centraal bewaard.</p>}
+ </section>;
+}

@@ -83,3 +83,8 @@ Webprototype in React/Vinext: donker/zand, voorbeeldritten, classificatie, ritco
 ## Open
 
 CLOUD-008 Cloud-proef; main-bescherming en identiteitsbeperking (OWNER_ACTIONS ACT-002); native Xcode/iPhonewerk; backend- en providerkeuze. Geen nieuwe kosten of productie. Twee extra Astra-reviewagents faalden eerder met kredietmelding; de precieze oorzaak is niet vastgesteld en gewone accountlimieten waren niet uitgeput. Geen bijkoop nodig voor de lokale controles.
+
+
+## 18 oktober 2026 — Cloudflare-release en centrale correcties
+
+CLOUD-005/002/004: adres-/tariefCRUD en ritcorrectie/historie geïntegreerd.117tests/type/lint/build/D1 PASS; centrale browser met nieuwe flows PASS. Werkelijke Worker en EU-D1 aangemaakt/gepubliceerd na expliciete eigenaaropdracht; acht migraties, users0/trips0, live demo/assets en API503 PASS. Geen accountloginclaim. Assetsupload401 omzeild met credentialvrije ingebedde publieke assetmodules, geen beveiligingsbypass. Accessorganisatie ontbreekt, login blijft gesloten. Nieuwe draftbranch cloud/cloud-005-cloudflare-release gebaseerd op #13-head7fc9ecc, keten behouden. Volledig bewijs/beperkingen: docs/TRANSFER/CLOUD_RELEASE.md. Volgende lokale taak: bestuurder/filters of duurzame pendingqueue; persoonlijke stap: ZeroTrust/Access activeren zonder kosten. Native/hardware en productieauth nog NIET GETEST.
