@@ -1,7 +1,15 @@
 # RitKompas — Rittenregistratie
 
 Project voor de Jeep Wrangler Unlimited 80th Anniversary 4xe: native iPhone-app, webinterface en centrale gegevensbron volgens de masterprompt.
-Deze repository bevat op de gecontroleerde basis alleen instructies; een werkende app of hosting is niet aangetoond.
+Deze overdrachtsbranch bevat nu de bestaande webcode, gegevenscontroles, databaseontwerp en 31 automatische tests. De app is een tijdelijke demo, geen productieklare registratie. Native iPhone-app, echte GPS, accounts, opslag/sync, PDF en MCP ontbreken nog.
+
+## Actuele besturing — 18 oktober 2026
+
+**Cloud ontwikkelt; Mac ondersteunt; jij beslist.** GitHub is de centrale bron van waarheid. Sol is voorkeur voor dagelijkse regie indien beschikbaar, Astra alleen voor belangrijke beslissingen. Geen automatische overdracht van agents, sessies of modelinstellingen. Zie [CLOUD_HANDOVER](CLOUD_HANDOVER.md), [RESUME](RESUME.md), [DEVELOPMENT_PROGRESS](DEVELOPMENT_PROGRESS.md) en [AGENTS](AGENTS.md).
+
+## Testen en starten
+
+Node 24 aanbevolen. Pure tests zonder package-installatie: `node --experimental-strip-types --test tests/*.test.mjs`. Met bestaande/toegestane lockfile-dependencies: `pnpm exec tsc --noEmit`, `pnpm lint`, `pnpm build`, lokaal `pnpm dev`. Geen secrets nodig voor de demo. Cloud-installatie en tests worden apart geverifieerd; Mac-uitvoer is geen Cloudbewijs.
 
 ## Begin hier
 
@@ -21,9 +29,9 @@ Deze repository bevat op de gecontroleerde basis alleen instructies; een werkend
 
 ## Werkwijze
 
-Mac coördineert en accepteert; Cloud levert afgebakende branches en pull requests. Sol dagelijks, Astra alleen bij belangrijke besluiten. Geen automatische merge of productiepublicatie.
+Cloud coördineert de ontwikkeling; Mac ondersteunt lokale/iOS/hardwaretaken. Wijzigingen via branches en PR's; alleen de eigenaar mag toestemming geven voor main-merge en andere belangrijke handelingen. Geen automatische merge of productiepublicatie.
 Open op iPhone de GitHub-branch of PR om voorgestelde documenten te bekijken; bestanden verschijnen pas na goedgekeurde samenvoeging op main.
 
 ## Huidige beperking
 
-Mac-agent tijdelijk afwezig. Bestaande appcode moet eerst veilig beschikbaar komen voordat codekwaliteit, testdekking en implementatiebeveiliging kunnen worden beoordeeld. Geen aanschaf of persoonlijke handeling gevraagd voor het documentwerk.
+De broncode is als overdrachtsvoorstel toegevoegd boven op PR #2; PR #2 hangt af van PR #1. Geen van deze PR's is automatisch gemerged. Bestaande Cloud-documentatie en de aparte [Mac-snapshot](docs/MAC_SNAPSHOT_2026-10-18/README.md) blijven behouden. Foto en sociale preview blijven lokaal; de app gebruikt een gemarkeerde placeholder. Main-bescherming/eigenaarreview is nog niet technisch bevestigd: zie [ACT-002](OWNER_ACTIONS.md).

@@ -1,5 +1,7 @@
 # Voortgang — 18 oktober 2026
 
+> **Overdrachtupdate 18 oktober 2026:** de Mac-code en tests zijn nu op de overdrachtsbranch aangeleverd. Onderstaande nulmeting blijft historie; 'code ontbreekt' geldt voor de toen gecontroleerde basis, niet deze branch. Actuele status: [DEVELOPMENT_PROGRESS](../../DEVELOPMENT_PROGRESS.md), codebewijs: [MAC_CODE_MAPPING](../TRANSFER/MAC_CODE_MAPPING.md). Bestaande eisen-/test-ID's blijven behouden; geen volledige testcase of onafhankelijke review wordt hiermee alsnog geslaagd verklaard. Cloud leidt de ontwikkeling, eigenaar beslist over merges.
+
 ## Resultaat
 - CLOUD-001: nulmeting en eerste audit, PR #1, TER CONTROLE.
 - CLOUD-006: 123 eisen/procesvoorwaarden, 21 testscenario's, leeswijzers op vier bronbestanden, 18 officiële onderzoeksbronnen, securityvoorcontrole en codeblokkades vastgelegd; TER CONTROLE.

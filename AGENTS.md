@@ -1,0 +1,23 @@
+# RitKompas — uitvoeringsinstructies
+
+Nieuwste gebruikersbesluit, 18 oktober 2026: **Codex Cloud is hoofdontwikkelaar; Codex Mac ondersteunt lokale builds, iOS-simulator en hardwaretests. GitHub is de centrale bron van waarheid. De projecteigenaar beslist over belangrijke handelingen.** Oudere afwijkende rolverdelingen blijven alleen historie.
+
+Start met RESUME.md, CLOUD_TASKS.md, DEVELOPMENT_PROGRESS.md en CLOUD_HANDOVER.md. Lees daarna alleen de relevante eisen/testgevallen en code; herhaal geen volledige inventaris zonder aanleiding. Alle functionele wensen in de bijgewerkte masterprompt blijven behouden. Sol is voorkeur voor dagelijkse regie indien beschikbaar, Astra alleen voor belangrijke afwegingen. Geen modelwissel, agentoverdracht of automatische sessiesynchronisatie claimen zonder bewijs.
+
+## Zelfstandig toegestaan
+
+Samenhangende code-, test-, bugfix- en documenttaken op eigen branches; commits en pull requests; taken, besluiten en hervatpunt bijwerken. Gebruik synthetische gegevens. Als een reviewer niet beschikbaar is, neem veilig werk zelf over en markeer dat als eigen controle, niet onafhankelijk.
+
+## Nooit zonder expliciete toestemming
+
+Kosten/betaalde diensten, productiepublicatie, nieuwe externe accounts of gevoelige koppelingen, delen van gevoelige gegevens, grote functionele scopewijzigingen, uitschakelen van beveiliging, onomkeerbare handelingen. **Geen merge naar main, geen force push, geen auto-merge, geen rechtstreekse push naar main.** Een geslaagde test is geen toestemming.
+
+## Taakgroepen
+
+Gebruik bestaande CLOUD-nummers. Houd samenhangend werk in één run; na iedere groep tests, commit, takenlijst, DEVELOPMENT_PROGRESS en RESUME bijwerken en volgende veilige taak uitvoeren. Stop bij echte blokkade, noodzakelijke toestemming of uitvoeringslimiet. Vermijd dubbele audit en onnodige parallelle agents. Externe dependencymogelijkheden controleren, niet zomaar vervangen.
+
+## Verificatie
+
+Node 24 aanbevolen. `node --experimental-strip-types --test tests/*.test.mjs` vereist geen externe npm-packages. Met dependencies: `pnpm exec tsc --noEmit`, `pnpm lint`, `pnpm build`. Geen Mac-paden hardcoden. Native iOS is nog niet gebouwd; geen echte iPhone-test claimen vanuit een Cloud-VM. `lib/access-policy.ts` is geen aangesloten authenticatiebackend. De app bevat alleen tijdelijke demo-invoer.
+
+Controleer vóór elke publicatie diff en geheimen; geen .env, caches, privéfoto's, GPS-historie, Apple-certificaten of databasebestanden. `scripts/scan-handover.mjs` is een beperkte patrooncontrole, geen volledige veiligheidsgarantie. Bewaar bestaande wijzigingen. Bestaande PR-keten: #1 → #2 → overdrachts-PR; niet ongemerkt rebasen, samenvoegen of bases wijzigen.

@@ -1,5 +1,7 @@
 # Testplan en acceptatie — concept
 
+> **Overdrachtupdate 18 oktober 2026:** de Mac-code en tests zijn nu op de overdrachtsbranch aangeleverd. Onderstaande nulmeting blijft historie; 'code ontbreekt' geldt voor de toen gecontroleerde basis, niet deze branch. Actuele status: [DEVELOPMENT_PROGRESS](../../DEVELOPMENT_PROGRESS.md), codebewijs: [MAC_CODE_MAPPING](../TRANSFER/MAC_CODE_MAPPING.md). Bestaande eisen-/test-ID's blijven behouden; geen volledige testcase of onafhankelijke review wordt hiermee alsnog geslaagd verklaard. Cloud leidt de ontwikkeling, eigenaar beslist over merges.
+
 Datum: 18 oktober 2026. Afgeleid van REQUIREMENTS_TRACE.md. Geen tests uitgevoerd op een app: code ontbreekt. Alle onderstaande cases hebben status NIET GETEST. Dit is testontwerp, geen definitieve architectuurkeuze.
 
 Gebruik uitsluitend synthetische locaties, accounts en ritten in tests. Leg per uitvoering commit, platform/OS/apparaat, stappen, verwachte/werkelijke uitkomst en foutbewijs vast. Numerieke drempels voor detectie, batterij en foutmarge moeten vóór de praktijktest worden gekozen op basis van een prototype; er zijn nog geen onderbouwde waarden.

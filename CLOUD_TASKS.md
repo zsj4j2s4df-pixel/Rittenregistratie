@@ -1,5 +1,29 @@
 # Cloud-taken — RitKompas
 
+## Actuele regie en status — overdracht 18 oktober 2026
+
+**Cloud is hoofdontwikkelaar, Mac ondersteunt lokale/iOS/hardwaretaken, eigenaar beslist over belangrijke handelingen.** Deze nieuwe expliciete opdracht vervangt de oudere Mac-hoofdrol hieronder. GitHub is centraal. Sol indien beschikbaar; Astra uitsluitend belangrijke besluiten. Geen extra betaalde diensten/runs, geen main-merge zonder eigenaar. Eén samenhangende run heeft voorkeur.
+
+| Taak | Actuele status / vervolgstap |
+|---|---|
+| CLOUD-001 | TER CONTROLE — PR #1 behouden; documentstructuur door Mac bekeken, geen merge/volledige inhoudelijke acceptatie |
+| CLOUD-006 | TER CONTROLE — PR #2 afhankelijk van #1; 123 REQ-ID's/21 scenario's behouden, actuele codebasis nu aangeleverd |
+| CLOUD-002 / CLOUD-004 | KLAAR VOOR CLOUD na CLOUD-008 — combineer codekwaliteit/testdekking, hergebruik Mac-code en tests |
+| CLOUD-003 | KLAAR VOOR CLOUD na CLOUD-008 — gerichte securityreview; onafhankelijkheid alleen claimen bij echte tweede uitvoering |
+| CLOUD-005 | BACKLOG — afbakenen na codecontrole; geen nieuwe app genereren |
+| CLOUD-007 | IN UITVOERING — veilige Mac→GitHub-overdracht op handover/mac-to-cloud-20261018, base cloud/cloud-006-documentatie |
+| CLOUD-008 | KLAAR VOOR CLOUD zodra overdrachtscommit beschikbaar — één kleine overdrachtstest in bestaande Cloud agent |
+
+### CLOUD-007 — Veilige overdracht
+
+Eigenaar: Mac, controle Cloud/projecteigenaar. Prioriteit hoog; usage onbekend. Scope: bestaande code/config/tests/docs, gescheiden Mac-snapshot, veilige placeholder, besturing en privacycontrole. Acceptatie: secretscan/diff, behoud PR-voorouders, tests, remote terugleesbewijs en eigen draft-PR. Geen merge, betaalde dienst, privéfoto of runtime-data. Resultaat/bewijs: docs/TRANSFER en DEVELOPMENT_PROGRESS. Open: technische eigenaarcontrole ACT-002, Cloud-proef.
+
+### CLOUD-008 — Echte Cloud-overdrachtstest
+
+Eigenaar: bestaande Cloud agent, dagelijks beschikbaar model (Sol voorkeur, selectie niet verondersteld). Prioriteit hoog; usage onbekend, één gecombineerde run zonder nieuwe betaalde omgeving. Scope: branch lezen, tests draaien, kleine CSV-regressietest voor tellerstanden inclusief nul en toelichting toevoegen, commit/PR, voortgang/hervatpunt. Branch: cloud/cloud-008-handover-smoke, base handover/mac-to-cloud-20261018. Acceptatie: concrete commit, testuitvoer, terugleesbaar bestand en PR; ontbrekende runtime/installatiebevoegdheid expliciet NIET GETEST. Geen nieuw framework, geen secrets/productiedata en geen merge. Daarna veilige CLOUD-002/004-groep indien ruimte/toegang, met afzonderlijk commitbewijs.
+
+## Historische taakbeschrijvingen (actuele status hierboven gaat voor)
+
 Bijgewerkt: 18 oktober 2026. Alleen repository Rittenregistratie.
 Mac is hoofdontwikkelaar en accepteert resultaten; Cloud werkt afgebakend op eigen branches met PR's.
 Inhoudelijke eisen: bijgewerkte masterprompt, Opper-agent-opdracht en OWNER_ACTIONS-aanvulling; nieuwste procesafspraken hebben voorrang boven oudere procespassages.
