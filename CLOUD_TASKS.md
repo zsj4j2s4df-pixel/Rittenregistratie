@@ -10,7 +10,7 @@
 | CLOUD-006 | TER CONTROLE — PR #2 afhankelijk van #1; 123 REQ-ID's/21 scenario's behouden, actuele codebasis nu aangeleverd |
 | CLOUD-002 / CLOUD-004 | TER CONTROLE — additieve databaseguards, vijf regressiecases; 37/37 tests en typecheck/lint/build PASS; verdere API/UI-dekking open |
 | CLOUD-003 | KLAAR VOOR CLOUD na CLOUD-008 — gerichte securityreview; onafhankelijkheid alleen claimen bij echte tweede uitvoering |
-| CLOUD-005 | KLAAR VOOR CLOUD — rapportage en ontbrekende webbediening op bestaande demo uitbreiden; serverauth/opslag apart onderbouwen |
+| CLOUD-005 | IN UITVOERING — rapportage/webgroep TER CONTROLE: 50 tests en browser/PDF PASS; volgende groep serverrepository met objectrechten/audit |
 | CLOUD-007 | IN UITVOERING — veilige Mac→GitHub-overdracht op handover/mac-to-cloud-20261018, base cloud/cloud-006-documentatie |
 | CLOUD-008 | TER CONTROLE — 32/32 tests, typecheck/lint/build PASS; draft-PR #4; eerdere omgevingblokkades opgelost |
 

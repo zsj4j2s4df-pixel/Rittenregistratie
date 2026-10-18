@@ -6,9 +6,10 @@ export type Trip = {
   odometerStart?: number; odometerEnd?: number; purpose?: string; revision?: number;
 };
 export type Issue = {code: string; severity: 'error' | 'warning'; message: string; tripId?: number};
-export type HistoryEntry = {tripId:number; actor:string; occurredAt:string; before:Trip; after:Trip; reason:string};
+export type HistoryEntry = {tripId:number; actor:string; occurredAt:string; before:Trip|null; after:Trip; reason:string};
 export type DemoState = {trips:Trip[]; history:HistoryEntry[]; error:string | null};
 export type EditAction = {type:'edit'; trip:Trip; expectedRevision:number; reason:string; occurredAt:string};
+export type CreateAction = {type:'create'; trip:Trip; reason:string; occurredAt:string};
 
 export function validDate(value:string):boolean {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
@@ -50,17 +51,29 @@ export function validateTrip(trip:Trip):Issue[] {
 }
 
 export function validateLog(trips:Trip[]):Issue[] {
-  const issues=trips.flatMap(validateTrip);
+  return [...trips.flatMap(validateTrip),...overlapIssues(trips)];
+}
+
+export function overlapIssues(trips:readonly Trip[], selectedIds?:ReadonlySet<number>):Issue[] {
+  const issues:Issue[]=[];
   for(let i=0;i<trips.length;i++) for(let j=i+1;j<trips.length;j++) {
     const a=trips[i], b=trips[j], at=timeRange(a.time), bt=timeRange(b.time);
-    if (a.date===b.date && validDate(a.date) && at && bt && at[0]<bt[1] && bt[0]<at[1]) {
-      issues.push({code:'overlap',severity:'warning',tripId:a.id,message:`Ritten ${a.id} en ${b.id} overlappen voor deze Jeep: mogelijk dubbel, handmatig controleren.`});
+    if ((!selectedIds || selectedIds.has(a.id) || selectedIds.has(b.id)) && a.date===b.date && validDate(a.date) && at && bt && at[0]<bt[1] && bt[0]<at[1]) {
+      issues.push({code:'overlap',severity:'warning',tripId:!selectedIds || selectedIds.has(a.id)?a.id:b.id,message:`Ritten ${a.id} en ${b.id} overlappen voor deze Jeep: mogelijk dubbel, handmatig controleren.`});
     }
   }
   return issues;
 }
 
-export function demoReducer(state:DemoState, action:EditAction):DemoState {
+export function demoReducer(state:DemoState, action:EditAction|CreateAction):DemoState {
+  if (action.type==='create') {
+    if (!Number.isSafeInteger(action.trip.id) || action.trip.id<=0 || state.trips.some(t=>t.id===action.trip.id)) return {...state,error:'Ritnummer bestaat al of is ongeldig.'};
+    if (!action.reason.trim() || action.reason.length>500 || !Number.isFinite(Date.parse(action.occurredAt))) return {...state,error:'Vul een geldige registratiereden en tijdstip in.'};
+    const errors=validateTrip(action.trip).filter(i=>i.severity==='error');
+    if(errors.length) return {...state,error:errors.map(i=>i.message).join(' ')};
+    const after:Trip={...action.trip,route:action.trip.route.trim(),purpose:action.trip.purpose?.trim(),quality:'Handmatig demovoorbeeld · geen GPS-meting',revision:0};
+    return {trips:[...state.trips,after],history:[...state.history,{tripId:after.id,actor:'Lokale demogebruiker (niet aangemeld)',occurredAt:action.occurredAt,before:null,after:{...after},reason:action.reason.trim()}],error:null};
+  }
   const before=state.trips.find(t=>t.id===action.trip.id);
   if (!before) return {...state,error:'Rit niet gevonden.'};
   if ((before.revision??0)!==action.expectedRevision) return {...state,error:'Deze rit is ondertussen gewijzigd. Open de editor opnieuw.'};
