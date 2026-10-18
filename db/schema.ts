@@ -1,4 +1,4 @@
-import { index, integer, real, sqliteTable, text, uniqueIndex } from 'drizzle-orm/sqlite-core';
+import { index, integer, primaryKey, real, sqliteTable, text, uniqueIndex } from 'drizzle-orm/sqlite-core';
 
 export const users = sqliteTable('users', {
   id: text('id').primaryKey(),
@@ -9,6 +9,7 @@ export const users = sqliteTable('users', {
   driverPriority: integer('driver_priority').notNull(),
   theme: text('theme', { enum: ['dark', 'sand', 'system'] }).notNull().default('dark'),
   createdAt: integer('created_at', { mode: 'timestamp' }).notNull(),
+  disabled: integer('disabled', { mode: 'boolean' }).notNull().default(false),
 }, table => [uniqueIndex('idx_users_external_auth_id').on(table.externalAuthId)]);
 
 export const vehicles = sqliteTable('vehicles', {
@@ -32,6 +33,7 @@ export const trips = sqliteTable('trips', {
   startAddress: text('start_address'),
   endAddress: text('end_address'),
   distanceKm: real('distance_km'),
+  distanceOriginJson: text('distance_origin_json'),
   distanceSource: text('distance_source', { enum: ['gps', 'odometer', 'manual', 'estimated'] }),
   routeType: text('route_type', { enum: ['recorded', 'calculated', 'estimated'] }).notNull().default('recorded'),
   purpose: text('purpose'),
@@ -41,11 +43,24 @@ export const trips = sqliteTable('trips', {
   needsReview: integer('needs_review', { mode: 'boolean' }).notNull().default(true),
   createdBy: text('created_by').notNull().references(() => users.id),
   updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull(),
+  revision: integer('revision').notNull().default(0),
+  lastMutationId: text('last_mutation_id'),
+  odometerStart: real('odometer_start'),
+  odometerEnd: real('odometer_end'),
 }, table => [
   index('idx_trips_vehicle_started').on(table.vehicleId, table.startedAt),
   index('idx_trips_driver_started').on(table.driverId, table.startedAt),
   index('idx_trips_classification_started').on(table.classification, table.startedAt),
 ]);
+
+// An empty membership table grants nobody access. Populate only through a
+// controlled bootstrap after the account/identity provider has been chosen.
+export const vehicleMemberships = sqliteTable('vehicle_memberships', {
+  userId: text('user_id').notNull().references(() => users.id),
+  vehicleId: text('vehicle_id').notNull().references(() => vehicles.id),
+  role: text('role', { enum: ['admin_driver'] }).notNull().default('admin_driver'),
+  active: integer('active', { mode: 'boolean' }).notNull().default(true),
+}, table => [primaryKey({ columns: [table.userId, table.vehicleId] })]);
 
 export const routePoints = sqliteTable('route_points', {
   id: integer('id').primaryKey({ autoIncrement: true }),

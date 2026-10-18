@@ -21,7 +21,7 @@ Cloud gebruikte ACT-001 voor codeoverdracht; Mac gebruikte zelfstandig ACT-001 v
 - **Technische controle van de drie gevraagde regels: AFGEROND via read-only API-inzage.** Ruleset `25339571`, “RitKompas - bescherm main”, is `active`, target `branch`, omvat `~DEFAULT_BRANCH` zonder uitsluitingen; de repositorymetadata bevestigt dat de default branch `main` is. Regels: `pull_request`, `deletion`, `non_fast_forward`. Geen bypass-actoren; `current_user_can_bypass: never`.
 - **Identiteit gecontroleerd: NIET GESCHEIDEN.** De geauthenticeerde connector-login is `zsj4j2s4df-pixel`, dezelfde eigenaar en PR-auteur als in de repository. Geen andere identiteit aangemaakt of gekoppeld.
 - **Onafhankelijke eigenaargoedkeuring: OPEN.** `required_approving_review_count: 0`, geen verplichte reviewers, geen code-owner-review of last-push-approval. De PR-verplichting dwingt dus geen afzonderlijke menselijke goedkeuring af. Geen merge-/verwijder-/forcepush-test uitgevoerd om dit te bewijzen; er is niets aan main gewijzigd.
-- **Overkoepelende status: WACHT OP AGENT** voor een onderbouwd inrichtingsvoorstel voor gescheiden bevoegdheden; niet opnieuw wachten op de al uitgevoerde instelling. Een nieuwe account/koppeling of bevoegdheidswijziging vereist eerst toestemming. Tot die tijd beslist uitsluitend de eigenaar over merges en blijven nieuwe agent-PR's draft.
+- **Overkoepelende status: BESLUIT EIGENAAR NODIG** — voorstel hieronder beschikbaar; niet opnieuw wachten op de al uitgevoerde instelling. Een nieuwe account/koppeling of bevoegdheidswijziging vereist eerst toestemming. Tot die tijd beslist uitsluitend de eigenaar over merges en blijven nieuwe agent-PR's draft.
 - **Bewijs:** [MAIN_SECURITY_CHECK.md](docs/TRANSFER/MAIN_SECURITY_CHECK.md). De eerdere PR-creditblokkade is opgelost; draft-PR #4 is via dezelfde GitHub-tool aangemaakt. De historische beperking is niet omzeild. Geen hoofdbranch gewijzigd.
 
 ### Historie vóór de actuele instelling
@@ -50,3 +50,22 @@ Cloud gebruikte ACT-001 voor codeoverdracht; Mac gebruikte zelfstandig ACT-001 v
 - Besluitverwijzing: docs/ASTRA_AUDIT/DECISIONS.md.
 - Correctie CLOUD-006: dit blijkt een technische overdrachtstaak voor de Mac-agent, geen noodzakelijke persoonlijke actie. ACT-001 blijft als historie behouden; werk en blokkade volgen CLOUD-002/003/004. Geen handeling van Jesse gevraagd.
 - Geen wachtwoorden, tokens, sleutels of echte ritgegevens uploaden.
+
+
+## ACT-002 — Inrichtingsopties na technische controle
+
+Aanbevolen: aparte beperkt bevoegde agentidentiteit (bijvoorbeeld een geschikte GitHub App), eigenaar als aparte reviewer, main met minimaal één approval en zonder agentbypass. Agent levert PR's; eigenaar reviewt en mergt. De huidige koppeling draait onder jouw eigenaaraccount; alleen een approval-eis aanzetten zou de auteur niet ineens onafhankelijk maken. Een nieuwe koppeling/account of wijziging van bevoegdheden vraagt jouw toestemming; niets geactiveerd. Eerst beschikbare connectoridentiteiten verifiëren, daarna één synthetische draft-PR gebruiken voor een niet-destructieve rechtencontrole. Officiële regels: https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/available-rules-for-rulesets .
+
+Bestaand alternatief zonder nieuwe koppeling: behoud de huidige drie actieve regels, laat alle agent-PR's draft/open en merge uitsluitend zelf na controle. Dit blijft procedurele eigenaarcontrole onder dezelfde identiteit. Je hoeft main-bescherming niet opnieuw in te stellen.
+
+## ACT-003 — Hosting en accountkoppeling kiezen vóór externe inrichting
+- Status: BESLUIT NODIG vóór accounts, gevoelige koppelingen of productie; lokale programmeertaken kunnen doorgaan.
+- Aanbevolen onderzoeksspoor: bestaande Cloudflare Workers/D1-stack behouden en een beheerde, server-verifieerbare login kiezen; geen ongetekende identiteitheaders. Cloudflare is nog niet door jou bevestigd. Kies welke bestaande privéaccounts (geen werkgeveraccount zonder toestemming) je eventueel wilt gebruiken; deel geen inloggegevens.
+- Alternatief: eigen hosting/database en eigen accounts. Dit vraagt een aparte vergelijking/migratie en meer beheer; geen stilzwijgende stackwijziging.
+- Jouw volgende stap: bevestig of Cloudflare als doel onderzocht mag blijven en welke bestaande loginprovider gewenst is, of vraag een concrete vergelijking vóór keuze. Alleen een keuze is nog geen toestemming voor abonnementen of productiepublicatie.
+- Kosten: geen dienst gestart of bedrag gegarandeerd. Vóór activeren moeten actuele tarieven, quota, bewaartermijnen, herstel en persoonsgegevensvoorwaarden concreet ter goedkeuring worden aangeboden.
+
+## ACT-004 — Native distributie en praktijktests (later, met Mac)
+- Status: NOG NIET AAN DE BEURT. Native iOS-code en installatie zijn niet gereed; geen aankoop of hardwaretest nu vragen.
+- Na een gereed en lokaal gebouwd pakket: Mac controleert bestaande Apple-mogelijkheden en legt toegestane installatieopties, eventuele kosten/verlenging en teststappen voor drie iPhones voor. Eigenaar beslist vóór account/abonnement/distributie.
+- Daarna echte rit/GPS/achtergrond/batterij/Jeep-signalen testen. CarPlay/OBD2 niet als beschikbaar aannemen. Geen echte GPS-/persoonsgegevens naar openbare GitHub uploaden.

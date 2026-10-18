@@ -1,20 +1,20 @@
 # Hervatpunt — 18 oktober 2026
 
-Cloud leidt; eigenaar beslist over merges, kosten, gevoelige koppelingen en productie. Mac ondersteunt iOS/hardware. GitHub is centraal. Alleen Rittenregistratie.
+Cloud leidt; Mac ondersteunt iOS/hardware; eigenaar beslist over main-merge, kosten, accounts/koppelingen en productie. GitHub is bron van waarheid, alleen Rittenregistratie. Alle mastereisen behouden.
 
-## Actuele status
-- CLOUD-005 webgroep TER CONTROLE: cloud/cloud-005-reporting, base cloud/cloud-002-004-integrity (draft-PR #5). 50/50 tests + typecheck/lint/build en Chromium desktop/mobiel/CSV/PDF PASS. Zie REPORTING_WEB.md. Volgende groep: serverrepository met objectrechten, versiecontrole en audit; geen productieauth veronderstellen.
-- CLOUD-008: 82/82 bronblobs geverifieerd; 31/31 baseline, 32/32 na CSV-regressie PASS. Draft-PR #4 tegen handover/mac-to-cloud-20261018; eerdere keten #1 → #2 → #3 behouden.
-- De eerdere proxy-, dependency- en PR-creditblokkades zijn in deze uitvoering opgelost: frozen-lockfile-installatie met bestaande packages en supply-chain-controle PASS; typecheck, lint en webbuild PASS. Geen stackwijziging of extra dienst.
-- ACT-002: eigenaarinstelling en drie actieve main-regels bevestigd. Connectoridentiteit blijft gelijk aan eigenaar; geen verplichte onafhankelijke approval. Geen merge door agents.
-- CLOUD-002/004: TER CONTROLE op cloud/cloud-002-004-integrity, base cloud/cloud-008-handover-smoke. Additieve migratie 0001 plus vijf regressiecases; 37/37 tests en typecheck/lint/build PASS. Oude migratie ongewijzigd, geen live database migreren. Zie docs/TRANSFER/INTEGRITY_FIX.md.
+## Gepubliceerd werkspoor
+- #1 documentaudit → #2 eisenregister → draft #3 overdracht (handover/mac-to-cloud-20261018, head5874bc3). Niet herhalen, mergen of bases herschrijven.
+- Draft #4 cloud/cloud-008-handover-smoke, base overdracht, head988c35b: bron82/82 geverifieerd, baseline31/smoke32 tests PASS, type/lint/build PASS, ACT-002 gecontroleerd.
+- Draft #5 cloud/cloud-002-004-integrity, base smoke, heade367a86: additieve guards en vijf regressies,37tests PASS.
+- Draft #6 cloud/cloud-005-reporting, base integriteit, head0c8c520: demo-ritinvoer, adres-/tariefbeheer, kenteken, historische rapporten, CSV/browser-PDF en routeweergave;50tests en Chromium desktop/mobiel/CSV/PDF PASS. Webstate is tijdelijk.
+- Serverkern cloud/cloud-005-server-core, base reporting; voertuigautorisatie, revisions en atomische audit.61tests + lokale workerd/D1-binding + type/lint/build PASS. Twee scoped reviews, afstandsherkomstfix hercontrole PASS. Zie docs/TRANSFER/SERVER_CORE.md. PR-link volgt bij publicatie.
 
-## Werkspoor
-Remote smoke-head vóór documentactualisatie: 1830e7efd7d08553ad5b44864b18833fa906d3a0, gebaseerd op 8b50e9109b51770f6cf4d0eec25eac38c17e4b76. De overdrachtsbranch bevat daarnaast 5874bc3 (alleen GITHUB_PROOF.md); behouden. Lokale Git-map begon als blobgeverifieerde snapshot, geen geclonede remote geschiedenis. Remote commits via GitHub-connector met juiste parent; lokale snapshotgeschiedenis niet pushen.
+## Volgende technische taak
+Server-side handmatige ritinvoer met retry-idempotentie/audit. Daarna duurzame instellingen/tarieven/rapporten, geverifieerde sessions en HTTP/CSRF-adapter, UI-sync, detectie-inname/deduplicatie, back-up/herstel en read-only MCP. Nog niet gebouwd: geen volledige-appclaim. Providerbesluit blokkeert niet alle lokale implementaties.
 
-## Verificatie en volgende stappen
-Run node --experimental-strip-types --test tests/*.test.mjs, pnpm exec tsc --noEmit, pnpm lint en pnpm build op de echte projectdependencies. Node 24.19.0, pnpm 11.25.0. Standaard subprocess-testrunner werkt nu; oudere vier-bestandschecks zijn historische runtimebeperking.
+## Controles en omgeving
+Node24.19.0/Linux x86_64, pnpm11.25.0. Frozen lockfile-installatie/supply-chaincheck PASS; eerdere credits/proxy/dependencyblokkades opgelost. Run node --experimental-strip-types --test tests/*.test.mjs; node --experimental-strip-types tests/d1-runtime-smoke.mjs; pnpm exec tsc --noEmit; pnpm lint; pnpm build. Browsercheck tests/browser-smoke.mjs gebruikt geïsoleerde Playwright/Chromium, zie REPORTING_WEB.md.
 
-Na integriteitsgroep: volgende afgebakende web/backendtaak uit CLOUD-005; alle mastereisen behouden. Veilige lokale ontwikkeling toegestaan zonder accounts of productie. Provider-/auth/distributiekeuzes met eventuele kosten eerst ter besluitvorming; geen gebruikers-/GPS-productiegegevens gebruiken. Native iOS en echte iPhone/Jeep/CarPlay/OBD2 nog niet getest. Onafhankelijke securityreview blijft open.
+ACT-002 handmatige instelling en PR/deletion/non-fast-forward-regels AFGEROND via API; connector en eigenaar delen identiteit, onafhankelijke approval niet afgedwongen. Geen agentmerge. OWNER_ACTIONS bevat opties voor gescheiden bevoegdheden en hosting/auth; niets geactiveerd. Productielogin/opslag/sync/back-up, native iOS, echte iPhone/Jeep/CarPlay/OBD2 NIET GETEST.
 
-Bewijs: docs/TRANSFER/CLOUD_PROOF.md, MAIN_SECURITY_CHECK.md en CLOUD_002_004_PREPARATION.md. Eigenaaracties: OWNER_ACTIONS.md.
+Lokale git is blobgeverifieerde snapshot, geen echte remote ancestry: NOOIT lokale geschiedenis pushen. Remote commits via connector met werkelijke parent/tree en expected_sha zonder force. Geen sessies/models/instellingen gemigreerd.

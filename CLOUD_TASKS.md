@@ -9,8 +9,8 @@
 | CLOUD-001 | TER CONTROLE — PR #1 behouden; documentstructuur door Mac bekeken, geen merge/volledige inhoudelijke acceptatie |
 | CLOUD-006 | TER CONTROLE — PR #2 afhankelijk van #1; 123 REQ-ID's/21 scenario's behouden, actuele codebasis nu aangeleverd |
 | CLOUD-002 / CLOUD-004 | TER CONTROLE — additieve databaseguards, vijf regressiecases; 37/37 tests en typecheck/lint/build PASS; verdere API/UI-dekking open |
-| CLOUD-003 | KLAAR VOOR CLOUD na CLOUD-008 — gerichte securityreview; onafhankelijkheid alleen claimen bij echte tweede uitvoering |
-| CLOUD-005 | IN UITVOERING — rapportage/webgroep TER CONTROLE: 50 tests en browser/PDF PASS; volgende groep serverrepository met objectrechten/audit |
+| CLOUD-003 | GEDEELTELIJK UITGEVOERD — twee gerichte serverkernreviews en één rapportagereview; volledige productieauth/privacyreview open |
+| CLOUD-005 | IN UITVOERING — PR #6 web/rapportage; serverkern TER CONTROLE: 61 tests + lokale D1 + type/lint/build PASS; duurzame UI/login/sync open |
 | CLOUD-007 | IN UITVOERING — veilige Mac→GitHub-overdracht op handover/mac-to-cloud-20261018, base cloud/cloud-006-documentatie |
 | CLOUD-008 | TER CONTROLE — 32/32 tests, typecheck/lint/build PASS; draft-PR #4; eerdere omgevingblokkades opgelost |
 
@@ -26,13 +26,15 @@ Eigenaar: Mac, controle Cloud/projecteigenaar. Prioriteit hoog; usage onbekend. 
 
 Eigenaar: bestaande Cloud agent, dagelijks beschikbaar model (Sol voorkeur, selectie niet verondersteld). Prioriteit hoog; usage onbekend, één gecombineerde run zonder nieuwe betaalde omgeving. Scope: branch lezen, tests draaien, kleine CSV-regressietest voor tellerstanden inclusief nul en toelichting toevoegen, commit/PR, voortgang/hervatpunt. Branch: cloud/cloud-008-handover-smoke, base handover/mac-to-cloud-20261018. Acceptatie: concrete commit, testuitvoer, terugleesbaar bestand en PR; ontbrekende runtime/installatiebevoegdheid expliciet NIET GETEST. Geen nieuw framework, geen secrets/productiedata en geen merge. Daarna veilige CLOUD-002/004-groep indien ruimte/toegang, met afzonderlijk commitbewijs.
 
-Uitgevoerd op overdrachtscommit `8b50e9109b51770f6cf4d0eec25eac38c17e4b76`. Resultaat en exacte runtime/beperkingen: [CLOUD_PROOF](docs/TRANSFER/CLOUD_PROOF.md). Baseline 31/31; na één nieuwe CSV-regressietest 32/32, met `--test-isolation=none`. Projectdependencies ontbreken en lockfile-installatie faalt bij registrymetadata; geen Cloud-type/lint/build-PASS. ACT-002 blijft open; eigenaarcontrole en draft-PR behouden. Geen model-/sessiemigratie of extra betaalde run.
+Uitgevoerd op overdrachtscommit `8b50e9109b51770f6cf4d0eec25eac38c17e4b76`: baseline31, smoke32 PASS; standaardrunner, type/lint/build werken na omgevingsherstel. Draft-PR #4 gepubliceerd, geen pending creditblokkade. Bewijs: docs/TRANSFER/CLOUD_PROOF.md.
 
-**Actueel opleverpunt:** de zeven smoke-bestanden staan op GitHub-commit `1830e7efd7d08553ad5b44864b18833fa906d3a0` en zijn exact teruggelezen. PR-aanmaak is niet uitgevoerd: automatische goedkeuringscontrole meldt workspacecredits op. Er is dus nog geen CLOUD-008-PR-nummer. Geen alternatieve schrijfroute gebruikt. Deze actualisatie, ACT-002-resultaat en gerichte CLOUD-002/004-voorbereiding zijn lokaal/pending upload, geen reeds gepubliceerde status.
+**Opleverketen:** #1 → #2 → #3 overdracht → #4 smoke → #5 integriteitsguards → #6 web/rapporten → serverkernbranch cloud/cloud-005-server-core (base #6; PR-link wordt na aanmaak toegevoegd).
 
-**ACT-002-controle:** eigenaarinstelling uitgevoerd; actieve main-ruleset 25339571 bevestigt PR-verplichting, verwijder- en forcepushblokkade. Connectoridentiteit gelijk aan eigenaar en nul verplichte approvals; onafhankelijke eigenaarcontrole blijft open. Zie [beveiligingsbewijs](docs/TRANSFER/MAIN_SECURITY_CHECK.md).
+**ACT-002:** drie main-regels bevestigd; gedeelde identiteit/onafhankelijke approval OPEN. Zie docs/TRANSFER/MAIN_SECURITY_CHECK.md en OWNER_ACTIONS.md. Geen instellingen opnieuw laten doen.
 
-**Volgende groep:** [CLOUD-002/004-voorbereiding](docs/TRANSFER/CLOUD_002_004_PREPARATION.md), nog geen afgeronde codekwaliteitgate. Eerst usage-/goedkeuringsblokkade oplossen en pending documenten via goedgekeurde GitHub-tools publiceren; vervolgens gerichte schema-/auth-/integratietests en dependencychecks, zonder nieuwe kosten/accounts of main-merge.
+**Volgende technische groep:** serverritinvoer met idempotentie en audit; daarna duurzame instellingen/rapporten, session-/HTTP-adapter en UI-sync. Providerbesluit is alleen nodig voor externe inrichting, niet voor alle lokale code. Native/hardware apart. Geen mastereisen vervallen.
+
+**Backendbewijs:** docs/TRANSFER/SERVER_CORE.md; 61/61 tests, lokale workerd/D1, typecheck/lint/build PASS. Twee gerichte serverkernreviews, geen volledige securityacceptatie.
 
 ## Historische taakbeschrijvingen (actuele status hierboven gaat voor)
 
