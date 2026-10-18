@@ -19,10 +19,13 @@ Eigenaar koos Cloudflare onderzoeken en aparte agenttoegang. Onderzoeken klaar i
 Draft-PR #10 https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/10 , cloud/cloud-005-settings-storage, base #9/head511c8f3: additieve0006, duurzame scopedsettings/metadata/audit/revisions, settingsHTTP en voorbereide AccessRS256-resolver.89tests +type/lint/build +lokale D1 PASS. Twee concrete settingsreviewfouten opgelost/hercontrolePASS; gerichte Accessreview geen concrete fout. Zie SETTINGS_STORAGE.md. Nog geen publieke login/opslag voor web; web is demo.
 
 ## Nieuwste rapportgroep
-cloud/cloud-005-server-reports, base #10/head4082d51: additieve0007/reportSnapshots met immutabletrigger, coherentebronsnapshot, retry/audit/rechten, Amsterdamdatering, integergeld/unknowncounts, veiligeCSV.101tests/type/lint/build/lokaleD1 PASS; gerichte overlapreviewfout gefixt/hercontrolePASS. Zie docs/TRANSFER/SERVER_REPORTS.md. Nog geen publieke API/webkoppeling/serverPDF.
+Draft-PR #11 https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/11 , cloud/cloud-005-server-reports, base #10/head4082d51: additieve0007/reportSnapshots met immutabletrigger, coherentebronsnapshot, retry/audit/rechten, Amsterdamdatering, integergeld/unknowncounts, veiligeCSV.101tests/type/lint/build/lokaleD1 PASS; gerichte overlapreviewfout gefixt/hercontrolePASS. Zie docs/TRANSFER/SERVER_REPORTS.md. Nog geen publieke API/webkoppeling/serverPDF.
+
+## Nieuwste API-runtimegroep
+cloud/cloud-005-api-runtime, base #11: app-APIroute met expliciete DB/origin/Accessconfig; ontbrekend503, geconfigureerdzonderJWT401. DynamischeWorkerimport voorkomt Node500.105tests/type/lint/build PASS; builtlocalAPI503-smokePASS; lokaleD1PASS. Zie API_RUNTIME.md. Geen remoteactivering/websync.
 
 ## Volgende technische taak
-App-API koppelen aan gesloten runtimeadapter; vervolgens geverifieerde sessions en publiek aansluiten na toestemming, UI-sync, detectie-inname/deduplicatie, back-up/herstel en read-only MCP. Nog niet gebouwd: geen volledige-appclaim. Providerbesluit blokkeert niet alle lokale implementaties.
+Web/backendadapter en voertuigselectie/centralebeheerinterface; vervolgens geverifieerde sessions en publiek aansluiten na toestemming, UI-sync, detectie-inname/deduplicatie, back-up/herstel en read-only MCP. Nog niet gebouwd: geen volledige-appclaim. Providerbesluit blokkeert niet alle lokale implementaties.
 
 ## Controles en omgeving
 Node24.19.0/Linux x86_64, pnpm11.25.0. Frozen lockfile-installatie/supply-chaincheck PASS; eerdere credits/proxy/dependencyblokkades opgelost. Run node --experimental-strip-types --test tests/*.test.mjs; node --experimental-strip-types tests/d1-runtime-smoke.mjs; pnpm exec tsc --noEmit; pnpm lint; pnpm build. Browsercheck tests/browser-smoke.mjs gebruikt geïsoleerde Playwright/Chromium, zie REPORTING_WEB.md.

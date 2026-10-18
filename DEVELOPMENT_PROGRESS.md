@@ -1,6 +1,10 @@
 # Actuele voortgang — 18 oktober 2026
 
-## Nieuwste serverrapportgroep
+## Nieuwste API-runtimegroep
+
+AppAPIroutes aangesloten met geldigeWorkerconfig/geverifieerde identiteit. Ontbrekend/ongeldig503; Node500door Workerimport opgelost.105tests/type/lint/build en builtNode503-smokePASS; lokaleD1PASS. Geen site/deploy/account, demo tijdelijk. Zie API_RUNTIME.md. Volgende groep:web/backendadapter.
+
+## Serverrapportgroep — draft-PR #11
 
 Coherente bronselectie en duurzame onveranderlijke rapporten met scoped retry, audit, exportrechten en CSV.101tests/type/lint/build en lokaleD1 PASS.Over-middernacht-overlapfout gerepareerd na onafhankelijke review; hercontrolePASS. Geen publieke login/serverPDF/websync. Bewijs SERVER_REPORTS.md. Volgende veilige groep: gesloten runtimeadapter.
 

@@ -1,0 +1,20 @@
+import { createCloudflareAccessResolver } from './cloudflare-access.ts';
+import { createTripHttpHandler } from './trip-http.ts';
+
+export type RuntimeBindings = {
+ DB?: Pick<D1Database,'prepare'|'batch'>;
+ APP_ORIGIN?: string;
+ ACCESS_ISSUER?: string;
+ ACCESS_AUDIENCE?: string;
+};
+
+// A deployment must explicitly supply every binding. No request headers/Host or
+// demo identity are used as configuration. Missing/invalid setup stays closed.
+export function createConfiguredApi(bindings:RuntimeBindings) {
+ const unavailable=()=>Response.json({error:'De beveiligde backend is nog niet beschikbaar.'},{status:503,headers:{'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
+ if(!bindings.DB||typeof bindings.DB.prepare!=='function'||typeof bindings.DB.batch!=='function'||!bindings.APP_ORIGIN||!bindings.ACCESS_ISSUER||!bindings.ACCESS_AUDIENCE)return async()=>unavailable();
+ try {
+  const resolveSession=createCloudflareAccessResolver({db:bindings.DB,issuer:bindings.ACCESS_ISSUER,audience:bindings.ACCESS_AUDIENCE});
+  return createTripHttpHandler({db:bindings.DB,origin:bindings.APP_ORIGIN,resolveSession});
+ }catch{return async()=>unavailable();}
+}
