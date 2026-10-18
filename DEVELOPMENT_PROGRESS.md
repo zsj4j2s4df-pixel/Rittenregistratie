@@ -1,5 +1,9 @@
 # Actuele voortgang — 18 oktober 2026
 
+## Nieuwste groep — duurzame instellingen en Cloudflare-voorbereiding
+
+Eigenaarkeuzes ontvangen: Cloudflare onderzoeken, aparteagenttoegang. Officiële bronnen onderzocht en ownerstappen beschreven; geen externe activatie. Backendsettingsopslag met voertuigscope, revision en audit +settingsHTTP +cryptografische AccessRS256-resolver voorbereid.89/89tests, type/lint/build en lokale D1HTTP/settings/rollback/synthetische identiteit PASS.2legacyreviewfouten hersteld met regressies en hercontrole; Accessgerichte review geen concrete fout. Web blijft demo, echte providerlogin/sync/native niet getest. Zie docs/TRANSFER/SETTINGS_STORAGE.md. Volgende technische groep: duurzame serverrapporten/exportrechten.
+
 ## Opslagcontrole
 
 Draft-PR’s #4–#9 aangemaakt; #7–#9 bevatten serverkern, idempotente aanmaak en HTTP-adapter.23/23 betrokken backend-/voortgangsbestanden exact remote teruggelezen op d42bc91273dcd451db96a6a714a22f9db1e4f4da. main blijft d37d8c913aaa253d6297cf57d3379d40c5795573. Laatste codegate:71tests, type/lint/build, lokale D1 PASS. Open werk en bewijsgrenzen staan in CLOUD_CHECKPOINT.md. Geen volledige-appclaim.
@@ -31,7 +35,7 @@ Omgevingsblokkades opgelost; draft-PR #4 bewaart de smoke en actuele ACT-002-con
 - Cloud blijft hoofdmanager en hoofdontwikkelaar; Mac ondersteunt iOS/hardware. Eigenaar houdt besluit- en mergecontrole.
 - Eigenaar heeft ACT-002 handmatig uitgevoerd. API-controle bevestigt ruleset 25339571 active voor main met pull_request/deletion/non_fast_forward; geen bypass-actoren. Handmatige instelling en die drie technische regels AFGEROND.
 - Connector-login is nog steeds zsj4j2s4df-pixel, gelijk aan eigenaar; required_approving_review_count is 0. Onafhankelijke eigenaaronderscheiding OPEN. OWNER_ACTIONS gericht bijgewerkt, historie behouden.
-- CLOUD-008-uitvoeringsbewijs en CSV-test staan remote op `1830e7efd7d08553ad5b44864b18833fa906d3a0`; alle zeven bestanden exact teruggelezen. **Draft-PR-aanmaak is NIET uitgevoerd**: automatische goedkeuringscontrole faalde wegens workspacecredits. Dit corrigeert eerdere vooruitlopende verwijzingen naar een draft-PR hieronder. Geen upload-/PR-controle omzeild.
+- CLOUD-008-uitvoeringsbewijs en CSV-test staan remote op `1830e7efd7d08553ad5b44864b18933fa906d3a0`; alle zeven bestanden exact teruggelezen. **Draft-PR-aanmaak is NIET uitgevoerd**: automatische goedkeuringscontrole faalde wegens workspacecredits. Dit corrigeert eerdere vooruitlopende verwijzingen naar een draft-PR hieronder. Geen upload-/PR-controle omzeild.
 - CLOUD-002/004 gericht voorbereid: 32/32 tests PASS in scoped coverage-run; de drie geladen pure modules hebben 100% line coverage en samen 96,06% branch coverage. Geen appbrede coverageclaim. Schemabeperking met ongeldige classificatie/negatieve afstand/omgekeerde tijden in geïsoleerde SQLite gereproduceerd; geen productiegegevens of migratie gebruikt.
 - Deze laatste eigenaar-/voorbereidings-/hervatupdates zijn **lokaal opgeslagen, pending GitHub-upload** door de goedkeurings-/usageblokkade. Actuele open PR's blijven #1, #2 en draft #3. Geen CLOUD-008-PR aangemaakt, geen bestaande PR gemerged of geretarget.
 - Volgende veilige stap en bronnen: docs/TRANSFER/MAIN_SECURITY_CHECK.md en CLOUD_002_004_PREPARATION.md. Dependencies blijven onbeschikbaar wegens registry/proxy; typecheck/lint/build NIET GETEST. Geen nieuwe implementatiegroep gestart zonder de vereiste GitHub-oplevering te kunnen doen.

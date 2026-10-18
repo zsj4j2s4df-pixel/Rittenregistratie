@@ -1,3 +1,4 @@
+import { createSettingsService, type SettingsEdit } from './settings-service.ts';
 import type { Principal } from './access-policy.ts';
 import { createTripService, TripServiceError } from './trip-service.ts';
 import type { TripCreate, TripEdit } from './trip-service.ts';
@@ -17,7 +18,7 @@ export function createTripHttpHandler(options: {
   function response(status: number, body: unknown, extra: Record<string,string> = {}) {
     return new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff', 'Vary': 'Origin, Cookie', ...extra } });
   }
-  async function json(request: Request, create: boolean) {
+  async function json(request: Request, create: boolean | 'settings') {
     if (request.headers.get('origin') !== origin.origin || request.headers.get('x-csrf-protection') !== '1' || request.headers.get('sec-fetch-site') === 'cross-site') throw new TripServiceError(403, 'Ongeldige aanvraagherkomst.');
     if (request.headers.get('content-type')?.split(';')[0].trim().toLowerCase() !== 'application/json') throw new TripServiceError(415, 'JSON vereist.');
     const length = request.headers.get('content-length');
@@ -41,7 +42,7 @@ export function createTripHttpHandler(options: {
       for (const chunk of chunks) { bytes.set(chunk, offset); offset += chunk.byteLength; }
       body = JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(bytes));
     } catch { throw new TripServiceError(400, 'Ongeldige JSON.'); }
-    const allowed = create ? [...editKeys.filter(k=>k!=='expectedRevision'), 'requestId'] : editKeys;
+    const allowed = create === 'settings' ? ['revision','plate','addresses','rates','reason'] : create ? [...editKeys.filter(k=>k!=='expectedRevision'), 'requestId'] : editKeys;
     if (!body || typeof body !== 'object' || Array.isArray(body) || Object.keys(body).some(k=>!allowed.includes(k))) throw new TripServiceError(400, 'Onbekende invoervelden.');
     return body;
   }
@@ -55,6 +56,17 @@ export function createTripHttpHandler(options: {
     try {
       const url = new URL(request.url);
       if (url.origin !== origin.origin) return response(403, { error: 'Ongeldige aanvraagherkomst.' });
+      const settingsMatch = /^\/api\/vehicles\/([^/]+)\/settings(\/history)?$/.exec(url.pathname);
+      if (settingsMatch) {
+        const vehicleId = segment(settingsMatch[1]);
+        const history = Boolean(settingsMatch[2]);
+        const allowed = history ? ['GET'] : ['GET','PATCH'];
+        if (!allowed.includes(request.method)) return response(405, { error: 'Methode niet toegestaan.' }, { Allow: allowed.join(', ') });
+        if ([...url.searchParams].length) throw new TripServiceError(400,'Ongeldige query.');
+        const service = createSettingsService(options.db, () => options.resolveSession?.(request) ?? Promise.resolve(null), options.clock);
+        if (request.method === 'PATCH') return response(200,{ settings: await service.save(vehicleId,await json(request,'settings') as SettingsEdit) });
+        return history ? response(200,{ history: await service.history(vehicleId) }) : response(200,{ settings: await service.get(vehicleId) });
+      }
       const match = /^\/api\/vehicles\/([^/]+)\/trips(?:\/([^/]+)(\/history)?)?$/.exec(url.pathname);
       if (!match) return response(404, { error: 'Niet gevonden.' });
       const vehicleId = segment(match[1]), tripId = match[2] ? segment(match[2]) : null;

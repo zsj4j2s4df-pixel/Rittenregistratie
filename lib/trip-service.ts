@@ -1,3 +1,4 @@
+import { TripServiceError, membership, vehicleAuthorizer } from './server-access.ts';
 import type { Principal } from './access-policy.ts';
 
 // Server-only core, deliberately not wired to an unauthenticated public route.
@@ -11,24 +12,10 @@ export type TripEdit = {
   odometerStart: number | null; odometerEnd: number | null; purpose: string | null; reason: string;
 };
 export type TripCreate = Omit<TripEdit, 'expectedRevision'> & { requestId: string };
-export class TripServiceError extends Error {
-  status: number;
-  constructor(status: number, message: string) { super(message); this.status = status; }
-}
-
-const membership = `EXISTS (SELECT 1 FROM vehicle_memberships m JOIN users u ON u.id=m.user_id
-  WHERE m.user_id=? AND m.vehicle_id=? AND m.active=1 AND m.role='admin_driver' AND u.role='admin_driver' AND u.disabled=0)`;
+export { TripServiceError } from './server-access.ts';
 
 export function createTripService(db: Pick<D1Database, 'prepare' | 'batch'>, resolveSession: SessionResolver = async () => null, clock = () => Date.now()) {
-  async function authorize(vehicleId: string): Promise<Principal> {
-    const principal = await resolveSession();
-    const now = clock();
-    if (!principal || typeof principal.userId !== 'string' || !principal.userId || principal.disabled || !Number.isFinite(now) || !Number.isFinite(principal.sessionExpiresAt) || principal.sessionExpiresAt <= now) throw new TripServiceError(401, 'Aanmelden vereist.');
-    if (typeof vehicleId !== 'string' || !vehicleId || vehicleId.length > 128) throw new TripServiceError(400, 'Ongeldig voertuig.');
-    const allowed = await db.prepare(`SELECT 1 AS allowed WHERE ${membership}`).bind(principal.userId, vehicleId).first();
-    if (!allowed) throw new TripServiceError(403, 'Geen toegang tot dit voertuig.');
-    return principal;
-  }
+  const authorize = vehicleAuthorizer(db, resolveSession, clock);
   async function getAuthorized(principal: Principal, vehicleId: string, tripId: string) {
     if (typeof tripId !== 'string' || !tripId || tripId.length > 128) throw new TripServiceError(400, 'Ongeldige rit.');
     const trip = await db.prepare(`SELECT * FROM trips WHERE id=? AND vehicle_id=? AND ${membership}`).bind(tripId, vehicleId, principal.userId, vehicleId).first<StoredTrip>();

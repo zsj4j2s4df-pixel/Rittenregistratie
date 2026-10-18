@@ -16,6 +16,8 @@ export const vehicles = sqliteTable('vehicles', {
   id: text('id').primaryKey(),
   displayName: text('display_name').notNull(),
   registrationPlate: text('registration_plate'),
+  settingsRevision: integer('settings_revision').notNull().default(0),
+  settingsMutationId: text('settings_mutation_id'),
   modelYear: integer('model_year'),
   marketVersion: text('market_version'),
   verificationStatus: text('verification_status', { enum: ['unverified', 'verified'] }).notNull().default('unverified'),
@@ -73,6 +75,7 @@ export const routePoints = sqliteTable('route_points', {
 }, table => [index('idx_route_points_trip_time').on(table.tripId, table.recordedAt)]);
 
 export const businessAddresses = sqliteTable('business_addresses', {
+  vehicleId: text('vehicle_id').references(() => vehicles.id),
   id: text('id').primaryKey(),
   label: text('label').notNull(),
   address: text('address').notNull(),
@@ -86,6 +89,8 @@ export const businessAddresses = sqliteTable('business_addresses', {
 });
 
 export const mileageRates = sqliteTable('mileage_rates', {
+  vehicleId: text('vehicle_id').references(() => vehicles.id),
+  amountMicros: integer('amount_micros'),
   id: text('id').primaryKey(),
   amountPerKm: real('amount_per_km').notNull(),
   validFrom: integer('valid_from', { mode: 'timestamp' }).notNull(),
