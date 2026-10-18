@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 
 import { useMemo, useReducer, useState } from 'react';
 import Image from 'next/image';
@@ -63,7 +64,7 @@ export default function Home() {
 
       <section className="workspace">
         <header className="topbar"><div><p className="eyebrow">Lokale demonstratie</p><h1>{active}</h1></div><div className="top-actions"><button className="theme-toggle" onClick={() => setTheme(theme === 'dark' ? 'sand' : 'dark')} aria-label="Wissel kleurthema">{theme === 'dark' ? '☀ Licht' : '● Donker'}</button><span className="connection"><i /> Demo · lokaal</span></div></header>
-        <p className="demo-banner" role="note">Voorbeeldgegevens · niet opgeslagen · geen GPS-registratie · niet voor fiscale indiening</p>
+        <p className="demo-banner" role="note">Voorbeeldgegevens · niet opgeslagen · geen GPS-registratie · niet voor fiscale indiening · <Link href="/beheer" className="central-launch">Open centrale registratie</Link></p>
         {active === 'Overzicht' && <Overview trips={trips} rideActive={rideActive} setRideActive={setRideActive} classify={classify} openTrips={() => setActive('Ritten')} />}
         {state.error && <p className="form-error demo-banner" role="alert">{state.error}</p>}
         {active === 'Ritten' && <><div className="trip-filters"><button className="secondary" onClick={()=>setAddingTrip(true)}>Handmatige voorbeeldrit</button></div>{addingTrip && <section className="content-page"><TripEditor creating trip={{id:Math.max(0,...trips.map(t=>t.id))+1,date:new Date().toLocaleDateString('sv-SE',{timeZone:'Europe/Amsterdam'}),time:'–',route:' → ',distance:0,classification:'Controleren',driver:'Onbekend',quality:'Handmatig demovoorbeeld'}} onCancel={()=>setAddingTrip(false)} onSave={(trip,reason)=>{dispatch({type:'create',trip,reason,occurredAt:new Date().toISOString()});setSelected(trip.id);setAddingTrip(false);}} /></section>}<div className="trip-filters"><label>Bestuurder<select value={driverFilter} onChange={e=>setDriverFilter(e.target.value)}>{['Alle','Dennis','Ingrid','Jesse','Onbekend'].map(name=><option key={name}>{name}</option>)}</select></label><label>Vanaf<input type="date" value={fromDate} onChange={e=>setFromDate(e.target.value)}/></label><label>Tot en met<input type="date" value={toDate} onChange={e=>setToDate(e.target.value)}/></label><button className="secondary" onClick={()=>{setDriverFilter('Alle');setFromDate('');setToDate('');setFilter('Alle');}}>Filters wissen</button>{fromDate && toDate && fromDate>toDate && <p role="alert">Begindatum ligt na einddatum.</p>}</div><TripsView trips={filtered} filter={filter} setFilter={setFilter} selected={selected} setSelected={setSelected} classify={classify} onUpdate={updateTrip} history={state.history}/></>}

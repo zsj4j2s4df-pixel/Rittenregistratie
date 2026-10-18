@@ -1,0 +1,36 @@
+// Real browser -> shared HTTP/domain -> in-memory SQLite. Identity is synthetic;
+// no live Cloudflare account, signed provider session or remote DB is claimed.
+import assert from 'node:assert/strict';
+import { mkdirSync, readFileSync } from 'node:fs';
+import { setup } from './helpers/trip-fixture.mjs';
+import { createTripHttpHandler } from '../lib/trip-http.ts';
+import { createSettingsService } from '../lib/settings-service.ts';
+const { chromium }=await import(process.env.PLAYWRIGHT_MODULE??'playwright');
+const origin=process.env.APP_URL??'http://127.0.0.1:4183',dir=process.env.ARTIFACT_DIR??'/workspace/scratch/central-browser-proof';mkdirSync(dir,{recursive:true});
+const browser=await chromium.launch({executablePath:process.env.BROWSER_EXECUTABLE??'/usr/bin/chromium',headless:true,args:['--no-sandbox']});
+const cleanup=[];
+try{
+ const context=await browser.newContext({timezoneId:'Europe/Amsterdam',viewport:{width:1440,height:1100},acceptDownloads:true});const page=await context.newPage();
+ await page.goto(origin+'/beheer');await page.getByRole('alert').filter({hasText:'De beveiligde backend is nog niet beschikbaar.'}).waitFor();assert.equal(await page.getByRole('button',{name:'Rit opslaan',exact:true}).count(),0);assert.equal(await page.getByText('Utrecht → Amersfoort',{exact:true}).count(),0);
+ const {db,sqlite}=setup({after:fn=>cleanup.push(fn)});const principal={userId:'u',disabled:false,sessionExpiresAt:Date.now()+3600000};const handle=createTripHttpHandler({db,origin,resolveSession:async()=>principal});let loseCreateResponse=true;
+ await page.route('**/api/vehicles**',async route=>{
+  const req=route.request();const response=await handle(new Request(req.url(),{method:req.method(),headers:await req.allHeaders(),body:req.postData()??undefined}));
+  if(req.method()==='POST'&&new URL(req.url()).pathname.endsWith('/trips')&&loseCreateResponse){loseCreateResponse=false;await route.abort('failed');return;}
+  await route.fulfill({status:response.status,headers:Object.fromEntries(response.headers),body:Buffer.from(await response.arrayBuffer())});
+ });
+ await page.reload();await page.getByRole('heading',{name:'Opgeslagen ritten',exact:true}).waitFor();
+ await page.getByLabel('Vertrek',{exact:true}).fill('2026-10-18T09:00');await page.getByLabel('Aankomst',{exact:true}).fill('2026-10-18T09:30');await page.getByLabel('Vertrekadres',{exact:true}).fill('Synthetic Browser A');await page.getByLabel('Aankomstadres',{exact:true}).fill('Synthetic Browser B');await page.getByLabel('Afstand (km)',{exact:true}).fill('25');await page.getByLabel('Beginstand (optioneel)',{exact:true}).fill('0');await page.getByLabel('Eindstand (optioneel)',{exact:true}).fill('25');await page.getByLabel('Reden handmatige invoer',{exact:true}).fill('Browser smoke');
+ await page.getByRole('button',{name:'Rit opslaan',exact:true}).click();await page.getByRole('alert').filter({hasText:'Geen verbinding.'}).waitFor();assert.equal(await page.getByLabel('Vertrekadres',{exact:true}).inputValue(),'Synthetic Browser A');assert.equal(sqlite.prepare("SELECT count(*) AS n FROM trips WHERE vehicle_id='v'").get().n,2);
+ await page.getByRole('button',{name:'Opnieuw verbinden',exact:true}).click();await page.getByRole('status').filter({hasText:'Verbinding hersteld.'}).waitFor();assert.equal(await page.getByLabel('Vertrekadres',{exact:true}).inputValue(),'Synthetic Browser A');
+ await page.getByRole('button',{name:'Rit opslaan',exact:true}).click();await page.getByRole('status').filter({hasText:'Rit centraal opgeslagen.'}).waitFor();assert.equal(sqlite.prepare("SELECT count(*) AS n FROM trips WHERE vehicle_id='v'").get().n,2);
+ await page.reload();await page.getByText('Synthetic Browser A → Synthetic Browser B',{exact:true}).waitFor();
+ await page.getByLabel('Kenteken',{exact:true}).fill('TT-01-XX');await page.getByLabel('Wijzigingsreden',{exact:true}).fill('Browser plate');await page.getByRole('button',{name:'Kenteken opslaan',exact:true}).click();await page.getByRole('status').filter({hasText:'Kenteken centraal opgeslagen.'}).waitFor();
+ const settingsService=createSettingsService(db,async()=>principal);const existing=await settingsService.get('v');await settingsService.save('v',{...existing,plate:'ZZ-22-XX',reason:'Other session'});
+ await page.getByLabel('Kenteken',{exact:true}).fill('STALE-01');await page.getByLabel('Wijzigingsreden',{exact:true}).fill('Stale browser');await page.getByRole('button',{name:'Kenteken opslaan',exact:true}).click();await page.getByRole('alert').filter({hasText:'Instellingen zijn gewijzigd'}).waitFor();assert.equal(await page.getByLabel('Kenteken',{exact:true}).inputValue(),'STALE-01');assert.equal((await settingsService.get('v')).plate,'ZZ-22-XX');
+ await page.getByRole('button',{name:'Gegevens vernieuwen',exact:true}).click();await page.getByLabel('Kenteken',{exact:true}).filter({visible:true}).waitFor();await page.waitForFunction(()=>document.querySelector('input[name="plate"]')?.value==='ZZ-22-XX');
+ await page.getByLabel('Van',{exact:true}).fill('2026-10-18');await page.getByLabel('Tot en met',{exact:true}).fill('2026-10-18');await page.getByRole('button',{name:'Rapport opslaan',exact:true}).click();await page.getByRole('status').filter({hasText:'Vast rapport centraal opgeslagen.'}).waitFor();
+ page.on('dialog',dialog=>dialog.accept());const downloadPromise=page.waitForEvent('download');await page.getByRole('button',{name:'CSV downloaden',exact:true}).click();const download=await downloadPromise;await download.saveAs(dir+'/central-report.csv');assert.ok(readFileSync(dir+'/central-report.csv','utf8').includes('ZZ-22-XX'));
+ await page.screenshot({path:dir+'/central-desktop.png',fullPage:true});await page.setViewportSize({width:390,height:844});await page.getByRole('button',{name:'Licht thema',exact:true}).click();await page.waitForTimeout(350);assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth));await page.screenshot({path:dir+'/central-mobile.png',fullPage:true});
+ console.log('PASS central browser: unconfigured/no-demo, real HTTP+SQLite synthetic identity, lost-response retry without duplicate, reload persistence, plate/revisionconflict, immutable report/CSV, mobile/theme. NOT live provider or remote sync.');
+ await context.close();
+}finally{await browser.close();for(const fn of cleanup)fn();}
