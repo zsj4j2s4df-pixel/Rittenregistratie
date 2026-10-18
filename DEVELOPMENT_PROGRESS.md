@@ -1,6 +1,10 @@
 # Actuele voortgang — 18 oktober 2026
 
-## Nieuwste webgroep — CLOUD-005
+## Nieuwste backendgroep — CLOUD-005
+
+Serverkern cloud/cloud-005-server-core, base cloud/cloud-005-reporting (PR #6): voertuiggebonden rechten, ingetrokken toegang, revisionconflicten, atomische correctie/audit, bronbehoud en databaseguards. 61/61 tests, typecheck/lint/build en echte lokale workerd/D1-binding PASS. Twee gerichte reviews vonden dezelfde afstandsbronfout; opgelost met regressie en hercontrole. Geen productieauth of duurzame webopslag aangesloten. Bewijs: docs/TRANSFER/SERVER_CORE.md. Volgende technisch uitvoerbare groep: serverritinvoer met retry-idempotentie; daarna instellingen/rapporten en sync. OWNER_ACTIONS bevat uitsluitend persoonlijke keuzes.
+
+## Webgroep — CLOUD-005
 
 Werkbranch cloud/cloud-005-reporting, base integriteitsbranch (draft-PR #5). Handmatige ritinvoer, kenteken, historische tariefperioden, onveranderlijke rapporten, CSV en browser-afdruk/PDF, adresbeheer en eerlijke routeweergave toegevoegd. 50/50 Node-tests, typecheck/lint/build PASS; Chromium-desktop/mobiel en daadwerkelijke CSV/PDF PASS. Eén onafhankelijke review; beide concrete bevindingen afgedicht en hercontrole PASS. Details: docs/TRANSFER/REPORTING_WEB.md. Alleen demosessiestate; serverauth/opslag/sync/native/fiscale acceptatie nog open. Volgende taak: geteste serverrepository, geen nieuwe dienst of productie.
 
@@ -10,7 +14,7 @@ Omgevingsblokkades opgelost; draft-PR #4 bewaart de smoke en actuele ACT-002-con
 
 > **Actuele aanvulling, 18 oktober 2026:** omgevingsherstel bevestigd. Dependencyinstallatie met ongewijzigde lockfile en supply-chaincontrole PASS; 32/32 tests, TypeScript, lint en webbuild PASS. Draft-PR #4 is aangemaakt. Oudere proxy-/credits-/NIET GETEST-vermeldingen hieronder blijven historie van eerdere pogingen. Geen main-merge, nieuwe account of productiepublicatie.
 
-## Laatste status — eigenaarregels gecontroleerd, publicatieblokkade bereikt
+## Historie — eerdere publicatieblokkade (opgelost)
 
 - Cloud blijft hoofdmanager en hoofdontwikkelaar; Mac ondersteunt iOS/hardware. Eigenaar houdt besluit- en mergecontrole.
 - Eigenaar heeft ACT-002 handmatig uitgevoerd. API-controle bevestigt ruleset 25339571 active voor main met pull_request/deletion/non_fast_forward; geen bypass-actoren. Handmatige instelling en die drie technische regels AFGEROND.
