@@ -89,3 +89,5 @@ Cloudflare Zero Trust/Access is nog niet geactiveerd in dit account (GET Access 
 Beperk de toepassing tot rittenregistratie.zsj4j2s4df.workers.dev/beheer en /api/* met expliciete eigenaar-allowlist; geen Everyone/bypass. Audience en issuer zijn openbare configuratie, geen geheimen. Cloud koppelt daarna alleen expliciet toegestane interne gebruikers en voertuigrechten; geen automatische beheerder voor iedere login. Echte login en echte multi-user-sync zijn nu NIET GETEST.
 
 ACT-002: handmatige instelling UITGEVOERD; technische bevestiging eerder PASS (active ruleset25339571: PR/deletion/non-fast-forward). Onafhankelijke identiteit/eigenaarsreview blijft OPEN; gedeelde GitHub-identiteit is niet door een ruleset opgelost. Geen main-merge.
+
+Hercontrole18oktober2026 na publicatie: ruleset25339571 nogactive, drie gevraagde regels en geenbypass bevestigd; mainhead d37d8c9 ongewijzigd. AccessGET opnieuw9999; read subscriptions10000Authenticationerror, geen kosten/abonnementen gewijzigd.

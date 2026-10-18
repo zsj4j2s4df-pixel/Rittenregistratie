@@ -4,7 +4,7 @@ Gedeeltelijke implementatie, geen complete RitKompas-app.123REQ-ID’s/21scenari
 
 ## Nieuwste publicatie
 
-Zie [CLOUD_RELEASE](CLOUD_RELEASE.md): centrale CRUD/correctie/historie,117tests en live Worker/EU-D1. Werkelijke login ontbreekt, API blijft gesloten. Oudere status hieronder is historie waar ingehaald.
+Zie [CLOUD_RELEASE](CLOUD_RELEASE.md): centrale CRUD/correctie/historie/bestuurderfilters,119tests en live Worker/EU-D1. Werkelijke login ontbreekt, API blijft gesloten. Oudere status hieronder is historie waar ingehaald.
 
 ## Nieuwste werk
 | PR | Scope | Bewijs |
@@ -24,11 +24,11 @@ Zie [CLOUD_RELEASE](CLOUD_RELEASE.md): centrale CRUD/correctie/historie,117tests
 - Gerichte reviews vonden middernachtoverlap en reconnectcodeverlies; opgelost en hercontrolePASS. Geen twee voltooide productie-securityaudits.
 
 ## Volgende Cloudtaken
-Centrale adres-/tariefCRUD, ritcorrectie/historie en bestuurder/filters; daarna coherente sync/cursors en herstelbarependingqueue, detectie/deduplicatie, backup/herstel/read-onlyMCP/serverPDF. Platform/nativetests metMac. Pendingcode verdwijnt nog bij zelf browserafsluiten/reload; lijstpagination is geen atomairemultirequestsnapshot. Alle betreffende eisen blijven open, niet als afvinklijst behandelen.
+Inmiddels gebouwd: centrale adres-/tariefCRUD, ritcorrectie/historie en bestuurder/filters. Volgende: coherente sync/cursors en herstelbarependingqueue, detectie/deduplicatie, backup/herstel/read-onlyMCP/serverPDF. Platform/nativetests metMac. Pendingcode verdwijnt nog bij zelf browserafsluiten/reload; lijstpagination is geen atomairemultirequestsnapshot. Alle betreffende eisen blijven open, niet als afvinklijst behandelen.
 
 ## Voor eigenaar
 Aparteagentkeuze/Cloudflareonderzoek is al ontvangen. Concrete persoonlijkenextsteps in [OWNER_ACTIONS](../../OWNER_ACTIONS.md): afzonderlijke GitHubidentiteit met alleenreporechten via ondersteundeconnector koppelen, dan werkelijkeactor/regels teruglezen. Huidige connector opnieuw bevestigd eigenaar296047649;0verplichteapprovals en3mainregelsactive. Geen accountwisselactie beschikbaar; nietveronderstellen dat nieuwApp automatischactiefwordt.
 
-Cloudflare niet geactiveerd; geen aankoop nodig om lokaleontwikkeling voort te zetten. AccessFree vraagt volgensofficiëleonboarding betaalgegevens. Externe staging vraagt persoonlijkenaccount-/voorwaardenbesluit en toestemming, productie/main altijdapart. Zie [Cloudflareonderzoek](CLOUDFLARE_RESEARCH.md), [agenttoegang](SEPARATE_AGENT_ACCESS.md), [stagingplan](STAGING_RUNBOOK.md).
+Historie vóór nieuwe publicatie: Cloudflare niet geactiveerd; geen aankoop nodig om lokaleontwikkeling voort te zetten. AccessFree vraagt volgensofficiëleonboarding betaalgegevens. Externe staging vraagt persoonlijkenaccount-/voorwaardenbesluit en toestemming, productie/main altijdapart. Zie [Cloudflareonderzoek](CLOUDFLARE_RESEARCH.md), [agenttoegang](SEPARATE_AGENT_ACCESS.md), [stagingplan](STAGING_RUNBOOK.md).
 
 Details: [rapporten](SERVER_REPORTS.md), [API](API_RUNTIME.md), [centraleweb](CENTRAL_WEB.md), [hervatpunt](../../RESUME.md). Nietalle lokaleontwikkeling is extern geblokkeerd.

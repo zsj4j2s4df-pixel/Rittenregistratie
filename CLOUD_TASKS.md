@@ -10,7 +10,7 @@
 | CLOUD-006 | TER CONTROLE — PR #2 afhankelijk van #1; 123 REQ-ID's/21 scenario's behouden, actuele codebasis nu aangeleverd |
 | CLOUD-002 / CLOUD-004 | TER CONTROLE — additieve databaseguards, vijf regressiecases; 37/37 tests en typecheck/lint/build PASS; verdere API/UI-dekking open |
 | CLOUD-003 | GEDEELTELIJK UITGEVOERD — twee gerichte serverkernreviews en één rapportagereview; volledige productieauth/privacyreview open |
-| CLOUD-005 | IN UITVOERING — PR #6 web/rapportage; serverkern/ritinvoer TER CONTROLE: 117 tests + lokale D1 + type/lint/build PASS; settingsopslag/Accessvoorbereiding TER CONTROLE, adres-/tariefCRUD en ritcorrectie/historie gebouwd; Cloudflare Worker/EU-D1 gepubliceerd, live gesloten API PASS; echte login/sync open |
+| CLOUD-005 | IN UITVOERING — PR #6 web/rapportage; serverkern/ritinvoer TER CONTROLE: 119 tests + lokale D1 + type/lint/build PASS; settingsopslag/Accessvoorbereiding TER CONTROLE, adres-/tariefCRUD, ritcorrectie/historie, bestuurderkeuze en ritfilters gebouwd; Cloudflare Worker/EU-D1 gepubliceerd, live gesloten API PASS; echte login/sync open |
 | CLOUD-007 | IN UITVOERING — veilige Mac→GitHub-overdracht op handover/mac-to-cloud-20261018, base cloud/cloud-006-documentatie |
 | CLOUD-008 | TER CONTROLE — 32/32 tests, typecheck/lint/build PASS; draft-PR #4; eerdere omgevingblokkades opgelost |
 
@@ -18,7 +18,7 @@ Open technische taken met acceptatie: [CLOUD_CHECKPOINT](docs/TRANSFER/CLOUD_CHE
 
 ### Nieuwste publicatiegroep
 
-Worker https://rittenregistratie.zsj4j2s4df.workers.dev online; EU-D1 acht migraties, geen gebruikers/ritten.117 tests/type/lint/build/D1 en uitgebreide centrale browser PASS; live HTTPS/Chromium demo en gesloten API PASS. Zie [CLOUD_RELEASE](docs/TRANSFER/CLOUD_RELEASE.md). Access-activering persoonlijk nodig, overige lokale ontwikkeltaken blijven open. Geen main-merge.
+Worker https://rittenregistratie.zsj4j2s4df.workers.dev online; EU-D1 acht migraties, geen gebruikers/ritten.119 tests/type/lint/build/D1 en uitgebreide centrale browser PASS; live HTTPS/Chromium demo en gesloten API PASS. Draft-PR #14: https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/14 . Scoped bestuurderslijst en keuze/filters toegevoegd, privacy-/revoke-/datumboundarytests PASS. Zie [CLOUD_RELEASE](docs/TRANSFER/CLOUD_RELEASE.md). Access-activering persoonlijk nodig, overige lokale ontwikkeltaken blijven open. Geen main-merge.
 
 ### Actuele uitvoering na omgevingsherstel
 

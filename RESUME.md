@@ -4,9 +4,11 @@ Cloud leidt RitKompas; Mac doet iOS/hardware. Eigenaar behoudt merge-/kosten-/ac
 
 ## Nieuwste hervatpunt: Cloudflare gepubliceerd
 
+Draft-PR #14: https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/14, base cloud/cloud-005-central-web (#13), eerste releasecommit6484a22b8c3d128aa83fbb66a36158dd7d97e412.23/23bestanden exact remote teruggelezen. Vervolggroep op dezelfde draftbranch: scoped actieve bestuurderslijst zonder email/auth-ID, bestuurderkeuze bij invoer/rapport en ritfilters op Amsterdamdatum/classificatie/bestuurder/adres/doel.119tests/type/lint/build en uitgebreide centrale browser PASS. Nieuwste Workerdeployment99e7ef93427c4a77979caa6afc83c978. Main opnieuw d37d8c9 ongewijzigd; ruleset25339571 actief met PR/deletion/nonfastforward en geenbypass,0verplichteapprovals.
+
 Adres https://rittenregistratie.zsj4j2s4df.workers.dev, Worker rittenregistratie + EU-D1 UUID5cee8499-45cf-47a4-8960-4b43e4ab8204. Acht migraties0000–0007 bevestigd, users0/trips0. Centrale adres-/tariefCRUD en ritcorrectie/historie gebouwd;117tests/type/lint/build/D1/centrale browser PASS, live demo/Chromium en geslotenAPI503 PASS. ACCESS_ISSUER/AUDIENCE bewust afwezig; echte login NIET GETEST. Owneractie: ZeroTrust/Access kosteloos activeren; gekoppelde GitHubidentiteit nog eigenaar. Geen mainmerge. Publicatie geautoriseerd, geen nieuwe toestemming vragen voor deze bestaande Worker.
 
-Zie docs/TRANSFER/CLOUD_RELEASE.md voor exact deploybewijs en reproductie. Nieuwe draftbranch cloud/cloud-005-cloudflare-release op echte #13-head7fc9eccff54a177380426794ff88d832bf0f0baa. Oudere tekst hieronder is historie waar ingehaald. Volgende lokale taken: bestuurder/filters, coherente sync en duurzame pendingqueue, detectie/deduplicatie, backups/read-onlyMCP/centralePDF. Geen algemeneaccountblokkade.
+Zie docs/TRANSFER/CLOUD_RELEASE.md voor exact deploybewijs en reproductie. Nieuwe draftbranch cloud/cloud-005-cloudflare-release op echte #13-head7fc9eccff54a177380426794ff88d832bf0f0baa. Oudere tekst hieronder is historie waar ingehaald. Volgende lokale taken: coherente sync en duurzame pendingqueue, detectie/deduplicatie, backups/read-onlyMCP/centralePDF. Geen algemeneaccountblokkade.
 
 ## Actuele code en PR-keten
 #1audit → #2eisenregister → #3Macoverdracht → #4Cloudsmoke → #5integriteitsguards → #6demoweb/rapporten → #7serverkern → #8idempotenteinvoer → #9HTTPadapter → #10settings/Accessvoorbereiding → #11serverrapporten → #12APIruntime → #13centraleweb.
