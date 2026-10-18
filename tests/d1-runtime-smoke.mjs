@@ -2,6 +2,7 @@
 import { createRequire } from 'node:module';
 import { readFileSync, readdirSync } from 'node:fs';
 import assert from 'node:assert/strict';
+import { createTripHttpHandler } from '../lib/trip-http.ts';
 import { createTripService } from '../lib/trip-service.ts';
 const require = createRequire(import.meta.url);
 const wranglerRequire = createRequire(require.resolve('wrangler/package.json'));
@@ -32,7 +33,15 @@ try {
  await db.prepare("CREATE TRIGGER test_reject_create BEFORE INSERT ON audit_logs BEGIN SELECT RAISE(ABORT,'forced create failure'); END").run();
  await assert.rejects(()=>service.create('v',{...creation,requestId:'local-d1-create-0002'}),/forced create failure/);
  assert.equal((await service.list('v')).length,2);assert.equal((await db.prepare('SELECT count(*) AS n FROM trip_create_requests').first()).n,1);
+ await db.prepare('DROP TRIGGER test_reject_create').run();
+ const origin='https://ritkompas.example';
+ const handle=createTripHttpHandler({db,origin,resolveSession:async()=>({userId:'u',disabled:false,sessionExpiresAt:2_000_000}),clock:()=>1_000_000});
+ assert.equal((await handle(new Request(origin+'/api/vehicles/v/trips'))).status,200);
+ const patch={...edit,expectedRevision:1,distanceKm:35};
+ assert.equal((await handle(new Request(origin+'/api/vehicles/v/trips/t',{method:'PATCH',headers:{origin,'x-csrf-protection':'1','content-type':'application/json'},body:JSON.stringify(patch)}))).status,200);
+ assert.equal((await service.get('v','t')).distance_km,35);
  await db.prepare('UPDATE vehicle_memberships SET active=0').run();
+ assert.equal((await handle(new Request(origin+'/api/vehicles/v/trips'))).status,403);
  await assert.rejects(()=>service.list('v'),e=>e.status===403);
- console.log('PASS local workerd/D1: migrations, fail-closed session, edit+audit, provenance, stale conflict, atomic rollback, concurrent idempotent creation, creation rollback, revocation. NOT production D1/auth.');
+ console.log('PASS local workerd/D1: migrations, fail-closed session, edit+audit, provenance, stale conflict, atomic rollback, concurrent idempotent creation, creation rollback, HTTP read/write, revocation. NOT production D1/auth.');
 } finally { await mf.dispose(); }

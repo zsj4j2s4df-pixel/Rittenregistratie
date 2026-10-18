@@ -1,6 +1,14 @@
 # Actuele voortgang — 18 oktober 2026
 
-## Nieuwste aanmaakgroep — CLOUD-005
+## Opslagcontrole
+
+Draft-PR’s #4–#9 aangemaakt; #7–#9 bevatten serverkern, idempotente aanmaak en HTTP-adapter.23/23 betrokken backend-/voortgangsbestanden exact remote teruggelezen op d42bc91273dcd451db96a6a714a22f9db1e4f4da. main blijft d37d8c913aaa253d6297cf57d3379d40c5795573. Laatste codegate:71tests, type/lint/build, lokale D1 PASS. Open werk en bewijsgrenzen staan in CLOUD_CHECKPOINT.md. Geen volledige-appclaim.
+
+## Nieuwste HTTP-groep — CLOUD-005
+
+Draft-PR #9 (cloud/cloud-005-http-adapter), base ritinvoer/draft-PR #8: providerneutrale handler voor list/detail/history/create/edit; objectrechten in gedeelde kern, exact Origin/CSRF, JSON16KiB, no-store en veilige fouten.71/71tests, echte lokale D1 HTTP-read/write en typecheck/lint/build PASS. Eén gerichte boundary-review: geen concrete fout. Niet publiek aangesloten. Bewijs: docs/TRANSFER/TRIP_HTTP.md.
+
+## Aanmaakgroep — CLOUD-005
 
 cloud/cloud-005-server-create, base server-core/draft-PR #7: handmatige serverrit met scoped retry-idempotentie, atomische rit/receipt/audit en oorspronkelijke response.65/65tests, lokale D1 inclusief gelijktijdige retry en auditrollback, typecheck/lint/build PASS. Eén gerichte onafhankelijke review: geen concrete fout. Nog geen publieke login/API. Bewijs: docs/TRANSFER/SERVER_CREATE.md. Volgende groep: veilige HTTP-adapter.
 
