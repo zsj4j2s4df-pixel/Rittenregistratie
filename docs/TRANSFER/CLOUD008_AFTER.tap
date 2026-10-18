@@ -1,0 +1,202 @@
+TAP version 13
+# Subtest: verified active membership grants all defined actions equally
+ok 1 - verified active membership grants all defined actions equally
+  ---
+  duration_ms: 1.84891
+  type: 'test'
+  ...
+# Subtest: missing disabled expired or nonfinite session fails closed
+ok 2 - missing disabled expired or nonfinite session fails closed
+  ---
+  duration_ms: 0.176233
+  type: 'test'
+  ...
+# Subtest: other vehicle or user cannot access trips
+ok 3 - other vehicle or user cannot access trips
+  ---
+  duration_ms: 0.132387
+  type: 'test'
+  ...
+# Subtest: revoked membership and unknown roles or actions are denied
+ok 4 - revoked membership and unknown roles or actions are denied
+  ---
+  duration_ms: 0.113189
+  type: 'test'
+  ...
+# Subtest: overlap never treats priority or unconfirmed driver as proof
+ok 5 - overlap never treats priority or unconfirmed driver as proof
+  ---
+  duration_ms: 0.698272
+  type: 'test'
+  ...
+# Subtest: conflicting confirmed drivers remain unknown
+ok 6 - conflicting confirmed drivers remain unknown
+  ---
+  duration_ms: 0.150054
+  type: 'test'
+  ...
+# Subtest: same confirmed driver does not automatically merge trips
+ok 7 - same confirmed driver does not automatically merge trips
+  ---
+  duration_ms: 0.094371
+  type: 'test'
+  ...
+# Subtest: different vehicles and adjacent intervals are separate
+ok 8 - different vehicles and adjacent intervals are separate
+  ---
+  duration_ms: 0.093079
+  type: 'test'
+  ...
+# Subtest: invalid detection timestamps require review
+ok 9 - invalid detection timestamps require review
+  ---
+  duration_ms: 0.165687
+  type: 'test'
+  ...
+# Subtest: existing migration executes in isolated SQLite and creates seven application tables
+ok 10 - existing migration executes in isolated SQLite and creates seven application tables
+  ---
+  duration_ms: 1.549623
+  type: 'test'
+  ...
+# Subtest: foreign keys reject an address owned by a nonexistent user
+ok 11 - foreign keys reject an address owned by a nonexistent user
+  ---
+  duration_ms: 0.930309
+  type: 'test'
+  ...
+# Subtest: external identity cannot be assigned to two local user rows
+ok 12 - external identity cannot be assigned to two local user rows
+  ---
+  duration_ms: 0.634237
+  type: 'test'
+  ...
+# Subtest: complete coherent private trip has no field issues
+ok 13 - complete coherent private trip has no field issues
+  ---
+  duration_ms: 0.597352
+  type: 'test'
+  ...
+# Subtest: calendar dates reject impossible days and accept leap day
+ok 14 - calendar dates reject impossible days and accept leap day
+  ---
+  duration_ms: 0.109413
+  type: 'test'
+  ...
+# Subtest: time order, invalid minutes, equal times and midnight need correction
+ok 15 - time order, invalid minutes, equal times and midnight need correction
+  ---
+  duration_ms: 0.101252
+  type: 'test'
+  ...
+# Subtest: distance rejects zero, negative, infinity and NaN
+ok 16 - distance rejects zero, negative, infinity and NaN
+  ---
+  duration_ms: 0.238205
+  type: 'test'
+  ...
+# Subtest: missing data remains missing; unknown driver and classification are flagged
+ok 17 - missing data remains missing; unknown driver and classification are flagged
+  ---
+  duration_ms: 0.128792
+  type: 'test'
+  ...
+# Subtest: invalid classifications, drivers and incomplete routes are rejected
+ok 18 - invalid classifications, drivers and incomplete routes are rejected
+  ---
+  duration_ms: 0.192247
+  type: 'test'
+  ...
+# Subtest: odometer order errors, invalid values and mismatches are distinct
+ok 19 - odometer order errors, invalid values and mismatches are distinct
+  ---
+  duration_ms: 0.125477
+  type: 'test'
+  ...
+# Subtest: business purpose is a warning; never invented
+ok 20 - business purpose is a warning; never invented
+  ---
+  duration_ms: 0.076254
+  type: 'test'
+  ...
+# Subtest: overlapping vehicle trips flagged regardless of driver, not auto merged
+ok 21 - overlapping vehicle trips flagged regardless of driver, not auto merged
+  ---
+  duration_ms: 0.150845
+  type: 'test'
+  ...
+# Subtest: adjacent trips and separate dates are not overlaps
+ok 22 - adjacent trips and separate dates are not overlaps
+  ---
+  duration_ms: 0.22772
+  type: 'test'
+  ...
+# Subtest: edit creates immutable before/after history and revision without trusting actor
+ok 23 - edit creates immutable before/after history and revision without trusting actor
+  ---
+  duration_ms: 0.330763
+  type: 'test'
+  ...
+# Subtest: stale revisions cannot overwrite previous changes
+ok 24 - stale revisions cannot overwrite previous changes
+  ---
+  duration_ms: 0.186508
+  type: 'test'
+  ...
+# Subtest: invalid edit, missing reason, missing trip and invalid timestamp leave data untouched
+ok 25 - invalid edit, missing reason, missing trip and invalid timestamp leave data untouched
+  ---
+  duration_ms: 0.251235
+  type: 'test'
+  ...
+# Subtest: provenance cannot be upgraded through an edit
+ok 26 - provenance cannot be upgraded through an edit
+  ---
+  duration_ms: 0.172898
+  type: 'test'
+  ...
+# Subtest: percentage follows classification and handles no trips
+ok 27 - percentage follows classification and handles no trips
+  ---
+  duration_ms: 0.188131
+  type: 'test'
+  ...
+# Subtest: CSV quotes commas, quotes and embedded newlines
+ok 28 - CSV quotes commas, quotes and embedded newlines
+  ---
+  duration_ms: 0.121712
+  type: 'test'
+  ...
+# Subtest: CSV neutralizes formula prefixes including whitespace
+ok 29 - CSV neutralizes formula prefixes including whitespace
+  ---
+  duration_ms: 0.107351
+  type: 'test'
+  ...
+# Subtest: demo export explicitly marks data and missing plate
+ok 30 - demo export explicitly marks data and missing plate
+  ---
+  duration_ms: 0.189623
+  type: 'test'
+  ...
+# Subtest: demo export preserves explicit odometers including zero and safely quotes formula-like purpose
+ok 31 - demo export preserves explicit odometers including zero and safely quotes formula-like purpose
+  ---
+  duration_ms: 0.106359
+  type: 'test'
+  ...
+# Subtest: duration belongs to selected trip; invalid and overnight times remain unknown
+ok 32 - duration belongs to selected trip; invalid and overnight times remain unknown
+  ---
+  duration_ms: 0.146809
+  type: 'test'
+  ...
+1..32
+# tests 32
+# suites 0
+# pass 32
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 73.351787

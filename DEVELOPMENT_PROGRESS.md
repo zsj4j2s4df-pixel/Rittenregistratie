@@ -1,5 +1,13 @@
 # Actuele voortgang — 18 oktober 2026
 
+## CLOUD-008 — nieuwe Cloud-uitvoering
+
+De broncode is nu aantoonbaar beschikbaar; oudere ontbrekende-code-aannames zijn uitsluitend historie. Alle 82 bronblobs op commit `8b50e9109b51770f6cf4d0eec25eac38c17e4b76` via GitHub opgehaald en met Git-blobhashes geverifieerd. Node v24.19.0 op Linux x86_64: 31/31 individuele baselinetests PASS, daarna 32/32 PASS met CSV-regressietest voor beginstand 0 en toelichting met quotes/formuleprefix/newline. Productiecode niet gewijzigd.
+
+Standaard runner rapporteerde slechts vier bestandschecks; individuele testbewijzen gebruiken `--test-isolation=none`. Typecheck/lint/build in Cloud NIET GETEST: geen bestaande dependencies; geïsoleerde frozen-lockfile-installatie faalt bij registrymetadata. CLI Git-proxy niet bereikbaar; GitHub-connector werkt. Geen netwerk-/supply-chain-beveiliging omzeild. Node-historiescanner strandt op spawnSync git EPERM; beperkte bronpatroonscan apart uitgevoerd, geen onafhankelijke securitygoedkeuring.
+
+Eigen branch `cloud/cloud-008-handover-smoke` vanaf exacte overdrachtscommit; draft-PR met base `handover/mac-to-cloud-20261018`. Bewijs en vervolgstap: [CLOUD_PROOF](docs/TRANSFER/CLOUD_PROOF.md). ACT-002 blijft open; PR #1 → #2 → #3 intact, geen merge/forcepush/nieuwe accounts/kosten/productie. Oude Mac-teststatus hieronder blijft apart bewijs; geen sessies/models/instellingen gemigreerd.
+
 ## Overdracht
 
 - Volledige relevante lokale broncode geselecteerd voor overdrachtsbranch; bestaand Cloudwerk als voorouder behouden.

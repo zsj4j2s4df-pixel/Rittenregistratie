@@ -20,6 +20,15 @@ test('demo export explicitly marks data and missing plate', () => {
   assert.ok(csv.includes('ONTBREEKT'));
   assert.equal(csv.split('\r\n').length,2);
 });
+test('demo export preserves explicit odometers including zero and safely quotes formula-like purpose', () => {
+  const csv = demoCsv([{
+    date: '2026-10-18', time: '08:00–08:35', route: 'A → B', distance: 35,
+    classification: 'Privé', driver: 'Jesse', odometerStart: 0, odometerEnd: 35,
+    purpose: ' \t=SUM("Controle",1)\nTweede regel',
+  }]);
+  assert.equal(csv.slice(csv.indexOf('\r\n') + 2),
+    '"VOORBEELD — NIET VOOR FISCALE INDIENING","2026-10-18","08:00–08:35","A → B","35","Privé","Jesse","ONTBREEKT","0","35","\' \t=SUM(""Controle"",1)\nTweede regel"');
+});
 test('duration belongs to selected trip; invalid and overnight times remain unknown', () => {
   assert.equal(durationLabel('08:12–08:47'),'0:35 u');
   assert.equal(durationLabel('09:05–09:32'),'0:27 u');

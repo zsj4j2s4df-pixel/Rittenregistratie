@@ -12,7 +12,7 @@
 | CLOUD-003 | KLAAR VOOR CLOUD na CLOUD-008 — gerichte securityreview; onafhankelijkheid alleen claimen bij echte tweede uitvoering |
 | CLOUD-005 | BACKLOG — afbakenen na codecontrole; geen nieuwe app genereren |
 | CLOUD-007 | IN UITVOERING — veilige Mac→GitHub-overdracht op handover/mac-to-cloud-20261018, base cloud/cloud-006-documentatie |
-| CLOUD-008 | KLAAR VOOR CLOUD zodra overdrachtscommit beschikbaar — één kleine overdrachtstest in bestaande Cloud agent |
+| CLOUD-008 | TER CONTROLE — 82 bronblobs geverifieerd; 31/31 baseline en 32/32 na CSV-regressietest PASS; type/lint/build NIET GETEST wegens dependencytoegang; eigen draft-PR tegen overdrachtsbranch |
 
 ### CLOUD-007 — Veilige overdracht
 
@@ -21,6 +21,8 @@ Eigenaar: Mac, controle Cloud/projecteigenaar. Prioriteit hoog; usage onbekend. 
 ### CLOUD-008 — Echte Cloud-overdrachtstest
 
 Eigenaar: bestaande Cloud agent, dagelijks beschikbaar model (Sol voorkeur, selectie niet verondersteld). Prioriteit hoog; usage onbekend, één gecombineerde run zonder nieuwe betaalde omgeving. Scope: branch lezen, tests draaien, kleine CSV-regressietest voor tellerstanden inclusief nul en toelichting toevoegen, commit/PR, voortgang/hervatpunt. Branch: cloud/cloud-008-handover-smoke, base handover/mac-to-cloud-20261018. Acceptatie: concrete commit, testuitvoer, terugleesbaar bestand en PR; ontbrekende runtime/installatiebevoegdheid expliciet NIET GETEST. Geen nieuw framework, geen secrets/productiedata en geen merge. Daarna veilige CLOUD-002/004-groep indien ruimte/toegang, met afzonderlijk commitbewijs.
+
+Uitgevoerd op overdrachtscommit `8b50e9109b51770f6cf4d0eec25eac38c17e4b76`. Resultaat en exacte runtime/beperkingen: [CLOUD_PROOF](docs/TRANSFER/CLOUD_PROOF.md). Baseline 31/31; na één nieuwe CSV-regressietest 32/32, met `--test-isolation=none`. Projectdependencies ontbreken en lockfile-installatie faalt bij registrymetadata; geen Cloud-type/lint/build-PASS. ACT-002 blijft open; eigenaarcontrole en draft-PR behouden. Geen model-/sessiemigratie of extra betaalde run.
 
 ## Historische taakbeschrijvingen (actuele status hierboven gaat voor)
 
