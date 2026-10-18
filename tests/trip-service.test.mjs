@@ -1,27 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { DatabaseSync } from 'node:sqlite';
-import { readFileSync } from 'node:fs';
+import { setup } from './helpers/trip-fixture.mjs';
 import { createTripService } from '../lib/trip-service.ts';
 
-// SQLite adapter exercises real SQL and atomic rollback. It is not a deployed D1 test.
-function setup(t, resolver = async () => ({userId:'u',disabled:false,sessionExpiresAt:2_000_000})) {
- const sqlite=new DatabaseSync(':memory:');t.after(()=>sqlite.close());sqlite.exec('PRAGMA foreign_keys=ON');
- for(const name of ['0000_medical_maestro','0001_guard_trip_integrity','0002_server_trip_core','0003_guard_trip_revisions','0004_distance_provenance','0005_trip_create_receipts'])sqlite.exec(readFileSync(new URL(`../drizzle/${name}.sql`,import.meta.url),'utf8'));
- sqlite.exec("INSERT INTO users(id,external_auth_id,name,driver_priority,created_at) VALUES ('u','test-u','Test U',1,1),('other','test-o','Test O',2,1)");
- sqlite.exec("INSERT INTO vehicles(id,display_name,created_at) VALUES ('v','Test V',1),('other-v','Other V',1)");
- sqlite.exec("INSERT INTO vehicle_memberships(user_id,vehicle_id) VALUES ('u','v')");
- sqlite.exec("INSERT INTO trips(id,vehicle_id,created_by,updated_at,started_at,ended_at,distance_km,route_type,distance_source) VALUES ('t','v','u',1,100,200,20,'estimated','manual'),('other-t','other-v','other',1,100,200,20,'estimated','manual')");
- class Statement {
-  constructor(sql,params=[]){this.sql=sql;this.params=params;}
-  bind(...params){return new Statement(this.sql,params);}
-  async first(){return sqlite.prepare(this.sql).get(...this.params)??null;}
-  async all(){return {results:sqlite.prepare(this.sql).all(...this.params)};}
-  runSync(){const r=sqlite.prepare(this.sql).run(...this.params);return {meta:{changes:Number(r.changes)}};}
- }
- const db={prepare:sql=>new Statement(sql),batch:async stmts=>{sqlite.exec('BEGIN IMMEDIATE');try{const r=stmts.map(s=>s.runSync());sqlite.exec('COMMIT');return r;}catch(e){sqlite.exec('ROLLBACK');throw e;}}};
- return {sqlite,db,service:createTripService(db,resolver,()=>1_000_000)};
-}
 const edit={expectedRevision:0,startedAt:100,endedAt:200,distanceKm:20,startAddress:'Test A',endAddress:'Test B',classification:'private',driverId:null,odometerStart:0,odometerEnd:20,purpose:null,reason:'Testcorrectie'};
 const status=code=>e=>e.status===code;
 test('no session resolver, invalid or expired sessions fail closed',async t=>{
