@@ -1,3 +1,4 @@
+import {createJourneyChoiceService,type JourneyChoiceInput} from './journey-choice-service.ts';
 import type {Principal} from './access-policy.ts';
 import {createJourneyService,type JourneyInput,type JourneyChange} from './journey-service.ts';
 import {TripServiceError} from './server-access.ts';
@@ -21,13 +22,13 @@ export function createJourneyHttpHandler(options:{db:Pick<D1Database,'prepare'|'
  return async function handle(request:Request):Promise<Response>{
   try{
    const url=new URL(request.url);if(url.origin!==origin.origin)return response(403,{error:'Ongeldige aanvraagherkomst.'});
-   const match=/^\/api\/vehicles\/([^/]+)\/journeys(?:\/([^/]+)(?:\/(join|close))?)?$/.exec(url.pathname);if(!match)return response(404,{error:'Niet gevonden.'});
+   const match=/^\/api\/vehicles\/([^/]+)\/journeys(?:\/([^/]+)(?:\/(join|close|choice))?)?$/.exec(url.pathname);if(!match)return response(404,{error:'Niet gevonden.'});
    const vehicleId=segment(match[1]),id=match[2]?segment(match[2]):null,action=match[3],allowed=action?['POST']:id?['GET']:['GET','POST'];
    if(!allowed.includes(request.method))return response(405,{error:'Methode niet toegestaan.'},{Allow:allowed.join(', ')});
    const permitted=request.method==='GET'&&!id?['limit','offset']:[];for(const key of url.searchParams.keys())if(!permitted.includes(key)||url.searchParams.getAll(key).length!==1)throw new TripServiceError(400,'Ongeldige query.');
    const page=(key:string,fallback:number)=>{const value=url.searchParams.get(key);if(value===null)return fallback;if(!/^\d+$/.test(value)||!Number.isSafeInteger(Number(value)))throw new TripServiceError(400,'Ongeldige paginering.');return Number(value);};
    const service=createJourneyService(options.db,()=>session(request),options.clock);
-   if(request.method==='POST'){const input=await json(request);return response(action?200:201,{receipt:action==='join'?await service.join(vehicleId,id!,input as JourneyChange):action==='close'?await service.close(vehicleId,id!,input as JourneyChange):await service.create(vehicleId,input as JourneyInput)});}
+   if(request.method==='POST'){const input=await json(request);if(action==='choice')return response(200,{receipt:await createJourneyChoiceService(options.db,()=>session(request),options.clock).choose(vehicleId,id!,input as JourneyChoiceInput)});return response(action?200:201,{receipt:action==='join'?await service.join(vehicleId,id!,input as JourneyChange):action==='close'?await service.close(vehicleId,id!,input as JourneyChange):await service.create(vehicleId,input as JourneyInput)});}
    if(id)return response(200,await service.get(vehicleId,id));
    return response(200,{journeys:await service.list(vehicleId,page('limit',50),page('offset',0))});
   }catch(error){return error instanceof TripServiceError?response(error.status,{error:error.message}):response(500,{error:'De aanvraag kon niet worden verwerkt.'});}

@@ -1,5 +1,7 @@
 # RitKompas — uitvoeringsinstructies
 
+Nieuwste beperkte toestemming is uitgevoerd: Access-runtimebindings plus uitsluitend geverifieerde eigenaar/voertuigrecht. [Eindtest FAIL en vervolg](docs/TRANSFER/OWNER_ACCESS_RESULT_2026-10-19.md). Niet opnieuw provisionen of toestemming voor hetzelfde pakket vragen. Geen nieuwe codepublicatie/migraties/beveiligingsversoepeling geautoriseerd. Onderstaande oudere ontbrekende-binding/provisioningstatus is historie. Onderzoek/fix/test op eigen branch blijft toegestaan; geen onbewezen oorzaak of werkende livebackend claimen.
+
 ## Actuele gezamenlijke basis — na Cloud #28/#29 en Mac #30
 
 De huidige reviewbranch combineert beide voorouders met behoud van code en historie. Cloudontvangst en Mac-terugproef zijn bewezen in docs/TRANSFER/MAC_CLOUD_ACK_RESULT.md; rechtstreeks Cloud→Mac sturen is in de Cloud-sessie niet beschikbaar. Cloud gebruikt GitHub-testopdrachten. Gebruik docs/TRANSFER/PR27_PLAN.md voor centrale M27-eisen, PR27_EXECUTION_PLAN.md als aanvullende MAC27-controlekaart en RESUME voor volgende taak. Geen tweede documentaudit of hardwareonderzoek herhalen zonder nieuw bewijs.
@@ -37,3 +39,4 @@ Gebruik bestaande CLOUD-nummers. Houd samenhangend werk in één run; na iedere 
 Node 24 aanbevolen. `node --experimental-strip-types --test tests/*.test.mjs` vereist geen externe npm-packages. Met dependencies: `pnpm exec tsc --noEmit`, `pnpm lint`, `pnpm build`. Geen Mac-paden hardcoden. Native iOS is nog niet gebouwd; geen echte iPhone-test claimen vanuit een Cloud-VM. `lib/access-policy.ts` is geen aangesloten authenticatiebackend. De app bevat alleen tijdelijke demo-invoer.
 
 Controleer vóór elke publicatie diff en geheimen; geen .env, caches, privéfoto's, GPS-historie, Apple-certificaten of databasebestanden. `scripts/scan-handover.mjs` is een beperkte patrooncontrole, geen volledige veiligheidsgarantie. Bewaar bestaande wijzigingen. Bestaande PR-keten: #1 → #2 → overdrachts-PR; niet ongemerkt rebasen, samenvoegen of bases wijzigen.
+

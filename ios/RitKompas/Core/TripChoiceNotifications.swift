@@ -1,15 +1,19 @@
-#if os(iOS)
 import Foundation
-import UserNotifications
 
-public enum TripChoice: String, Sendable { case business, `private` }
-public struct TripChoiceContext: Equatable, Sendable {
+public enum TripChoice: String, Codable, Sendable { case business, `private` }
+public struct TripChoiceContext: Codable, Equatable, Sendable {
     public let proposalID: String
     public let vehicleID: String
     public let viewerID: String
     public let revision: Int
     public init(proposalID: String, vehicleID: String, viewerID: String, revision: Int) {
         self.proposalID = proposalID; self.vehicleID = vehicleID; self.viewerID = viewerID; self.revision = revision
+    }
+}
+public extension TripChoiceContext {
+    var isValid: Bool {
+        [proposalID, vehicleID, viewerID].allSatisfy { !$0.isEmpty && $0.utf8.count <= 128 && !$0.unicodeScalars.contains(where: { $0.value < 32 || $0.value == 127 }) }
+            && revision >= 0 && revision < 9_007_199_254_740_991
     }
 }
 // A real implementation must atomically match the current authenticated local
@@ -25,6 +29,9 @@ public actor UnconfiguredTripChoiceStore: TripChoiceStore {
         throw NativeAPIError.sessionNotConfigured
     }
 }
+#if os(iOS)
+import UserNotifications
+
 public enum TripChoiceNotificationError: Error { case invalidContext, permissionRequired, unrecognizedAction }
 @available(iOS 15.0, *)
 public struct TripChoiceNotifications: Sendable {
@@ -32,11 +39,7 @@ public struct TripChoiceNotifications: Sendable {
     public static let businessAction = "RITKOMPAS_BUSINESS_V1"
     public static let privateAction = "RITKOMPAS_PRIVATE_V1"
     public init() {}
-    public static func valid(_ context: TripChoiceContext) -> Bool {
-        let ids = [context.proposalID, context.vehicleID, context.viewerID]
-        return ids.allSatisfy { !$0.isEmpty && $0.utf8.count <= 128 && !$0.unicodeScalars.contains(where: { $0.value < 32 || $0.value == 127 }) }
-            && context.revision >= 0 && context.revision < 9_007_199_254_740_991
-    }
+    public static func valid(_ context: TripChoiceContext) -> Bool { context.isValid }
     // Register without requesting permission. Merge rather than remove other app categories.
     public func registerCategories(center: UNUserNotificationCenter = .current()) async {
         let business = UNNotificationAction(identifier: Self.businessAction, title: "Zakelijk", options: [])

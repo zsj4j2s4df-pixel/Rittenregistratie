@@ -1,5 +1,7 @@
 # Volledige overdracht RitKompas naar Codex Cloud
 
+> **Nieuwste livecontrole 19 oktober:** Access-runtimebindings en uitsluitend eigenaar/voertuigrecht met toestemming ingericht. Anoniem gesloten, maar ingelogde backend blijft weigeren. [Bewijs/gerichte opvolging](docs/TRANSFER/OWNER_ACCESS_RESULT_2026-10-19.md). Niet opnieuw provisionen of succesvolle login claimen. Geen nieuwe code/migraties gepubliceerd; verdere live codewijziging vraagt toestemming. Parallel CloudPR31 behouden.
+
 > **Laatste gezamenlijke checkpoint:** Cloud bevestigt PR27 en levert PR28/29; Macretourproef [MAC_CLOUD_ACK_RESULT](docs/TRANSFER/MAC_CLOUD_ACK_RESULT.md) is PASS via GitHub. De eigen MacPR30 staat na integratie boven CloudPR29.197Node-tests/type/lint/build op geïntegreerde versie PASS, SwiftCoretypecheck/build bewezen; iOS/XCTest/hardware blijven open. Directe Cloud→Mac-threadsturing ontbreekt, GitHubtaken vormen het werkende retourkanaal. Oudere pending-ontvangsttekst hieronder is ingehaald.
 
 > **Actueel 19 oktober 2026:** codeketen bestaat tot PR #26; PR #27 is integraal opgenomen en gekoppeld aan [uitvoerbare vervolgtaken](docs/TRANSFER/PR27_EXECUTION_PLAN.md). [Mac-controle](docs/TRANSFER/MAC_NATIVE_VALIDATION.md) bewijst Coretypecheck/build en187Node-tests, geen iPhone/XCTest. [Zero Trust](docs/TRANSFER/MAC_ZERO_TRUST_2026-10-19.md) is met specifieke toestemming ingesteld; backend blijft gesloten tot apart goedgekeurde aansluiting. [Directe Cloud-opdracht](docs/TRANSFER/MAC_CLOUD_CHANNEL_TEST.md) is geregistreerd; agentontvangst/retoursturing nog niet bevestigd. Oudere ontbrekende-code-/geenAccess-/31tests-zinnen hieronder zijn historische overdrachtstatus.
@@ -82,3 +84,4 @@ Officiële documentatie noemt geïsoleerde Cloudwerkruimtes, repository-toegang 
 Modeltoegang verschilt per product en account; een lokaal selecteerbare modelnaam is geen bewijs van Cloudselectie. Sol/Astra blijven voorkeuren, geen ingestelde routing. [Workspace model availability](https://learn.chatgpt.com/docs/enterprise/workspace-model-availability), geraadpleegd 18-10-2026.
 
 De GitHub-identiteitsbeperking volgt uit [Approving a pull request with required reviews](https://docs.github.com/en/pull-requests/how-tos/review-pull-requests/approving-a-pull-request-with-required-reviews). Beschermingsopties: [Managing protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches). Raadpleegdatum 18-10-2026. Geen automatische overdracht van accounts, settings of agents geclaimd.
+

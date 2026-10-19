@@ -1,5 +1,7 @@
 # Actuele open werkkaart — 19 oktober2026
 
+Prioriteit naMacPR32: liveauthFAIL ondanksuitgevoerdebindings/provisioning; nietopnieuwprovisionen. Zie OWNER_ACCESS_RESULT_2026-10-19.md. CLOUD011classificatieAPI215testsPASS/nativequeuebron aanwezig, nieuweSwiftNIETGETEST; geen definitievetripoverzetting. Verdere migraties/livecode niettoepassen zondernieuweeigenaarstoestemming.
+
 CLOUD-011: CANONICAL_JOURNEYS.md beschrijft nu éénopenvehiclecoördinatie met explicietebewijslink/review/audit/idempotentie enHTTP/webread. Definitieve tripoverzetting, nativeclassificatiequeue/producer, echte meeraccount/hardwareacceptatie blijven open. Mac-ACK viaPR30PASS; geen automatischthreadkanaal.
 
 Hoogprioritaire aanvulling: [PR27_PLAN](PR27_PLAN.md), [hardwareonderzoek/koopadvies](JEEP_HARDWARE_RESEARCH.md), [Mac-proeven](MAC_HARDWARE_TESTS.md). Ontvangst bevestigd; automatische directeMacuitvoering nietbewezen. Nieuwe native melding/ritgrenzen/EV/vasteprioriteit/voertuigdedup blijven open tot bewijs.
