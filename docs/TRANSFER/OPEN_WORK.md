@@ -15,7 +15,7 @@ Gerichte actualisatie op basis van actuele CLOUD_TASKS/RESUME/masterprompt en op
 | Backup en herstel | Lokale encrypted SQLite backup/restore met versie/AES-GCM, integriteitscontrole en herstel naar nieuw pad gebouwd;5tests inclusief echt RitKompas-schema/audit/triggers PASS. RemoteD1/export, planning/offsite/keybeheer/crashproef en productieherstel blijven open. SQLITE_BACKUP.md |
 | Read-only MCP | Open: bestaande bewezen rechten als enige autorisatie, begrensde leestoegang en metadata; echte MCP-auth/integratie testen. Geen schrijf-MCP eerst |
 | Native iPhone | Open: nativecode, simulator/appsigning en permission/achtergrondflow; fysieke iPhone/Bluetooth/CarPlay/Jeep/OBD2 via Mac. Cloud kan contracten/testfixtures/nativebroncode voorbereiden |
-| Instellingenhistorie | Leesbare centrale UI gebouwd en scoped HTTP/browser/revocation getest; toont expliciet laatste50wijzigingen, paginatie van oudere historie nog open |
+| Instellingenhistorie | Keysetpaginatie oudere rit- en instellingenhistorie gebouwd, HTTP/SQL en browser met125regels/type/getussentijdse nieuwe audit/refresh/revocation PASS. Geen onbeperkte éénmalige dump; perpagina100/50 |
 | Security/privacy en operationeel | Gerichte regressies aanwezig; volledige onafhankelijke audit, concrete bewaartermijnen/verwijdering, logging/quotabelasting, sessierevocatie en productieherstel nog open |
 | Eigenaarscontrole | Main-regels eerder bevestigd; aparte GitHub-identiteit/onafhankelijke review nog open. Geen agentmerge |
 

@@ -106,10 +106,11 @@ export function createTripHttpHandler(options: {
         const history = Boolean(settingsMatch[2]);
         const allowed = history ? ['GET'] : ['GET','PATCH'];
         if (!allowed.includes(request.method)) return response(405, { error: 'Methode niet toegestaan.' }, { Allow: allowed.join(', ') });
-        if ([...url.searchParams].length) throw new TripServiceError(400,'Ongeldige query.');
+        for(const key of url.searchParams.keys())if(!history||!['limit','before'].includes(key)||url.searchParams.getAll(key).length!==1)throw new TripServiceError(400,'Ongeldige query.');
+        const page=(key:string,fallback?:number)=>{const value=url.searchParams.get(key);if(value===null)return fallback;if(!/^[0-9]+$/.test(value)||!Number.isSafeInteger(Number(value))||Number(value)<1)throw new TripServiceError(400,'Ongeldige paginering.');return Number(value);};
         const service = createSettingsService(options.db, ()=>requestSession(request), options.clock);
         if (request.method === 'PATCH') return response(200,{ settings: await service.save(vehicleId,await json(request,'settings') as SettingsEdit) });
-        return history ? response(200,{ history: await service.history(vehicleId) }) : response(200,{ settings: await service.get(vehicleId) });
+        return history ? response(200,{ history: await service.history(vehicleId,page('limit',50),page('before')) }) : response(200,{ settings: await service.get(vehicleId) });
       }
       const match = /^\/api\/vehicles\/([^/]+)\/trips(?:\/([^/]+)(\/history)?)?$/.exec(url.pathname);
       if (!match) return response(404, { error: 'Niet gevonden.' });
@@ -117,7 +118,7 @@ export function createTripHttpHandler(options: {
       const history = Boolean(match[3]);
       const allowed = history ? ['GET'] : tripId ? ['GET','PATCH'] : ['GET','POST'];
       if (!allowed.includes(request.method)) return response(405, { error: 'Methode niet toegestaan.' }, { Allow: allowed.join(', ') });
-      const permitted = request.method==='GET' ? (!tripId ? ['limit','offset'] : history ? ['limit'] : []) : [];
+      const permitted = request.method==='GET' ? (!tripId ? ['limit','offset'] : history ? ['limit','before'] : []) : [];
       for (const key of url.searchParams.keys()) if (!permitted.includes(key) || url.searchParams.getAll(key).length!==1) throw new TripServiceError(400, 'Ongeldige query.');
       const integer = (key: string, fallback: number) => {
         const value = url.searchParams.get(key);
@@ -128,7 +129,7 @@ export function createTripHttpHandler(options: {
       const service = createTripService(options.db, ()=>requestSession(request), options.clock);
       if (request.method==='POST') return response(201, { trip: await service.create(vehicleId, await json(request, true) as TripCreate) });
       if (request.method==='PATCH') return response(200, { trip: await service.edit(vehicleId, tripId!, await json(request, false) as TripEdit) });
-      if (history) return response(200, { history: await service.history(vehicleId, tripId!, integer('limit',50)) });
+      if (history) return response(200, { history: await service.history(vehicleId, tripId!, integer('limit',50),url.searchParams.has('before')?integer('before',0):undefined) });
       if (tripId) return response(200, { trip: await service.get(vehicleId,tripId) });
       return response(200, { trips: await service.list(vehicleId,integer('limit',50),integer('offset',0)) });
     } catch (error) {
