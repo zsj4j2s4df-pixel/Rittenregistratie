@@ -1,5 +1,9 @@
 # Cloud-taken — RitKompas
 
+## CLOUD-011 — gecontroleerde één-tripoverzetting gebouwd
+
+Vervolg op PR39/e8ff0e78f540370315ee4940d962b0d9724cad0c: gesloten ritbewijs expliciet naar éénlogboektrip, onveranderlijke unieke journey↔trip/receipt, atomische revision/audit/rollback, dubbele/overlappende gelijktijdige verwerking geblokkeerd. Bron daarna vergrendeld; correcties op dezelfde logboektrip. Onbekende gegevens blijven onbekend/0tellerblijft0; provisional/needs_review en geen fiscale/GPS/driverattestatie.233Node/type/lint/build/lokaleworkerdD1/gebouwdeWorker en Chromiumingest→close→review→verlorenantwoord→exactretry→reload PASS. [Bewijs/grenzen](docs/TRANSFER/REVIEWED_JOURNEY_TRIPS.md). Schema0012 uitsluitend draft/lokaal, geen livepublicatie/migratie/provisioning. Volgende kernsoftware: expliciete afronding logboekreview en overige native/GPS/offlinewerkkaart; Apple/hardware/nativeauth/liveacceptatie blijven open. Opslaan op echte iPhone nog geen bewezen foutoorzaak of herstelclaim.
+
 ## Automatisch coherent verversen gebouwd
 
 Vervolg op PR38/5a01af07e5b3d71c4d84b8fa4301fc1bd5052953: opt-in zichtbare/online snapshotpolling elke minuut, geen automatische writes. Dirtyform- en inflightraces beschermen onopgeslagen invoer; verkeerde viewer/401/403 wist centrale data en schakelt polling uit.225Node/type/lint/build en Chromiumauto-refresh+centraleCRUD/perioderapport/langePDF PASS. [Bewijs/beperkingen](docs/TRANSFER/AUTO_COHERENT_REFRESH.md). PR37alle13 en PR38alle12changedfiles bytegelijk remote teruggelezen. Geen livepublicatie/migraties. Volgende veilige kernsoftwaregroep: expliciete review→ééncentraletrip met duurzame koppeling/idempotentie; eventuele nieuwe schemabron uitsluitend draft/lokaal, nooit automatisch live toepassen. Echte iPhone-opslagfout en native/hardware blijven onbevestigd.
