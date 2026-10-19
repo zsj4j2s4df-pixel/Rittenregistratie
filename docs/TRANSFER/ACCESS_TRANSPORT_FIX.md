@@ -1,5 +1,7 @@
 # CLOUD-013 — beperkte Access-transportfix, 19 oktober 2026
 
+> Actueel: het afgebakende PR34-pakket is inmiddels expliciet goedgekeurd en live gepubliceerd. Zie [release-resultaat](ACCESS_RELEASE_RESULT_2026-10-19.md). Het voorstel hieronder is bewaard als specificatie; echte ingelogde eindtest blijft open.
+
 ## Status en afbakening
 
 Voorstel, NIET gepubliceerd. Actuele live eindtest blijft FAIL zoals Mac PR32 meldt. Bronbasis is exact PR14 commit `6c3f60834b36fe84ed43360c27f3feb8d2438ef7`, niet de latere featurestack. PR31/33 en Mac PR30/32 blijven behouden. Geen migraties, provisioning, nieuwe afhankelijkheden of Cloudflare-configuratiewijzigingen.

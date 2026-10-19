@@ -1,5 +1,11 @@
 # Actuele voortgang — 18 oktober 2026
 
+## CLOUD-011 — expliciete Zakelijk/Privé-webkeuze gebouwd
+
+Vervolg boven PR35/18f00a219fa4b6a494e31a90d788177622e77178: bestaande ritkeuze-API aangesloten op /beheer met expliciete knoppen, geverifieerde viewer/revisie, strikte receiptcontrole en handmatige exacte retry na verloren antwoord. Geen definitieve trip of automatische bestuurder.221Node/type/lint/build en Chromium met echte HTTP/SQLite PASS: committedlostresponse→zelfde retry→éénchoice/audit; stale409/accountswitch409/revoke403 veilig. Nieuwe groep NIET live gepubliceerd; geen nieuwe migratie/dependency. [Bewijs en beperkingen](docs/TRANSFER/WEB_JOURNEY_CHOICE.md).
+
+Goedkeuringspakket PR34 is al live; bindings/anoniemeAccess302 PASS, echte eigenaarlogin nafix nog NIETGETEST. MAC-CLOUD-013-LIVE-01 staat op GitHub en resultaat is bij eigenaar gevraagd; geen browser/session/token inCloud beschikbaar. Volgende groepen: native host/provider/queueconsumer (Applevalidatie nodig), definitieve ritmaterialisatie (duurzame koppeling en review vereist), resterende OPEN_WORK. Geen claim dat het hele project klaar is. Kosten/nieuwe productiefeatures/migraties/mainmerge blijven eigenaarbesluit.
+
 ## CLOUD-013 livepakket gepubliceerd met eigenaarstoestemming
 
 19 oktober2026: uitsluitend PR34/e0e8159 gepubliceerd als Worker-versie8e264bd0-62ab-48d2-a88e-9bf19d491858/deployment06d17ebe-83f7-4ec3-be5d-57b713cc0c04. Vier bestaande bindings strict behouden en teruggelezen; geen DB-migratie/provisioning/Accesswijziging/mainmerge. Anoniem302 naarAccess op /,/beheer,/api/vehicles PASS met browser-UA. Ingelogde API/UI nafix NIETGETEST; Mac/eigenaar moet MAC-CLOUD-013-LIVE-01 uitvoeren. Geen algemene live-succesclaim. [Resultaat, testopdracht en goedgekeurde code-only rollback](docs/TRANSFER/ACCESS_RELEASE_RESULT_2026-10-19.md). PR35 bevat cumulatieve ontwikkeling en is niet gepubliceerd. Volgende lokale groep: expliciete webkeuze Zakelijk/Privé met idempotente handmatige retry. Oude tekst “toestemming ontbreekt” hieronder is historie voor uitsluitend PR34; verdere productiefeatures/migraties blijven apart beslispunt.
