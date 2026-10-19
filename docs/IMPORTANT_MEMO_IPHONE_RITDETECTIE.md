@@ -28,5 +28,21 @@ Maak ritten registreren zo eenvoudig mogelijk: de bestuurder stapt in, kiest met
 - Maak branches/PR's; **niet naar main mergen zonder expliciete eigenaarstoestemming**. Geen kosten, aankopen, nieuwe accounts of productiepublicatie zonder toestemming.
 - Verwijs vanuit AGENTS.md / RESUME.md / CLOUD_TASKS.md naar dit memo zodra die bestanden beschikbaar zijn, zodat toekomstige runs dit besluit meenemen.
 
+
+## Onderzoek aankoopadvies: OBD2 en draadloze CarPlay (hoge prioriteit)
+- Onderzoek eerst of de bestaande Jeep-Bluetoothverbinding voor ritdetectie bruikbaar is; onderscheid gewone Bluetooth, CarPlay en toegang tot voertuiggegevens.
+- Vergelijk **OBDLink MX+** en **vLinker MC+** voor Jeep Wrangler 4xe 2021: iOS/Bluetooth LE, uitleesbare kilometerstand, voertuigsnelheid, ritstart/einde, sluipverbruik, veiligheid, betrouwbaarheid, prijs en verkrijgbaarheid in Nederland. Benoem expliciet wat nog niet is bevestigd en of de app rechtstreeks met de adapter kan communiceren.
+- Onderzoek **draadloze Apple CarPlay-adapters** (bijvoorbeeld Carlinkit en Ottocast) die de bestaande bedrade CarPlay omzetten naar draadloos. CarPlay gebruikt Bluetooth en wifi; een gewone Bluetooth-dongle is niet voldoende. Controleer eerst of de Jeep de vereiste bedrade CarPlay ondersteunt.
+- **Harde gebruikswens:** bij meerdere telefoons tegelijk in de Jeep krijgt de iPhone van **vader altijd de hoogste verbindingsprioriteit**. Voorkeursvolgorde: (1) vader, (2) moeder, (3) derde iPhone. Test of de gekozen adapter een **vaste instelbare prioriteit** ondersteunt en wat gebeurt bij gelijktijdig instappen, opnieuw verbinden en wanneer vader later instapt. Verwar 'laatst verbonden' niet met echte vaste prioriteit. Als dit niet kan, geef dat duidelijk aan en stel een praktisch alternatief voor.
+- Stel vader binnen RitKompas in als **hoofdgebruiker/voorkeursbestuurder**, maar maak onderscheid tussen CarPlay-voorrang en wie werkelijk rijdt. Zorg dat ritten niet dubbel worden opgeslagen wanneer meerdere iPhones in de auto zijn.
+- Geef een **korte concrete kooplijst** met modellen, actuele prijzen, voor- en nadelen, bewezen compatibiliteit en een advies. **Geen bestelling of uitgaven zonder toestemming.**
+
+## Samenwerking Codex Cloud en Codex Mac
+- **Codex Cloud is projectleider** voor onderzoek, planning, code en documentatie. **Codex Mac** voert waar nodig lokale tests uit op echte iPhones, de Jeep, CarPlay en OBD2-hardware.
+- Laat Codex Cloud concrete, controleerbare testopdrachten voor Codex Mac opstellen in GitHub-issues of een gedeeld takenbestand, inclusief teststappen en gewenste terugkoppeling.
+- Controleer of directe taakoverdracht van Codex Cloud naar Codex Mac technisch beschikbaar en geautoriseerd is. **Ga niet uit van automatische aansturing zonder bewezen koppeling**; gebruik anders GitHub als overdracht.
+- Leg testresultaten, beperkingen en beslissingen centraal vast zodat beide agents dezelfde informatie gebruiken.
+- Geen merge naar main, aankopen, nieuwe betaalde diensten of publicatie zonder toestemming.
+
 ## Acceptatie
 Een echte iPhone-test toont: verbinding met Jeep -> melding -> keuze via meldingsactie -> correcte ritregistratie -> betrouwbaar einde -> nieuwe rit bij volgend vertrek. Meld duidelijk wat iOS/CarPlay niet kan of wat nog niet getest is.
