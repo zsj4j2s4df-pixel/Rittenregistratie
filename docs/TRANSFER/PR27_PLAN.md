@@ -33,3 +33,7 @@
 ## Gevraagde beslissingen en blokkades
 
 Nu geen aankoop-/publicatievraag nodig: gratiswerk kan door. Aankoopadvies is reviewbaar maar niet uitgevoerd. Later eigenaarbesluit over één hardwarekandidaat/leverancier/budget indien nodig; Mac voert daadwerkelijke iOS/Jeepmetingen uit. Afzonderlijke GitHubidentiteit blijft open; gedeeldePRauteur isgeenonafhankelijkereview. `/scale`/`/do` nietondersteund in beschikbaretools; gewone taakgroepen gebruikt. DirecteMacautosturing nietbewezen; GitHubbewijsstatuswachten.
+
+## Uitgevoerde lokale vervolggroep
+
+Onderzoek/ontvangst in draftPR28 opgeslagen;10/10betrokkenbestanden exactremotegelezen. Root heeft na de agentcreditfout bestaande devicequotabron afgerond/gecontroleerd:14servicetestsPASS. Pureproposals7testsPASS; geenautomatischriteinde of volledigevoertuigdedup. Nativeinteractive-notificationbronprototype toegevoegd, zonderwerkendestore/provider/delegate enzonderSwiftcompilebewijs.197Node-tests/type/lint/build/lokaleD1PASS. Zie actueleRESUMEvoornieuweGitHubcheckpointenvolgendegroep; Mac-ACK/hardware blijven NIETUITGEVOERDtotexternbewijs.

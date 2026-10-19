@@ -57,3 +57,19 @@ test('receipt insert failure rolls back registration before audit; sessions expi
  // A newly verified session retries the same receipt, without a second device.
  assert.equal((await service(db).register('v',input)).id,input.id);assert.equal(count(sqlite,'audit_logs'),1);
 });
+
+function seedQuota(sqlite,n,active=1){sqlite.prepare(`WITH RECURSIVE n(i) AS (SELECT 1 UNION ALL SELECT i+1 FROM n WHERE i<?) INSERT INTO registered_devices(id,user_id,vehicle_id,name,platform,active,created_at,updated_at,last_mutation_id) SELECT 'quota-device-'||printf('%06d',i),'u','v','Synthetic quota','web',?,1,1,'seed' FROM n`).run(n,active);}
+test('atomic registration quota permits one last concurrent claim with exactly one receipt and audit',async t=>{
+ const {DEVICE_LIMITS}=await import('../lib/device-service.ts');const {db,sqlite}=setup(t);seedQuota(sqlite,DEVICE_LIMITS.registrationsPerUserVehicle-1);
+ const other={...input,id:'app-instance-id-0002',requestId:'device-request-0002'};const results=await Promise.allSettled([service(db).register('v',input),service(db).register('v',other)]);assert.equal(results.filter(r=>r.status==='fulfilled').length,1);assert.equal(results.filter(r=>r.status==='rejected'&&r.reason.status===429).length,1);assert.equal(count(sqlite,'registered_devices'),DEVICE_LIMITS.registrationsPerUserVehicle);assert.equal(count(sqlite,'device_register_requests'),1);assert.equal(count(sqlite,'audit_logs'),1);
+ const winner=results[0].status==='fulfilled'?input:other;assert.equal((await service(db).register('v',winner)).id,winner.id);await assert.rejects(()=>service(db).register('v',{...winner,requestId:'alternate-request-001'}),status(409));assert.equal(count(sqlite,'device_register_requests'),1);
+});
+test('disabled registrations retain capacity and cannot be reactivated or bypassed by receipt changes',async t=>{
+ const {DEVICE_LIMITS}=await import('../lib/device-service.ts');const {db,sqlite}=setup(t);await service(db).register('v',input);await service(db).deactivate('v',input.id,{expectedRevision:0,reason:'Synthetic retirement'});seedQuota(sqlite,DEVICE_LIMITS.registrationsPerUserVehicle-1,0);
+ await assert.rejects(()=>service(db).register('v',input),status(409));await assert.rejects(()=>service(db).register('v',{...input,requestId:'alternate-request-001'}),status(409));await assert.rejects(()=>service(db).register('v',{...input,id:'new-device-claim-001',requestId:'fresh-request-id-001'}),status(429));assert.equal(count(sqlite,'registered_devices'),DEVICE_LIMITS.registrationsPerUserVehicle);assert.equal(sqlite.prepare('SELECT sum(active) AS n FROM registered_devices').get().n,0);assert.equal(count(sqlite,'audit_logs'),2);
+});
+test('receipt cap blocks fresh device creation without orphans while exact original retries work',async t=>{
+ const {DEVICE_LIMITS}=await import('../lib/device-service.ts');const {db,sqlite}=setup(t);const saved=await service(db).register('v',input);
+ sqlite.prepare(`WITH RECURSIVE n(i) AS (SELECT 1 UNION ALL SELECT i+1 FROM n WHERE i<?) INSERT INTO device_register_requests(vehicle_id,user_id,request_id,device_id,request_json,response_json) SELECT 'v','u','seed-request-'||i,?,'{}','{}' FROM n`).run(DEVICE_LIMITS.receiptsPerUserVehicle-1,input.id);
+ assert.deepEqual(await service(db).register('v',input),saved);await assert.rejects(()=>service(db).register('v',{...input,id:'fresh-instance-id-001',requestId:'fresh-request-id-001'}),status(429));await assert.rejects(()=>service(db).register('v',{...input,requestId:'alternate-request-001'}),status(409));assert.equal(count(sqlite,'registered_devices'),1);assert.equal(count(sqlite,'device_register_requests'),DEVICE_LIMITS.receiptsPerUserVehicle);assert.equal(count(sqlite,'audit_logs'),1);
+});
