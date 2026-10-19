@@ -52,7 +52,7 @@ export function createSettingsService(db: Pick<D1Database,'prepare'|'batch'>, re
  }
  return {
   async get(vehicleId:string){return (await read(await authorize(vehicleId),vehicleId)).settings;},
-  async history(vehicleId:string,limit=50){const p=await authorize(vehicleId);if(!Number.isSafeInteger(limit)||limit<1||limit>100)throw new TripServiceError(400,'Ongeldige paginering.');return (await db.prepare(`SELECT * FROM audit_logs WHERE entity_type='vehicle_settings' AND entity_id=? AND ${membership} ORDER BY id DESC LIMIT ?`).bind(vehicleId,p.userId,vehicleId,limit).all()).results;},
+  async history(vehicleId:string,limit=50,before?:number){const p=await authorize(vehicleId);if(!Number.isSafeInteger(limit)||limit<1||limit>100||(before!==undefined&&(!Number.isSafeInteger(before)||before<1)))throw new TripServiceError(400,'Ongeldige paginering.');return (await db.prepare(`SELECT * FROM audit_logs WHERE entity_type='vehicle_settings' AND entity_id=? AND ${membership} AND (? IS NULL OR id<?) ORDER BY id DESC LIMIT ?`).bind(vehicleId,p.userId,vehicleId,before??null,before??null,limit).all()).results;},
   async save(vehicleId:string,input:SettingsEdit){
    const p=await authorize(vehicleId);const after=normalize(input);const record=await read(p,vehicleId);const before=record.settings;
    if(before.revision!==input.revision)throw new TripServiceError(409,'Instellingen zijn gewijzigd; laad opnieuw.');

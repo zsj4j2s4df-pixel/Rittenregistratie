@@ -89,11 +89,11 @@ export function createTripService(db: Pick<D1Database, 'prepare' | 'batch'>, res
       return result.results;
     },
     async get(vehicleId: string, tripId: string) { return getAuthorized(await authorize(vehicleId), vehicleId, tripId); },
-    async history(vehicleId: string, tripId: string, limit = 50) {
+    async history(vehicleId: string, tripId: string, limit = 50, before?: number) {
       const principal = await authorize(vehicleId);
       await getAuthorized(principal, vehicleId, tripId);
-      if (!Number.isSafeInteger(limit) || limit < 1 || limit > 100) throw new TripServiceError(400, 'Ongeldige paginering.');
-      return (await db.prepare(`SELECT * FROM audit_logs WHERE entity_type='trip' AND entity_id=? AND ${membership} ORDER BY id DESC LIMIT ?`).bind(tripId, principal.userId, vehicleId, limit).all()).results;
+      if (!Number.isSafeInteger(limit) || limit < 1 || limit > 100 || (before !== undefined && (!Number.isSafeInteger(before) || before < 1))) throw new TripServiceError(400, 'Ongeldige paginering.');
+      return (await db.prepare(`SELECT * FROM audit_logs WHERE entity_type='trip' AND entity_id=? AND ${membership} AND (? IS NULL OR id<?) ORDER BY id DESC LIMIT ?`).bind(tripId, principal.userId, vehicleId, before ?? null, before ?? null, limit).all()).results;
     },
     async edit(vehicleId: string, tripId: string, edit: TripEdit) {
       const principal = await authorize(vehicleId);

@@ -119,3 +119,7 @@ CLOUD-005/002/004: opt-in IndexedDB voor exacte create-trip/create-report-aanvra
 ## Lokale backup/herstel — 19 oktober2026, niet live
 
 CLOUD-005/002/004: scripts/sqlite-backup.mjs maakt consistente SQLite-backup met AES-256-GCM/authenticated versieheader en key-file buiten Git. Restore uitsluitend nieuw pad, integrity_check/foreign_key_check, geen overschrijven/symlinks.5gerichte tests PASS inclusief echt RitKompas-schema/trips/audit/rapportimmuutheid/revisieguards; lint PASS. Bewijs SQLITE_BACKUP.md. Tijdelijke plaintext onder private0700map en crash/keybeheer/Mac/remoteD1-grenzen expliciet. Eerste streamtesthang opgelost vóór afronding; volledige eerdere133suitePASS, vijfde test apartPASS. Geen productieactie/kosten. Volgende draftbranch cloud/cloud-005-local-backup op #18. Paginatie oudere historie parallel in uitvoering; root wijzigt die bestanden niet.
+
+## Oudere historie — 19 oktober2026
+
+CLOUD-005/002/004: keyset before-id voor rit-/settinghistorie, strikte HTTPvalidatie en UI ouderepagina/verversreset/dedupe/clearbij401/403/404.138Node-tests op afgeronde paginatiebasis/type/lint/build PASS; browser125regels/type metnieuweaudit/refresh/revocation PASS, recoverybrowser blijftPASS. Bewijs HISTORY_PAGINATION.md. Nieuwe draftbranch cloud/cloud-005-history-pages op #19-head8cf8bc2. Route-read/geometrycode staat parallel los in nieuwe bestanden, nog niet in deze historie-PR. Geen livepublicatie/cloudmutatie/kosten/mainmerge.
