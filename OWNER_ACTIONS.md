@@ -1,5 +1,9 @@
 # Persoonlijke acties
 
+## Hercontrole 19 oktober2026
+
+ACT-002handmatig en technische drie hoofdregels blijven AFGEROND: ruleset25339571 opnieuw active, PRverplicht, deletion en non_fast_forward, geen bypassactors. Main d37d8c913aaa253d6297cf57d3379d40c5795573 ongewijzigd. Vereistegoedkeuringen0; nieuwste PRauteur/connector nog eigenaar296047649. Afzonderlijke agentidentiteit/onafhankelijke eigenaarreview blijven OPEN. Geen instellingen gewijzigd of merge uitgevoerd.
+
 ## Nieuwste Access-controle en publicatiebeperking
 
 Eigenaar bevestigt Zero Trust Free actief. Read-only API bevestigt organisatie snowy-snowflake-4760.cloudflareaccess.com; apps nog leeg, bestaande IdP type cloudflare. Hosting en exacte APP_ORIGIN opnieuw vanaf GitHub gecontroleerd: https://rittenregistratie.zsj4j2s4df.workers.dev, Workers+D1, geen eigen domein nodig voor proef. iPhone-invulvelden en veilige fallback: docs/TRANSFER/ACCESS_IPHONE_SETUP.md. Oude actie “Access activeren” is uitgevoerd; volgende eigenaaractie is app/destination/expliciete allowlist opslaan. Nog geen echte loginclaim.

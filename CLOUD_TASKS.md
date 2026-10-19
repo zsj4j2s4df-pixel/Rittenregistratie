@@ -1,5 +1,10 @@
 # Cloud-taken — RitKompas
 
+## Atomaire detectiequota — 19 oktober 2026, niet live
+
+CLOUD-005/002/004:120nieuweobservaties/60s,10000/UTCdag,100000totaalobservaties en200000receipts perappinstance centraal begrensd met atomische SQLgates; exacte retries blijvenwerken en geenorphanbijreceiptcap. Operationele defaults, geen retentie/deletiebeleid.187Node-tests/type/lint/build/lokaleD1 en vier Chromiumregressieflows PASS. Bewijs DETECTION_INGEST.md. Draftbranch cloud/cloud-005-detection-quotas op #25-head57a2f48. Main opnieuw d37d8c9ongewijzigd; ruleset25339571active/PR/deletion/nonfastforward/geenbypass,0approvals; connectorPRauteur nog eigenaar296047649. Volgende: devicequota tegen instancegroei, detectievoorstellen en veilige sync; nativecompile blijftMac. Geen productiepublicatie/kosten/mainmerge.
+
+
 ## iOS-bronvoorbereiding — 19 oktober 2026, niet live
 
 CLOUD-005: vijf Swiftbronbestanden voor Codable/backendcontracten, exacteHTTPS/URLSession/netwerkgrenzen/defaultdenySessionAccess, voorbereide XCTestcases en SwiftUI permission/lifecyclevoorbereiding. Geen @main/Xcodeproject/signing/accounts of sensoropname. Swift-toolchain ontbreekt: parse/typecheck/XCTest/simulator/iPhone ALLE NIETGETEST; Node183PASS van vorige backendgroep is geen nativebewijs. Bewijs IOS_CLOUD_PREPARATION.md geeft concrete Macvalidatiestappen zonder authbypass. Draftbranch cloud/cloud-005-ios-preparation op #24-headde6baf2. Volgende cloudtaak: atomaire detectiequota en expliciet onzekere detectievoorstellen, daarna verdere veilige sync. Geen productiepublicatie/kosten/mainmerge.
