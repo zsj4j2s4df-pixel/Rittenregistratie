@@ -44,5 +44,13 @@ Maak ritten registreren zo eenvoudig mogelijk: de bestuurder stapt in, kiest met
 - Leg testresultaten, beperkingen en beslissingen centraal vast zodat beide agents dezelfde informatie gebruiken.
 - Geen merge naar main, aankopen, nieuwe betaalde diensten of publicatie zonder toestemming.
 
+
+## Eerste actie: bewijs samenwerking Cloud ↔ Mac
+- Onderzoek of Codex Cloud daadwerkelijk rechtstreeks taken naar Codex Mac kan sturen en resultaten kan ontvangen, met de huidige beschikbare koppelingen en bevoegdheden.
+- Voer alleen als het technisch mogelijk is een **kleine, veilige testopdracht** uit, zonder gevoelige gegevens, kosten, merge of wijzigingen aan main. Registreer opdracht, ontvangst en terugkoppeling.
+- Als directe overdracht niet mogelijk is: leg een concrete testtaak in GitHub vast en beschrijf hoe Codex Mac die kan oppakken en het resultaat kan terugmelden. Doe niet alsof GitHub-registratie hetzelfde is als automatisch uitvoeren.
+- Rapporteer expliciet: (1) werkt directe samenwerking automatisch, (2) welke instelling/toestemming is eventueel nodig, (3) aan welke agent moet de gebruiker voortaan opdrachten geven, (4) welke test is daadwerkelijk uitgevoerd en met welk resultaat.
+- **Voer deze controle eerst uit**, zodat de gebruiker weet aan wie volgende prompts moeten worden gestuurd.
+
 ## Acceptatie
 Een echte iPhone-test toont: verbinding met Jeep -> melding -> keuze via meldingsactie -> correcte ritregistratie -> betrouwbaar einde -> nieuwe rit bij volgend vertrek. Meld duidelijk wat iOS/CarPlay niet kan of wat nog niet getest is.
