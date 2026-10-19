@@ -1,3 +1,4 @@
+import {accessApplicationToken} from './access-token.ts';
 import type { Principal } from './access-policy.ts';
 
 // Prepared integration, not an activated Cloudflare account or public login.
@@ -22,7 +23,8 @@ export function createCloudflareAccessResolver(options: {
   if(loading)return loading;
   loading=(async()=>{
    // Fixed configured issuer only; never trust a token-supplied jku/x5u URL.
-   const response=await fetcher(options.issuer+'/cdn-cgi/access/certs',{redirect:'error',signal:AbortSignal.timeout(5000)});
+   // workerd rejects redirect:'error'. Manual never follows; !ok below rejects 3xx.
+   const response=await fetcher(options.issuer+'/cdn-cgi/access/certs',{redirect:'manual',signal:AbortSignal.timeout(5000)});
    if(!response.ok||!response.body)throw Error('keys');
    const reader=response.body.getReader();const chunks:Uint8Array[]=[];let size=0;
    try{while(true){const {done,value}=await reader.read();if(done)break;size+=value.byteLength;if(size>65536){await reader.cancel();throw Error('keys size');}chunks.push(value);}}finally{reader.releaseLock();}
@@ -36,7 +38,7 @@ export function createCloudflareAccessResolver(options: {
  }
  return async (request:Request):Promise<Principal|null>=>{
   try{
-   const token=request.headers.get('cf-access-jwt-assertion');if(!token||token.length>16384)return null;
+   const token=accessApplicationToken(request);if(!token)return null;
    const parts=token.split('.');if(parts.length!==3)return null;
    const header=object(parts[0]),claims=object(parts[1]);
    if(header.alg!=='RS256'||typeof header.kid!=='string'||!header.kid||header.kid.length>256||header.crit!==undefined||(header.typ!==undefined&&header.typ!=='JWT'))return null;
