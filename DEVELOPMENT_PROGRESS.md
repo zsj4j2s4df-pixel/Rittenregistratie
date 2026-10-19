@@ -1,5 +1,10 @@
 # Actuele voortgang — 18 oktober 2026
 
+## Ruwe detectie-inname — 19 oktober 2026, niet live
+
+CLOUD-005/002/004: eigen actieve appinstance+membership, canonieke request/eventdedup, batchaudit en immutable ruwe observaties gebouwd; geen automatische rit. GETPOSTadapter/Accessdispatch en expliciete eerste50waarnemingen in beheerUI.9service/HTTPcases,183Node-tests/type/lint/build, lokaleD1 ingest/dedup/disabledweigering en Chromiumrawview/geenrit/registerrecovery/revoke PASS.0009schema/journal/snapshot afgestemd; geen externe migratie. Bewijs DETECTION_INGEST.md. Draftbranch cloud/cloud-005-detection-ingest op #23-headceaf46a. Volgende: atomische innamequota, nativebronvoorbereiding en detectievoorstellen; volledigeeisen blijven open. Geen productiepublicatie/kosten/mainmerge.
+
+
 ## Eigen appregistraties — 19 oktober 2026, niet live
 
 CLOUD-005/002/004: eigen geverifieerde appinstanties met idempotente registratie, audit/revisie-deactivering, geen heractivatie door oude retries, HTTP/client en handmatige beheerUI gebouwd.17service/HTTPcases en Chromium responseverlies/retry/deactivate/revocation PASS; gecombineerde180tests omvatten zes aparte detectiecases. Type/lint/build en lokale echteD1 register/retry/deactivate PASS. Additieve0008+schema/journal/snapshot afgestemd; geen remote migratie of hardware/loginclaim. Bewijs REGISTERED_DEVICES.md. Draftbranch cloud/cloud-005-registered-devices op #22-head6960896. Volgende: ruwe detectie-inname/HTTP/schema en nativebronvoorbereiding; geen productiepublicatie/kosten/mainmerge.
