@@ -1,5 +1,7 @@
 # RitKompas — uitvoeringsinstructies
 
+Nieuwste hoogprioritaire sturing: lees [PR27-memo](docs/IMPORTANT_MEMO_IPHONE_RITDETECTIE.md), [aanvullende eisen/planning](docs/TRANSFER/PR27_PLAN.md) en [Mac-testopdrachten](docs/TRANSFER/MAC_HARDWARE_TESTS.md). Native interactieve Zakelijk/Privé-melding is de praktische hoofdroute; CarPlay-knoppen vereisen passende Apple-goedkeuring. Betrouwbaar einde, twee-minutenklantstop, elektrisch rijden, drie-iPhoneprioriteit versus echte bestuurder en centrale voertuigdedup blijven expliciete acceptatiepunten. Geen automatische samenwerking/hardwarebewijs claimen; Mac beheert zijn Access/rulesetonderzoek, Cloud wijzigt die externe configuratie niet gelijktijdig.
+
 Nieuwste gebruikersbesluit, 18 oktober 2026: **Codex Cloud is hoofdontwikkelaar; Codex Mac ondersteunt lokale builds, iOS-simulator en hardwaretests. GitHub is de centrale bron van waarheid. De projecteigenaar beslist over belangrijke handelingen.** Oudere afwijkende rolverdelingen blijven alleen historie.
 
 Start met RESUME.md, CLOUD_TASKS.md, DEVELOPMENT_PROGRESS.md en CLOUD_HANDOVER.md. Lees daarna alleen de relevante eisen/testgevallen en code; herhaal geen volledige inventaris zonder aanleiding. Alle functionele wensen in de bijgewerkte masterprompt blijven behouden. Sol is voorkeur voor dagelijkse regie indien beschikbaar, Astra alleen voor belangrijke afwegingen. Geen modelwissel, agentoverdracht of automatische sessiesynchronisatie claimen zonder bewijs.
