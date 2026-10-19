@@ -1,3 +1,4 @@
+import {createDeviceService} from '../lib/device-service.ts';
 import {createRouteService} from '../lib/route-service.ts';
 import {createSyncService} from '../lib/sync-service.ts';
 // Local workerd/D1 binding smoke; no Cloudflare account, remote DB or deployment.
@@ -20,6 +21,8 @@ try {
  await db.prepare("INSERT INTO vehicles(id,display_name,created_at) VALUES ('v','Synthetic',1)").run();
  await db.prepare("INSERT INTO vehicle_memberships(user_id,vehicle_id) VALUES ('u','v')").run();
  await db.prepare("INSERT INTO trips(id,vehicle_id,created_by,updated_at,started_at,ended_at,distance_km,route_type,distance_source) VALUES ('t','v','u',1,100,200,20,'recorded','gps')").run();
+ const devices=createDeviceService(db,async()=>({userId:'u',disabled:false,sessionExpiresAt:2_000_000}),()=>1_000_000),registration={requestId:'local-device-request-0001',id:'local-device-instance-0001',name:'Local D1',platform:'web'};
+ const registered=await devices.register('v',registration);assert.equal(registered.active,1);assert.equal((await devices.register('v',registration)).id,registered.id);assert.equal((await devices.list('v')).length,1);await devices.deactivate('v',registered.id,{expectedRevision:0,reason:'Local D1 proof'});await assert.rejects(()=>devices.register('v',registration),e=>e.status===409);
  const snapshot=await createSyncService(db,async()=>({userId:'u',disabled:false,sessionExpiresAt:2_000_000}),()=>1_000_000).snapshot('v');assert.equal(snapshot.trips.length,1);assert.equal(snapshot.drivers[0].id,'u');assert.equal(snapshot.settings.revision,0);assert.equal(snapshot.vehicle.id,'v');
  await db.prepare("INSERT INTO route_points(trip_id,recorded_at,latitude,longitude,source) VALUES ('t',150,52,5,'gps')").run();const routePage=await createRouteService(db,async()=>({userId:'u',disabled:false,sessionExpiresAt:2_000_000}),()=>1_000_000).points('v','t');assert.equal(routePage.points.length,1);assert.equal(routePage.points[0].latitude,52);assert.equal(routePage.nextAfter,null);
  const service=createTripService(db,async()=>({userId:'u',disabled:false,sessionExpiresAt:2_000_000}),()=>1_000_000);
@@ -81,5 +84,5 @@ try {
  assert.equal((await verifiedHandle(authedRequest())).status,403);
  assert.equal((await handle(new Request(origin+'/api/vehicles/v/trips'))).status,403);
  await assert.rejects(()=>service.list('v'),e=>e.status===403);
- console.log('PASS local workerd/D1: scoped route read, coherent transactional refresh, migrations, fail-closed session, edit+audit, provenance, stale conflict, atomic rollback, concurrent idempotent creation, creation rollback, HTTP read/write, durable settings/rollback, immutable reports/CSV/rollback, synthetic signed Access identity, revocation. NOT production D1/auth.');
+ console.log('PASS local workerd/D1: device register/retry/deactivate/disabled replay, scoped route read, coherent transactional refresh, migrations, fail-closed session, edit+audit, provenance, stale conflict, atomic rollback, concurrent idempotent creation, creation rollback, HTTP read/write, durable settings/rollback, immutable reports/CSV/rollback, synthetic signed Access identity, revocation. NOT production D1/auth.');
 } finally { await mf.dispose(); }
