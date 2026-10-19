@@ -47,7 +47,7 @@ export function createTripHttpHandler(options: {
       for (const chunk of chunks) { bytes.set(chunk, offset); offset += chunk.byteLength; }
       body = JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(bytes));
     } catch { throw new TripServiceError(400, 'Ongeldige JSON.'); }
-    const allowed = create === 'review' ? ['requestId','expectedRevision','confirmed','reason'] : create === 'report' ? ['requestId','from','until','driverId'] : create === 'settings' ? ['revision','plate','addresses','rates','reason'] : create ? [...editKeys.filter(k=>k!=='expectedRevision'), 'requestId'] : editKeys;
+    const allowed = create === 'review' ? ['requestId','expectedRevision','confirmed','reason'] : create === 'report' ? ['requestId','from','until','driverId'] : create === 'settings' ? ['revision','plate','addresses','rates','reason','requestId'] : create ? [...editKeys.filter(k=>k!=='expectedRevision'), 'requestId'] : [...editKeys,'requestId'];
     if (!body || typeof body !== 'object' || Array.isArray(body) || Object.keys(body).some(k=>!allowed.includes(k))) throw new TripServiceError(400, 'Onbekende invoervelden.');
     return body;
   }

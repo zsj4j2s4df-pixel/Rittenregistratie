@@ -1,3 +1,4 @@
+import {mutationReceipts} from './mutation-receipts.ts';
 import { TripServiceError, membership, vehicleAuthorizer } from './server-access.ts';
 import type { Principal } from './access-policy.ts';
 
@@ -7,7 +8,7 @@ import type { Principal } from './access-policy.ts';
 export type SessionResolver = () => Promise<Principal | null>;
 export type StoredTrip = Record<string, unknown> & { id: string; vehicle_id: string; revision: number; route_type: string; distance_source: string | null };
 export type TripEdit = {
-  expectedRevision: number; startedAt: number; endedAt: number; distanceKm: number;
+  requestId?:string;expectedRevision: number; startedAt: number; endedAt: number; distanceKm: number;
   startAddress: string; endAddress: string; classification: 'private' | 'business' | 'review'; driverId: string | null;
   odometerStart: number | null; odometerEnd: number | null; purpose: string | null; reason: string;
 };
@@ -98,6 +99,8 @@ export function createTripService(db: Pick<D1Database, 'prepare' | 'batch'>, res
     async edit(vehicleId: string, tripId: string, edit: TripEdit) {
       const principal = await authorize(vehicleId);
       validate(edit);
+      const canonical=JSON.stringify({expectedRevision:edit.expectedRevision,startedAt:edit.startedAt,endedAt:edit.endedAt,distanceKm:edit.distanceKm,startAddress:edit.startAddress.trim(),endAddress:edit.endAddress.trim(),classification:edit.classification,driverId:edit.driverId,odometerStart:edit.odometerStart,odometerEnd:edit.odometerEnd,purpose:edit.purpose?.trim()??null,reason:edit.reason.trim()});
+      const recovery=mutationReceipts(db,principal,vehicleId,'trip-edit',tripId,edit.requestId,canonical,clock);const replay=await recovery.read<StoredTrip>();if(replay)return replay;
       const before = await getAuthorized(principal, vehicleId, tripId);
       if (before.revision !== edit.expectedRevision || before.revision >= Number.MAX_SAFE_INTEGER) throw new TripServiceError(409, 'Rit is gewijzigd; laad de laatste versie.');
       if (edit.driverId !== null && !await db.prepare(`SELECT 1 WHERE ${membership}`).bind(edit.driverId, vehicleId).first()) throw new TripServiceError(400, 'Bestuurder heeft geen actieve toegang tot dit voertuig.');
@@ -114,16 +117,18 @@ export function createTripService(db: Pick<D1Database, 'prepare' | 'batch'>, res
         revision: before.revision + 1, last_mutation_id: mutationId, updated_at: occurredAt };
       // D1 batch is transactional. A unique mutation marker makes audit insertion
       // conditional on THIS successful update, even with concurrent same-second edits.
-      const results = await db.batch([
+      const statements=[
         db.prepare(`UPDATE trips SET status='provisional',needs_review=1,started_at=?,ended_at=?,distance_km=?,distance_source=?,distance_origin_json=?,start_address=?,end_address=?,classification=?,driver_id=?,odometer_start=?,odometer_end=?,purpose=?,revision=revision+1,last_mutation_id=?,updated_at=?
-          WHERE id=? AND vehicle_id=? AND revision=? AND ${membership} AND (? IS NULL OR ${membership})`)
+          WHERE id=? AND vehicle_id=? AND revision=? AND ${membership} AND (? IS NULL OR ${membership}) AND ${recovery.guard}`)
           .bind(after.started_at, after.ended_at, after.distance_km, after.distance_source, after.distance_origin_json, after.start_address, after.end_address, after.classification, after.driver_id,
             after.odometer_start, after.odometer_end, after.purpose, mutationId, occurredAt, tripId, vehicleId, edit.expectedRevision,
-            principal.userId, vehicleId, edit.driverId, edit.driverId, vehicleId),
+            principal.userId, vehicleId, edit.driverId, edit.driverId, vehicleId,...recovery.params),
         db.prepare(`INSERT INTO audit_logs(actor_id,entity_type,entity_id,action,old_value_json,new_value_json,occurred_at)
           SELECT ?,'trip',?,'update',?,?,? WHERE EXISTS (SELECT 1 FROM trips WHERE id=? AND vehicle_id=? AND last_mutation_id=?)`)
           .bind(principal.userId, tripId, JSON.stringify(before), JSON.stringify({ ...after, correction_reason: edit.reason.trim() }), occurredAt, tripId, vehicleId, mutationId),
-      ]);
+      ];
+      const receipt=recovery.insert(after,'EXISTS(SELECT 1 FROM trips WHERE id=? AND vehicle_id=? AND last_mutation_id=?)',[tripId,vehicleId,mutationId]);if(receipt)statements.push(receipt);
+      const results=await db.batch(statements);const saved=await recovery.read<StoredTrip>();if(saved)return saved;if(edit.requestId!==undefined)throw new TripServiceError(409,'Geen wijzigingsbevestiging beschikbaar; controleer centraal.');
       if (results[0].meta.changes !== 1 || results[1].meta.changes !== 1) throw new TripServiceError(409, 'Rit of toegangsrechten zijn gewijzigd; laad opnieuw.');
       return after;
     },

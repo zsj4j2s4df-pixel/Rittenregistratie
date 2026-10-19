@@ -1,3 +1,4 @@
+import {mutationReceipts} from './mutation-receipts.ts';
 import { membership, TripServiceError, vehicleAuthorizer } from './server-access.ts';
 import type { SessionResolver } from './trip-service.ts';
 import { validateRates, type MileageRate } from '../app/report-domain.ts';
@@ -5,7 +6,7 @@ import type { Principal } from './access-policy.ts';
 
 export type StoredAddress = { id: string; label: string; address: string; enabled: boolean; note: string };
 export type VehicleSettings = { revision: number; plate: string; addresses: StoredAddress[]; rates: MileageRate[] };
-export type SettingsEdit = VehicleSettings & { reason: string };
+export type SettingsEdit = VehicleSettings & { reason: string;requestId?:string };
 
 export type SettingsRow={revision:number;plate:string|null;addresses:string;rates:string};
 export const settingsReadSql=`SELECT settings_revision AS revision,registration_plate AS plate,
@@ -54,7 +55,7 @@ export function createSettingsService(db: Pick<D1Database,'prepare'|'batch'>, re
   async get(vehicleId:string){return (await read(await authorize(vehicleId),vehicleId)).settings;},
   async history(vehicleId:string,limit=50,before?:number){const p=await authorize(vehicleId);if(!Number.isSafeInteger(limit)||limit<1||limit>100||(before!==undefined&&(!Number.isSafeInteger(before)||before<1)))throw new TripServiceError(400,'Ongeldige paginering.');return (await db.prepare(`SELECT * FROM audit_logs WHERE entity_type='vehicle_settings' AND entity_id=? AND ${membership} AND (? IS NULL OR id<?) ORDER BY id DESC LIMIT ?`).bind(vehicleId,p.userId,vehicleId,before??null,before??null,limit).all()).results;},
   async save(vehicleId:string,input:SettingsEdit){
-   const p=await authorize(vehicleId);const after=normalize(input);const record=await read(p,vehicleId);const before=record.settings;
+   const p=await authorize(vehicleId);const after=normalize(input);const recovery=mutationReceipts(db,p,vehicleId,'settings',vehicleId,input.requestId,JSON.stringify({expectedRevision:input.revision,...after,reason:input.reason.trim()}),clock);const replay=await recovery.read<VehicleSettings>();if(replay)return replay;const record=await read(p,vehicleId);const before=record.settings;
    if(before.revision!==input.revision)throw new TripServiceError(409,'Instellingen zijn gewijzigd; laad opnieuw.');
    const now=clock();if(!Number.isFinite(now)||p.sessionExpiresAt<=now)throw new TripServiceError(401,'Aanmelden vereist.');
    const occurredAt=Math.floor(now/1000);if(!Number.isSafeInteger(occurredAt))throw new TripServiceError(500,'Ongeldige servertijd.');
@@ -66,7 +67,7 @@ export function createSettingsService(db: Pick<D1Database,'prepare'|'batch'>, re
    const addressId=(id:string)=>record.addressIds.get(id)??scopedId(id);
    const rateId=(id:string)=>record.rateIds.get(id)??scopedId(id);
    const statements=[
-    db.prepare(`UPDATE vehicles SET registration_plate=?,settings_revision=settings_revision+1,settings_mutation_id=? WHERE id=? AND settings_revision=? AND ${membership}`).bind(after.plate||null,marker,vehicleId,input.revision,p.userId,vehicleId),
+    db.prepare(`UPDATE vehicles SET registration_plate=?,settings_revision=settings_revision+1,settings_mutation_id=? WHERE id=? AND settings_revision=? AND ${membership} AND ${recovery.guard}`).bind(after.plate||null,marker,vehicleId,input.revision,p.userId,vehicleId,...recovery.params),
     db.prepare(`DELETE FROM business_addresses WHERE vehicle_id=? AND id NOT IN (${after.addresses.map(()=>'?').join(',')||"''"}) AND ${gate}`).bind(vehicleId,...after.addresses.map(a=>addressId(a.id)),vehicleId,marker),
     db.prepare(`DELETE FROM mileage_rates WHERE vehicle_id=? AND id NOT IN (${after.rates.map(()=>'?').join(',')||"''"}) AND ${gate}`).bind(vehicleId,...after.rates.map(r=>rateId(r.id)),vehicleId,marker),
     ...after.addresses.map(a=>db.prepare(`INSERT INTO business_addresses(id,vehicle_id,label,address,enabled,notes,created_by,created_at) SELECT ?,?,?,?,?,?,?,? WHERE ${gate}
@@ -80,7 +81,8 @@ export function createSettingsService(db: Pick<D1Database,'prepare'|'batch'>, re
 `).bind(rateId(r.id),vehicleId,r.microsPerKm/1_000_000,r.microsPerKm,dateSeconds(r.validFrom),r.validUntil===undefined?null:dateSeconds(r.validUntil),p.userId,vehicleId,marker)),
     db.prepare(`INSERT INTO audit_logs(actor_id,entity_type,entity_id,action,old_value_json,new_value_json,occurred_at) SELECT ?,'vehicle_settings',?,'update',?,?,? WHERE ${gate}`).bind(p.userId,vehicleId,JSON.stringify(before),JSON.stringify({...after,correction_reason:input.reason.trim()}),occurredAt,vehicleId,marker),
    ];
-   const results=await db.batch(statements);
+   const receipt=recovery.insert(after,gate,[vehicleId,marker]);if(receipt)statements.push(receipt);
+   const results=await db.batch(statements);const saved=await recovery.read<VehicleSettings>();if(saved)return saved;
    if(results[0].meta.changes!==1||results.at(-1)!.meta.changes!==1)throw new TripServiceError(409,'Instellingen of rechten zijn gewijzigd; laad opnieuw.');
    return after;
   },
