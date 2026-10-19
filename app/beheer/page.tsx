@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { SettingsManager } from './settings-manager';
 import TripCorrection from './trip-correction';
 import SavedReportView from './saved-report';
+import SettingsHistory from './settings-history';
 import {filterTrips, type TripFilters} from './trip-filters';
 import { useEffect, useRef, useState } from 'react';
 import type { FormEvent } from 'react';
@@ -47,6 +48,7 @@ export default function CentralRegistration(){
   {settings&&!loading&&<>
    <section className="panel"><h2>Voertuiginstelling</h2><form className="editor-grid" key={vehicleId+':'+settings.revision} onSubmit={async e=>{e.preventDefault();const data=new FormData(e.currentTarget);await run(async()=>{const saved=await api.saveSettings(vehicleId,{...settings,plate:String(data.get('plate')),reason:String(data.get('settingsReason'))});setSettings(saved);setNotice('Kenteken centraal opgeslagen. Bestaande rapporten houden hun oorspronkelijke kenteken.');});}}><label>Kenteken<input name="plate" maxLength={16} defaultValue={settings.plate} disabled={busy}/></label><label>Wijzigingsreden<input name="settingsReason" maxLength={500} required disabled={busy}/></label><button disabled={busy}>Kenteken opslaan</button></form><p>Adressen en tariefperioden blijven bij deze wijziging behouden. Adressen en tariefperioden kun je hieronder centraal beheren.</p></section>
    <SettingsManager key={vehicleId} settings={settings} busy={busy} onSave={async(next,reason)=>{setBusy(true);try{const saved=await api.saveSettings(vehicleId,{...next,reason});setSettings(saved);}finally{setBusy(false);}}}/>
+   <SettingsHistory key={vehicleId+':history:'+settings.revision} vehicleId={vehicleId} busy={busy}/>
    <section className="panel"><h2>Rit handmatig toevoegen</h2><p>Vertrek- en aankomsttijd volgen de tijdzone van dit apparaat. De rit wordt als handmatig en te controleren opgeslagen; er wordt geen GPS-route gemaakt.</p><form className="editor-grid" onSubmit={createTrip}>
     <label>Vertrek<input name="start" type="datetime-local" required disabled={busy}/></label><label>Aankomst<input name="end" type="datetime-local" required disabled={busy}/></label>
     <label>Vertrekadres<input name="from" maxLength={450} required disabled={busy}/></label><label>Aankomstadres<input name="to" maxLength={450} required disabled={busy}/></label>

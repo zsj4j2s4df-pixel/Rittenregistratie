@@ -1,5 +1,9 @@
 # Hervatpunt — 18 oktober 2026
 
+## Vervolggroep instellingenhistorie — 19 oktober2026
+
+CLOUD-005/002/004: centrale historie van kenteken, adressen en tarieven met reden, account-ID en voor/na gebouwd. Bestaande scoped backend hergebruikt; laatste50expliciet begrensd, oudere historie blijft bewaard. Herlezen na revocation wist de oude lijst.128Node-tests/type/lint/build PASS; echteHTTP/SQLite en centrale Chromium met drie settingsredenen en geweigerde verversing PASS, PDF16pagina's/geslotenAPI PASS. Geen livepublicatie, cloudmutatie of kosten. Vervolgcommit op draft#17, basisgroep127tests blijft afzonderlijk bewezen. Volgende: herstelbare pendingqueue/cursors, detectie/backups/MCP en overige OPEN_WORK.
+
 ## Nieuwste groep — samenhangend verversen, niet live
 
 CLOUD-005: vehicle/snapshot via één read-only D1-batchtransactie; UI gebruikt snapshot bij laden/verversen/na writes.127tests/type/lint/build, echte lokale D1 en volledige centrale browser/PDF/geslotenAPI PASS. Privacy/scoping/revocation/expiry/groottegrenzen getest. Geen incremental cursor, auto-sync of duurzame queueclaim. Bewijs COHERENT_REFRESH.md; actuele openwerkkaart docs/TRANSFER/OPEN_WORK.md. Nieuwe branch cloud/cloud-005-coherent-refresh op exacte#16-head6523edc. MacAccess onaangeroerd; geen livepublicatie/kosten/mainmerge.

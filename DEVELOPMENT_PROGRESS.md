@@ -107,3 +107,7 @@ CLOUD-005/002/004: actieve bestuurder of onbekend corrigeren via bestaande revis
 ## 19 oktober2026 — coherence en actuele open taken
 
 GitHub opnieuw gecontroleerd:16draftPRs open, actuele#16-head6523edc, geen nieuwe Maccode op deze keten. Openwerkkaart OPEN_WORK.md gemaakt zonder oude audit te herhalen. Snapshotroute bundelt vijf voertuiglezingen transactioneel met herhaalde membershipcheck, gedeelde settingsdecoder, expirecheck en expliciete grenzen. UIrefresh gebruikt één snapshot,401/403 leegt details.127Node-tests/type/lint/build, echte lokale workerd/D1, centrale Chromium/synthetischeidentity,16paginaPDF en lokale geslotenAPI inclusiefsnapshot PASS. Geen migratie of cloudmutatie/deploy/kosten/mainmerge. Bewijs COHERENT_REFRESH.md. Volgende lokale groep: instellingenhistorie of pendingqueue/cursors; persoonlijke/hardwarestappen blijven open.
+
+## Vervolggroep instellingenhistorie — 19 oktober2026
+
+CLOUD-005/002/004: centrale historie van kenteken, adressen en tarieven met reden, account-ID en voor/na gebouwd. Bestaande scoped backend hergebruikt; laatste50expliciet begrensd, oudere historie blijft bewaard. Herlezen na revocation wist de oude lijst.128Node-tests/type/lint/build PASS; echteHTTP/SQLite en centrale Chromium met drie settingsredenen en geweigerde verversing PASS, PDF16pagina's/geslotenAPI PASS. Geen livepublicatie, cloudmutatie of kosten. Vervolgcommit op draft#17, basisgroep127tests blijft afzonderlijk bewezen. Volgende: herstelbare pendingqueue/cursors, detectie/backups/MCP en overige OPEN_WORK.

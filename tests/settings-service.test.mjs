@@ -56,3 +56,12 @@ test('settings batch remains below Free invocation query budget; over-limit inpu
 test('assigned legacy rate timestamps are not silently truncated to calendar dates',async t=>{
  const {db,sqlite}=setup(t);sqlite.exec("INSERT INTO mileage_rates(id,vehicle_id,amount_per_km,amount_micros,valid_from,created_by) VALUES ('nonmidnight','v',0.25,250000,1767225601,'u')");await assert.rejects(()=>service(db).get('v'),status(409));await assert.rejects(()=>service(db).save('v',patch),status(409));assert.equal(sqlite.prepare("SELECT valid_from FROM mileage_rates WHERE id='nonmidnight'").get().valid_from,1767225601);assert.equal(sqlite.prepare("SELECT settings_revision FROM vehicles WHERE id='v'").get().settings_revision,0);
 });
+
+test('settings audit is readable through scoped HTTP client after changes and denied after revocation',async t=>{
+ const {createTripHttpHandler}=await import('../lib/trip-http.ts');const {createBackendClient}=await import('../app/backend-client.ts');
+ const {db,sqlite}=setup(t);const origin='https://history.example.invalid';const principal={userId:'u',disabled:false,sessionExpiresAt:2_000_000};const handler=createTripHttpHandler({db,origin,resolveSession:async()=>principal,clock:()=>1_000_000});
+ const client=createBackendClient(async(path,init={})=>handler(new Request(origin+path,init)));
+ const service=createSettingsService(db,async()=>principal,()=>1_000_000);const initial=await service.get('v');await service.save('v',{...initial,plate:'TT-01-XX',reason:'Synthetic audit'});
+ const entries=await client.settingsHistory('v');assert.equal(entries.length,1);assert.equal(JSON.parse(entries[0].new_value_json).plate,'TT-01-XX');assert.equal(JSON.parse(entries[0].new_value_json).correction_reason,'Synthetic audit');assert.equal(entries[0].actor_id,'u');
+ await assert.rejects(()=>client.settingsHistory('other-v'),e=>e.status===403);sqlite.exec("UPDATE vehicle_memberships SET active=0 WHERE user_id='u'");await assert.rejects(()=>client.settingsHistory('v'),e=>e.status===403);
+});

@@ -25,6 +25,7 @@ export function createBackendClient(fetcher:typeof fetch=fetch){
   async saveSettings(id:string,input:SettingsEdit){return (await request<{settings:VehicleSettings}>(base(id)+'/settings','PATCH',input)).settings;},
   async createTrip(id:string,input:TripCreate){return (await request<{trip:BackendTrip}>(base(id)+'/trips','POST',input)).trip;},
   async editTrip(id:string,tripId:string,input:TripEdit){return (await request<{trip:BackendTrip}>(base(id)+'/trips/'+encodeURIComponent(tripId),'PATCH',input)).trip;},
+  async settingsHistory(id:string){return (await request<{history:TripHistoryEntry[]}>(base(id)+'/settings/history')).history;},
   async history(id:string,tripId:string){return (await request<{history:TripHistoryEntry[]}>(base(id)+'/trips/'+encodeURIComponent(tripId)+'/history?limit=100')).history;},
   async reports(id:string){const all:SavedReport[]=[];for(let offset=0;offset<=100000;offset+=100){const page=(await request<{reports:SavedReport[]}>(base(id)+'/reports?limit=100&offset='+offset)).reports;all.push(...page);if(page.length<100)return all;}throw new BackendError(413,'Te veel rapporten om te laden.');},
   async report(id:string,reportId:string){return (await request<{report:ServerReport}>(base(id)+'/reports/'+encodeURIComponent(reportId))).report;},

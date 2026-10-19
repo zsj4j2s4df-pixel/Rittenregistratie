@@ -147,3 +147,7 @@ CLOUD-005/002/004 TER CONTROLE: bestuurder van bestaande rit corrigeren met verp
 ## 19 oktober2026 — samenhangende refresh
 
 CLOUD-005/002/004: snapshotroute en transactionele UI-refresh gebouwd,127tests/type/lint/build/lokaleD1/centrale browser/geslotenAPI/PDF PASS. Geen gedeeltelijke lijst bij overschrijding. COHERENT_REFRESH.md. Cursors/auto-sync/pendingqueue en overige OPEN_WORK-taken blijven open. Geen livepublicatie.
+
+## Vervolggroep instellingenhistorie — 19 oktober2026
+
+CLOUD-005/002/004: centrale historie van kenteken, adressen en tarieven met reden, account-ID en voor/na gebouwd. Bestaande scoped backend hergebruikt; laatste50expliciet begrensd, oudere historie blijft bewaard. Herlezen na revocation wist de oude lijst.128Node-tests/type/lint/build PASS; echteHTTP/SQLite en centrale Chromium met drie settingsredenen en geweigerde verversing PASS, PDF16pagina's/geslotenAPI PASS. Geen livepublicatie, cloudmutatie of kosten. Vervolgcommit op draft#17, basisgroep127tests blijft afzonderlijk bewezen. Volgende: herstelbare pendingqueue/cursors, detectie/backups/MCP en overige OPEN_WORK.
