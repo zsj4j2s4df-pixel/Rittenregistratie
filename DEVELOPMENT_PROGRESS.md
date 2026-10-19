@@ -1,5 +1,9 @@
 # Actuele voortgang — 18 oktober 2026
 
+## Nieuwste liveconfiguratie — 19 oktober 2026
+
+Eigenaarstoestemming uitgevoerd: Accessbindings teruggelezen, uitsluitend eigenaar/voertuigrecht met twee audits ingericht,0ritten. Anoniem gesloten302 PASS. **Ingelogde backend FAIL**; niet als werkende centrale login markeren. [Bewijs/volgende taak](docs/TRANSFER/OWNER_ACCESS_RESULT_2026-10-19.md). Geen codepublicatie, migraties of main-merge. PR31 is parallel Cloudvervolg; deze branch bewaart PR30-basis.
+
 ## Actueel na wederzijdse overdracht — 19 oktober 2026
 
 Eigen Mac-PR30 wordt afhankelijk van CloudPR29; alle oudere PR-bases behouden. Type/lint/webbuild op geïntegreerde versie PASS, Swift6-Coretypecheck en syntactische parse PASS; iOS/XCTest niet uitvoerbaar. De GitHub-mergecommit bewaart beide remote voorouders; main blijft onaangeroerd.

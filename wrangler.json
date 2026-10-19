@@ -9,7 +9,9 @@
   "workers_dev": true,
   "preview_urls": false,
   "vars": {
-    "APP_ORIGIN": "https://rittenregistratie.zsj4j2s4df.workers.dev"
+    "APP_ORIGIN": "https://rittenregistratie.zsj4j2s4df.workers.dev",
+    "ACCESS_ISSUER": "https://snowy-snowflake-4760.cloudflareaccess.com",
+    "ACCESS_AUDIENCE": "552d760968b163dd31a00c1b880c749970c7e4ab0ee4963073f1af06e6ac7f02"
   },
   "d1_databases": [
     {
