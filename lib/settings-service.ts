@@ -7,17 +7,13 @@ export type StoredAddress = { id: string; label: string; address: string; enable
 export type VehicleSettings = { revision: number; plate: string; addresses: StoredAddress[]; rates: MileageRate[] };
 export type SettingsEdit = VehicleSettings & { reason: string };
 
-export function createSettingsService(db: Pick<D1Database,'prepare'|'batch'>, resolveSession: SessionResolver = async()=>null, clock = ()=>Date.now()) {
- const authorize = vehicleAuthorizer(db,resolveSession,clock);
- const dateSeconds = (date: string) => Date.parse(date+'T00:00:00Z') / 1000;
- const dateString = (value: number) => new Date(value*1000).toISOString().slice(0,10);
- async function read(principal: Principal, vehicleId: string) {
-  // Single statement => a coherent snapshot, not plate/rates from different revisions.
-  const row=await db.prepare(`SELECT settings_revision AS revision,registration_plate AS plate,
+export type SettingsRow={revision:number;plate:string|null;addresses:string;rates:string};
+export const settingsReadSql=`SELECT settings_revision AS revision,registration_plate AS plate,
    (SELECT json_group_array(json_object('id',id,'label',label,'address',address,'enabled',enabled,'note',COALESCE(notes,''))) FROM (SELECT * FROM business_addresses WHERE vehicle_id=vehicles.id ORDER BY id)) AS addresses,
    (SELECT json_group_array(json_object('id',id,'micros',amount_micros,'start',valid_from,'end',valid_until)) FROM (SELECT * FROM mileage_rates WHERE vehicle_id=vehicles.id ORDER BY valid_from,id)) AS rates
-   FROM vehicles WHERE id=? AND ${membership}`).bind(vehicleId,principal.userId,vehicleId).first<{revision:number;plate:string|null;addresses:string;rates:string}>();
-  if(!row) throw new TripServiceError(403,'Geen toegang tot dit voertuig.');
+   FROM vehicles WHERE id=? AND ${membership}`;
+export function decodeSettingsRow(vehicleId:string,row:SettingsRow){
+ const dateString=(value:number)=>new Date(value*1000).toISOString().slice(0,10);
   const prefix=`${vehicleId.length}:${vehicleId}:`;
   const externalId=(id:string)=>id.startsWith(prefix)?id.slice(prefix.length):id;
   const rates=JSON.parse(row.rates) as {id:string;micros:number|null;start:number;end:number|null}[];
@@ -28,6 +24,17 @@ export function createSettingsService(db: Pick<D1Database,'prepare'|'batch'>, re
   if(addressIds.size!==addresses.length||rateIds.size!==rates.length)throw new TripServiceError(409,'Bestaande instellingen hebben conflicterende IDs; gecontroleerd herstel nodig.');
   const settings: VehicleSettings={revision:row.revision,plate:row.plate??'',addresses:addresses.map(a=>({...a,id:externalId(a.id),enabled:a.enabled===1})),rates:rates.map(r=>({id:externalId(r.id),microsPerKm:r.micros!,validFrom:dateString(r.start),...(r.end===null?{}:{validUntil:dateString(r.end)})}))};
   return {settings,addressIds,rateIds};
+}
+
+export function createSettingsService(db: Pick<D1Database,'prepare'|'batch'>, resolveSession: SessionResolver = async()=>null, clock = ()=>Date.now()) {
+ const authorize = vehicleAuthorizer(db,resolveSession,clock);
+ const dateSeconds = (date: string) => Date.parse(date+'T00:00:00Z') / 1000;
+
+ async function read(principal: Principal, vehicleId: string) {
+  // Single statement => a coherent snapshot, not plate/rates from different revisions.
+  const row=await db.prepare(settingsReadSql).bind(vehicleId,principal.userId,vehicleId).first<SettingsRow>();
+  if(!row)throw new TripServiceError(403,'Geen toegang tot dit voertuig.');
+  return decodeSettingsRow(vehicleId,row);
  }
  function normalize(input: SettingsEdit): VehicleSettings {
   if(!input || !Number.isSafeInteger(input.revision) || input.revision<0 || input.revision>=Number.MAX_SAFE_INTEGER || typeof input.reason!=='string' || !input.reason.trim() || input.reason.length>500 || typeof input.plate!=='string' || !Array.isArray(input.addresses) || input.addresses.length>100 || !Array.isArray(input.rates) || input.rates.length>100 || input.addresses.length+input.rates.length>40) throw new TripServiceError(400,'Ongeldige instellingen.');

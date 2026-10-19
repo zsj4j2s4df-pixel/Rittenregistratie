@@ -14,7 +14,7 @@ export function setup(t, resolver = async () => ({userId:'u',disabled:false,sess
   bind(...params){return new Statement(this.sql,params);}
   async first(){return sqlite.prepare(this.sql).get(...this.params)??null;}
   async all(){return {results:sqlite.prepare(this.sql).all(...this.params)};}
-  runSync(){const r=sqlite.prepare(this.sql).run(...this.params);return {meta:{changes:Number(r.changes)}};}
+  runSync(){const statement=sqlite.prepare(this.sql);if(statement.columns().length)return {success:true,results:statement.all(...this.params),meta:{changes:0}};const r=statement.run(...this.params);return {success:true,results:[],meta:{changes:Number(r.changes)}};}
  }
  const db={prepare:sql=>new Statement(sql),batch:async stmts=>{sqlite.exec('BEGIN IMMEDIATE');try{const r=stmts.map(s=>s.runSync());sqlite.exec('COMMIT');return r;}catch(e){sqlite.exec('ROLLBACK');throw e;}}};
  return {sqlite,db,service:createTripService(db,resolver,()=>1_000_000)};
