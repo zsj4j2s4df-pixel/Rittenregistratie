@@ -1,5 +1,9 @@
 # Hervatpunt — 18 oktober 2026
 
+## Automatisch coherent verversen gebouwd
+
+Vervolg op PR38/5a01af07e5b3d71c4d84b8fa4301fc1bd5052953: opt-in zichtbare/online snapshotpolling elke minuut, geen automatische writes. Dirtyform- en inflightraces beschermen onopgeslagen invoer; verkeerde viewer/401/403 wist centrale data en schakelt polling uit.225Node/type/lint/build en Chromiumauto-refresh+centraleCRUD/perioderapport/langePDF PASS. [Bewijs/beperkingen](docs/TRANSFER/AUTO_COHERENT_REFRESH.md). PR37alle13 en PR38alle12changedfiles bytegelijk remote teruggelezen. Geen livepublicatie/migraties. Volgende veilige kernsoftwaregroep: expliciete review→ééncentraletrip met duurzame koppeling/idempotentie; eventuele nieuwe schemabron uitsluitend draft/lokaal, nooit automatisch live toepassen. Echte iPhone-opslagfout en native/hardware blijven onbevestigd.
+
 ## REQ-043 — periode-/bestuurderoverzichten gebouwd
 
 Boven PR37/b459792: vaste rapporten groeperen op maand/kwartaal/jaar per bestuurder-ID; onbekenden, deelselecties en onbekende bedragen blijven zichtbaar. Geen actuele tarieven/namen herlezen of perritbedragen opnieuw afronden.225Node/type/lint/build en Chromiumperiodeselectie/vastePDF/centraleCRUD PASS. [Bewijs](docs/TRANSFER/REPORT_PERIOD_GROUPS.md). Geen migratie/livepublicatie. Volgende veilige groep: opt-in automatische coherente refresh met bescherming van onopgeslagen invoer. Hardware/native/echteiPhone-opslag en verdere externe publicatie blijven apart.
