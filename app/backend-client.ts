@@ -1,3 +1,4 @@
+import type {RoutePage,RoutePoint} from '../lib/route-service.ts';
 import type {VehicleSnapshot} from '../lib/sync-service.ts';
 import type { TripCreate, TripEdit } from '../lib/trip-service.ts';
 import type { VehicleSettings, SettingsEdit } from '../lib/settings-service.ts';
@@ -25,6 +26,7 @@ export function createBackendClient(fetcher:typeof fetch=fetch){
   async saveSettings(id:string,input:SettingsEdit){return (await request<{settings:VehicleSettings}>(base(id)+'/settings','PATCH',input)).settings;},
   async createTrip(id:string,input:TripCreate,expectedViewerId?:string){return (await request<{trip:BackendTrip}>(base(id)+'/trips','POST',input,expectedViewerId)).trip;},
   async editTrip(id:string,tripId:string,input:TripEdit){return (await request<{trip:BackendTrip}>(base(id)+'/trips/'+encodeURIComponent(tripId),'PATCH',input)).trip;},
+  async route(id:string,tripId:string){const points:RoutePoint[]=[];let after=0,through:number|undefined;for(let page=0;page<21;page++){const route=(await request<{route:RoutePage}>(base(id)+'/trips/'+encodeURIComponent(tripId)+'/route?limit=500&after='+after+(through===undefined?'':'&through='+through))).route;if(through!==undefined&&route.through!==through)throw new BackendError(409,'Routegrens is gewijzigd; laad opnieuw.');through=route.through;points.push(...route.points);if(points.length>10000)throw new BackendError(413,'Meer dan10000routepunten; deze weergave kapt de route niet stil af.');if(route.nextAfter===null)return {points:points.sort((a,b)=>a.recorded_at-b.recorded_at||a.id-b.id),through};if(route.nextAfter<=after)throw new BackendError(502,'Ongeldige routepaginering.');after=route.nextAfter;}throw new BackendError(413,'Route is te groot voor deze weergave.');},
   async settingsHistory(id:string,before?:number){return (await request<{history:TripHistoryEntry[]}>(base(id)+'/settings/history?limit=50'+(before===undefined?'':'&before='+encodeURIComponent(before)))).history;},
   async history(id:string,tripId:string,before?:number){return (await request<{history:TripHistoryEntry[]}>(base(id)+'/trips/'+encodeURIComponent(tripId)+'/history?limit=100'+(before===undefined?'':'&before='+encodeURIComponent(before)))).history;},
   async reports(id:string){const all:SavedReport[]=[];for(let offset=0;offset<=100000;offset+=100){const page=(await request<{reports:SavedReport[]}>(base(id)+'/reports?limit=100&offset='+offset)).reports;all.push(...page);if(page.length<100)return all;}throw new BackendError(413,'Te veel rapporten om te laden.');},
