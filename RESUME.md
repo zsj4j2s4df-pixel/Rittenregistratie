@@ -1,5 +1,10 @@
 # Hervatpunt — 18 oktober 2026
 
+## Read-only MCP-runtime — 19 oktober 2026, niet live
+
+CLOUD-005/002/004: zes begrensde read-only MCP-tools achter geverifieerde Access-sessies voorbereid, inclusief historiecursor. /api/mcp blijft503 zonder volledige configuratie; spoofidentiteit401, strikte Origin/JSON/protocol/bodygrenzen. Negen MCP-kern/runtimecases PASS; gecombineerde168 Node-tests bevatten elf afzonderlijke devicekernelcases. Type/lint/build, echte lokaleD1 en builtNode geslotenAPI/MCP PASS. Geen OAuth/clientactivatie, livepublicatie of externe gegevensdeling; zie READ_ONLY_MCP.md. Draftbranch cloud/cloud-005-read-only-mcp op #21-head26317fa. Volgende: geregistreerde appinstanties/HTTP/UI, daarna detectie-inname; echte native/Access/provideracceptatie blijft open.
+
+
 ## Opgeslagen routepunten — 19 oktober2026, niet live
 
 CLOUD-005/002/004: scoped read-only routepunten met eerste-batchhighwater en volgende keysetpagina's, strikteHTTP/clientlimieten en opgeslagen-spoorviewer zonder kaartprovider. Geen verzonnen lege route; onderscheid GPS/interpolatie en gaten/precisiewaarschuwingen.10routecases, lokale echteD1batch, type/lint/build en Chromium1203punten/leeg/revocation PASS. Gecombineerde153tests omvat5aparteMCPkerncases; MCPnog niet in deze routegroep. Bewijs ROUTE_READ.md. Nieuwe branch cloud/cloud-005-route-read op #20-head11649e2. Geen GPS-inname/nativevalidatie of livepublicatie/kosten. Volgende: lokale read-onlyMCP-runtime, detectie/devicecontracten, veilige sync/overige openwerkkaart.

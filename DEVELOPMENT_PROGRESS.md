@@ -1,5 +1,10 @@
 # Actuele voortgang — 18 oktober 2026
 
+## Read-only MCP-runtime — 19 oktober 2026, niet live
+
+CLOUD-005/002/004: zes begrensde read-only MCP-tools achter geverifieerde Access-sessies voorbereid, inclusief historiecursor. /api/mcp blijft503 zonder volledige configuratie; spoofidentiteit401, strikte Origin/JSON/protocol/bodygrenzen. Negen MCP-kern/runtimecases PASS; gecombineerde168 Node-tests bevatten elf afzonderlijke devicekernelcases. Type/lint/build, echte lokaleD1 en builtNode geslotenAPI/MCP PASS. Geen OAuth/clientactivatie, livepublicatie of externe gegevensdeling; zie READ_ONLY_MCP.md. Draftbranch cloud/cloud-005-read-only-mcp op #21-head26317fa. Volgende: geregistreerde appinstanties/HTTP/UI, daarna detectie-inname; echte native/Access/provideracceptatie blijft open.
+
+
 ## Nieuwste centrale webgroep — draft-PR #13
 
 /beheer communiceert met echte gedeelde backend, geen demodatafallback. Vehiclelist/privacy, manualtrip/0stand, plate/revision, vaste report/CSV.111tests/type/lint/build PASS. Centrale browsertest met gesimuleerde identiteit en echteHTTP/SQLite: lostresponse→reconnect→retry zonderduplicaat, reload, concurrent409, CSV, mobile/theme PASS. Reconnectreviewbevinding en 2browserbugs gefixt, hercontrolePASS. Geen liveCloudflarelogin/remoteDB, fullCRUD/sync/native niet af. Zie CENTRAL_WEB.md.

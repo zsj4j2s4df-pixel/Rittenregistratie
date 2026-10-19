@@ -7,3 +7,5 @@ for(const path of ['trips/synthetic/route','snapshot','trips','drivers','setting
 const write=await fetch(origin+'/api/vehicles/synthetic/trips',{method:'POST',headers:{origin,'content-type':'application/json','x-csrf-protection':'1','oai-authenticated-user-id':'spoofed'},body:'{}'});assert.equal(write.status,503);
 const page=await fetch(origin);assert.equal(page.status,200);assert.match(await page.text(),/RitKompas/);
 console.log('PASS selected app: 503/no-store/no private configuration on API reads/writes; demo page 200. No live login/storage claim.');
+
+const mcp=await fetch(origin+'/api/mcp',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({jsonrpc:'2.0',id:1,method:'initialize'})});assert.equal(mcp.status,503);assert.equal(mcp.headers.get('cache-control'),'no-store');assert.doesNotMatch(await mcp.text(),/audience|cloudflareaccess|synthetic/);console.log('PASS unconfigured MCP endpoint closed503.');

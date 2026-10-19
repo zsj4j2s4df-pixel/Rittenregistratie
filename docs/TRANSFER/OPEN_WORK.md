@@ -13,12 +13,12 @@ Gerichte actualisatie op basis van actuele CLOUD_TASKS/RESUME/masterprompt en op
 | Kaarten/GPS/routes | Scoped routepunten-read met highwaterpaginatie en schematische opgeslagen-puntenviewer gebouwd; lege route wordt niet verzonnen, gaten/bronlabels aanwezig. Opname/device-inname, echte kaartprovider/routes, retentie en hardware nog open. Geen betaalde API geactiveerd |
 | PDF/rapporten | Vaste rapportweergave/browserPDF gebouwd en lange Chromium-export getest; afzonderlijke serverPDF, Safari/iPhone en toegankelijkheids-/fiscale acceptatie open |
 | Backup en herstel | Lokale encrypted SQLite backup/restore met versie/AES-GCM, integriteitscontrole en herstel naar nieuw pad gebouwd;5tests inclusief echt RitKompas-schema/audit/triggers PASS. RemoteD1/export, planning/offsite/keybeheer/crashproef en productieherstel blijven open. SQLITE_BACKUP.md |
-| Read-only MCP | Open: bestaande bewezen rechten als enige autorisatie, begrensde leestoegang en metadata; echte MCP-auth/integratie testen. Geen schrijf-MCP eerst |
+| Read-only MCP | Zes begrensde read-onlytools en gesloten runtimeadapter gebouwd; scoped synthetische tests PASS. Externe OAuth/consent/clientcompatibiliteit/ratequota nog open; geen externe koppeling geactiveerd. READ_ONLY_MCP.md |
 | Native iPhone | Open: nativecode, simulator/appsigning en permission/achtergrondflow; fysieke iPhone/Bluetooth/CarPlay/Jeep/OBD2 via Mac. Cloud kan contracten/testfixtures/nativebroncode voorbereiden |
 | Instellingenhistorie | Keysetpaginatie oudere rit- en instellingenhistorie gebouwd, HTTP/SQL en browser met125regels/type/getussentijdse nieuwe audit/refresh/revocation PASS. Geen onbeperkte éénmalige dump; perpagina100/50 |
 | Security/privacy en operationeel | Gerichte regressies aanwezig; volledige onafhankelijke audit, concrete bewaartermijnen/verwijdering, logging/quotabelasting, sessierevocatie en productieherstel nog open |
 | Eigenaarscontrole | Main-regels eerder bevestigd; aparte GitHub-identiteit/onafhankelijke review nog open. Geen agentmerge |
 
-Er zijn16open draft-PR's bij deze controle. Dat zijn review-/acceptatiepunten, geen zestien ongebouwde functies. Bestaande keten behouden; geen PR/main automatisch samenvoegen of als voltooid sluiten. Nieuwste ontwikkeling wordt als volgende draft op de bestaande keten opgeslagen.
+De draft-PR-keten wordt per ontwikkelgroep uitgebreid. Dat zijn review-/acceptatiepunten, geen zestien ongebouwde functies. Bestaande keten behouden; geen PR/main automatisch samenvoegen of als voltooid sluiten. Nieuwste ontwikkeling wordt als volgende draft op de bestaande keten opgeslagen.
 
 Geen nieuwe livepublicatie/kosten. Persoonlijke beslissingen, toestemming voor publicatie, echte provideridentiteiten en hardware blijven bij eigenaar/Mac. Deze afhankelijkheden blokkeren niet alle lokale ontwikkeltaken.
