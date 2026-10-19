@@ -13,7 +13,7 @@ page.on('pageerror', e => errors.push(e.message));
 page.on('dialog', dialog => dialog.accept());
 const go = async name => page.getByRole('navigation').getByRole('button', { name: new RegExp(name) }).click();
 try {
-  await page.goto(process.env.APP_URL ?? 'http://127.0.0.1:4173', { waitUntil: 'networkidle' });
+  await page.goto((process.env.APP_URL ?? 'http://127.0.0.1:4173')+'/demo', { waitUntil: 'networkidle' });
   await go('Instellingen');
   await page.getByLabel('Kenteken (demo)', { exact: true }).fill('TEST-42');
   await page.getByRole('button', { name: 'Kenteken toepassen', exact: true }).click();

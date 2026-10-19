@@ -12,7 +12,7 @@ const browser=await chromium.launch({executablePath:process.env.BROWSER_EXECUTAB
 const cleanup=[];
 try{
  const context=await browser.newContext({timezoneId:'Europe/Amsterdam',viewport:{width:1440,height:1100},acceptDownloads:true});const page=await context.newPage();
- await page.goto(origin+'/beheer');await page.getByRole('alert').filter({hasText:'De beveiligde backend is nog niet beschikbaar.'}).waitFor();assert.equal(await page.getByRole('button',{name:'Rit opslaan',exact:true}).count(),0);assert.equal(await page.getByText('Utrecht → Amersfoort',{exact:true}).count(),0);
+ await page.goto(origin);await page.getByRole('alert').filter({hasText:'De beveiligde backend is nog niet beschikbaar.'}).waitFor();assert.equal(await page.getByRole('button',{name:'Rit opslaan',exact:true}).count(),0);assert.equal(await page.getByText('Utrecht → Amersfoort',{exact:true}).count(),0);
  const {db,sqlite}=setup({after:fn=>cleanup.push(fn)});const principal={userId:'u',disabled:false,sessionExpiresAt:Date.now()+3600000};const handle=createTripHttpHandler({db,origin,resolveSession:async()=>principal});let loseCreateResponse=true;
  await page.route('**/api/vehicles**',async route=>{
   const req=route.request();const response=await handle(new Request(req.url(),{method:req.method(),headers:await req.allHeaders(),body:req.postData()??undefined}));
@@ -20,6 +20,11 @@ try{
   await route.fulfill({status:response.status,headers:Object.fromEntries(response.headers),body:Buffer.from(await response.arrayBuffer())});
  });
  await page.reload();await page.getByRole('heading',{name:'Opgeslagen ritten',exact:true}).waitFor();
+ const plateForm=page.locator('form').filter({has:page.getByRole('button',{name:'Kenteken opslaan',exact:true})});
+ const auditsBefore=sqlite.prepare('SELECT count(*) AS n FROM audit_logs').get().n;
+ await plateForm.getByRole('button',{name:'Kenteken opslaan',exact:true}).click();await plateForm.getByRole('alert').filter({hasText:'Vul Wijzigingsreden in.'}).waitFor();assert.equal(sqlite.prepare('SELECT count(*) AS n FROM audit_logs').get().n,auditsBefore);
+ const tripForm=page.locator('form').filter({has:page.getByRole('button',{name:'Rit opslaan',exact:true})});
+ await tripForm.getByRole('button',{name:'Rit opslaan',exact:true}).click();await tripForm.getByRole('alert').filter({hasText:'Vul Vertrek in.'}).waitFor();assert.equal(sqlite.prepare("SELECT count(*) AS n FROM trips WHERE vehicle_id='v'").get().n,1);
  await page.getByLabel('Vertrek',{exact:true}).fill('2026-10-18T09:00');await page.getByLabel('Aankomst',{exact:true}).fill('2026-10-18T09:30');await page.getByLabel('Vertrekadres',{exact:true}).fill('Synthetic Browser A');await page.getByLabel('Aankomstadres',{exact:true}).fill('Synthetic Browser B');await page.getByLabel('Afstand (km)',{exact:true}).fill('25');await page.getByLabel('Beginstand (optioneel)',{exact:true}).fill('0');await page.getByLabel('Eindstand (optioneel)',{exact:true}).fill('25');await page.getByLabel('Reden handmatige invoer',{exact:true}).fill('Browser smoke');
  await page.getByLabel('Bestuurder handmatige rit',{exact:true}).selectOption('u');
  await page.getByRole('button',{name:'Rit opslaan',exact:true}).click();await page.getByRole('alert').filter({hasText:'Geen verbinding.'}).waitFor();assert.equal(await page.getByLabel('Vertrekadres',{exact:true}).inputValue(),'Synthetic Browser A');assert.equal(sqlite.prepare("SELECT count(*) AS n FROM trips WHERE vehicle_id='v'").get().n,2);
@@ -49,6 +54,6 @@ try{
  sqlite.exec("UPDATE vehicle_memberships SET active=0 WHERE user_id='u'");await snapshot.getByRole('button',{name:'Afdrukken / bewaren als PDF',exact:true}).click();await page.getByRole('alert').filter({hasText:'Geen toegang tot dit voertuig.'}).waitFor();assert.equal(await snapshot.count(),0);assert.equal(await page.evaluate(()=>window.__printCount),1);
  await correction.getByRole('button',{name:'Historie vernieuwen',exact:true}).click();await correction.getByRole('alert').filter({hasText:'Geen toegang tot dit voertuig.'}).waitFor();assert.equal(await correction.locator('ol li').count(),0);
  await settingsHistory.getByRole('button',{name:'Instellingenhistorie vernieuwen',exact:true}).click();await settingsHistory.getByRole('alert').filter({hasText:'Geen toegang tot dit voertuig.'}).waitFor();assert.equal(await settingsHistory.locator('ol li').count(),0);
- console.log('PASS central browser: unconfigured/no-demo, real HTTP+SQLite synthetic identity, lost-response retry without duplicate, reload persistence, plate/revisionconflict, address/rate creation/settings history, trip correction/history, driver choice/filter/correction, immutable report/CSV/view/long PDF, print authorization/revocation, mobile/theme. NOT live provider or remote sync.');
+ console.log('PASS central root + inline required validation (no invalid writes) + central browser: unconfigured/no-demo, real HTTP+SQLite synthetic identity, lost-response retry without duplicate, reload persistence, plate/revisionconflict, address/rate creation/settings history, trip correction/history, driver choice/filter/correction, immutable report/CSV/view/long PDF, print authorization/revocation, mobile/theme. NOT live provider or remote sync.');
  await context.close();
 }finally{await browser.close();for(const fn of cleanup)fn();}

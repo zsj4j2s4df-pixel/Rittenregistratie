@@ -22,8 +22,17 @@ try{
  await db.prepare("INSERT INTO vehicles(id,display_name,created_at) VALUES ('v','Synthetic',1)").run();await db.prepare("INSERT INTO vehicle_memberships(user_id,vehicle_id) VALUES ('u','v')").run();
  async function status(headers,expected){const r=await mf.dispatchFetch(origin+'/api/vehicles',{headers});assert.equal(r.status,expected);assert.equal(r.headers.get('cache-control'),'no-store');if(r.status===200)assert.equal((await r.json()).vehicles[0].id,'v');}
  await status({},401);await status({'cf-access-jwt-assertion':jwt},200);await status({cookie:'CF_Authorization='+jwt},200);await status({cookie:'CF_Authorization='+jwt,'cf-access-jwt-assertion':'forged.token.value'},401);
+ const writeHeaders={cookie:'CF_Authorization='+jwt,origin,'content-type':'application/json','x-csrf-protection':'1','x-ritkompas-viewer':'u'};
+ const tripInput={requestId:'built-worker-trip-create-0001',startedAt:100,endedAt:200,distanceKm:20,startAddress:'Synthetic A',endAddress:'Synthetic B',classification:'private',driverId:null,odometerStart:0,odometerEnd:20,purpose:null,reason:'Synthetic built-worker save regression'};
+ const save=()=>mf.dispatchFetch(origin+'/api/vehicles/v/trips',{method:'POST',headers:writeHeaders,body:JSON.stringify(tripInput)});
+ const saved=await save();assert.equal(saved.status,201,'built trip save: '+await saved.clone().text());const savedTrip=(await saved.json()).trip;
+ const retry=await save();assert.equal(retry.status,201);assert.equal((await retry.json()).trip.id,savedTrip.id);assert.equal((await db.prepare('SELECT count(*) AS n FROM trips').first()).n,1);
+ const listing=await mf.dispatchFetch(origin+'/api/vehicles/v/trips',{headers:{cookie:'CF_Authorization='+jwt}});assert.equal((await listing.json()).trips[0].id,savedTrip.id);
+ const settingsGet=await mf.dispatchFetch(origin+'/api/vehicles/v/settings',{headers:{cookie:'CF_Authorization='+jwt}});const settings=(await settingsGet.json()).settings;
+ const settingsSave=await mf.dispatchFetch(origin+'/api/vehicles/v/settings',{method:'PATCH',headers:writeHeaders,body:JSON.stringify({...settings,plate:'TEST-01',reason:'Synthetic built-worker settings save'})});assert.equal(settingsSave.status,200,'built settings save: '+await settingsSave.clone().text());
  await db.prepare("UPDATE users SET disabled=1 WHERE id='u'").run();await status({cookie:'CF_Authorization='+jwt},401);
  await db.prepare("UPDATE users SET disabled=0 WHERE id='u'").run();await db.prepare('UPDATE vehicle_memberships SET active=0').run();const revoked=await mf.dispatchFetch(origin+'/api/vehicles/v/trips',{headers:{cookie:'CF_Authorization='+jwt}});assert.equal(revoked.status,403);
+ const rootResponse=await mf.dispatchFetch(origin+'/');assert.equal(rootResponse.status,200);const rootHtml=await rootResponse.text();assert.doesNotMatch(rootHtml,/Lokale demonstratie|Utrecht → Amersfoort/);assert.match(rootHtml,/Centrale registratie/);
  const page=await mf.dispatchFetch(origin+'/beheer');assert.equal(page.status,200);
- console.log('PASS built embedded wrapper + actual framework routing + local workerd/D1: signed header/cookie, forged header denial, disabled user, revoked membership, beheer shell. Synthetic JWKS only; NOT live Access/browser login.');
+ console.log('PASS built embedded wrapper + actual framework routing + local workerd/D1: root serves central registration, signed header/cookie, save/read/exact retry, settings save, forged header denial, disabled user, revoked membership, beheer shell. Synthetic JWKS only; NOT live Access/browser login.');
 }finally{await mf.dispose();}
