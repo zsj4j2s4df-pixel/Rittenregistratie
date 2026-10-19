@@ -1,5 +1,7 @@
 # Swift/iOS — broncodevoorbereiding voor de bestaande backend
 
+> **Mac-validatie 19 oktober 2026:** de bestaande Corebestanden slagen voor typecheck en Swift6packagebuild. `ios/Package.swift` maakt bestaande libraries/ContractTests reproduceerbaar zonder tweede app of dependencies. XCTest ontbreekt op deze Mac, iOS-UI en hardware niet getest. Zie [MAC_NATIVE_VALIDATION](MAC_NATIVE_VALIDATION.md). Oudere NIETGETEST-zinnen hieronder beschrijven de Cloudomgeving.
+
 19 oktober 2026. In de gedeelde repository zijn vóór deze taak geen `.swift`-bestanden, `ios/`-app of Xcode-project gevonden. Wel gelezen: de bestaande iPhone-/locatie-/CarPlay-eisen, `docs/MAC_SNAPSHOT_2026-10-18/docs/IOS_ONDERZOEK.md`, de Access/iPhone-overdracht en de actuele device-/detectieservicecontracten. Dit is een kleine integreerbare bronmodule, geen tweede app, geïnstalleerde build of afgeronde native client.
 
 ## Toegevoegde broncode

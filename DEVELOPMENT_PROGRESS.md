@@ -1,5 +1,16 @@
 # Actuele voortgang — 18 oktober 2026
 
+## Nieuwste Mac-resultaat — 19 oktober 2026
+
+- Gecontroleerde ontwikkelbasis PR #26 ec44dc8, parallelle PR #27 volledig gelezen en memo exact overgenomen; nieuwe acceptatiekaart met M27-01..18 en Mac-testopdrachten. Bestaande123REQ/21T en hele PR-keten behouden.
+- Cloudflare-dashboard bevestigt Zero Trust Free. Na specifieke eigenaarstoestemming uitsluitend RitKompas-Worker Access All traffic/accountleden toegepast, API teruggelezen. Cookievrije `/`, `/beheer`, `/api/vehicles` geven302naarAccess; browserlogin met bestaande eigenaar werkt. Centrale backend blijft bewust gesloten wegens ontbrekende issuer/audiencebindings; geen nieuwe publicatie/provisioning.
+- GitHub-ruleset25339571active, PR/nonfastforward/deletion, geenbypass.0verplichteapprovals; connector nog eigenaaridentiteit. Persoonlijke goedkeuring niet technisch gescheiden; ACT-002 open alleen voor die reststap.
+- Bestaande Cloud agent één samenhangende PR27-opdracht gestuurd; registratie teruggelezen, nog geen agentantwoord of retourbevestiging. Transportbewijs is geen uitvoering. MAC_CLOUD_CHANNEL_TEST.md.
+- Swift6.1.2 op Mac: Coretypecheck en Swift6packagebuild PASS; XCTest ontbreekt zonder Xcode. iOS/Safari-iPhone/hardware NIET GETEST.187Node-tests PASS na canoniek macOS-tmppad in alleen backup-testfixture; product-symlinkweigering behouden. Geen software geïnstalleerd.
+- Actueel hardwareadvies opgeslagen. MX+Classic/MFi onderscheiden van MC+BLE; geen bewezen vaste3-telefoonprioriteit bij Carlinkit/Ottocast, geen bevestigde tellerondersteuning voor deze uitvoering. Geen aankoop.
+
+Bewijs: docs/TRANSFER/MAC_ZERO_TRUST_2026-10-19.md, PR27_EXECUTION_PLAN.md, MAC_NATIVE_VALIDATION.md en HARDWARE_ADVICE_2026-10-19.md. Veilig vervolg: Cloud-meldings-/ritbewijs-/deduplicatiegroep; live backendbinding/gebruikersrechten en echte iOS/hardwareacceptatie blijven afzonderlijke gates.
+
 ## Atomaire detectiequota — 19 oktober 2026, niet live
 
 CLOUD-005/002/004:120nieuweobservaties/60s,10000/UTCdag,100000totaalobservaties en200000receipts perappinstance centraal begrensd met atomische SQLgates; exacte retries blijvenwerken en geenorphanbijreceiptcap. Operationele defaults, geen retentie/deletiebeleid.187Node-tests/type/lint/build/lokaleD1 en vier Chromiumregressieflows PASS. Bewijs DETECTION_INGEST.md. Draftbranch cloud/cloud-005-detection-quotas op #25-head57a2f48. Main opnieuw d37d8c9ongewijzigd; ruleset25339571active/PR/deletion/nonfastforward/geenbypass,0approvals; connectorPRauteur nog eigenaar296047649. Volgende: devicequota tegen instancegroei, detectievoorstellen en veilige sync; nativecompile blijftMac. Geen productiepublicatie/kosten/mainmerge.

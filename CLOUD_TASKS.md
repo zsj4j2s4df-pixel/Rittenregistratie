@@ -1,5 +1,20 @@
 # Cloud-taken — RitKompas
 
+## Actuele overdracht — PR #27, 19 oktober 2026
+
+Cloud blijft coördinator. De volledige memo-opdracht en 18 gekoppelde acceptatiepunten staan in [PR27_EXECUTION_PLAN](docs/TRANSFER/PR27_EXECUTION_PLAN.md); hardwareadvies in [HARDWARE_ADVICE](docs/TRANSFER/HARDWARE_ADVICE_2026-10-19.md). Alle bestaande eisen en de gestapelde PR-keten behouden. Geen dubbele herbouw.
+
+| Taakgroep | Status en eerstvolgende stap |
+|---|---|
+| CLOUD-009 / Mac→Cloud-ontvangst PR27 | Bericht geregistreerd in bestaande Cloud agent, nonce/antwoord/retourtest nog niet bevestigd; GitHub is bestendig kanaal. MAC_CLOUD_CHANNEL_TEST.md |
+| CLOUD-010 / Meldingen en ritbewijs | Klaar voor veilige Cloud-bronontwikkeling boven PR26: native acties Zakelijk/Privé + zuivere vertrek/eindelogica, uitval/korte stop/EV/gemiste melding testen; nog geen sensor- of CarPlay-belofte |
+| CLOUD-011 / Centrale voorstellen en deduplicatie | Gebruik bestaande device/raw-ingest/quota; begrens app-instancegroei en ontwerp één voertuigrit met onzekerheid/audit; drie telefoons, retries, overlap en conflicten testen |
+| CLOUD-012 / CarPlay en OBD2 | Eerste fabrikant-/prijsvergelijking opgeslagen; vaste vaderprioriteit en exacte teller-PID niet bewezen. Hardwareproeven via MAC-027-03/04; niets kopen |
+| MAC-027-01 / Native broncontrole | Core typecheck/Swift6-build PASS; XCTest ontbreekt, iOS/simulator/hardware NIET GETEST.187Node-tests PASS na veilige fixturefix |
+| MAC-ACCESS / Zero Trust | Free + All traffic/accountleden toegepast na eigenaarstoestemming; anon302 en bestaande eigenaarlogin PASS. Backendbindings/provisioning vereisen volgende concrete toestemming |
+
+Na iedere veilige taakgroep tests/securitycontrole, commit/PR, dit bestand, DEVELOPMENT_PROGRESS en RESUME bijwerken en volgende uitvoerbare groep oppakken. `/scale` of `/do` is niet aangetoond als productfunctie. Geen automatische main-merge of onbeperkte Cloudretry; actuele usage respecteren.
+
 ## Atomaire detectiequota — 19 oktober 2026, niet live
 
 CLOUD-005/002/004:120nieuweobservaties/60s,10000/UTCdag,100000totaalobservaties en200000receipts perappinstance centraal begrensd met atomische SQLgates; exacte retries blijvenwerken en geenorphanbijreceiptcap. Operationele defaults, geen retentie/deletiebeleid.187Node-tests/type/lint/build/lokaleD1 en vier Chromiumregressieflows PASS. Bewijs DETECTION_INGEST.md. Draftbranch cloud/cloud-005-detection-quotas op #25-head57a2f48. Main opnieuw d37d8c9ongewijzigd; ruleset25339571active/PR/deletion/nonfastforward/geenbypass,0approvals; connectorPRauteur nog eigenaar296047649. Volgende: devicequota tegen instancegroei, detectievoorstellen en veilige sync; nativecompile blijftMac. Geen productiepublicatie/kosten/mainmerge.

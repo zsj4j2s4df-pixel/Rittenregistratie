@@ -32,6 +32,7 @@ yarn-error.log*
 /.pnpm-store/
 *.tsbuildinfo
 **/.build/
+**/.swiftpm/
 *.p12
 *.pfx
 *.mobileprovision

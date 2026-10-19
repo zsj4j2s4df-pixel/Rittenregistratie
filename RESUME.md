@@ -1,5 +1,15 @@
 # Hervatpunt — 18 oktober 2026
 
+## Actueel — Mac-overdracht en PR #27, 19 oktober 2026
+
+Basis: PR #26 commit ec44dc8; deze Mac-vervolgbranch behoudt de gehele keten en neemt het volledige parallelle memo #27 over. Lees eerst [PR27_EXECUTION_PLAN](docs/TRANSFER/PR27_EXECUTION_PLAN.md), [MAC_CLOUD_CHANNEL_TEST](docs/TRANSFER/MAC_CLOUD_CHANNEL_TEST.md) en nieuwste DEVELOPMENT_PROGRESS.
+
+Zero Trust Free bevestigd; eigenaar keurt uitsluitend Worker-Access All traffic/accountleden goed, toegepast en teruggelezen. Drie anonieme URL-tests krijgen Access302, bestaande eigenaarbrowserlogin slaagt. Centrale backend blijft gesloten: ACCESS_ISSUER/AUDIENCE ontbreken; geen nieuwe release of provisioning uitgevoerd. Voorstel/toestemmingsgrens: MAC_ZERO_TRUST_2026-10-19.md. Main-ruleset actief met drie regels/geenbypass;0approvals en gedeelde identiteit blijven open.
+
+Swift-core typecheck en Swift6-packagebuild op Mac PASS. XCTest niet beschikbaar in CommandLineTools; geen iOS/XCTest/hardwareclaim.187Node-tests PASS na macOS-realpathfix uitsluitend in de backup-testfixture. Geen installatie gedaan. Zie MAC_NATIVE_VALIDATION.md.
+
+Cloud-opdracht MAC-CLOUD-20261019-PR27 is via threadtool geregistreerd; agentantwoord/retourtest nog niet bevestigd. Geen nieuwe retries/runs starten zolang status niet duidelijk is. Cloud hervat daarna de meldings-/ritbewijs-/centrale deduplicatiegroep volgens het plan, commit/tests/security/voortgang per groep. Concrete Mac-testopdrachten staan erbij; geen extra aankopen, kosten, publicatie of main-merge.
+
 ## Atomaire detectiequota — 19 oktober 2026, niet live
 
 CLOUD-005/002/004:120nieuweobservaties/60s,10000/UTCdag,100000totaalobservaties en200000receipts perappinstance centraal begrensd met atomische SQLgates; exacte retries blijvenwerken en geenorphanbijreceiptcap. Operationele defaults, geen retentie/deletiebeleid.187Node-tests/type/lint/build/lokaleD1 en vier Chromiumregressieflows PASS. Bewijs DETECTION_INGEST.md. Draftbranch cloud/cloud-005-detection-quotas op #25-head57a2f48. Main opnieuw d37d8c9ongewijzigd; ruleset25339571active/PR/deletion/nonfastforward/geenbypass,0approvals; connectorPRauteur nog eigenaar296047649. Volgende: devicequota tegen instancegroei, detectievoorstellen en veilige sync; nativecompile blijftMac. Geen productiepublicatie/kosten/mainmerge.

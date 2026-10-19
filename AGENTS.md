@@ -1,5 +1,11 @@
 # RitKompas — uitvoeringsinstructies
 
+## Nieuwste Mac-overdracht — 19 oktober 2026
+
+Lees bij hervatten het volledige [memo uit PR #27](docs/IMPORTANT_MEMO_IPHONE_RITDETECTIE.md) en [de uitvoerbare planning](docs/TRANSFER/PR27_EXECUTION_PLAN.md). Cloud coördineert de ontwikkeling, Mac verzorgt lokale native/hardwaretests. Start vanaf de nieuwste gecontroleerde ontwikkelketen, niet opnieuw vanaf de document-only main. De overige functionele mastereisen blijven gelden.
+
+De eigenaar heeft in deze Mac-run specifiek All traffic + Cloudflare account members voor uitsluitend de bestaande RitKompas-Worker goedgekeurd; dit is toegepast en read-only geverifieerd. Dat is geen algemene toestemming voor publicatie, runtimebindings, gebruikersprovisioning of extra toegang. Huidig bewijs: [Zero Trust](docs/TRANSFER/MAC_ZERO_TRUST_2026-10-19.md), [samenwerking en commando's](docs/TRANSFER/MAC_CLOUD_CHANNEL_TEST.md), [Mac-nativecontrole](docs/TRANSFER/MAC_NATIVE_VALIDATION.md). Oudere Access-ontbreektmeldingen zijn historie. `/scale` en `/do` niet als ondersteund aannemen.
+
 Nieuwste gebruikersbesluit, 18 oktober 2026: **Codex Cloud is hoofdontwikkelaar; Codex Mac ondersteunt lokale builds, iOS-simulator en hardwaretests. GitHub is de centrale bron van waarheid. De projecteigenaar beslist over belangrijke handelingen.** Oudere afwijkende rolverdelingen blijven alleen historie.
 
 Start met RESUME.md, CLOUD_TASKS.md, DEVELOPMENT_PROGRESS.md en CLOUD_HANDOVER.md. Lees daarna alleen de relevante eisen/testgevallen en code; herhaal geen volledige inventaris zonder aanleiding. Alle functionele wensen in de bijgewerkte masterprompt blijven behouden. Sol is voorkeur voor dagelijkse regie indien beschikbaar, Astra alleen voor belangrijke afwegingen. Geen modelwissel, agentoverdracht of automatische sessiesynchronisatie claimen zonder bewijs.

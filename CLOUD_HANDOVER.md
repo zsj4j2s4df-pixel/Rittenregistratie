@@ -1,5 +1,7 @@
 # Volledige overdracht RitKompas naar Codex Cloud
 
+> **Actueel 19 oktober 2026:** codeketen bestaat tot PR #26; PR #27 is integraal opgenomen en gekoppeld aan [uitvoerbare vervolgtaken](docs/TRANSFER/PR27_EXECUTION_PLAN.md). [Mac-controle](docs/TRANSFER/MAC_NATIVE_VALIDATION.md) bewijst Coretypecheck/build en187Node-tests, geen iPhone/XCTest. [Zero Trust](docs/TRANSFER/MAC_ZERO_TRUST_2026-10-19.md) is met specifieke toestemming ingesteld; backend blijft gesloten tot apart goedgekeurde aansluiting. [Directe Cloud-opdracht](docs/TRANSFER/MAC_CLOUD_CHANNEL_TEST.md) is geregistreerd; agentontvangst/retoursturing nog niet bevestigd. Oudere ontbrekende-code-/geenAccess-/31tests-zinnen hieronder zijn historische overdrachtstatus.
+
 > Actuele Cloud-update: draft-PR’s #4–#13 bevatten aanvullende implementatie,111tests/type/lint/build/lokaleD1 PASS. Zie RESUME.md en docs/TRANSFER/SETTINGS_STORAGE.md. Onderstaande31tests/7tabellen en eerdere toegangsblokkades beschrijven de oorspronkelijke overdracht, niet de nieuwste code. Web blijft demo; geen productie of native oplevering.
 
 Datum: 18 oktober 2026. Repository: `zsj4j2s4df-pixel/Rittenregistratie`. Status: overdracht ter controle; pas compleet na geverifieerde upload, Cloud-proef en vastgelegde eigenaarcontrole. Geen automatische merge.

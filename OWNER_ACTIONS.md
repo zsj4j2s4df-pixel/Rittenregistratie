@@ -1,5 +1,17 @@
 # Persoonlijke acties
 
+## Actueel — 19 oktober 2026; onderstaande oudere statussen blijven historie
+
+Alleen onderstaande persoonlijke reststappen zijn actueel. Cloudcoördinatie, PR27-planning en technische tests zijn agentwerk en staan in CLOUD_TASKS. De uitgevoerde main-regels en Access-setup niet opnieuw aan de eigenaar vragen.
+
+- **ACT-002 — DEELS AFGEROND, identiteitsscheiding OPEN.** Read-only hercontrole: ruleset25339571active op defaultmain; PR verplicht, forcepush/verwijderen geblokkeerd, geenbypass. Er zijn0verplichteapprovals en Codex gebruikt nog zsj4j2s4df-pixel, dezelfde identiteit als eigenaar. Alleen een reviewregel toevoegen scheidt mens/agent niet. De eerder gekozen aparte agentkoppeling blijft nodig; gebruik het bestaande plan SEPARATE_AGENT_ACCESS.md. Wijzig toegang uitsluitend met een concreet beoordeeld voorstel. Tot dan alleen eigenaar handmatig laten mergen.
+- **ACT-003 — Zero Trust/Access-configuratie AFGEROND binnen goedgekeurde scope.** Freeplan zichtbaar; All traffic/accountleden voor uitsluitend RitKompas na jouw expliciete toestemming toegepast. Eén huidig accountlid; latere accountleden krijgen via deze policy ook toegang. Anonieme redirects en bestaande eigenaarlogin bewezen; interne apprechten/backend nog niet gekoppeld. Geen nieuwe betaalgegevens of aankoop nodig.
+- **ACT-004 — Native praktijktests VOORBEREID, installatie nog niet gereed.** Mac-corecompile gelukt; XCTest/iOS-SDK ontbreekt in de aanwezige toolchain. Eerst bestaande Xcode-mogelijkheden beoordelen; geen installatie/aankoop opgedragen. Pas met echte appbuild de MAC-027-teststappen plannen; geen echte routes naar publieke GitHub.
+- **ACT-005 — Persoonlijke Cloudflare-accountbeveiliging beoordelen.** De privécontrole van de huidige aanmelding geeft aanleiding tweestapsverificatie/passkeyinstellingen persoonlijk te controleren. Geen credentials of herstelcodes delen. Alleen de eigenaar richt credentials/herstel in; de agent heeft dat niet gewijzigd. Kosten: geen betaalde optie activeren.
+- **ACT-006 — Toestemming voor volgende live backendconfiguratie/rechten.** Bestaande centrale app blijft gesloten: ACCESS_ISSUER/AUDIENCE ontbreken. Concrete openbare waarden en volgorde staan in MAC_ZERO_TRUST_2026-10-19.md. Voor uitvoeren eerst resolver/deployedcode en uitsluitend expliciete interne gebruikers/voertuigrechten controleren. Jouw Access-toestemming geeft geen algemene toestemming voor publiceren of accounts/provisioning. Geef pas toestemming voor het concrete beperkte wijzigingspakket; geen identiteiten/tokens in openbare GitHub.
+
+Cloud's laatste afgeronde run gaf een kredietmelding; de nieuwe ontvangsttest is alleen als transport bevestigd. Geen bijkoop van credits vragen of doen zonder echte actuele noodzaak en jouw keuze. Werkelijke ontvangst/uitvoering staat in MAC_CLOUD_CHANNEL_TEST.md.
+
 ## Hercontrole 19 oktober2026
 
 ACT-002handmatig en technische drie hoofdregels blijven AFGEROND: ruleset25339571 opnieuw active, PRverplicht, deletion en non_fast_forward, geen bypassactors. Main d37d8c913aaa253d6297cf57d3379d40c5795573 ongewijzigd. Vereistegoedkeuringen0; nieuwste PRauteur/connector nog eigenaar296047649. Afzonderlijke agentidentiteit/onafhankelijke eigenaarreview blijven OPEN. Geen instellingen gewijzigd of merge uitgevoerd.
