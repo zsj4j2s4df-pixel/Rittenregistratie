@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import RecordedRoute from './recorded-route';
 import type { FormEvent } from 'react';
 import { BackendError, createBackendClient, type BackendTrip, type Driver, type TripHistoryEntry } from '../backend-client';
 import type { TripEdit } from '../../lib/trip-service';
@@ -33,6 +34,7 @@ function CorrectionForm({drivers,trip,vehicleId,busy,onSave}:Props){
  <label>Beginstand (optioneel)<input name="odometerStart" type="number" min="0" step="any" defaultValue={trip.odometer_start??''} disabled={disabled}/></label><label>Eindstand (optioneel)<input name="odometerEnd" type="number" min="0" step="any" defaultValue={trip.odometer_end??''} disabled={disabled}/></label>
  <label>Bestuurder corrigeren<select aria-label="Bestuurder corrigeren" name="driverId" defaultValue={trip.driver_id??''} disabled={disabled}><option value="">Onbekend</option>{trip.driver_id!==null&&!drivers.some(driver=>driver.id===trip.driver_id)&&<option value={trip.driver_id}>Huidig account niet actief — kies een actieve bestuurder of onbekend</option>}{drivers.map(driver=><option key={driver.id} value={driver.id}>{driver.name}</option>)}</select></label>
  <label>Ritdoel (optioneel)<input name="purpose" maxLength={1000} defaultValue={trip.purpose??''} disabled={disabled}/></label><label>Reden correctie<input name="reason" maxLength={500} required disabled={disabled}/></label><button disabled={disabled}>Correctie opslaan</button></form>
+ <RecordedRoute key={vehicleId+':'+trip.id} vehicleId={vehicleId} tripId={trip.id} busy={busy}/>
  <h3>Opgeslagen historie</h3><button disabled={disabled||loading} onClick={resetHistory}>Historie vernieuwen</button>{loading&&<p role="status">Historie laden…</p>}{historyError&&<p role="alert">{historyError}</p>}{!loading&&!historyError&&!history.length&&<p>Geen historie geregistreerd.</p>}<ol>{history.map(entry=><HistoryItem key={entry.id} entry={entry}/>)}</ol><p>Maximaal 100 wijzigingen per pagina; nieuwste eerst. Verversen begint opnieuw bij de nieuwste wijzigingen.</p>{hasMore&&<button disabled={disabled||loading} onClick={olderHistory}>Oudere wijzigingen laden</button>}{!loading&&!hasMore&&history.length>0&&<p>Alle beschikbare wijzigingen geladen.</p>}
  </section>;
 }

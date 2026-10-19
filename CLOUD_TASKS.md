@@ -163,3 +163,7 @@ CLOUD-005/002/004: scripts/sqlite-backup.mjs maakt consistente SQLite-backup met
 ## Oudere historie — 19 oktober2026
 
 CLOUD-005/002/004: keyset before-id voor rit-/settinghistorie, strikte HTTPvalidatie en UI ouderepagina/verversreset/dedupe/clearbij401/403/404.138Node-tests op afgeronde paginatiebasis/type/lint/build PASS; browser125regels/type metnieuweaudit/refresh/revocation PASS, recoverybrowser blijftPASS. Bewijs HISTORY_PAGINATION.md. Nieuwe draftbranch cloud/cloud-005-history-pages op #19-head8cf8bc2. Route-read/geometrycode staat parallel los in nieuwe bestanden, nog niet in deze historie-PR. Geen livepublicatie/cloudmutatie/kosten/mainmerge.
+
+## Opgeslagen routepunten — 19 oktober2026, niet live
+
+CLOUD-005/002/004: scoped read-only routepunten met eerste-batchhighwater en volgende keysetpagina's, strikteHTTP/clientlimieten en opgeslagen-spoorviewer zonder kaartprovider. Geen verzonnen lege route; onderscheid GPS/interpolatie en gaten/precisiewaarschuwingen.10routecases, lokale echteD1batch, type/lint/build en Chromium1203punten/leeg/revocation PASS. Gecombineerde153tests omvat5aparteMCPkerncases; MCPnog niet in deze routegroep. Bewijs ROUTE_READ.md. Nieuwe branch cloud/cloud-005-route-read op #20-head11649e2. Geen GPS-inname/nativevalidatie of livepublicatie/kosten. Volgende: lokale read-onlyMCP-runtime, detectie/devicecontracten, veilige sync/overige openwerkkaart.
