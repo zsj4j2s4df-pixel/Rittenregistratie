@@ -1,5 +1,9 @@
 # Hervatpunt — 18 oktober 2026
 
+## Nieuwste livecontrole — 19 oktober 2026
+
+Goedgekeurde Access-runtimebindings en uitsluitend eigenaar/voertuigrecht ingericht. Eindtelling1gebruiker/1voertuig/1actiefrecht/0ritten/2audits. Anoniem302 PASS, ingelogde centrale backend nog FAIL `Aanmelden vereist.`. [Bewijs en gerichte volgende taak](docs/TRANSFER/OWNER_ACCESS_RESULT_2026-10-19.md). Niet opnieuw provisionen; geen beveiliging versoepelen of code deployen zonder nieuwe toestemming. CloudPR31 bevat inmiddels verdere coördinatiecode bovenPR30; dit configuratiebewijs is parallel, niet boven die code geïntegreerd.
+
 ## Nu hervatten — gezamenlijke basis na PR28/29/30
 
 Eigen Mac-PR #30 krijgt bewust base `cloud/cloud-005-pr27-safe-development` (#29), zodat de review alleen het Mac-verschil toont; bestaande PR's #1–#29 zijn niet geretarget. Geïntegreerde hercontrole:197Node-tests, typecheck, lint, webbuild en Swift6-Coretypecheck PASS. Geen iOS/XCTest-/hardwareclaim.

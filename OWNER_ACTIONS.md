@@ -1,5 +1,9 @@
 # Persoonlijke acties
 
+## Nieuwste status — eigenaarstoegang, 19 oktober 2026
+
+ACT-006: toestemming ontvangen, configuratie/provisioning uitgevoerd. Niet hetzelfde pakket opnieuw vragen. Eén geverifieerde eigenaar en voertuigrecht ingericht, geen ritten. **Live eindtest niet geslaagd:** backend blijft aanmelden weigeren. [Bewijs](docs/TRANSFER/OWNER_ACCESS_RESULT_2026-10-19.md). Onderstaand ACT-006-voorstel is historie. Een gerichte fix mag op eigen branch worden voorbereid; beperkte live codepublicatie vraagt nieuwe toestemming, geen algemene release/migraties. ACT-002 identiteitsscheiding, ACT-004 hardware en ACT-005 persoonlijke accountbeveiliging blijven open.
+
 ## Actueel — 19 oktober 2026; onderstaande oudere statussen blijven historie
 
 Cloudoverdracht is inmiddels daadwerkelijk ontvangen en uitgevoerd: PR28/29 en MAC_CLOUD_ACK_RESULT.md. Daarvoor hoef je geen credits te kopen of de opdracht opnieuw te plakken. Directe automatische Cloud→Mac-aansturing ontbreekt; GitHub-retourproef is uitgevoerd. Alleen de persoonlijke stappen hieronder blijven open.

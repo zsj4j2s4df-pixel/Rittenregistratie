@@ -1,5 +1,9 @@
 # Cloud-taken — RitKompas
 
+## Prioritaire opvolging liveauthenticatie — 19 oktober 2026
+
+Accessbindings/eigenaarprovisioning zijn uitgevoerd na toestemming, maar de ingelogde backend blijft weigeren. [Feitelijk bewijs en onderzoeksscope](docs/TRANSFER/OWNER_ACCESS_RESULT_2026-10-19.md). Niet opnieuw provisionen, geen live deploy/migraties zonder nieuwe toestemming. Cloud mag gerichte runtime-authdiagnose/fix met tests voorbereiden; Worker-level ctx.access versus bestaande JWT-route en frameworkrouter onderzoeken zonder onbewezen oorzaakclaim. PR31 bevat inmiddels CLOUD-011-vervolg; voorkom dubbel werk op basis van de oudere OPEN-vermelding hieronder.
+
 ## Gezamenlijke actuele status — na PR28/29/30
 
 CLOUD-009 ontvangst PR27 **BEVESTIGD**, MAC-ACK-01 **PASS via GitHub**; directe Cloud→Mac-tool ontbreekt. CLOUD-010 meldingsbron en reviewvoorstellen + devicequota **GEBOUWD TER CONTROLE in PR29**, niet opnieuw bouwen. CLOUD-011 canonieke voertuigritcoördinatie, native duurzame actiequeue/sessiebinding en fysieke acceptatie blijven OPEN. CLOUD-012 onderzoek in PR28 en aanvullende Macvergelijking opgeslagen; vaste3telefoonprioriteit niet bewezen, geen aankoop.
