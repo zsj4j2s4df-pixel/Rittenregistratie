@@ -1,3 +1,4 @@
+import { createDeviceHttpHandler } from './device-http.ts';
 import { createReadOnlyMcpHandler } from './mcp-http.ts';
 import { createCloudflareAccessResolver } from './cloudflare-access.ts';
 import { createTripHttpHandler } from './trip-http.ts';
@@ -16,7 +17,9 @@ export function createConfiguredApi(bindings:RuntimeBindings) {
  if(!bindings.DB||typeof bindings.DB.prepare!=='function'||typeof bindings.DB.batch!=='function'||!bindings.APP_ORIGIN||!bindings.ACCESS_ISSUER||!bindings.ACCESS_AUDIENCE)return async()=>unavailable();
  try {
   const resolveSession=createCloudflareAccessResolver({db:bindings.DB,issuer:bindings.ACCESS_ISSUER,audience:bindings.ACCESS_AUDIENCE});
-  return createTripHttpHandler({db:bindings.DB,origin:bindings.APP_ORIGIN,resolveSession});
+  const options={db:bindings.DB,origin:bindings.APP_ORIGIN,resolveSession};
+  const trips=createTripHttpHandler(options),devices=createDeviceHttpHandler(options);
+  return (request:Request)=>/^\/api\/vehicles\/[^/]+\/devices(?:\/|$)/.test(new URL(request.url).pathname)?devices(request):trips(request);
  }catch{return async()=>unavailable();}
 }
 

@@ -57,6 +57,13 @@
       "when": 1792339280922,
       "tag": "0007_immutable_report_snapshots",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "6",
+      "when": 1792384422395,
+      "tag": "0008_registered_devices",
+      "breakpoints": true
     }
   ]
 }

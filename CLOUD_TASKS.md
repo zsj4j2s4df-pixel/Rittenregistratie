@@ -1,5 +1,10 @@
 # Cloud-taken — RitKompas
 
+## Eigen appregistraties — 19 oktober 2026, niet live
+
+CLOUD-005/002/004: eigen geverifieerde appinstanties met idempotente registratie, audit/revisie-deactivering, geen heractivatie door oude retries, HTTP/client en handmatige beheerUI gebouwd.17service/HTTPcases en Chromium responseverlies/retry/deactivate/revocation PASS; gecombineerde180tests omvatten zes aparte detectiecases. Type/lint/build en lokale echteD1 register/retry/deactivate PASS. Additieve0008+schema/journal/snapshot afgestemd; geen remote migratie of hardware/loginclaim. Bewijs REGISTERED_DEVICES.md. Draftbranch cloud/cloud-005-registered-devices op #22-head6960896. Volgende: ruwe detectie-inname/HTTP/schema en nativebronvoorbereiding; geen productiepublicatie/kosten/mainmerge.
+
+
 ## Read-only MCP-runtime — 19 oktober 2026, niet live
 
 CLOUD-005/002/004: zes begrensde read-only MCP-tools achter geverifieerde Access-sessies voorbereid, inclusief historiecursor. /api/mcp blijft503 zonder volledige configuratie; spoofidentiteit401, strikte Origin/JSON/protocol/bodygrenzen. Negen MCP-kern/runtimecases PASS; gecombineerde168 Node-tests bevatten elf afzonderlijke devicekernelcases. Type/lint/build, echte lokaleD1 en builtNode geslotenAPI/MCP PASS. Geen OAuth/clientactivatie, livepublicatie of externe gegevensdeling; zie READ_ONLY_MCP.md. Draftbranch cloud/cloud-005-read-only-mcp op #21-head26317fa. Volgende: geregistreerde appinstanties/HTTP/UI, daarna detectie-inname; echte native/Access/provideracceptatie blijft open.

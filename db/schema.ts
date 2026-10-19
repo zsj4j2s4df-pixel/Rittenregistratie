@@ -1,4 +1,5 @@
-import { index, integer, primaryKey, real, sqliteTable, text, uniqueIndex } from 'drizzle-orm/sqlite-core';
+import { sql } from 'drizzle-orm';
+import { check, index, integer, primaryKey, real, sqliteTable, text, uniqueIndex } from 'drizzle-orm/sqlite-core';
 
 export const users = sqliteTable('users', {
   id: text('id').primaryKey(),
@@ -129,3 +130,26 @@ export const reportSnapshots = sqliteTable('report_snapshots', {
  requestJson: text('request_json').notNull(),
  snapshotJson: text('snapshot_json').notNull(),
 }, table => [uniqueIndex('idx_report_request').on(table.vehicleId,table.createdBy,table.requestId),index('idx_report_vehicle_time').on(table.vehicleId,table.createdAt)]);
+
+// An ID is an app-instance claim, not hardware attestation. Ownership is fixed
+// by registration; a deactivated instance is retained for audit/idempotency.
+export const registeredDevices = sqliteTable('registered_devices', {
+ id:text('id').primaryKey(),
+ userId:text('user_id').notNull().references(()=>users.id),
+ vehicleId:text('vehicle_id').notNull().references(()=>vehicles.id),
+ name:text('name').notNull(),
+ platform:text('platform',{enum:['ios','web']}).notNull(),
+ active:integer('active',{mode:'boolean'}).notNull().default(true),
+ revision:integer('revision').notNull().default(0),
+ createdAt:integer('created_at').notNull(),
+ updatedAt:integer('updated_at').notNull(),
+ lastMutationId:text('last_mutation_id').notNull(),
+},table=>[index('idx_registered_devices_owner_vehicle').on(table.userId,table.vehicleId,table.id),check('device_platform',sql`${table.platform} IN ('ios','web')`),check('device_active',sql`${table.active} IN (0,1)`),check('device_revision',sql`typeof(${table.revision})='integer' AND ${table.revision} BETWEEN 0 AND 9007199254740991`)]);
+export const deviceRegisterRequests = sqliteTable('device_register_requests', {
+ vehicleId:text('vehicle_id').notNull().references(()=>vehicles.id),
+ userId:text('user_id').notNull().references(()=>users.id),
+ requestId:text('request_id').notNull(),
+ deviceId:text('device_id').notNull().references(()=>registeredDevices.id),
+ requestJson:text('request_json').notNull(),
+ responseJson:text('response_json').notNull(),
+},table=>[primaryKey({columns:[table.vehicleId,table.userId,table.requestId]})]);
