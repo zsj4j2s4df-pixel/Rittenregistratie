@@ -1,5 +1,9 @@
 # RitKompas — uitvoeringsinstructies
 
+## CLOUD-013 livepakket gepubliceerd met eigenaarstoestemming
+
+19 oktober2026: uitsluitend PR34/e0e8159 gepubliceerd als Worker-versie8e264bd0-62ab-48d2-a88e-9bf19d491858/deployment06d17ebe-83f7-4ec3-be5d-57b713cc0c04. Vier bestaande bindings strict behouden en teruggelezen; geen DB-migratie/provisioning/Accesswijziging/mainmerge. Anoniem302 naarAccess op /,/beheer,/api/vehicles PASS met browser-UA. Ingelogde API/UI nafix NIETGETEST; Mac/eigenaar moet MAC-CLOUD-013-LIVE-01 uitvoeren. Geen algemene live-succesclaim. [Resultaat, testopdracht en goedgekeurde code-only rollback](docs/TRANSFER/ACCESS_RELEASE_RESULT_2026-10-19.md). PR35 bevat cumulatieve ontwikkeling en is niet gepubliceerd. Volgende lokale groep: expliciete webkeuze Zakelijk/Privé met idempotente handmatige retry. Oude tekst “toestemming ontbreekt” hieronder is historie voor uitsluitend PR34; verdere productiefeatures/migraties blijven apart beslispunt.
+
 ## CLOUD-013 — Access-runtimefix gereed voor controle, 19 oktober 2026
 
 Beperkte releasefix staat in draft-PR #34, head `e0e8159f4f9aae396e1dc80ad05980e559351fb9`, exact vanaf live bronbasis PR14/6c3f608. Echte gebouwde Worker/framework/workerd/D1-test toonde aan: JWKS-fetch met redirect:error veroorzaakt een workerd-exceptie en401. Fix gebruikt manual en weigert alle3xx zonder volgen; begrensde ondertekende app-cookiefallback toegevoegd wanneer assertionheader ontbreekt. Alle crypto/account/rechtcontroles behouden. Geen diagnostische token/claimslogging in bron of artefact.

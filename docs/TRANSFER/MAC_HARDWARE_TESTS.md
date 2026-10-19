@@ -42,3 +42,8 @@ Een hardwareaankoop is geen automatische toestemming voor andere aankopen/licent
 ## Vervolg na bevestigde ACK — nieuwe native code
 
 MAC-ACK-01 is door Mac in PR30 werkelijk PASS bewezen; eerdere pendingtekst is historie. Nieuwe controles MAC-J11/J12 staan in NATIVE_CHOICE_QUEUE.md: Corebuild van de nieuwe queue/crypto/choicebron, bestaande XCTest indien beschikbaar en echte iOS/UserNotifications/FileProtection pas met geschikte SDK/app. Eerder Swift6Corebuildbewijs vanPR30 geldt niet voor deze nieuwe bestanden. Geen installatie/aankoop/prodactie als onderdeel van deze broncontrole. Gebruik de nieuwste opvolgende drafthead en vermeld exacte SHA bij terugmelding.
+
+
+## MAC-CLOUD-013-LIVE-01 — gerichte loginproef na goedgekeurde publicatie
+
+Zie [live resultaat en concrete stappen](ACCESS_RELEASE_RESULT_2026-10-19.md). Cloud heeft uitsluitend PR34 gepubliceerd; controleer ingelogde /api/vehicles200 en /beheer zonder Aanmelden vereist, anoniem302. Geen gebruikers/ritten aanmaken of echte tokens/claims delen. Uitvoering en resultaat nog OPEN, geen automatische Mac-run geclaimd.
