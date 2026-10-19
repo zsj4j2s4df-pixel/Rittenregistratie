@@ -6,11 +6,11 @@
 
 | Addendum-ID | Eis / acceptatie | Bestaande aansluiting | Prioriteit / status |
 |---|---|---|---|
-| M27-01 | Directe samenwerking eerst bewijzen, opdracht/ontvangst/uitvoering onderscheiden | MAC_HARDWARE_TESTS/MAC-ACK-01 | P0 ontvangst Cloud bevestigd; directe threadtool ontbreekt, GitHubterugkoppeling wacht Mac |
+| M27-01 | Directe samenwerking eerst bewijzen, opdracht/ontvangst/uitvoering onderscheiden | MAC_HARDWARE_TESTS/MAC-ACK-01 | P0 GitHub-retourproef MAC-CLOUD-20261019-PR27-ACK-01 PASS via PR30; directe threadtool ontbreekt |
 | M27-02 | Twee grote CarPlayknoppen alleen met toepasselijke entitlement/templates; niet willekeurig autoopenen | Nativebronvoorbereiding, geen CarPlayapp | P1 Apple driving-taskcategorie onderzocht; goedkeuring/uitvoering OPEN |
 | M27-03 | Native interactieve lokale melding Zakelijk/Privé, liefst zonderappopening; lockscreen/Focus/authbeperkingen | iOSsourcevoorbereiding PR25 | P0 bronprototype→Maccompile→echteiPhone; NIET GETEST |
 | M27-04 | Bluetooth/CarPlay/Shortcuts signalen herkennen binnen achtergrondbeperkingen | Rawingest/service+HTTP PR24 | P0 eerst bestaande Jeep gratis testen; signalen zijn geen vertrekbewijs |
-| M27-05 | Betrouwbaar vertrek, gemistekeuze nietverliezen, later classificeren | Ritten review/classification/audit, raw observations | P0 stateworkflow en duurzame nativequeue OPEN; defaultreview, nooit stilzakelijk |
+| M27-05 | Betrouwbaar vertrek, gemistekeuze nietverliezen, later classificeren | Ritten review/classification/audit, raw observations | P0 reviewcoördinatie + expliciete API/webkeuze gebouwd/getest; duurzame nativequeue als bron voorbereid, Applecompile/host/capture OPEN; nooit stilzakelijk |
 | M27-06 | Werkelijk einde +nieuw vertrek na120sklantstop; geen splitsing stoplicht/file | Overlapregels/rawobservaties | P0 bewijsgestuurde eindstatus; geen generieke2minutentimer, echtetest OPEN |
 | M27-07 | Elektrisch rijden: RPM0 isgeen einde | 4xeonderzoeksbron | P0 EVmotion/readybewijs en hybridewisselingtesten OPEN |
 | M27-08 | GPS/tijden/adressen/betrouwbareteller/soort/audit; onbekendniet0; correcties en fiscalecontext | Route-read/correcties/historie/CSV/rapporten algebouwd | P0 hergebruiken; nativecapture/OBDteller/fiscaleacceptatie OPEN |
@@ -18,7 +18,7 @@
 | M27-10 | DraadlozeCarPlay via juistwired-to-wirelessapparaat; geenBTdongle | FabrikantvergelijkingCarlinKit/Ottocast/TWO+ | P1 gratisbedradenulmeting; nietsbesteld |
 | M27-11 | Vaste vader→moeder→derde prioriteit, gelijktijdig/laterinstappen, geenlastusedverwarring | TWO+defaultpriorityclaimapartvanbewijs | P0 hardeacceptatiewens; alle3/laterswitch NIET BEWEZEN; fallbackhandmatig/bedraad |
 | M27-12 | Vaderhoofdgebruiker/voorkeursbestuurder, werkelijkechauffeurapart | users.driver_priority /trip.driver_id /onbekend | P1 exacteinterneaccountverificatieenrechtennodig; nietsgeradenofgeprovisioned |
-| M27-13 | Centrale voertuigdedup bijmeerdereiPhones, offline/retry/overlap | Pereventidempotency/overlapaudit reedsgebouwd | P0 voertuigritcoördinatie/detectievoorstellen OPEN; pereventdedupisgeenvolledigeritdedup |
+| M27-13 | Centrale voertuigdedup bijmeerdereiPhones, offline/retry/overlap | Pereventidempotency/overlapaudit reedsgebouwd | P0 canonieke reviewcoördinatie/proposals/API/webreview gebouwd/getest; definitieve tripmaterialisatie/meeriPhoneacceptatie OPEN; geen volledige ritdedupclaim |
 | M27-14 | Privacy/batterij/achtergrond/grensfouten zichtbaar | no-store/scopedbackend/pendingoptin/quota | P0 foreground/permission/retentie/energietesten OPEN; geenpermanentetrackstandaard |
 | M27-15 | ConcreteMac-testtaken en centrale bewijsstatus; geen ongeteste claims | MAC_HARDWARE_TESTS | P0 gratisACKgereedomeventueeloptepikken, hardwarepasbijbeschikbaarheid/toestemming |
 | M27-16 | Geen aankopen/kosten/nieuwaccount/publicatie/securityuitschakeling/mainmerge | AGENTS/OWNER_ACTIONS | Doorlopend gehandhaafd;MacdoetAccess/ruleset,Cloudwijzigtnietparallel |
