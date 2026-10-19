@@ -1,3 +1,4 @@
+import { createReadOnlyMcpHandler } from './mcp-http.ts';
 import { createCloudflareAccessResolver } from './cloudflare-access.ts';
 import { createTripHttpHandler } from './trip-http.ts';
 
@@ -16,5 +17,15 @@ export function createConfiguredApi(bindings:RuntimeBindings) {
  try {
   const resolveSession=createCloudflareAccessResolver({db:bindings.DB,issuer:bindings.ACCESS_ISSUER,audience:bindings.ACCESS_AUDIENCE});
   return createTripHttpHandler({db:bindings.DB,origin:bindings.APP_ORIGIN,resolveSession});
+ }catch{return async()=>unavailable();}
+}
+
+// Read-only MCP uses the same verified Access identity; no external client is activated.
+export function createConfiguredMcp(bindings:RuntimeBindings) {
+ const unavailable=()=>Response.json({error:'De beveiligde MCP-backend is nog niet beschikbaar.'},{status:503,headers:{'Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
+ if(!bindings.DB||typeof bindings.DB.prepare!=='function'||typeof bindings.DB.batch!=='function'||!bindings.APP_ORIGIN||!bindings.ACCESS_ISSUER||!bindings.ACCESS_AUDIENCE)return async()=>unavailable();
+ try {
+  const resolveSession=createCloudflareAccessResolver({db:bindings.DB,issuer:bindings.ACCESS_ISSUER,audience:bindings.ACCESS_AUDIENCE});
+  return createReadOnlyMcpHandler({db:bindings.DB,origin:bindings.APP_ORIGIN,resolveSession});
  }catch{return async()=>unavailable();}
 }

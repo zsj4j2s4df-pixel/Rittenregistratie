@@ -1,5 +1,10 @@
 # Cloud-taken — RitKompas
 
+## Read-only MCP-runtime — 19 oktober 2026, niet live
+
+CLOUD-005/002/004: zes begrensde read-only MCP-tools achter geverifieerde Access-sessies voorbereid, inclusief historiecursor. /api/mcp blijft503 zonder volledige configuratie; spoofidentiteit401, strikte Origin/JSON/protocol/bodygrenzen. Negen MCP-kern/runtimecases PASS; gecombineerde168 Node-tests bevatten elf afzonderlijke devicekernelcases. Type/lint/build, echte lokaleD1 en builtNode geslotenAPI/MCP PASS. Geen OAuth/clientactivatie, livepublicatie of externe gegevensdeling; zie READ_ONLY_MCP.md. Draftbranch cloud/cloud-005-read-only-mcp op #21-head26317fa. Volgende: geregistreerde appinstanties/HTTP/UI, daarna detectie-inname; echte native/Access/provideracceptatie blijft open.
+
+
 ## Actuele regie en status — 18 oktober 2026
 
 **Cloud is hoofdontwikkelaar, Mac ondersteunt lokale/iOS/hardwaretaken, eigenaar beslist over belangrijke handelingen.** Deze nieuwe expliciete opdracht vervangt de oudere Mac-hoofdrol hieronder. GitHub is centraal. Sol indien beschikbaar; Astra uitsluitend belangrijke besluiten. Geen extra betaalde diensten/runs, geen main-merge zonder eigenaar. Eén samenhangende run heeft voorkeur.
