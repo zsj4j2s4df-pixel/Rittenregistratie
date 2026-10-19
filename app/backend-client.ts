@@ -14,12 +14,12 @@ export type SavedReport={id:string;created_by:string;created_at:number};
 export type TripHistoryEntry={id:number;actor_id:string;action:string;occurred_at:number;old_value_json:string|null;new_value_json:string|null};
 export class BackendError extends Error{status:number;constructor(status:number,message:string){super(message);this.status=status;}}
 export function createBackendClient(fetcher:typeof fetch=fetch){
- async function send(path:string,method='GET',body?:unknown,expectedViewerId?:string):Promise<Response>{
-  let response:Response;try{response=await fetcher(path,{method,credentials:'same-origin',cache:'no-store',redirect:'error',headers:body===undefined?{}:{'Content-Type':'application/json','x-csrf-protection':'1',...(expectedViewerId?{'x-ritkompas-viewer':expectedViewerId}:{})},body:body===undefined?undefined:JSON.stringify(body)});}catch{throw new BackendError(0,'Geen verbinding. Probeer opnieuw.');}
+ async function send(path:string,method='GET',body?:unknown,expectedViewerId?:string,signal?:AbortSignal):Promise<Response>{
+  let response:Response;try{response=await fetcher(path,{signal,method,credentials:'same-origin',cache:'no-store',redirect:'error',headers:body===undefined?{}:{'Content-Type':'application/json','x-csrf-protection':'1',...(expectedViewerId?{'x-ritkompas-viewer':expectedViewerId}:{})},body:body===undefined?undefined:JSON.stringify(body)});}catch{throw new BackendError(0,'Geen verbinding. Probeer opnieuw.');}
   if(!response.ok){let message='Aanvraag mislukt.';try{const value=await response.json();if(value&&typeof value==='object'&&'error' in value&&typeof value.error==='string')message=value.error;}catch{}throw new BackendError(response.status,message);}
   return response;
  }
- async function request<T>(path:string,method='GET',body?:unknown,expectedViewerId?:string):Promise<T>{return await (await send(path,method,body,expectedViewerId)).json() as T;}
+ async function request<T>(path:string,method='GET',body?:unknown,expectedViewerId?:string,signal?:AbortSignal):Promise<T>{return await (await send(path,method,body,expectedViewerId,signal)).json() as T;}
  const base=(id:string)=>'/api/vehicles/'+encodeURIComponent(id);
  return {
   async vehicles(){const all:Vehicle[]=[];for(let offset=0;offset<=100000;offset+=100){const page=(await request<{vehicles:Vehicle[]}>('/api/vehicles?limit=100&offset='+offset)).vehicles;all.push(...page);if(page.length<100)return all;}throw new BackendError(413,'Te veel voertuigen om te laden.');},
@@ -32,7 +32,7 @@ export function createBackendClient(fetcher:typeof fetch=fetch){
   async devices(id:string){const all:RegisteredDevice[]=[];for(let offset=0;offset<=100000;offset+=100){const page=(await request<{devices:RegisteredDevice[]}>(base(id)+'/devices?limit=100&offset='+offset)).devices;all.push(...page);if(page.length<100)return all;}throw new BackendError(413,'Te veel appinstanties om te laden.');},
   async registerDevice(id:string,input:DeviceRegistration,viewerId:string){return (await request<{device:RegisteredDevice}>(base(id)+'/devices','POST',input,viewerId)).device;},
   async deactivateDevice(id:string,deviceId:string,input:DeviceDeactivation,viewerId:string){return (await request<{device:RegisteredDevice}>(base(id)+'/devices/'+encodeURIComponent(deviceId),'PATCH',input,viewerId)).device;},
-  async snapshot(id:string){return (await request<{snapshot:VehicleSnapshot}>(base(id)+'/snapshot')).snapshot;},
+  async snapshot(id:string,signal?:AbortSignal){return (await request<{snapshot:VehicleSnapshot}>(base(id)+'/snapshot','GET',undefined,undefined,signal)).snapshot;},
   async settings(id:string){return (await request<{settings:VehicleSettings}>(base(id)+'/settings')).settings;},
   async saveSettings(id:string,input:SettingsEdit){return (await request<{settings:VehicleSettings}>(base(id)+'/settings','PATCH',input)).settings;},
   async createTrip(id:string,input:TripCreate,expectedViewerId?:string){return (await request<{trip:BackendTrip}>(base(id)+'/trips','POST',input,expectedViewerId)).trip;},
