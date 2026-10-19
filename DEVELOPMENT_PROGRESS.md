@@ -1,5 +1,11 @@
 # Actuele voortgang — 18 oktober 2026
 
+## Correctiecontrole hersteld; nieuwste veilige softwarecheckpoint
+
+Vervolg op PR40/c96126c317adcb54dc415c7ee3f3e6ccf681b497: correctie zet oude final/needs_review0-status atomisch terug naar provisional/needs_review1, met audit/rollback; snapshot en correctiescherm tonen dit. Oude rapporten blijven ongewijzigd.235Node/type/lint/build/lokaleworkerdD1 en ChromiumcentraleCRUD/controleflag/perioden/langePDF PASS. [Bewijs](docs/TRANSFER/TRIP_REVIEW_INVALIDATION.md). PR37/38/39/40 respectievelijk13/12/10/23changedfiles bytegelijk op GitHub teruggelezen. Geen nieuwe productiepublicatie; live blijft uitsluitend goedgekeurd PR34-pakket.
+
+Echte iPhone-opslagmelding: eigenaar kan inloggen en ziet centrale gegevens, maar screenshots tonen geen opslagfout/geslaagdewrite. Niet als opgelost claimen. Vormgeving en uitgebreide tekstredactie zijn door eigenaar uitgesteld. Volgende functionele taken: expliciete logboekreviewafronding, nativeauth/host/queueconsumer/capture, duurzame overige writes en kaart-/route-inname; nativeApple/hardware/echteaccounts/verderepublicatie blijven afgebakende acceptatie-/toestemmingspunten. Geen volledigproject-klaarclaim.
+
 ## CLOUD-011 — gecontroleerde één-tripoverzetting gebouwd
 
 Vervolg op PR39/e8ff0e78f540370315ee4940d962b0d9724cad0c: gesloten ritbewijs expliciet naar éénlogboektrip, onveranderlijke unieke journey↔trip/receipt, atomische revision/audit/rollback, dubbele/overlappende gelijktijdige verwerking geblokkeerd. Bron daarna vergrendeld; correcties op dezelfde logboektrip. Onbekende gegevens blijven onbekend/0tellerblijft0; provisional/needs_review en geen fiscale/GPS/driverattestatie.233Node/type/lint/build/lokaleworkerdD1/gebouwdeWorker en Chromiumingest→close→review→verlorenantwoord→exactretry→reload PASS. [Bewijs/grenzen](docs/TRANSFER/REVIEWED_JOURNEY_TRIPS.md). Schema0012 uitsluitend draft/lokaal, geen livepublicatie/migratie/provisioning. Volgende kernsoftware: expliciete afronding logboekreview en overige native/GPS/offlinewerkkaart; Apple/hardware/nativeauth/liveacceptatie blijven open. Opslaan op echte iPhone nog geen bewezen foutoorzaak of herstelclaim.

@@ -1,5 +1,7 @@
 # Actuele open werkkaart — 19 oktober2026
 
+Nieuwste integriteitsfix: correcties maken een oude controlemarkering ongeldig;235tests/type/lint/build/D1/ChromiumPASS. Expliciete logboekreviewafronding blijft open. TRIP_REVIEW_INVALIDATION.md. Dit is ontwikkeling/draft, geen nieuwe liveversie.
+
 Actueel vervolg: review→éénlogboektrip met mapping/idempotentie/audit/overlapguards gebouwd,233tests/type/lint/build/workerdD1/gebouwdeWorker/ChromiumPASS. Alleen draft/lokaal0012; geen live. Zie REVIEWED_JOURNEY_TRIPS.md. Definitieve fiscale review/nativecaptatie/hardware blijven open; oudere ontbrekende-overzettingszinnen hieronder zijn historie.
 
 REQ-043 nu gebouwd/getest: maand-/kwartaal-/jaartotalen per bestuurder op vaste rapporten,225tests/type/lint/build/ChromiumPASS; REPORT_PERIOD_GROUPS.md. Centrale ingang/vereistevelden/opslagtest in PR37, geen live update. Eigenaar bevestigt login/centraleinstellingen; echte iPhoneopslag onduidelijk, geen bewezen opslagfoutoorzaak.
