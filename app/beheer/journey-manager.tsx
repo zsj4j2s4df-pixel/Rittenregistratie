@@ -1,18 +1,20 @@
 'use client';
 import {useEffect,useRef,useState} from 'react';
-import {BackendError,createBackendClient} from '../backend-client';
+import JourneyMaterialization from './journey-materialization';
+import {BackendError,createBackendClient,type Driver} from '../backend-client';
 import type {Journey,JourneyEvidence} from '../../lib/journey-service';
 import type {JourneyChoiceInput} from '../../lib/journey-choice-service';
 const api=createBackendClient();
 type PendingChoice={journeyId:string;input:JourneyChoiceInput};
-export default function JourneyManager({vehicleId,viewerId,busy}:{vehicleId:string;viewerId:string;busy:boolean}){
+export default function JourneyManager({vehicleId,viewerId,drivers,busy,onChange}:{vehicleId:string;viewerId:string;drivers:Driver[];busy:boolean;onChange:()=>Promise<void>}){
  const [rows,setRows]=useState<Journey[]>([]),[detail,setDetail]=useState<{journey:Journey;evidence:JourneyEvidence[]}|null>(null),[loading,setLoading]=useState(false),[error,setError]=useState(''),[notice,setNotice]=useState(''),[pending,setPending]=useState<PendingChoice|null>(null);
+ const [materializing,setMaterializing]=useState(false),[reviewVersion,setReviewVersion]=useState(0);
  const alive=useRef(true),sending=useRef(false);
  useEffect(()=>{alive.current=true;return()=>{alive.current=false;};},[]);
  const time=(n:number|null)=>n===null?'Nog geen eindanker':new Date(n*1000).toLocaleString('nl-NL',{timeZone:'Europe/Amsterdam'});
  function fail(e:unknown){if(!alive.current)return;setError(e instanceof Error?e.message:'Aanvraag mislukt.');if(e instanceof BackendError&&[401,403,404,409].includes(e.status)){setRows([]);setDetail(null);setPending(null);}}
  async function load(){setLoading(true);setError('');setNotice('');setRows([]);setDetail(null);try{const data=await api.journeys(vehicleId);if(alive.current)setRows(data);}catch(e){fail(e);}finally{if(alive.current)setLoading(false);}}
- async function show(id:string){setLoading(true);setError('');setDetail(null);try{const data=await api.journey(vehicleId,id);if(alive.current)setDetail(data);}catch(e){if(alive.current)setRows([]);fail(e);}finally{if(alive.current)setLoading(false);}}
+ async function show(id:string){setLoading(true);setError('');setDetail(null);try{const data=await api.journey(vehicleId,id);if(alive.current){setDetail(data);setReviewVersion(v=>v+1);}}catch(e){if(alive.current)setRows([]);fail(e);}finally{if(alive.current)setLoading(false);}}
  async function sendChoice(action:PendingChoice){
   if(sending.current||!viewerId)return;sending.current=true;setLoading(true);setError('');setNotice('');
   try{
@@ -30,7 +32,7 @@ export default function JourneyManager({vehicleId,viewerId,busy}:{vehicleId:stri
   const action={journeyId:detail.journey.id,input:{requestId:crypto.randomUUID(),expectedRevision:detail.journey.revision,classification,reason:'Expliciete ritsoortkeuze in de webinterface; ritbewijs blijft te controleren.'}};
   setPending(action);void sendChoice(action);
  }
- const disabled=busy||loading||pending!==null;
+ const disabled=busy||loading||pending!==null||materializing;
  return <section className="panel" aria-label="Centrale voertuigritcontrole">
   <h2>Centrale voertuigritcontrole</h2><p>Gedeelde coördinatie van aangeleverde ritbewijzen. Dit zijn te controleren voorstellen, nog geen definitieve ritten of rapportregels. Een verbonden telefoon bewijst niet wie rijdt.</p>
   <button disabled={disabled} onClick={()=>void load()}>Voertuigritvoorstellen laden</button>
@@ -38,9 +40,11 @@ export default function JourneyManager({vehicleId,viewerId,busy}:{vehicleId:stri
   <p>Maximaal de nieuwste 50 voorstellen. Eerdere gegevens blijven centraal bewaard.</p>
   <ul>{rows.map(row=><li key={row.id}>{time(row.started_at)} · {row.status==='review_open'?'Open, te controleren':'Gesloten, te controleren'} <button disabled={disabled} onClick={()=>void show(row.id)}>Bewijs bekijken</button></li>)}</ul>
   {detail&&<div><h3>Ritbewijs — te controleren</h3><p>{time(detail.journey.started_at)} → {time(detail.journey.ended_at)}. Revisie {detail.journey.revision}. Bestuurder is niet vastgesteld. Gekozen ritsoort: {detail.journey.classification==='business'?'Zakelijk':detail.journey.classification==='private'?'Privé':'Nog niet gekozen'}; blijft te controleren.</p>
-   <div><button disabled={disabled||!viewerId} onClick={()=>choose('business')}>Zakelijk kiezen</button> <button disabled={disabled||!viewerId} onClick={()=>choose('private')}>Privé kiezen</button></div>
+   <div><button disabled={disabled||!viewerId||!!detail.journey.materialized_trip_id} onClick={()=>choose('business')}>Zakelijk kiezen</button> <button disabled={disabled||!viewerId||!!detail.journey.materialized_trip_id} onClick={()=>choose('private')}>Privé kiezen</button></div>
    <p>Je kiest alleen de ritsoort. Dit stelt de bestuurder, gereden afstand of fiscale goedkeuring niet vast.</p>
    <ul>{detail.evidence.map(e=><li key={e.observation_id}>{time(e.observed_at)} · {e.source} · {e.event_kind} · ongeverifieerde bronclaim</li>)}</ul><p>Geen GPS-route, kilometerafstand of fiscale goedkeuring afgeleid. Bewijs van meerdere telefoons blijft afzonderlijk zichtbaar.</p></div>}
+  {detail?.journey.materialized_trip_id&&<p>Overgezet naar logboekrit {detail.journey.materialized_trip_id}. Corrigeer verdere gegevens in het rittenlogboek.</p>}
+  {detail?.journey.status==='review_closed'&&!detail.journey.materialized_trip_id&&<JourneyMaterialization key={detail.journey.id+':'+reviewVersion} journey={detail.journey} vehicleId={vehicleId} viewerId={viewerId} drivers={drivers} busy={busy||loading||pending!==null} onPending={setMaterializing} onDenied={message=>{setDetail(null);setRows([]);setError(message);}} onSaved={async()=>{await show(detail.journey.id);await onChange();}}/>}
   {pending&&<div><p>Keuze {pending.input.classification==='business'?'Zakelijk':'Privé'} wacht op bevestiging. De server kan deze al hebben opgeslagen. Alleen dit tabblad bewaart dezelfde aanvraag; sluiten, herladen of wisselen van voertuig/account kan dit herstel verliezen. Er wordt nooit automatisch opnieuw verstuurd.</p>
    <button disabled={busy||loading} onClick={()=>void sendChoice(pending)}>Dezelfde keuze opnieuw proberen</button>
    <button disabled={busy||loading} onClick={()=>{if(window.confirm('Dit verwijdert alleen de aanvraag in dit tabblad. Een centraal opgeslagen keuze wordt niet teruggedraaid. Controleer daarna het centrale ritbewijs.')){setPending(null);setDetail(null);setRows([]);setError('');setNotice('Lokale aanvraag losgelaten. Laad het centrale ritbewijs opnieuw vóór een volgende keuze.');}}}>Keuzeaanvraag loslaten</button></div>}

@@ -1,3 +1,4 @@
+import type {MaterializationInput,MaterializationReceipt} from '../lib/journey-materialization.ts';
 import type {JourneyChoiceInput,JourneyChoiceReceipt} from '../lib/journey-choice-service.ts';
 import type {Journey,JourneyEvidence} from '../lib/journey-service.ts';
 import type {DetectionObservation} from '../lib/detection-service.ts';
@@ -27,6 +28,7 @@ export function createBackendClient(fetcher:typeof fetch=fetch){
   async drivers(id:string){const all:Driver[]=[];for(let offset=0;offset<=100000;offset+=100){const page=(await request<{drivers:Driver[]}>(base(id)+'/drivers?limit=100&offset='+offset)).drivers;all.push(...page);if(page.length<100)return all;}throw new BackendError(413,'Te veel bestuurders om te laden.');},
   async journeys(id:string){return (await request<{journeys:Journey[]}>(base(id)+'/journeys?limit=50&offset=0')).journeys;},
   async journey(id:string,journeyId:string){return request<{journey:Journey;evidence:JourneyEvidence[]}>(base(id)+'/journeys/'+encodeURIComponent(journeyId));},
+  async materializeJourney(id:string,journeyId:string,input:MaterializationInput,viewerId:string){return (await request<{receipt:MaterializationReceipt}>(base(id)+'/journeys/'+encodeURIComponent(journeyId)+'/materialize','POST',input,viewerId)).receipt;},
   async chooseJourney(id:string,journeyId:string,input:JourneyChoiceInput,viewerId:string){return (await request<{receipt:JourneyChoiceReceipt}>(base(id)+'/journeys/'+encodeURIComponent(journeyId)+'/choice','POST',input,viewerId)).receipt;},
   async detections(id:string,deviceId:string,offset=0){return (await request<{observations:DetectionObservation[]}>(base(id)+'/devices/'+encodeURIComponent(deviceId)+'/detections?limit=50&offset='+offset)).observations;},
   async devices(id:string){const all:RegisteredDevice[]=[];for(let offset=0;offset<=100000;offset+=100){const page=(await request<{devices:RegisteredDevice[]}>(base(id)+'/devices?limit=100&offset='+offset)).devices;all.push(...page);if(page.length<100)return all;}throw new BackendError(413,'Te veel appinstanties om te laden.');},

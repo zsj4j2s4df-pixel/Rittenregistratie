@@ -1,3 +1,4 @@
+import {createJourneyMaterializer} from '../lib/journey-materialization.ts';
 import {createJourneyChoiceService} from '../lib/journey-choice-service.ts';
 import {createJourneyService} from '../lib/journey-service.ts';
 import {createDetectionService} from '../lib/detection-service.ts';
@@ -83,9 +84,10 @@ try {
  assert.equal((await verifiedHandle(authedRequest())).status,200);const cookieRequest=()=>new Request(origin+'/api/vehicles/v/settings',{headers:{cookie:'CF_Authorization='+jwt}});assert.equal((await verifiedHandle(cookieRequest())).status,200);assert.equal((await verifiedHandle(new Request(settingsUrl))).status,401);
  await db.prepare("UPDATE users SET disabled=1 WHERE id='u'").run();assert.equal((await verifiedHandle(authedRequest())).status,401);assert.equal((await verifiedHandle(cookieRequest())).status,401);
  await db.prepare("UPDATE users SET disabled=0 WHERE id='u'").run();
+ const materializer=createJourneyMaterializer(db,async()=>({userId:'u',disabled:false,sessionExpiresAt:2_000_000}),()=>1_000_000),materializationInput={requestId:'d1-reviewed-materialization-01',expectedRevision:2,reviewed:true,classification:'private',driverId:null,distanceKm:null,startAddress:null,endAddress:null,odometerStart:0,odometerEnd:null,purpose:null,reason:'Explicit local D1 review'};const linkedTrip=await materializer.materialize('v',journey.journeyId,materializationInput);assert.deepEqual(await materializer.materialize('v',journey.journeyId,materializationInput),linkedTrip);assert.equal((await journeys.get('v',journey.journeyId)).journey.materialized_trip_id,linkedTrip.tripId);assert.equal((await db.prepare('SELECT distance_km FROM trips WHERE id=?').bind(linkedTrip.tripId).first()).distance_km,null);
  await db.prepare('UPDATE vehicle_memberships SET active=0').run();
  assert.equal((await verifiedHandle(authedRequest())).status,403);assert.equal((await verifiedHandle(cookieRequest())).status,403);
  assert.equal((await handle(new Request(origin+'/api/vehicles/v/trips'))).status,403);
  await assert.rejects(()=>service.list('v'),e=>e.status===403);
- console.log('PASS local workerd/D1: session-scoped classification/retry, canonical journey create/retry/coherent evidence/close, raw detection ingest/dedup/disabled denial, device register/retry/deactivate/disabled replay, scoped route read, coherent transactional refresh, migrations, fail-closed session, edit+audit, provenance, stale conflict, atomic rollback, concurrent idempotent creation, creation rollback, HTTP read/write, durable settings/rollback, immutable reports/CSV/rollback, synthetic signed Access identity, revocation. NOT production D1/auth.');
+ console.log('PASS local workerd/D1: reviewed one-trip materialization/exact retry/unknowns, session-scoped classification/retry, canonical journey create/retry/coherent evidence/close, raw detection ingest/dedup/disabled denial, device register/retry/deactivate/disabled replay, scoped route read, coherent transactional refresh, migrations, fail-closed session, edit+audit, provenance, stale conflict, atomic rollback, concurrent idempotent creation, creation rollback, HTTP read/write, durable settings/rollback, immutable reports/CSV/rollback, synthetic signed Access identity, revocation. NOT production D1/auth.');
 } finally { await mf.dispose(); }
