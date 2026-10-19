@@ -1,5 +1,11 @@
 # Hervatpunt — 18 oktober 2026
 
+## Direct hervatten — draft-PR41
+
+Actuele cumulatieve GitHubbranch `cloud/cloud-002-review-invalidation`, draftPR41 https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/41 , codehead fb275aca1ad1d860f0baba14429cdcfe0b22dccf. BasePR40/c96126c; PR37→38→39→40→41 intact. Alle12gewijzigdePR41files bytegelijk remote; eerderePR37/38/39/40 ook13/12/10/23verified.235Node/type/lint/build/D1 en gerichte Chromiumflows PASS. Deze documentcheckpoint volgt op dezelfdebranch. Lokale gitgeschiedenis is synthetisch: nooit pushen; GitHub echteparent/tree/expectedSHA gebruiken.
+
+Software-eerststuring eigenaar gevolgd: vormgeving/tekstredactie uitgesteld, vijf samenhangende code-/testgroepen opgeslagen. Laatste livecode blijft PR34, geen nieuwe features/migraties live. Opslagmelding op echte iPhone nog onbegrepen zonder concrete fout; screenshot bevestigt wel centrale login/read. Volgende veilige taak: expliciete reviewafronding voor een logboektrip met eigen revision/receipt/audit (correcties moeten die controle weer ongeldig maken); daarna nativehost/authqueueconsumer/capture, overige offlinewrites/route-inname. Nieuwe schema's alleen draft/lokaal, geen livepublicatie/provisioning/securitywijziging/kosten/mainmerge zonder afgebakend besluit. Swift/XCTest/iOS en hardware niet als getest opvoeren.
+
 ## Correctiecontrole hersteld; nieuwste veilige softwarecheckpoint
 
 Vervolg op PR40/c96126c317adcb54dc415c7ee3f3e6ccf681b497: correctie zet oude final/needs_review0-status atomisch terug naar provisional/needs_review1, met audit/rollback; snapshot en correctiescherm tonen dit. Oude rapporten blijven ongewijzigd.235Node/type/lint/build/lokaleworkerdD1 en ChromiumcentraleCRUD/controleflag/perioden/langePDF PASS. [Bewijs](docs/TRANSFER/TRIP_REVIEW_INVALIDATION.md). PR37/38/39/40 respectievelijk13/12/10/23changedfiles bytegelijk op GitHub teruggelezen. Geen nieuwe productiepublicatie; live blijft uitsluitend goedgekeurd PR34-pakket.
