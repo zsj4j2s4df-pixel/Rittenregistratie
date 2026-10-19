@@ -1,5 +1,7 @@
 # Actuele open werkkaart — 19 oktober2026
 
+Actueel: expliciete handmatige logboekcontrole en idempotente ontvangst/audit gebouwd/getest,240Node/type/lint/build/D1/gebouwdeWorker/ChromiumPASS. Correctie invalideert die controle; fiscale acceptatie blijft apart.0013 alleen draft/lokaal. EXPLICIT_TRIP_REVIEW.md. Oudere ontbrekende-afrondingsregels zijn hiermee ingehaald.
+
 Nieuwste integriteitsfix: correcties maken een oude controlemarkering ongeldig;235tests/type/lint/build/D1/ChromiumPASS. Expliciete logboekreviewafronding blijft open. TRIP_REVIEW_INVALIDATION.md. Dit is ontwikkeling/draft, geen nieuwe liveversie.
 
 Actueel vervolg: review→éénlogboektrip met mapping/idempotentie/audit/overlapguards gebouwd,233tests/type/lint/build/workerdD1/gebouwdeWorker/ChromiumPASS. Alleen draft/lokaal0012; geen live. Zie REVIEWED_JOURNEY_TRIPS.md. Definitieve fiscale review/nativecaptatie/hardware blijven open; oudere ontbrekende-overzettingszinnen hieronder zijn historie.
