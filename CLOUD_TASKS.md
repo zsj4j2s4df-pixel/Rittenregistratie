@@ -1,5 +1,26 @@
 # Cloud-taken — RitKompas
 
+## Gezamenlijke actuele status — na PR28/29/30
+
+CLOUD-009 ontvangst PR27 **BEVESTIGD**, MAC-ACK-01 **PASS via GitHub**; directe Cloud→Mac-tool ontbreekt. CLOUD-010 meldingsbron en reviewvoorstellen + devicequota **GEBOUWD TER CONTROLE in PR29**, niet opnieuw bouwen. CLOUD-011 canonieke voertuigritcoördinatie, native duurzame actiequeue/sessiebinding en fysieke acceptatie blijven OPEN. CLOUD-012 onderzoek in PR28 en aanvullende Macvergelijking opgeslagen; vaste3telefoonprioriteit niet bewezen, geen aankoop.
+
+Deze branch combineert #29 met Mac #30. Centrale M27-nummers in PR27_PLAN.md; Maccontrole gebruikt MAC27-nummers. Resultaten MAC_CLOUD_ACK_RESULT.md en MAC_NATIVE_VALIDATION.md. Cloud coördineert de volgende veilige taakgroep vanaf geïntegreerde head, Mac doet werkelijk beschikbare lokale/native/hardwareproeven. Oudere pending-ontvangst en nog-te-bouwen-meldingsstatus hieronder is historie.
+
+## Actuele overdracht — PR #27, 19 oktober 2026
+
+Cloud blijft coördinator. De volledige memo-opdracht en 18 gekoppelde acceptatiepunten staan in [PR27_EXECUTION_PLAN](docs/TRANSFER/PR27_EXECUTION_PLAN.md); hardwareadvies in [HARDWARE_ADVICE](docs/TRANSFER/HARDWARE_ADVICE_2026-10-19.md). Alle bestaande eisen en de gestapelde PR-keten behouden. Geen dubbele herbouw.
+
+| Taakgroep | Status en eerstvolgende stap |
+|---|---|
+| CLOUD-009 / Mac→Cloud-ontvangst PR27 | Bericht geregistreerd in bestaande Cloud agent, nonce/antwoord/retourtest nog niet bevestigd; GitHub is bestendig kanaal. MAC_CLOUD_CHANNEL_TEST.md |
+| CLOUD-010 / Meldingen en ritbewijs | Klaar voor veilige Cloud-bronontwikkeling boven PR26: native acties Zakelijk/Privé + zuivere vertrek/eindelogica, uitval/korte stop/EV/gemiste melding testen; nog geen sensor- of CarPlay-belofte |
+| CLOUD-011 / Centrale voorstellen en deduplicatie | Gebruik bestaande device/raw-ingest/quota; begrens app-instancegroei en ontwerp één voertuigrit met onzekerheid/audit; drie telefoons, retries, overlap en conflicten testen |
+| CLOUD-012 / CarPlay en OBD2 | Eerste fabrikant-/prijsvergelijking opgeslagen; vaste vaderprioriteit en exacte teller-PID niet bewezen. Hardwareproeven via MAC-027-03/04; niets kopen |
+| MAC-027-01 / Native broncontrole | Core typecheck/Swift6-build PASS; XCTest ontbreekt, iOS/simulator/hardware NIET GETEST.187Node-tests PASS na veilige fixturefix |
+| MAC-ACCESS / Zero Trust | Free + All traffic/accountleden toegepast na eigenaarstoestemming; anon302 en bestaande eigenaarlogin PASS. Backendbindings/provisioning vereisen volgende concrete toestemming |
+
+Na iedere veilige taakgroep tests/securitycontrole, commit/PR, dit bestand, DEVELOPMENT_PROGRESS en RESUME bijwerken en volgende uitvoerbare groep oppakken. `/scale` of `/do` is niet aangetoond als productfunctie. Geen automatische main-merge of onbeperkte Cloudretry; actuele usage respecteren.
+
 ## PR27-veilige doorbouw — 19 oktober 2026, niet live
 
 Onderzoek/ontvangst/testopdrachten opgeslagen in draftPR28, heada6eebf5c4705e33e4f1a8fe9eb0cfa8dda036011, basePR26exactec44dc8. MAC-CLOUD-20261019-PR27 blijft ontvangstbevestigd; automatischeMacuitvoering NIETBEWEZEN, MAC-ACK-01wachtGitHubbewijs.
@@ -14,7 +35,6 @@ Volgende cloudgroep: gecontroleerde nativecontextstore/idempotenteclassificatieq
 ## PR27 ontvangen — MAC-CLOUD-20261019-PR27
 
 19 oktober2026 Europe/Amsterdam: volledig memo/PR/comments/reviews gelezen op4af50d3a1fa3408cb563a2924ce9aec2784c4290. Ontwikkelbasis blijft PR26/ec44dc8ddda1361a61f9f0c8bdceebe4e20e8a01; PR1–26intact, PR27nietgemerged. Fabrikantonderzoek en concretekoopvergelijking: JEEP_HARDWARE_RESEARCH.md.16aanvullendeeisen/planning: PR27_PLAN.md, oorspronkelijke123REQ/21scenario'sbehouden. DirecteMac-threadtool ontbreekt; ontvangst hier bevestigd, gratis MAC-ACK-01 en fysiekehardwarematrix in MAC_HARDWARE_TESTS.md; uitvoering/terugkoppeling NIETBEWEZEN. Geenopdrachtverstuurdnaaranderechat, geenaankoop/kosten/accounts/productie/Cloudflaremutatie/mainmerge. Eerderesubagentcreditfoutgedocumenteerd; primaireagentdoetveiligwerk, geenbetaaldeherstart. Volgende: aanwezige devicequota/proposalbron afronden/testen en native meldingsactiebron, Swift/iPhoneblijvenNIETGETESTzonderMacbewijs.
-
 
 ## Atomaire detectiequota — 19 oktober 2026, niet live
 

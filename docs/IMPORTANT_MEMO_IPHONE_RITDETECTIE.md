@@ -54,4 +54,3 @@ Maak ritten registreren zo eenvoudig mogelijk: de bestuurder stapt in, kiest met
 
 ## Acceptatie
 Een echte iPhone-test toont: verbinding met Jeep -> melding -> keuze via meldingsactie -> correcte ritregistratie -> betrouwbaar einde -> nieuwe rit bij volgend vertrek. Meld duidelijk wat iOS/CarPlay niet kan of wat nog niet getest is.
-

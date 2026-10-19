@@ -1,5 +1,7 @@
 # PR27 — aanvullende eisen en uitvoerplan
 
+> **Mac-resultaat:** [MAC_CLOUD_ACK_RESULT](MAC_CLOUD_ACK_RESULT.md) bewijst de retourproef via GitHub; directe tweewegthreadsturing niet beschikbaar. Mac-corecompile PASS, XCTest/iOS/hardware NIET GETEST. [Zero Trust](MAC_ZERO_TRUST_2026-10-19.md) is specifiek goedgekeurd/toegepast, backend blijft gesloten. Deze Cloudplanning met M27-ID's is leidend; [MAC27-controlekaart](PR27_EXECUTION_PLAN.md) is aanvullend, geen concurrerende nummering.
+
 19 oktober 2026. Bron: [memo](../IMPORTANT_MEMO_IPHONE_RITDETECTIE.md), exact PR27-head4af50d3a1fa3408cb563a2924ce9aec2784c4290. Addendum op het bestaande register met123REQ-ID's/21scenario's; geen hernummering of stilzwijgende vervanging. Status “gepland/bronprototype” is geen geaccepteerde werkende functie.
 
 | Addendum-ID | Eis / acceptatie | Bestaande aansluiting | Prioriteit / status |

@@ -1,5 +1,7 @@
 # Cloud → Mac — ontvangstproef en fysieke acceptatie
 
+> **Mac-terugkoppeling 19 oktober 2026:** MAC-ACK-01 is daadwerkelijk uitgevoerd en PASS voor de GitHub-ontvangstproef; [resultaat met nonce en exacte commits](MAC_CLOUD_ACK_RESULT.md). Corecompile op Mac PASS, overige iOS-/fysieke hardwareproeven NIET GETEST. De oudere NIET UITGEVOERD-status hieronder is testhistorie.
+
 19 oktober 2026, Europe/Amsterdam. Referentie **MAC-CLOUD-20261019-PR27**. Cloud leidt; Mac ondersteunt Apple-toolchain/iPhone/Jeep/hardware. Geen externe Cloudflare-configuratie gelijktijdig wijzigen; Mac onderzoekt Access/ruleset in eigen PR. Geen aankopen, kosten, productiepublicatie, securityuitschakeling, mainmerge of forcepush.
 
 ## Ontvangst en uitvoeringsbewijs: eerst deze gratis proef

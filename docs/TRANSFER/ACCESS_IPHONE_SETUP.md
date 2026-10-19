@@ -1,5 +1,7 @@
 # Access instellen op iPhone — gecontroleerd 18 oktober 2026
 
+> **Uitgevoerd op 19 oktober 2026:** na eigenaarstoestemming is de hieronder beschreven alternatieve Worker-route gebruikt: All traffic + bestaande Cloudflare account members. Dashboard toont Free, één accountlid en geen bypass; anonieme requests en bestaande eigenaarlogin getest. Maak geen tweede hostname-app naast deze Worker-policy. De oude exacte e-mail-/1h-configuratie hieronder is niet de toegepaste variant. Backendbindings/provisioning blijven apart; zie [actueel bewijs](MAC_ZERO_TRUST_2026-10-19.md).
+
 ## Gecontroleerde bron van waarheid
 
 GitHub-branch cloud/cloud-005-cloudflare-release, commit6c3f60834b36fe84ed43360c27f3feb8d2438ef7: wrangler.json heeft name=rittenregistratie, workers_dev=true, preview_urls=false, APP_ORIGIN=https://rittenregistratie.zsj4j2s4df.workers.dev en DB-binding voor EU-D1. Hosting is Workers (vinext/React SSR + API) en D1; geen Pages-hosting of vereist eigen domein.
