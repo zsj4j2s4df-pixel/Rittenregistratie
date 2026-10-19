@@ -31,3 +31,11 @@ test('fixed team issuer required; malformed inputs cannot choose JWKS hosts',asy
  const {db}=setup(t);for(const bad of ['https://evil.example','http://team.cloudflareaccess.com','https://team.cloudflareaccess.com/','https://team.cloudflareaccess.com@evil.example'])assert.throws(()=>createCloudflareAccessResolver({db,issuer:bad,audience}));
  const {resolve,calls}=resolver(t);for(const value of ['a.b.c','a'.repeat(17000),'aaa.bbb'])assert.equal(await resolve(request(value)),null);assert.equal(calls(),0);
 });
+test('cookie-only browser app JWT uses the same signature/claims/internal mapping gates',async t=>{
+ const {resolve,sqlite}=resolver(t),jwt=await token();const cookie=value=>new Request('https://ritkompas.example/api/vehicles',{headers:{cookie:'theme=sand; CF_Authorization='+value}});
+ assert.deepEqual(await resolve(cookie(jwt)),{userId:'u',sessionExpiresAt:2000000,disabled:false});
+ for(const patch of [{aud:['wrong-app']},{iss:'https://other.cloudflareaccess.com'},{exp:1000},{type:'org'},{sub:'unknown'}])assert.equal(await resolve(cookie(await token(patch))),null);
+ const parts=jwt.split('.');parts[1]=encode({...claims,sub:'forged'});assert.equal(await resolve(cookie(parts.join('.'))),null);
+ assert.equal(await resolve(new Request('https://ritkompas.example',{headers:{cookie:'CF_Authorization='+jwt,'cf-access-jwt-assertion':'invalid.header.value'}})),null);
+ sqlite.exec("UPDATE users SET disabled=1 WHERE id='u'");assert.equal(await resolve(cookie(jwt)),null);
+});

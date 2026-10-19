@@ -1,5 +1,11 @@
 # Cloud-taken — RitKompas
 
+## Actueel — CLOUD-013 / 19 oktober 2026
+
+Deze branch is een geïsoleerd code-only releasevoorstel vanaf PR14 `6c3f60834b36fe84ed43360c27f3feb8d2438ef7`. Nieuwere cumulatieve ontwikkeling staat in PR33, Mac-bewijs in PR32. Niet deze oudere brontekst als volledige nieuwste projectbasis gebruiken. Live login blijft FAIL; eigenaar is reeds geprovisioneerd (1 gebruiker/voertuig/recht, 0 ritten, 2 audits). Geen nieuwe provisioning/migratie/configuratie/publicatie toegestaan zonder nieuwe toestemming. Oudere publicatieopdrachten hieronder zijn historie waar strijdig.
+
+CLOUD-013: ondertekende app-cookie als strikt begrensde fallback bij ontbrekende assertionheader; crypto/account/voertuigcontroles ongewijzigd. 124/124 Node-tests, type/lint/build en lokale D1 PASS. Originele resolver reproduceert cookie-only 401, patch200; exacte live oorzaak en live oplossing NIET bewezen. Plan, rollback en Mac-eindtest: [ACCESS_TRANSPORT_FIX.md](docs/TRANSFER/ACCESS_TRANSPORT_FIX.md). Volgende stap: beperkte draft-PR review + fix naar cumulatieve branch; live test pas na expliciete toestemming voor dit concrete code-only pakket. Main/Access/DB onaangeraakt.
+
 ## Actuele regie en status — 18 oktober 2026
 
 **Cloud is hoofdontwikkelaar, Mac ondersteunt lokale/iOS/hardwaretaken, eigenaar beslist over belangrijke handelingen.** Deze nieuwe expliciete opdracht vervangt de oudere Mac-hoofdrol hieronder. GitHub is centraal. Sol indien beschikbaar; Astra uitsluitend belangrijke besluiten. Geen extra betaalde diensten/runs, geen main-merge zonder eigenaar. Eén samenhangende run heeft voorkeur.

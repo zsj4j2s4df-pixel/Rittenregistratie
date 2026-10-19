@@ -1,5 +1,11 @@
 # RitKompas — uitvoeringsinstructies
 
+## Actueel — CLOUD-013 / 19 oktober 2026
+
+Deze branch is een geïsoleerd code-only releasevoorstel vanaf PR14 `6c3f60834b36fe84ed43360c27f3feb8d2438ef7`. Nieuwere cumulatieve ontwikkeling staat in PR33, Mac-bewijs in PR32. Niet deze oudere brontekst als volledige nieuwste projectbasis gebruiken. Live login blijft FAIL; eigenaar is reeds geprovisioneerd (1 gebruiker/voertuig/recht, 0 ritten, 2 audits). Geen nieuwe provisioning/migratie/configuratie/publicatie toegestaan zonder nieuwe toestemming. Oudere publicatieopdrachten hieronder zijn historie waar strijdig.
+
+CLOUD-013: ondertekende app-cookie als strikt begrensde fallback bij ontbrekende assertionheader; crypto/account/voertuigcontroles ongewijzigd. 124/124 Node-tests, type/lint/build en lokale D1 PASS. Originele resolver reproduceert cookie-only 401, patch200; exacte live oorzaak en live oplossing NIET bewezen. Plan, rollback en Mac-eindtest: [ACCESS_TRANSPORT_FIX.md](docs/TRANSFER/ACCESS_TRANSPORT_FIX.md). Volgende stap: beperkte draft-PR review + fix naar cumulatieve branch; live test pas na expliciete toestemming voor dit concrete code-only pakket. Main/Access/DB onaangeraakt.
+
 Nieuwste gebruikersbesluit, 18 oktober 2026: **Codex Cloud is hoofdontwikkelaar; Codex Mac ondersteunt lokale builds, iOS-simulator en hardwaretests. GitHub is de centrale bron van waarheid. De projecteigenaar beslist over belangrijke handelingen.** Oudere afwijkende rolverdelingen blijven alleen historie.
 
 Start met RESUME.md, CLOUD_TASKS.md, DEVELOPMENT_PROGRESS.md en CLOUD_HANDOVER.md. Lees daarna alleen de relevante eisen/testgevallen en code; herhaal geen volledige inventaris zonder aanleiding. Alle functionele wensen in de bijgewerkte masterprompt blijven behouden. Sol is voorkeur voor dagelijkse regie indien beschikbaar, Astra alleen voor belangrijke afwegingen. Geen modelwissel, agentoverdracht of automatische sessiesynchronisatie claimen zonder bewijs.

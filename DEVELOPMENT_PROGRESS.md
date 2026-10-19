@@ -1,5 +1,11 @@
 # Actuele voortgang — 18 oktober 2026
 
+## Actueel — CLOUD-013 / 19 oktober 2026
+
+Deze branch is een geïsoleerd code-only releasevoorstel vanaf PR14 `6c3f60834b36fe84ed43360c27f3feb8d2438ef7`. Nieuwere cumulatieve ontwikkeling staat in PR33, Mac-bewijs in PR32. Niet deze oudere brontekst als volledige nieuwste projectbasis gebruiken. Live login blijft FAIL; eigenaar is reeds geprovisioneerd (1 gebruiker/voertuig/recht, 0 ritten, 2 audits). Geen nieuwe provisioning/migratie/configuratie/publicatie toegestaan zonder nieuwe toestemming. Oudere publicatieopdrachten hieronder zijn historie waar strijdig.
+
+CLOUD-013: ondertekende app-cookie als strikt begrensde fallback bij ontbrekende assertionheader; crypto/account/voertuigcontroles ongewijzigd. 124/124 Node-tests, type/lint/build en lokale D1 PASS. Originele resolver reproduceert cookie-only 401, patch200; exacte live oorzaak en live oplossing NIET bewezen. Plan, rollback en Mac-eindtest: [ACCESS_TRANSPORT_FIX.md](docs/TRANSFER/ACCESS_TRANSPORT_FIX.md). Volgende stap: beperkte draft-PR review + fix naar cumulatieve branch; live test pas na expliciete toestemming voor dit concrete code-only pakket. Main/Access/DB onaangeraakt.
+
 ## Nieuwste centrale webgroep — draft-PR #13
 
 /beheer communiceert met echte gedeelde backend, geen demodatafallback. Vehiclelist/privacy, manualtrip/0stand, plate/revision, vaste report/CSV.111tests/type/lint/build PASS. Centrale browsertest met gesimuleerde identiteit en echteHTTP/SQLite: lostresponse→reconnect→retry zonderduplicaat, reload, concurrent409, CSV, mobile/theme PASS. Reconnectreviewbevinding en 2browserbugs gefixt, hercontrolePASS. Geen liveCloudflarelogin/remoteDB, fullCRUD/sync/native niet af. Zie CENTRAL_WEB.md.

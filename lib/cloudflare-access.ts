@@ -1,3 +1,4 @@
+import {accessApplicationToken} from './access-token.ts';
 import type { Principal } from './access-policy.ts';
 
 // Prepared integration, not an activated Cloudflare account or public login.
@@ -36,7 +37,7 @@ export function createCloudflareAccessResolver(options: {
  }
  return async (request:Request):Promise<Principal|null>=>{
   try{
-   const token=request.headers.get('cf-access-jwt-assertion');if(!token||token.length>16384)return null;
+   const token=accessApplicationToken(request);if(!token)return null;
    const parts=token.split('.');if(parts.length!==3)return null;
    const header=object(parts[0]),claims=object(parts[1]);
    if(header.alg!=='RS256'||typeof header.kid!=='string'||!header.kid||header.kid.length>256||header.crit!==undefined||(header.typ!==undefined&&header.typ!=='JWT'))return null;
