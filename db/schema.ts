@@ -184,3 +184,7 @@ export const journeyMaterializations=sqliteTable('journey_materializations',{
 export const tripReviewRequests=sqliteTable('trip_review_requests',{
  vehicleId:text('vehicle_id').notNull().references(()=>vehicles.id),userId:text('user_id').notNull().references(()=>users.id),requestId:text('request_id').notNull(),tripId:text('trip_id').notNull().references(()=>trips.id),expectedRevision:integer('expected_revision').notNull(),revision:integer('revision').notNull(),requestJson:text('request_json').notNull(),responseJson:text('response_json').notNull(),
 },t=>[primaryKey({columns:[t.vehicleId,t.userId,t.requestId]}),uniqueIndex('idx_trip_review_revision').on(t.tripId,t.revision),check('trip_review_revision',sql`typeof(${t.expectedRevision})='integer' AND ${t.expectedRevision}>=0 AND typeof(${t.revision})='integer' AND ${t.revision}=${t.expectedRevision}+1 AND ${t.revision}<=9007199254740991`)]);
+
+export const mutationRequests=sqliteTable('mutation_requests',{
+ vehicleId:text('vehicle_id').notNull().references(()=>vehicles.id),userId:text('user_id').notNull().references(()=>users.id),requestId:text('request_id').notNull(),operation:text('operation').notNull(),entityId:text('entity_id').notNull(),requestJson:text('request_json').notNull(),responseJson:text('response_json').notNull(),
+},t=>[primaryKey({columns:[t.vehicleId,t.userId,t.requestId]}),check('mutation_operation',sql`${t.operation} IN ('trip-edit','settings')`),check('mutation_payload_size',sql`length(CAST(${t.requestJson} AS BLOB))<=16384 AND length(CAST(${t.responseJson} AS BLOB))<=65536`)]);

@@ -1,5 +1,11 @@
 # Cloud-taken — RitKompas
 
+## Herstelbare instellingen/ritcorrecties gebouwd
+
+Vervolg op PR42/0fc1ba99e91d8aa601e1e9747d85a008936ff6ed: serverreceipts voor optionele PATCHrequestcodes + opt-in IndexedDBherstel voor settings/trip-edit. Exactretry geeft historischebevestiging zonder herapply/auditdubbel; na herstel actuele snapshot lezen. Viewerbinding, actorrevocation, target/type/canonicalconflict en atomicreceipt/auditrollback.245Node/type/lint/build/gebouwdeWorkerD1 en Chromiumtabclose/reopen/newerdata/scope/revoke/cleanup PASS; legacy trip/reportrecovery en centraleCRUD/perioden/langePDF blijven PASS. [Bewijs/grenzen](docs/TRANSFER/MUTATION_RECOVERY.md).0014 alleen draft/lokaal, geen livepublicatie/migratie.
+
+Volgende veilige taak: echte centrale opgeslagen route naar AppleKaarten overdragen na actuele autorisatie en expliciete gebruikerkeuze, zonder GPSspoor door berekende route te vervangen. Native/echteiPhoneopslag/Safari/kaartprovider/hardware/fiscaleacceptatie blijven open. Geen oorspronkelijke eis laten vervallen of volledigproject-klaarclaim.
+
 ## Logboekcontrole expliciet afronden gebouwd
 
 Vervolg op PR41/checkpoint28dc75e8c8060ea1829633321188e32be3a05358: bevestigde handmatige logboekreview met actuele revisie, reden, actor/driverchecks, unieke onveranderlijke receipt en atomische audit/rollback. Geen automatische fiscale goedkeuring. Later corrigeren maakt controle weer ongeldig; oude retryreceipt kan die nieuwe correctie niet hergoedkeuren.240Node/type/lint/build/lokaleworkerdD1/gebouwdeWorker en Chromiumreview/lostresponse/retry/correction PASS. [Bewijs](docs/TRANSFER/EXPLICIT_TRIP_REVIEW.md).0013 alleen draft/lokaal; geen productiepublicatie.
