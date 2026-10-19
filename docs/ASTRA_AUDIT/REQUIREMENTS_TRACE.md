@@ -1,5 +1,7 @@
 # Eisen en bewijs — CLOUD-006
 
+Actuele delta REQ-043: periode-/bestuurderoverzichten gebouwd/getest boven vaste snapshots; [bewijs](../TRANSFER/REPORT_PERIOD_GROUPS.md). Onderstaande ONTBREEKT-cellen blijven de historische nulmeting.
+
 Aanvulling19oktober2026: [PR27_PLAN](../TRANSFER/PR27_PLAN.md) registreert M27-01–16 inclusief native meldingen, werkelijke ritgrenzen,4xeEV,OBD/CarPlaykooponderzoek,vaste iPhoneprioriteit en Cloud↔Macbewijs. De123REQ-ID's hieronder blijven ongewijzigd; aanvullende eisen zijn niet automatisch gerealiseerd.
 
 Actuele implementatiedelta (geen wijziging van eisen): [CLOUD_CHECKPOINT](../TRANSFER/CLOUD_CHECKPOINT.md). De historische ONTBREEKT-kolom hieronder blijft de nulmeting; actuele test- en gedeeltelijke implementatiebewijzen staan in de delta.

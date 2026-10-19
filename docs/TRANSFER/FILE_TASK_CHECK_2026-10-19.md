@@ -10,7 +10,7 @@ De123REQ-ID's en M27-01–16 blijven intact. Historische “code ontbreekt”/�
 | Centrale opslag | Gebouwde Worker+D1create/read/retry/settingsPASS | Echte gebruikersacceptatie op huidige liveversie; nieuwe bronfeatures nog niet gepubliceerd |
 | Webformulieren | Centrale ingang, lokale verplichteveldcontrole, feedback-in-beeld gebouwd | Browser/Safariacceptatie; latere rustige opmaak/korte teksten |
 | Ritcorrecties/historie | SQL/HTTP/browser/audit/conflicten gebouwd | Echte meergebruikersacceptatie en duurzame onzekere correcties/settingsqueue |
-| Rapporten/vergoeding | Vaste snapshots, exactgeld, CSV/printPDF, onbekende waarden behouden | Maand/kwartaal/jaar per bestuurder expliciet groeperen; zelfstandige serverPDF en fiscale acceptatie |
+| Rapporten/vergoeding | Vaste snapshots, exactgeld, CSV/printPDF, onbekende waarden behouden | Maand/kwartaal/jaar per bestuurder inmiddels gebouwd/getest in REPORT_PERIOD_GROUPS.md; zelfstandige serverPDF en fiscale acceptatie |
 | Sync/offline | Coherente handmatige snapshot en opt-in IndexedDBcreate/reportrecovery | Incremental cursor/auto-sync zonder onopgeslagen edits te verliezen; Safari/profile-restart/eviction; settings/correctionrecovery |
 | Detectie/deduplicatie | Boundedrawingest, devices, quota, voorstellen, éénopenreviewcoördinatie en keuzeAPI/web | Definitieve één-tripmaterialisatie met duurzame koppeling; echte sensoren/einde/EV/tweeminutenklantstop |
 | Native iPhone | SwiftCore/clientcontracts, meldings-/versleuteldequeuebron | Geconfigureerde nativeauthprovider, host/delegate/consumer, capture/achtergrond/restart, Swift/XCTest/iOScompile en echte iPhone |

@@ -1,5 +1,9 @@
 # Cloud-taken — RitKompas
 
+## REQ-043 — periode-/bestuurderoverzichten gebouwd
+
+Boven PR37/b459792: vaste rapporten groeperen op maand/kwartaal/jaar per bestuurder-ID; onbekenden, deelselecties en onbekende bedragen blijven zichtbaar. Geen actuele tarieven/namen herlezen of perritbedragen opnieuw afronden.225Node/type/lint/build en Chromiumperiodeselectie/vastePDF/centraleCRUD PASS. [Bewijs](docs/TRANSFER/REPORT_PERIOD_GROUPS.md). Geen migratie/livepublicatie. Volgende veilige groep: opt-in automatische coherente refresh met bescherming van onopgeslagen invoer. Hardware/native/echteiPhone-opslag en verdere externe publicatie blijven apart.
+
 ## Opslagmelding onderzocht; softwarewerk vervolgd
 
 Eigenaar bevestigt login en toont centrale voertuig/instellingen op iPhone. Dat is nieuw gebruiksbewijs; eerdere algemene loginFAIL is ingehaald. Opslaan op iPhone nog ONBEVESTIGD: screenshot toont geen fout, oorzaak niet vastgesteld. Lokaal gebouwd Worker+D1save/read/exactretry/settingsPATCH PASS. Centrale root/demopad en verplichteveldfeedback gebouwd, geen vormgevingsronde.221Node/type/lint/build en centrale-/demobrowser PASS. [Opslagbewijs](docs/TRANSFER/SAVE_WORKFLOW_CHECK.md), [bestands-/werkcontrole](docs/TRANSFER/FILE_TASK_CHECK_2026-10-19.md). Nieuwe groep alleen bron/draft, geen livewijziging. Volgende veilige softwaregroep: totalen per bestuurder/maand/kwartaal/jaar boven vaste rapportsnapshots;123REQ/M27 behouden.

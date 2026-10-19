@@ -1,5 +1,7 @@
 # Actuele open werkkaart — 19 oktober2026
 
+REQ-043 nu gebouwd/getest: maand-/kwartaal-/jaartotalen per bestuurder op vaste rapporten,225tests/type/lint/build/ChromiumPASS; REPORT_PERIOD_GROUPS.md. Centrale ingang/vereistevelden/opslagtest in PR37, geen live update. Eigenaar bevestigt login/centraleinstellingen; echte iPhoneopslag onduidelijk, geen bewezen opslagfoutoorzaak.
+
 Actueel: alleen PR34-livefix goedgekeurd/gepubliceerd, bindings behouden en anoniem302 PASS; echte ingelogde proef MAC-CLOUD-013-LIVE-01 OPEN. Cumulatieve webkeuze nu gebouwd/getest met221Node en Chromiumlostresponse/retry/conflict/accountswitch/revoke; niet live. WEB_JOURNEY_CHOICE.md en ACCESS_RELEASE_RESULT_2026-10-19.md zijn leidend voor deze twee groepen. Oudere statusregels hieronder zijn historie waar ingehaald.
 
 Actueel CLOUD013: PR34 bevat geïsoleerde workerd-JWKS/cookiefix + releasevoorstel;221Node/type/lint/build/lokaleD1/gebouwdeWorker in cumulatieve ontwikkeling PASS. Nog geen live publicatie of echte ingelogde eindtest. Zie ACCESS_TRANSPORT_FIX.md.
