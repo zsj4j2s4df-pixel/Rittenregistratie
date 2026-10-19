@@ -1,5 +1,14 @@
 # Cloud-taken — RitKompas
 
+## CLOUD-011 — canonieke coördinatie, eerste groep
+
+19 oktober2026: exact geïntegreerdePR30-head677a222e3d2947510a9f9e1d736023ebf82c8118/tree f93782b3b07fde78f2ef458f0ab4dd01be962ba2 gebruikt;21Macdeltafiles bytegelijk. MAC-CLOUD-20261019-PR27-ACK-01bewijs teruggelezen PASS. MacSwift6Coretypecheck behouden; iOS/UserNotifications/XCTest/hardware blijven NIETGETEST.
+
+Canonieke reviewcoördinatie gebouwd: éénopenvehiclejourney, expliciete crossphonebewijskoppeling, begin/eindankers, revision/audit/receipts enresourceguards. Geen automatischgoedgekeurderit/driver/afstand of reportinsert. Additieve0010+schema/journal/snapshot, HTTP/geslotenruntime enread-onlybeheerreview.210Node-tests,type/lint/build,lokaleworkerdD1 enChromiumreview/revoke/closedAPI PASS. Bewijs CANONICAL_JOURNEYS.md. Draftbranch cloud/cloud-011-canonical-coordination metbase mac/zero-trust-pr27-handover-20261019(PR30); geenanderebasesgewijzigd.
+
+Volgende direct uitvoerbaregroep: idempotenteclassificatie-endpoint/sessionbinding en duurzame native meldingsactiequeue; daarna explicieteoverzettingnaarééntrip enoverigesync/offline. Geen nieuweagents/creditretry, aankopen/kosten/accounts/productie/Cloudflareconfig/mainmerge/forcepush. Accessbewijs vanMacgebruikt; runtimebindingsnogontbrekend, geenprovisioning.
+
+
 ## Gezamenlijke actuele status — na PR28/29/30
 
 CLOUD-009 ontvangst PR27 **BEVESTIGD**, MAC-ACK-01 **PASS via GitHub**; directe Cloud→Mac-tool ontbreekt. CLOUD-010 meldingsbron en reviewvoorstellen + devicequota **GEBOUWD TER CONTROLE in PR29**, niet opnieuw bouwen. CLOUD-011 canonieke voertuigritcoördinatie, native duurzame actiequeue/sessiebinding en fysieke acceptatie blijven OPEN. CLOUD-012 onderzoek in PR28 en aanvullende Macvergelijking opgeslagen; vaste3telefoonprioriteit niet bewezen, geen aankoop.

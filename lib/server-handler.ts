@@ -1,3 +1,4 @@
+import { createJourneyHttpHandler } from './journey-http.ts';
 import { createDetectionHttpHandler } from './detection-http.ts';
 import { createDeviceHttpHandler } from './device-http.ts';
 import { createReadOnlyMcpHandler } from './mcp-http.ts';
@@ -19,8 +20,8 @@ export function createConfiguredApi(bindings:RuntimeBindings) {
  try {
   const resolveSession=createCloudflareAccessResolver({db:bindings.DB,issuer:bindings.ACCESS_ISSUER,audience:bindings.ACCESS_AUDIENCE});
   const options={db:bindings.DB,origin:bindings.APP_ORIGIN,resolveSession};
-  const trips=createTripHttpHandler(options),devices=createDeviceHttpHandler(options),detections=createDetectionHttpHandler(options);
-  return (request:Request)=>/^\/api\/vehicles\/[^/]+\/devices\/[^/]+\/detections$/.test(new URL(request.url).pathname)?detections(request):/^\/api\/vehicles\/[^/]+\/devices(?:\/|$)/.test(new URL(request.url).pathname)?devices(request):trips(request);
+  const trips=createTripHttpHandler(options),devices=createDeviceHttpHandler(options),detections=createDetectionHttpHandler(options),journeys=createJourneyHttpHandler(options);
+  return (request:Request)=>/^\/api\/vehicles\/[^/]+\/journeys(?:\/|$)/.test(new URL(request.url).pathname)?journeys(request):/^\/api\/vehicles\/[^/]+\/devices\/[^/]+\/detections$/.test(new URL(request.url).pathname)?detections(request):/^\/api\/vehicles\/[^/]+\/devices(?:\/|$)/.test(new URL(request.url).pathname)?devices(request):trips(request);
  }catch{return async()=>unavailable();}
 }
 
