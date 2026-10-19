@@ -1,5 +1,10 @@
 # Cloud-taken — RitKompas
 
+## iOS-bronvoorbereiding — 19 oktober 2026, niet live
+
+CLOUD-005: vijf Swiftbronbestanden voor Codable/backendcontracten, exacteHTTPS/URLSession/netwerkgrenzen/defaultdenySessionAccess, voorbereide XCTestcases en SwiftUI permission/lifecyclevoorbereiding. Geen @main/Xcodeproject/signing/accounts of sensoropname. Swift-toolchain ontbreekt: parse/typecheck/XCTest/simulator/iPhone ALLE NIETGETEST; Node183PASS van vorige backendgroep is geen nativebewijs. Bewijs IOS_CLOUD_PREPARATION.md geeft concrete Macvalidatiestappen zonder authbypass. Draftbranch cloud/cloud-005-ios-preparation op #24-headde6baf2. Volgende cloudtaak: atomaire detectiequota en expliciet onzekere detectievoorstellen, daarna verdere veilige sync. Geen productiepublicatie/kosten/mainmerge.
+
+
 ## Ruwe detectie-inname — 19 oktober 2026, niet live
 
 CLOUD-005/002/004: eigen actieve appinstance+membership, canonieke request/eventdedup, batchaudit en immutable ruwe observaties gebouwd; geen automatische rit. GETPOSTadapter/Accessdispatch en expliciete eerste50waarnemingen in beheerUI.9service/HTTPcases,183Node-tests/type/lint/build, lokaleD1 ingest/dedup/disabledweigering en Chromiumrawview/geenrit/registerrecovery/revoke PASS.0009schema/journal/snapshot afgestemd; geen externe migratie. Bewijs DETECTION_INGEST.md. Draftbranch cloud/cloud-005-detection-ingest op #23-headceaf46a. Volgende: atomische innamequota, nativebronvoorbereiding en detectievoorstellen; volledigeeisen blijven open. Geen productiepublicatie/kosten/mainmerge.
