@@ -55,6 +55,12 @@ export function createTripHttpHandler(options: {
     if (!value || value.length > 128 || /[\x00-\x1f\x7f/\\]/.test(value)) throw new TripServiceError(400, 'Ongeldig pad.');
     return value;
   };
+  async function requestSession(request:Request){
+   const principal=await options.resolveSession?.(request)??null;
+   const expected=request.headers.get('x-ritkompas-viewer');
+   if(expected!==null){if(!expected||expected.length>128)throw new TripServiceError(400,'Ongeldige accountvoorwaarde.');if(!principal)throw new TripServiceError(401,'Aanmelden vereist.');if(expected!==principal.userId)throw new TripServiceError(409,'Account is gewijzigd; laad opnieuw vóór je een aanvraag herstelt.');}
+   return principal;
+  }
   return async function handle(request: Request): Promise<Response> {
     try {
       const url = new URL(request.url);
@@ -63,14 +69,14 @@ export function createTripHttpHandler(options: {
         if(request.method!=='GET')return response(405,{error:'Methode niet toegestaan.'},{Allow:'GET'});
         for(const key of url.searchParams.keys())if(!['limit','offset'].includes(key)||url.searchParams.getAll(key).length!==1)throw new TripServiceError(400,'Ongeldige query.');
         const page=(key:string,fallback:number)=>{const value=url.searchParams.get(key);if(value===null)return fallback;if(!/^\d+$/.test(value))throw new TripServiceError(400,'Ongeldige paginering.');return Number(value);};
-        return response(200,{vehicles:await listAccessibleVehicles(options.db,()=>options.resolveSession?.(request)??Promise.resolve(null),page('limit',50),page('offset',0),options.clock)});
+        return response(200,{vehicles:await listAccessibleVehicles(options.db,()=>requestSession(request),page('limit',50),page('offset',0),options.clock)});
       }
       const snapshotMatch=/^\/api\/vehicles\/([^/]+)\/snapshot$/.exec(url.pathname);
       if(snapshotMatch){
        const vehicleId=segment(snapshotMatch[1]);
        if(request.method!=='GET')return response(405,{error:'Methode niet toegestaan.'},{Allow:'GET'});
        if([...url.searchParams].length)throw new TripServiceError(400,'Ongeldige query.');
-       return response(200,{snapshot:await createSyncService(options.db,()=>options.resolveSession?.(request)??Promise.resolve(null),options.clock).snapshot(vehicleId)});
+       return response(200,{snapshot:await createSyncService(options.db,()=>requestSession(request),options.clock).snapshot(vehicleId)});
       }
       const driversMatch=/^\/api\/vehicles\/([^/]+)\/drivers$/.exec(url.pathname);
       if(driversMatch){
@@ -78,7 +84,7 @@ export function createTripHttpHandler(options: {
         if(request.method!=='GET')return response(405,{error:'Methode niet toegestaan.'},{Allow:'GET'});
         for(const key of url.searchParams.keys())if(!['limit','offset'].includes(key)||url.searchParams.getAll(key).length!==1)throw new TripServiceError(400,'Ongeldige query.');
         const page=(key:string,fallback:number)=>{const value=url.searchParams.get(key);if(value===null)return fallback;if(!/^\d+$/.test(value))throw new TripServiceError(400,'Ongeldige paginering.');return Number(value);};
-        return response(200,{drivers:await listVehicleDrivers(options.db,()=>options.resolveSession?.(request)??Promise.resolve(null),vehicleId,page('limit',50),page('offset',0),options.clock)});
+        return response(200,{drivers:await listVehicleDrivers(options.db,()=>requestSession(request),vehicleId,page('limit',50),page('offset',0),options.clock)});
       }
       const reportMatch = /^\/api\/vehicles\/([^/]+)\/reports(?:\/([^/]+)(\/csv)?)?$/.exec(url.pathname);
       if (reportMatch) {
@@ -87,7 +93,7 @@ export function createTripHttpHandler(options: {
         if(!allowed.includes(request.method))return response(405,{error:'Methode niet toegestaan.'},{Allow:allowed.join(', ')});
         const permitted=!id&&request.method==='GET'?['limit','offset']:[];
         for(const key of url.searchParams.keys())if(!permitted.includes(key)||url.searchParams.getAll(key).length!==1)throw new TripServiceError(400,'Ongeldige query.');
-        const service=createReportService(options.db,()=>options.resolveSession?.(request)??Promise.resolve(null),options.clock);
+        const service=createReportService(options.db,()=>requestSession(request),options.clock);
         if(request.method==='POST')return response(201,{report:await service.create(vehicleId,await json(request,'report') as ReportRequest)});
         if(reportMatch[3])return new Response(await service.csv(vehicleId,id!),{headers:{'Content-Type':'text/csv; charset=utf-8','Content-Disposition':'attachment; filename="ritkompas-rapport.csv"','Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Vary':'Origin, Cookie'}});
         if(id)return response(200,{report:await service.get(vehicleId,id)});
@@ -101,7 +107,7 @@ export function createTripHttpHandler(options: {
         const allowed = history ? ['GET'] : ['GET','PATCH'];
         if (!allowed.includes(request.method)) return response(405, { error: 'Methode niet toegestaan.' }, { Allow: allowed.join(', ') });
         if ([...url.searchParams].length) throw new TripServiceError(400,'Ongeldige query.');
-        const service = createSettingsService(options.db, () => options.resolveSession?.(request) ?? Promise.resolve(null), options.clock);
+        const service = createSettingsService(options.db, ()=>requestSession(request), options.clock);
         if (request.method === 'PATCH') return response(200,{ settings: await service.save(vehicleId,await json(request,'settings') as SettingsEdit) });
         return history ? response(200,{ history: await service.history(vehicleId) }) : response(200,{ settings: await service.get(vehicleId) });
       }
@@ -119,7 +125,7 @@ export function createTripHttpHandler(options: {
         if (!/^\d+$/.test(value) || !Number.isSafeInteger(Number(value))) throw new TripServiceError(400, 'Ongeldige paginering.');
         return Number(value);
       };
-      const service = createTripService(options.db, () => options.resolveSession?.(request) ?? Promise.resolve(null), options.clock);
+      const service = createTripService(options.db, ()=>requestSession(request), options.clock);
       if (request.method==='POST') return response(201, { trip: await service.create(vehicleId, await json(request, true) as TripCreate) });
       if (request.method==='PATCH') return response(200, { trip: await service.edit(vehicleId, tripId!, await json(request, false) as TripEdit) });
       if (history) return response(200, { history: await service.history(vehicleId, tripId!, integer('limit',50)) });

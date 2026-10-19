@@ -7,7 +7,7 @@ Gerichte actualisatie op basis van actuele CLOUD_TASKS/RESUME/masterprompt en op
 | Code-/documentoverdracht en integriteitsguards | Gebouwd; PR#1–#5 wachten op controle, geen code-ontbreektblokkade meer |
 | Centrale ritten, instellingen, correctie/audit en vaste CSV-rapporten | Gebouwd ter controle in PR#6–#16; functionaliteit/integratie staat in bewijsdocumenten |
 | Samenhangend verversen | Gebouwd in nieuwste groep; begrensde transactionele full refresh. Incremental cursor, auto-sync en drie echte gelijktijdige accounts nog open |
-| Herstelbare invoer/offline | Open: onzekere writes veilig na reload/browserafsluiting herstellen, per geverifieerde gebruiker/voertuig isoleren, geen dubbele writes of stille verzending; opslagprivacy/begrenzing en verlies/revocation testen |
+| Herstelbare invoer/offline | Opt-in create-trip/create-report recovery via IndexedDB gebouwd en tabsluiten/accountwissel/verlorenresponse/revocation getest; geen automatische resend. Queue voor instellingen/correcties, offline starten, profielrestart/Safari en opslag-eviction blijven open. PENDING_RECOVERY.md |
 | Detectie-inname en deduplicatie | Open: geautoriseerde geregistreerde apparaten, herhaalbare detectie-inname, voorlopig/bewijs/overlapworkflow. Overlapbeleidskern alleen is geen werkende native detectie |
 | Accounts en Access | Mac voert dashboardtaak uit; daarna actuele app/policy/issuer/AUD teruglezen, interne gebruikers/voertuigrechten expliciet provisionen en echte login/logout/revocation testen. Geen livewijzigingen zonder eigenaar |
 | Kaarten/GPS/routes | Demo/kaart-handoff aanwezig; echte scoped GPS-opslag, opname, routes, gaten en privacyretentie nog bouwen/testen. Geen provider/account of betaalde API stil activeren |
