@@ -1,5 +1,16 @@
 # Actuele voortgang — 18 oktober 2026
 
+## PR27-veilige doorbouw — 19 oktober 2026, niet live
+
+Onderzoek/ontvangst/testopdrachten opgeslagen in draftPR28, heada6eebf5c4705e33e4f1a8fe9eb0cfa8dda036011, basePR26exactec44dc8. MAC-CLOUD-20261019-PR27 blijft ontvangstbevestigd; automatischeMacuitvoering NIETBEWEZEN, MAC-ACK-01wachtGitHubbewijs.
+
+Daarna devicegroei atomair begrensd op100registraties/100receipts peruser+vehicle incldisabled;14servicecasesPASS. Zuivere reviewvoorstellen gebouwd met explicietetijdankers/scope/dedup/overlap/onzekerheid/geenafstandofchauffeur;7gerichtecasesPASS. Native TripChoiceNotifications.swift bronprototype Zakelijk/Privé/defaultdismissnietclassificeren/contextvalidatie/defaultdenystore; Swiftcompile/iPhone/lockscreen/Focus ALLE NIETGETEST. Geenwerkendenativeauthqueueofautomatischritdetectieclaim.
+
+197/197Node-tests,tsc/lint/build,lokaleworkerdD1 PASS. NativebroncodevaltNIETonderditNodebewijs. Bewijs DETECTION_PROPOSALS.md/REGISTERED_DEVICES.md/IOS_CLOUD_PREPARATION.md. Eerdereagentstop workspacecredits wordt nietonbeperkt herhaald; geencreditsgekocht. NieuweGitHubcheckpointbranch cloud/cloud-005-pr27-safe-development vanafPR28. Geenpublicatie/Cloudflaremutatie/aankoop/kosten/mainmerge/forcepush.
+
+Volgende cloudgroep: gecontroleerde nativecontextstore/idempotenteclassificatiequeue en persistentevoertuigritcoördinatie, daarna monitoring/sync; nativecompile/hardware viaMacmatrix,koopbesluit pasna nulmeting. Openwerkkaart is nietafgerond. Bij hervatten eerst deze status +PR27_PLAN lezen, geen volledigedocumentaudit opnieuw.
+
+
 ## PR27 ontvangen — MAC-CLOUD-20261019-PR27
 
 19 oktober2026 Europe/Amsterdam: volledig memo/PR/comments/reviews gelezen op4af50d3a1fa3408cb563a2924ce9aec2784c4290. Ontwikkelbasis blijft PR26/ec44dc8ddda1361a61f9f0c8bdceebe4e20e8a01; PR1–26intact, PR27nietgemerged. Fabrikantonderzoek en concretekoopvergelijking: JEEP_HARDWARE_RESEARCH.md.16aanvullendeeisen/planning: PR27_PLAN.md, oorspronkelijke123REQ/21scenario'sbehouden. DirecteMac-threadtool ontbreekt; ontvangst hier bevestigd, gratis MAC-ACK-01 en fysiekehardwarematrix in MAC_HARDWARE_TESTS.md; uitvoering/terugkoppeling NIETBEWEZEN. Geenopdrachtverstuurdnaaranderechat, geenaankoop/kosten/accounts/productie/Cloudflaremutatie/mainmerge. Eerderesubagentcreditfoutgedocumenteerd; primaireagentdoetveiligwerk, geenbetaaldeherstart. Volgende: aanwezige devicequota/proposalbron afronden/testen en native meldingsactiebron, Swift/iPhoneblijvenNIETGETESTzonderMacbewijs.

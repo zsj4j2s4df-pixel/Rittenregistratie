@@ -55,3 +55,9 @@ Integreer het SwiftUI-scherm pas in de bestaande app-target en verifieer echte p
 ## Rootcontrole na parallelle voorbereiding
 
 De device- en detectieHTTP-adapters zijn inmiddels lokaal gemount en in draftPR23/24 opgeslagen. Dat bevestigt het backendpad, niet dat nativeURLSessionauth werkt. De Swiftmodule blijft zonder detectienetwerkmethode en zonder accountprovider; toevoegen kan na nativecompile en providerbinding. Root heeft de broncode gelezen; `command -v swift` opnieuw geenresultaat. Swift/XCTest/iOS blijven expliciet NIETGETEST.
+
+## PR27: meldingsactiebronprototype
+
+`Core/TripChoiceNotifications.swift` bereidt UNNotificationCategory met Zakelijk/Privé voor, zonder foregroundflag; explicit-in-app permissionvraag apart van categoriebinding. Lokale melding bevat geen klantadres/route. Default/dismiss classificeert niets. Structuur valideert ritvoorstel/voertuig/viewer/revisie maar vertrouwt userInfo niet als authority: een nog te implementeren actorstore moet geauthenticeerde lokale context en idempotente duurzame actie atomisch controleren. Defaultstore weigert alles. Er is nog geen delegatehost, duurzame queue, loginprovider, live backendwrite of automatisch sensortriggerpad aangesloten. Gemiste melding moet een bestaand reviewvoorstel behouden; de melding maakt zelf geen rit.
+
+Swift-toolchain ontbreekt nog steeds: deze nieuwe bron is gelezen, **NIET GECOMPILEERD/GETEST**. Mac moet ook concurrency/SDKbeschikbaarheid, vergrendeldeacties, Focus/meldingenuit, dubbele/stale/accountwisselacties en korte achtergrondtijd testen voordat bruikbaarheid wordt bevestigd. Bronprototype is geen werkende iPhone-release of betrouwbare afleveringgarantie. Zie MAC-J03/04 in MAC_HARDWARE_TESTS.md.
