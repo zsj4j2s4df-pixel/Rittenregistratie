@@ -1,5 +1,7 @@
 # Actuele open werkkaart — 19 oktober2026
 
+CLOUD-011: CANONICAL_JOURNEYS.md beschrijft nu éénopenvehiclecoördinatie met explicietebewijslink/review/audit/idempotentie enHTTP/webread. Definitieve tripoverzetting, nativeclassificatiequeue/producer, echte meeraccount/hardwareacceptatie blijven open. Mac-ACK viaPR30PASS; geen automatischthreadkanaal.
+
 Hoogprioritaire aanvulling: [PR27_PLAN](PR27_PLAN.md), [hardwareonderzoek/koopadvies](JEEP_HARDWARE_RESEARCH.md), [Mac-proeven](MAC_HARDWARE_TESTS.md). Ontvangst bevestigd; automatische directeMacuitvoering nietbewezen. Nieuwe native melding/ritgrenzen/EV/vasteprioriteit/voertuigdedup blijven open tot bewijs.
 
 Gerichte actualisatie op basis van actuele CLOUD_TASKS/RESUME/masterprompt en open PR-keten; geen herhaling van afgeronde documentaudit. Alle123REQ-ID's en21scenario's blijven behouden. Deze kaart vervangt niet de volledige eisenregistratie. “Gebouwd” betekent ter controle, niet geaccepteerd of live.

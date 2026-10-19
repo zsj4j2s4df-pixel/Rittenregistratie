@@ -161,3 +161,13 @@ export const detectionObservations=sqliteTable('detection_observations',{
 export const detectionIngestRequests=sqliteTable('detection_ingest_requests',{
  vehicleId:text('vehicle_id').notNull().references(()=>vehicles.id),userId:text('user_id').notNull().references(()=>users.id),deviceId:text('device_id').notNull().references(()=>registeredDevices.id),requestId:text('request_id').notNull(),observationId:text('observation_id').notNull().references(()=>detectionObservations.id),canonicalJson:text('canonical_json').notNull(),
 },table=>[primaryKey({columns:[table.vehicleId,table.userId,table.deviceId,table.requestId]})]);
+
+export const vehicleJourneys=sqliteTable('vehicle_journeys',{
+ id:text('id').primaryKey(),vehicleId:text('vehicle_id').notNull().references(()=>vehicles.id),createdBy:text('created_by').notNull().references(()=>users.id),startedAt:integer('started_at').notNull(),endedAt:integer('ended_at'),status:text('status').notNull(),revision:integer('revision').notNull().default(0),createdAt:integer('created_at').notNull(),updatedAt:integer('updated_at').notNull(),lastMutationId:text('last_mutation_id').notNull(),
+},t=>[uniqueIndex('idx_vehicle_journey_open').on(t.vehicleId).where(sql`${t.status}='review_open'`),index('idx_vehicle_journey_history').on(t.vehicleId,t.createdAt,t.id),check('journey_start',sql`typeof(${t.startedAt})='integer' AND ${t.startedAt} BETWEEN 0 AND 253402300799`),check('journey_status',sql`${t.status} IN ('review_open','review_closed')`),check('journey_revision',sql`typeof(${t.revision})='integer' AND ${t.revision} BETWEEN 0 AND 9007199254740991`),check('journey_end',sql`(${t.status}='review_open' AND ${t.endedAt} IS NULL) OR (${t.status}='review_closed' AND typeof(${t.endedAt})='integer' AND ${t.endedAt}>${t.startedAt} AND ${t.endedAt}<=253402300799)`)]);
+export const journeyObservations=sqliteTable('journey_observations',{
+ observationId:text('observation_id').primaryKey().references(()=>detectionObservations.id),journeyId:text('journey_id').notNull().references(()=>vehicleJourneys.id),linkedBy:text('linked_by').notNull().references(()=>users.id),linkedAt:integer('linked_at').notNull(),
+},t=>[index('idx_journey_observations').on(t.journeyId,t.observationId)]);
+export const journeyRequests=sqliteTable('journey_requests',{
+ vehicleId:text('vehicle_id').notNull().references(()=>vehicles.id),userId:text('user_id').notNull().references(()=>users.id),requestId:text('request_id').notNull(),operation:text('operation').notNull(),requestJson:text('request_json').notNull(),responseJson:text('response_json').notNull(),
+},t=>[primaryKey({columns:[t.vehicleId,t.userId,t.requestId]}),check('journey_operation',sql`${t.operation} IN ('create','join','close')`)]);

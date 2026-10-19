@@ -1,3 +1,4 @@
+import type {Journey,JourneyEvidence} from '../lib/journey-service.ts';
 import type {DetectionObservation} from '../lib/detection-service.ts';
 import type { RegisteredDevice,DeviceRegistration,DeviceDeactivation } from '../lib/device-service.ts';
 import type {RoutePage,RoutePoint} from '../lib/route-service.ts';
@@ -23,6 +24,8 @@ export function createBackendClient(fetcher:typeof fetch=fetch){
   async vehicles(){const all:Vehicle[]=[];for(let offset=0;offset<=100000;offset+=100){const page=(await request<{vehicles:Vehicle[]}>('/api/vehicles?limit=100&offset='+offset)).vehicles;all.push(...page);if(page.length<100)return all;}throw new BackendError(413,'Te veel voertuigen om te laden.');},
   async trips(id:string){const all:BackendTrip[]=[];for(let offset=0;offset<=100000;offset+=100){const page=(await request<{trips:BackendTrip[]}>(base(id)+'/trips?limit=100&offset='+offset)).trips;all.push(...page);if(page.length<100)return all;}throw new BackendError(413,'Te veel ritten om in één overzicht te laden.');},
   async drivers(id:string){const all:Driver[]=[];for(let offset=0;offset<=100000;offset+=100){const page=(await request<{drivers:Driver[]}>(base(id)+'/drivers?limit=100&offset='+offset)).drivers;all.push(...page);if(page.length<100)return all;}throw new BackendError(413,'Te veel bestuurders om te laden.');},
+  async journeys(id:string){return (await request<{journeys:Journey[]}>(base(id)+'/journeys?limit=50&offset=0')).journeys;},
+  async journey(id:string,journeyId:string){return request<{journey:Journey;evidence:JourneyEvidence[]}>(base(id)+'/journeys/'+encodeURIComponent(journeyId));},
   async detections(id:string,deviceId:string,offset=0){return (await request<{observations:DetectionObservation[]}>(base(id)+'/devices/'+encodeURIComponent(deviceId)+'/detections?limit=50&offset='+offset)).observations;},
   async devices(id:string){const all:RegisteredDevice[]=[];for(let offset=0;offset<=100000;offset+=100){const page=(await request<{devices:RegisteredDevice[]}>(base(id)+'/devices?limit=100&offset='+offset)).devices;all.push(...page);if(page.length<100)return all;}throw new BackendError(413,'Te veel appinstanties om te laden.');},
   async registerDevice(id:string,input:DeviceRegistration,viewerId:string){return (await request<{device:RegisteredDevice}>(base(id)+'/devices','POST',input,viewerId)).device;},

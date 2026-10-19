@@ -1,0 +1,13 @@
+'use client';
+import {useEffect,useRef,useState} from 'react';
+import {createBackendClient} from '../backend-client';
+import type {Journey,JourneyEvidence} from '../../lib/journey-service';
+const api=createBackendClient();
+export default function JourneyManager({vehicleId,busy}:{vehicleId:string;busy:boolean}){
+ const [rows,setRows]=useState<Journey[]>([]),[detail,setDetail]=useState<{journey:Journey;evidence:JourneyEvidence[]}|null>(null),[loading,setLoading]=useState(false),[error,setError]=useState('');const alive=useRef(true);
+ useEffect(()=>{alive.current=true;return()=>{alive.current=false;};},[]);
+ const time=(n:number|null)=>n===null?'Nog geen eindanker':new Date(n*1000).toLocaleString('nl-NL',{timeZone:'Europe/Amsterdam'});
+ async function load(){setLoading(true);setError('');setRows([]);setDetail(null);try{const data=await api.journeys(vehicleId);if(alive.current)setRows(data);}catch(e){if(alive.current)setError(e instanceof Error?e.message:'Laden mislukt.');}finally{if(alive.current)setLoading(false);}}
+ async function show(id:string){setLoading(true);setError('');setDetail(null);try{const data=await api.journey(vehicleId,id);if(alive.current)setDetail(data);}catch(e){if(alive.current){setRows([]);setError(e instanceof Error?e.message:'Laden mislukt.');}}finally{if(alive.current)setLoading(false);}}
+ return <section className="panel" aria-label="Centrale voertuigritcontrole"><h2>Centrale voertuigritcontrole</h2><p>Gedeelde coördinatie van aangeleverde ritbewijzen. Dit zijn te controleren voorstellen, nog geen definitieve ritten of rapportregels. Een verbonden telefoon bewijst niet wie rijdt.</p><button disabled={busy||loading} onClick={()=>void load()}>Voertuigritvoorstellen laden</button>{loading&&<p role="status">Voorstellen laden…</p>}{error&&<p role="alert">{error}</p>}<p>Maximaal de nieuwste50voorstellen. Eerdere gegevens blijven centraal bewaard.</p><ul>{rows.map(row=><li key={row.id}>{time(row.started_at)} · {row.status==='review_open'?'Open, te controleren':'Gesloten, te controleren'} <button disabled={busy||loading} onClick={()=>void show(row.id)}>Bewijs bekijken</button></li>)}</ul>{detail&&<div><h3>Ritbewijs — te controleren</h3><p>{time(detail.journey.started_at)} → {time(detail.journey.ended_at)}. Revisie {detail.journey.revision}. Bestuurder en ritsoort zijn niet vastgesteld.</p><ul>{detail.evidence.map(e=><li key={e.observation_id}>{time(e.observed_at)} · {e.source} · {e.event_kind} · ongeverifieerde bronclaim</li>)}</ul><p>Geen GPS-route, kilometerafstand of fiscale goedkeuring afgeleid. Bewijs van meerdere telefoons blijft afzonderlijk zichtbaar.</p></div>}</section>;
+}
