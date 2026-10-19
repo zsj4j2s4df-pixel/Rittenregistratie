@@ -39,3 +39,10 @@ test('cookie-only browser app JWT uses the same signature/claims/internal mappin
  assert.equal(await resolve(new Request('https://ritkompas.example',{headers:{cookie:'CF_Authorization='+jwt,'cf-access-jwt-assertion':'invalid.header.value'}})),null);
  sqlite.exec("UPDATE users SET disabled=1 WHERE id='u'");assert.equal(await resolve(cookie(jwt)),null);
 });
+test('JWKS uses workerd-supported manual redirects and refuses every redirect without following it',async t=>{
+ for(const status of [301,302,303,307,308]){
+  let calls=0;
+  const {resolve}=resolver(t,{fetcher:async(url,options)=>{calls++;assert.equal(url,issuer+'/cdn-cgi/access/certs');assert.equal(options.redirect,'manual');return new Response(null,{status,headers:{location:'https://untrusted.example/keys'}});}});
+  assert.equal(await resolve(request(await token())),null);assert.equal(calls,1);
+ }
+});

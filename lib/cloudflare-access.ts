@@ -23,7 +23,8 @@ export function createCloudflareAccessResolver(options: {
   if(loading)return loading;
   loading=(async()=>{
    // Fixed configured issuer only; never trust a token-supplied jku/x5u URL.
-   const response=await fetcher(options.issuer+'/cdn-cgi/access/certs',{redirect:'error',signal:AbortSignal.timeout(5000)});
+   // workerd rejects redirect:'error'. Manual never follows; !ok below rejects 3xx.
+   const response=await fetcher(options.issuer+'/cdn-cgi/access/certs',{redirect:'manual',signal:AbortSignal.timeout(5000)});
    if(!response.ok||!response.body)throw Error('keys');
    const reader=response.body.getReader();const chunks:Uint8Array[]=[];let size=0;
    try{while(true){const {done,value}=await reader.read();if(done)break;size+=value.byteLength;if(size>65536){await reader.cancel();throw Error('keys size');}chunks.push(value);}}finally{reader.releaseLock();}
