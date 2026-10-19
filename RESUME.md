@@ -1,5 +1,15 @@
 # Hervatpunt — 18 oktober 2026
 
+## CLOUD-013 — Access-runtimefix gereed voor controle, 19 oktober 2026
+
+Beperkte releasefix staat in draft-PR #34, head `e0e8159f4f9aae396e1dc80ad05980e559351fb9`, exact vanaf live bronbasis PR14/6c3f608. Echte gebouwde Worker/framework/workerd/D1-test toonde aan: JWKS-fetch met redirect:error veroorzaakt een workerd-exceptie en401. Fix gebruikt manual en weigert alle3xx zonder volgen; begrensde ondertekende app-cookiefallback toegevoegd wanneer assertionheader ontbreekt. Alle crypto/account/rechtcontroles behouden. Geen diagnostische token/claimslogging in bron of artefact.
+
+Geïsoleerde releasebasis:125/125 Node-tests/type/lint/build/lokaleD1/gebouwdeWorker PASS. Cumulatieve branch boven PR33/f1cf2eef1a531caef86add1f10b62ec010f7d198:221/221 Node-tests/type/lint/build/lokaleD1/gebouwdeWorker PASS. PR33:29/29 changed blobs exact teruggelezen; PR34 eerste12/12 exact, vervolgtree apart gecontroleerd. Nieuwe Swift/XCTest/iOS blijven NIETGETEST; geen hardwarepass.
+
+Live eigenaarbindings/provisioning blijven uitgevoerd (1user/1vehicle/1recht/0trips/2audits), live eindtest blijft FAIL tot nieuwe code met toestemming is gepubliceerd en Mac/eigenaar daadwerkelijk test. Geen nieuwe migratie/provisioning/Cloudflarewijziging/upload/mainmerge/kosten. PR31/32/33 behouden. Cumulatieve integratie is NIET het releasepakket: uitsluitend PR34 is afgebakend tegen de bestaande live bronbasis.
+
+[Releasebewijs, artefacthash en code-only rollback/Mac-eindtest](docs/TRANSFER/ACCESS_TRANSPORT_FIX.md). Volgende noodzakelijke eigenaarbeslissing: toestemming voor uitsluitend dit PR34-Workerpakket met behoud van huidige bindings/Access/DB en code-only terugval bij mislukte eindtest. Daarna echte ingelogde /api/vehicles en /beheer testen; anoniem302 behouden. Geen claims van live herstel vooraf. Veilige overige ontwikkeling: native host/authprovider/queueconsumer en expliciete definitieve ritoverzetting voorbereiden zonder live migratie; hardwaretestopdrachten blijven GitHub/Mac.
+
 ## CLOUD-011 — ritkeuze/wachtrijbron, liveauth nu prioriteit
 
 19 oktober2026: vervolg op PR31/0643b8c649ea31a971a75991f27adbab47c229a1.215Node-tests/type/lint/build/lokaleD1 enChromiumkeuzeweergave/revoke/closedAPI PASS. Geautoriseerdeidempotenteclassificatie metrevision/audit/rollback; geen definitievetrip. Native actorqueue/contextbinding, AES-GCM-cipherfile/Keychainprovider enexactsend/ack alsbron toegevoegd; nieuweSwift/XCTest/iOS ALLE NIETGETEST inCloud. MacJ11/J12 expliciet in NATIVE_CHOICE_QUEUE.md. SQL0011wasvóórnieuweMacbeperkinglokaalvoorbereid; uitsluitenddraftconcept, NIETexternmigreren.

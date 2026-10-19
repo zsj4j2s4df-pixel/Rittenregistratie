@@ -1,6 +1,8 @@
 # Actuele open werkkaart — 19 oktober2026
 
-Prioriteit naMacPR32: liveauthFAIL ondanksuitgevoerdebindings/provisioning; nietopnieuwprovisionen. Zie OWNER_ACCESS_RESULT_2026-10-19.md. CLOUD011classificatieAPI215testsPASS/nativequeuebron aanwezig, nieuweSwiftNIETGETEST; geen definitievetripoverzetting. Verdere migraties/livecode niettoepassen zondernieuweeigenaarstoestemming.
+Actueel CLOUD013: PR34 bevat geïsoleerde workerd-JWKS/cookiefix + releasevoorstel;221Node/type/lint/build/lokaleD1/gebouwdeWorker in cumulatieve ontwikkeling PASS. Nog geen live publicatie of echte ingelogde eindtest. Zie ACCESS_TRANSPORT_FIX.md.
+
+Historische prioriteit naMacPR32: liveauthFAIL ondanksuitgevoerdebindings/provisioning; nietopnieuwprovisionen. Zie OWNER_ACCESS_RESULT_2026-10-19.md. CLOUD011classificatieAPI215testsPASS/nativequeuebron aanwezig, nieuweSwiftNIETGETEST; geen definitievetripoverzetting. Verdere migraties/livecode niettoepassen zondernieuweeigenaarstoestemming.
 
 CLOUD-011: CANONICAL_JOURNEYS.md beschrijft nu éénopenvehiclecoördinatie met explicietebewijslink/review/audit/idempotentie enHTTP/webread. Definitieve tripoverzetting, nativeclassificatiequeue/producer, echte meeraccount/hardwareacceptatie blijven open. Mac-ACK viaPR30PASS; geen automatischthreadkanaal.
 
@@ -15,7 +17,7 @@ Gerichte actualisatie op basis van actuele CLOUD_TASKS/RESUME/masterprompt en op
 | Samenhangend verversen | Gebouwd in nieuwste groep; begrensde transactionele full refresh. Incremental cursor, auto-sync en drie echte gelijktijdige accounts nog open |
 | Herstelbare invoer/offline | Opt-in create-trip/create-report recovery via IndexedDB gebouwd en tabsluiten/accountwissel/verlorenresponse/revocation getest; geen automatische resend. Queue voor instellingen/correcties, offline starten, profielrestart/Safari en opslag-eviction blijven open. PENDING_RECOVERY.md |
 | Detectie-inname en deduplicatie | Eigen geverifieerde appregistratie/HTTP/beheerUI gebouwd met audit/idempotency/deactivering. Ruwe scoped detectie-inname/HTTP/dedup/audit en begrensde webread gebouwd. Per-instance observatie/burst/dag/totaal/receiptquota gebouwd. Devicegroei/gatewayquota, detectievoorstellen/bewijs/overlapworkflow nog open. Overlapbeleidskern alleen is geen werkende native detectie |
-| Accounts en Access | Mac voert dashboardtaak uit; daarna actuele app/policy/issuer/AUD teruglezen, interne gebruikers/voertuigrechten expliciet provisionen en echte login/logout/revocation testen. Geen livewijzigingen zonder eigenaar |
+| Accounts en Access | Bindingen en uitsluitend eigenaar/voertuigrecht al ingericht in Mac32; niet opnieuw provisionen. Ingelogde API FAIL. PR34 code-only runtimefix lokaal gebouwd/getest, echte login/logout/revocation en publicatiebesluit open. Geen livewijzigingen zonder nieuwe eigenaarstoestemming |
 | Kaarten/GPS/routes | Scoped routepunten-read met highwaterpaginatie en schematische opgeslagen-puntenviewer gebouwd; lege route wordt niet verzonnen, gaten/bronlabels aanwezig. Opname/device-inname, echte kaartprovider/routes, retentie en hardware nog open. Geen betaalde API geactiveerd |
 | PDF/rapporten | Vaste rapportweergave/browserPDF gebouwd en lange Chromium-export getest; afzonderlijke serverPDF, Safari/iPhone en toegankelijkheids-/fiscale acceptatie open |
 | Backup en herstel | Lokale encrypted SQLite backup/restore met versie/AES-GCM, integriteitscontrole en herstel naar nieuw pad gebouwd;5tests inclusief echt RitKompas-schema/audit/triggers PASS. RemoteD1/export, planning/offsite/keybeheer/crashproef en productieherstel blijven open. SQLITE_BACKUP.md |
