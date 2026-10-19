@@ -1,5 +1,9 @@
 # Hervatpunt — 18 oktober 2026
 
+## Opslagmelding onderzocht; softwarewerk vervolgd
+
+Eigenaar bevestigt login en toont centrale voertuig/instellingen op iPhone. Dat is nieuw gebruiksbewijs; eerdere algemene loginFAIL is ingehaald. Opslaan op iPhone nog ONBEVESTIGD: screenshot toont geen fout, oorzaak niet vastgesteld. Lokaal gebouwd Worker+D1save/read/exactretry/settingsPATCH PASS. Centrale root/demopad en verplichteveldfeedback gebouwd, geen vormgevingsronde.221Node/type/lint/build en centrale-/demobrowser PASS. [Opslagbewijs](docs/TRANSFER/SAVE_WORKFLOW_CHECK.md), [bestands-/werkcontrole](docs/TRANSFER/FILE_TASK_CHECK_2026-10-19.md). Nieuwe groep alleen bron/draft, geen livewijziging. Volgende veilige softwaregroep: totalen per bestuurder/maand/kwartaal/jaar boven vaste rapportsnapshots;123REQ/M27 behouden.
+
 ## Actuele GitHub-checkpoint
 
 Draft-PR #36 https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/36 , branch `cloud/cloud-011-web-journey-choice`, codehead `bf8b67b64cddec030e92414b9ba0d111e8be7ff6`, base PR35/head18f00a2. Alle11gewijzigdebestanden bytegelijk aan GitHub-tree teruggelezen.221tests/type/lint/build en Chromiumretry/conflict/accountwissel/revoke PASS. Deze documentcheckpoint volgt als afzonderlijke commit op dezelfde branch. Alleen PR34 is live gepubliceerd; geen nieuwe webfuncties/migraties meepubliceren zonder afgebakend eigenaarbesluit. Echte loginproef MAC-CLOUD-013-LIVE-01 en Apple/native/hardwarevalidatie zijn nog open, niet als geslaagd invullen.

@@ -4,7 +4,7 @@ import './globals.css';
 export const metadata: Metadata = {
   metadataBase: new URL('http://localhost:3000'),
   title: 'RitKompas — Rittenregistratie',
-  description: 'Lokaal rittenregistratieprototype met uitsluitend voorbeeldgegevens.',
+  description: 'Centrale rittenregistratie voor je voertuig.',
   openGraph: {
     title: 'RitKompas',
     description: 'Jouw ritten. Duidelijk geregistreerd.',
