@@ -25,6 +25,7 @@ export function createBackendClient(fetcher:typeof fetch=fetch){
   async editTrip(id:string,tripId:string,input:TripEdit){return (await request<{trip:BackendTrip}>(base(id)+'/trips/'+encodeURIComponent(tripId),'PATCH',input)).trip;},
   async history(id:string,tripId:string){return (await request<{history:TripHistoryEntry[]}>(base(id)+'/trips/'+encodeURIComponent(tripId)+'/history?limit=100')).history;},
   async reports(id:string){const all:SavedReport[]=[];for(let offset=0;offset<=100000;offset+=100){const page=(await request<{reports:SavedReport[]}>(base(id)+'/reports?limit=100&offset='+offset)).reports;all.push(...page);if(page.length<100)return all;}throw new BackendError(413,'Te veel rapporten om te laden.');},
+  async report(id:string,reportId:string){return (await request<{report:ServerReport}>(base(id)+'/reports/'+encodeURIComponent(reportId))).report;},
   async createReport(id:string,input:ReportRequest){return (await request<{report:ServerReport}>(base(id)+'/reports','POST',input)).report;},
   async csv(id:string,reportId:string){const response=await send(base(id)+'/reports/'+encodeURIComponent(reportId)+'/csv');if(!response.headers.get('content-type')?.toLowerCase().startsWith('text/csv'))throw new BackendError(502,'Geen geldige CSV-export ontvangen.');return response.blob();},
   reportCsvUrl(id:string,reportId:string){return base(id)+'/reports/'+encodeURIComponent(reportId)+'/csv';},

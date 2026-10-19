@@ -1,5 +1,11 @@
 # Hervatpunt — 18 oktober 2026
 
+## 19 oktober2026 — nieuwste ontwikkelgroep, nog niet live
+
+CLOUD-005: bestuurdercorrectie met audit/unknown/revocation en centrale onveranderlijke rapportweergave + browserafdruk/PDF gebouwd.123Node-tests/type/lint/build en centrale browser PASS. LangePDF81ritten/80extra langeadressen16A4pagina's, allebestemmingen/headers/paginanummers gecontroleerd; geen serverPDFclaim. Lokale geslotenAPI PASS. Bewijs docs/TRANSFER/CENTRAL_REPORT_VIEW.md. Nieuwe branch cloud/cloud-005-report-view op exacte #15-headcf3b638. Mac doet Access via computer use; die configuratie ongemoeid. Geen nieuwe livepublicatie, kosten of mainmerge.
+
+Volgende ontwikkeling: coherente sync/cursors en duurzame pendingqueue, detectie-inname/deduplicatie, backups/read-onlyMCP en afzonderlijke serverPDF. Echteproviderlogin/remotegebruikers en iPhone/Safari/native NIET GETEST.
+
 ## Nieuwste Access-controle en publicatiebeperking
 
 Eigenaar bevestigt Zero Trust Free actief. Read-only API bevestigt organisatie snowy-snowflake-4760.cloudflareaccess.com; apps nog leeg, bestaande IdP type cloudflare. Hosting en exacte APP_ORIGIN opnieuw vanaf GitHub gecontroleerd: https://rittenregistratie.zsj4j2s4df.workers.dev, Workers+D1, geen eigen domein nodig voor proef. iPhone-invulvelden en veilige fallback: docs/TRANSFER/ACCESS_IPHONE_SETUP.md. Oude actie “Access activeren” is uitgevoerd; volgende eigenaaractie is app/destination/expliciete allowlist opslaan. Nog geen echte loginclaim.
