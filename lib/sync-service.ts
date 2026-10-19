@@ -2,7 +2,7 @@ import {membership,TripServiceError,vehicleAuthorizer} from './server-access.ts'
 import {decodeSettingsRow,settingsReadSql,type SettingsRow,type VehicleSettings} from './settings-service.ts';
 import type {SessionResolver} from './trip-service.ts';
 import type {BackendTrip,Driver,SavedReport,Vehicle} from '../app/backend-client.ts';
-export type VehicleSnapshot={version:1;fetchedAt:number;vehicle:Vehicle;trips:BackendTrip[];settings:VehicleSettings;drivers:Driver[];reports:SavedReport[]};
+export type VehicleSnapshot={version:1;viewerId:string;fetchedAt:number;vehicle:Vehicle;trips:BackendTrip[];settings:VehicleSettings;drivers:Driver[];reports:SavedReport[]};
 // D1 batch statements execute transactionally. This is a bounded full refresh,
 // not an incremental cursor or a durable offline queue. Every query is scoped.
 export function createSyncService(db:Pick<D1Database,'prepare'|'batch'>,resolveSession:SessionResolver=async()=>null,clock=()=>Date.now()){
@@ -21,7 +21,7 @@ export function createSyncService(db:Pick<D1Database,'prepare'|'batch'>,resolveS
   if(vehicles.length!==1||settings.length!==1)throw new TripServiceError(403,'Geen toegang tot dit voertuig.');
   const now=clock();if(!Number.isFinite(now)||principal.sessionExpiresAt<=now)throw new TripServiceError(401,'Aanmelden vereist.');
   if(trips.length>5000||drivers.length>1000||reports.length>1000)throw new TripServiceError(413,'Te veel gegevens voor één samenhangend overzicht. Gebruik een gerichte export; er is niets afgekapt.');
-  const snapshot:VehicleSnapshot={version:1,fetchedAt:now,vehicle:vehicles[0] as Vehicle,trips:trips as BackendTrip[],settings:decodeSettingsRow(vehicleId,settings[0] as SettingsRow).settings,drivers:drivers as Driver[],reports:reports as SavedReport[]};
+  const snapshot:VehicleSnapshot={version:1,viewerId:principal.userId,fetchedAt:now,vehicle:vehicles[0] as Vehicle,trips:trips as BackendTrip[],settings:decodeSettingsRow(vehicleId,settings[0] as SettingsRow).settings,drivers:drivers as Driver[],reports:reports as SavedReport[]};
   if(new TextEncoder().encode(JSON.stringify(snapshot)).byteLength>4*1024*1024)throw new TripServiceError(413,'Overzicht te groot; er is niets afgekapt.');
   return snapshot;
  }};

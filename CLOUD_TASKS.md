@@ -151,3 +151,7 @@ CLOUD-005/002/004: snapshotroute en transactionele UI-refresh gebouwd,127tests/t
 ## Vervolggroep instellingenhistorie — 19 oktober2026
 
 CLOUD-005/002/004: centrale historie van kenteken, adressen en tarieven met reden, account-ID en voor/na gebouwd. Bestaande scoped backend hergebruikt; laatste50expliciet begrensd, oudere historie blijft bewaard. Herlezen na revocation wist de oude lijst.128Node-tests/type/lint/build PASS; echteHTTP/SQLite en centrale Chromium met drie settingsredenen en geweigerde verversing PASS, PDF16pagina's/geslotenAPI PASS. Geen livepublicatie, cloudmutatie of kosten. Vervolgcommit op draft#17, basisgroep127tests blijft afzonderlijk bewezen. Volgende: herstelbare pendingqueue/cursors, detectie/backups/MCP en overige OPEN_WORK.
+
+## Herstelbare invoer — 19 oktober2026, niet live
+
+CLOUD-005/002/004: opt-in IndexedDB voor exacte create-trip/create-report-aanvragen, scope uit geverifieerde viewer+vehicle, expected-viewerprecondition, transactionele compare-before-delete en contextreset bij accountwissel.129Node-tests plus echte Chromium IndexedDB/tabsluiten/responseverlies/recovery/geen duplicaat/accountwissel/stale-delete/revocation PASS; type/lint/build en bestaande centrale browser/PDF PASS. Bewijs PENDING_RECOVERY.md. Geen volledige offline-/Safari-/crashclaim; PATCH-invoer en auto-sync nog open. Backupgroep parallel afzonderlijk in nieuwe bestanden; geen productieactie. Nieuwe draftbranch cloud/cloud-005-pending-recovery vanaf #17-head9246810.
