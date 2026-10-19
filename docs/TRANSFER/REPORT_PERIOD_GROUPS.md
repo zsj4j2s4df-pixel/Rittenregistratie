@@ -1,0 +1,11 @@
+# REQ-043 — bestuurder- en periodeoverzichten
+
+CLOUD-005, vervolg op PR37. Nieuwe read-only software boven de bestaande vaste ServerReport-snapshot; geen DB-migratie, extra identiteit, actuele tariefopvraging of live publicatie.
+
+Een geopend vast rapport kan per maand, kwartaal of jaar worden gegroepeerd, steeds per bestuurder-ID. Gelijke namen blijven afzonderlijke personen; onbekende bestuurder blijft een eigen groep. De opgeslagen Amsterdamse ritdatum bepaalt de periode, ook rond UTC-middernacht en jaar/kwartaalwisseling. Deelselectie wordt expliciet vermeld wanneer het rapport niet de hele kalenderperiode omvat. Een gefilterd rapport blijft uitsluitend zijn geselecteerde ritten bevatten; het overzicht is geen volledig voertuigjaarlogboek.
+
+Per groep: ritaantal, bekende totale/zakelijke/privé/tecontrolerenafstand, bekende vergoeding en aantallen onbekende afstand/onberekenbare zakelijke vergoeding. Afstand wordt in integerduizendsten opgeteld. Vergoeding is de som van reeds opgeslagen perrit-centbedragen; geen nieuwe afronding of herberekening tegen latere tarieven. Alle groepstotalen moeten aansluiten op de opgeslagen rapporttotalen. Dubbele IDs, afwijkende datums/classificaties/namen/totalen, onveilige getallen of meer dan500ritten geven een zichtbare onbeschikbare samenvatting in plaats van stille afkapping of verzonnen cijfers. Ritdetails/waarschuwingen en oorspronkelijke snapshot blijven behouden.
+
+225Node-tests/typecheck/volledige lint/webbuild PASS. Vier nieuwe regressiegroepen met echte SQLite-rapportsnapshots: Amsterdamse jaar/kwartaalgrenzen, gelijke namen/verschillendeIDs, partial periods/onbekend, perrit-halfcentafronding, geen tarief bij ontbrekende periode, ongewijzigde oude rapporten na naam/tarief/ritcorrectie en weigering van inconsistente/onveilige/tegrote snapshots. Chromium: maand→kwartaal→jaar wisselen, labels deelselectie, bestaande report/CSV/view/langePDF/print-revocatie en centrale CRUDflows PASS. Geen fiscale acceptatie, Safari/iPhone of live publicatie geclaimd.
+
+Vervolg: veilige opt-in synchronisatie die onopgeslagen formulieren niet overschrijft; zelfstandige serverPDF en overige OPEN_WORK blijven open. Oude eisenregister-nulmeting blijft historie; REQ-043 heeft nu dit concrete implementatie-/testbewijs.
