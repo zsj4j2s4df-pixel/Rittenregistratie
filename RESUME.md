@@ -1,5 +1,9 @@
 # Hervatpunt — 18 oktober 2026
 
+## Actuele GitHub-checkpoint
+
+Draft-PR #36 https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/36 , branch `cloud/cloud-011-web-journey-choice`, codehead `bf8b67b64cddec030e92414b9ba0d111e8be7ff6`, base PR35/head18f00a2. Alle11gewijzigdebestanden bytegelijk aan GitHub-tree teruggelezen.221tests/type/lint/build en Chromiumretry/conflict/accountwissel/revoke PASS. Deze documentcheckpoint volgt als afzonderlijke commit op dezelfde branch. Alleen PR34 is live gepubliceerd; geen nieuwe webfuncties/migraties meepubliceren zonder afgebakend eigenaarbesluit. Echte loginproef MAC-CLOUD-013-LIVE-01 en Apple/native/hardwarevalidatie zijn nog open, niet als geslaagd invullen.
+
 ## CLOUD-011 — expliciete Zakelijk/Privé-webkeuze gebouwd
 
 Vervolg boven PR35/18f00a219fa4b6a494e31a90d788177622e77178: bestaande ritkeuze-API aangesloten op /beheer met expliciete knoppen, geverifieerde viewer/revisie, strikte receiptcontrole en handmatige exacte retry na verloren antwoord. Geen definitieve trip of automatische bestuurder.221Node/type/lint/build en Chromium met echte HTTP/SQLite PASS: committedlostresponse→zelfde retry→éénchoice/audit; stale409/accountswitch409/revoke403 veilig. Nieuwe groep NIET live gepubliceerd; geen nieuwe migratie/dependency. [Bewijs en beperkingen](docs/TRANSFER/WEB_JOURNEY_CHOICE.md).
