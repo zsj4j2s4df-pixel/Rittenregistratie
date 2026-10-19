@@ -10,7 +10,7 @@ import type { VehicleSettings, SettingsEdit } from '../lib/settings-service.ts';
 import type { ReportRequest, ServerReport } from '../lib/report-service.ts';
 export type Driver={id:string;name:string};
 export type Vehicle={id:string;display_name:string;registration_plate:string|null};
-export type BackendTrip={id:string;revision:number;started_at:number;ended_at:number|null;start_address:string|null;end_address:string|null;distance_km:number|null;classification:string;driver_id:string|null;odometer_start:number|null;odometer_end:number|null;purpose:string|null};
+export type BackendTrip={id:string;revision:number;status:string;needs_review:number;started_at:number;ended_at:number|null;start_address:string|null;end_address:string|null;distance_km:number|null;classification:string;driver_id:string|null;odometer_start:number|null;odometer_end:number|null;purpose:string|null};
 export type SavedReport={id:string;created_by:string;created_at:number};
 export type TripHistoryEntry={id:number;actor_id:string;action:string;occurred_at:number;old_value_json:string|null;new_value_json:string|null};
 export class BackendError extends Error{status:number;constructor(status:number,message:string){super(message);this.status=status;}}

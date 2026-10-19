@@ -10,7 +10,7 @@ export function createSyncService(db:Pick<D1Database,'prepare'|'batch'>,resolveS
   const principal=await vehicleAuthorizer(db,resolveSession,clock)(vehicleId);
   const statements=[
    db.prepare(`SELECT id,display_name,registration_plate FROM vehicles WHERE id=? AND ${membership}`).bind(vehicleId,principal.userId,vehicleId),
-   db.prepare(`SELECT id,revision,started_at,ended_at,start_address,end_address,distance_km,classification,driver_id,odometer_start,odometer_end,purpose FROM trips WHERE vehicle_id=? AND ${membership} ORDER BY started_at,id LIMIT 5001`).bind(vehicleId,principal.userId,vehicleId),
+   db.prepare(`SELECT id,revision,status,needs_review,started_at,ended_at,start_address,end_address,distance_km,classification,driver_id,odometer_start,odometer_end,purpose FROM trips WHERE vehicle_id=? AND ${membership} ORDER BY started_at,id LIMIT 5001`).bind(vehicleId,principal.userId,vehicleId),
    db.prepare(settingsReadSql).bind(vehicleId,principal.userId,vehicleId),
    db.prepare(`SELECT u.id,u.name FROM users u JOIN vehicle_memberships m ON m.user_id=u.id WHERE m.vehicle_id=? AND m.active=1 AND m.role='admin_driver' AND u.disabled=0 AND u.role='admin_driver' AND ${membership} ORDER BY u.name,u.id LIMIT 1001`).bind(vehicleId,principal.userId,vehicleId),
    db.prepare(`SELECT id,created_by,created_at FROM report_snapshots WHERE vehicle_id=? AND ${membership} ORDER BY created_at DESC,id LIMIT 1001`).bind(vehicleId,principal.userId,vehicleId),

@@ -108,14 +108,14 @@ export function createTripService(db: Pick<D1Database, 'prepare' | 'batch'>, res
       if (!Number.isSafeInteger(occurredAt)) throw new TripServiceError(500, 'Ongeldige servertijd.');
       const distanceChanged = before.distance_km !== edit.distanceKm;
       const distanceOrigin = before.distance_origin_json ?? (distanceChanged ? JSON.stringify({ distanceKm: before.distance_km ?? null, source: before.distance_source ?? null }) : null);
-      const after = { ...before, distance_source: distanceChanged ? 'manual' : before.distance_source, distance_origin_json: distanceOrigin, started_at: edit.startedAt, ended_at: edit.endedAt, distance_km: edit.distanceKm,
+      const after = { ...before, status:'provisional',needs_review:1, distance_source: distanceChanged ? 'manual' : before.distance_source, distance_origin_json: distanceOrigin, started_at: edit.startedAt, ended_at: edit.endedAt, distance_km: edit.distanceKm,
         start_address: edit.startAddress.trim(), end_address: edit.endAddress.trim(), classification: edit.classification, driver_id: edit.driverId,
         odometer_start: edit.odometerStart, odometer_end: edit.odometerEnd, purpose: edit.purpose?.trim() ?? null,
         revision: before.revision + 1, last_mutation_id: mutationId, updated_at: occurredAt };
       // D1 batch is transactional. A unique mutation marker makes audit insertion
       // conditional on THIS successful update, even with concurrent same-second edits.
       const results = await db.batch([
-        db.prepare(`UPDATE trips SET started_at=?,ended_at=?,distance_km=?,distance_source=?,distance_origin_json=?,start_address=?,end_address=?,classification=?,driver_id=?,odometer_start=?,odometer_end=?,purpose=?,revision=revision+1,last_mutation_id=?,updated_at=?
+        db.prepare(`UPDATE trips SET status='provisional',needs_review=1,started_at=?,ended_at=?,distance_km=?,distance_source=?,distance_origin_json=?,start_address=?,end_address=?,classification=?,driver_id=?,odometer_start=?,odometer_end=?,purpose=?,revision=revision+1,last_mutation_id=?,updated_at=?
           WHERE id=? AND vehicle_id=? AND revision=? AND ${membership} AND (? IS NULL OR ${membership})`)
           .bind(after.started_at, after.ended_at, after.distance_km, after.distance_source, after.distance_origin_json, after.start_address, after.end_address, after.classification, after.driver_id,
             after.odometer_start, after.odometer_end, after.purpose, mutationId, occurredAt, tripId, vehicleId, edit.expectedRevision,

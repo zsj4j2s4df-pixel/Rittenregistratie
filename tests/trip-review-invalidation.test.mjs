@@ -1,0 +1,10 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {setup} from './helpers/trip-fixture.mjs';import {createReportService} from '../lib/report-service.ts';
+const edit={expectedRevision:0,startedAt:100,endedAt:200,distanceKm:21,startAddress:'Known A',endAddress:'Known B',classification:'private',driverId:null,odometerStart:0,odometerEnd:21,purpose:null,reason:'Explicit subsequent correction'};
+test('correcting a reviewed trip invalidates its reviewed state while preserving old report snapshot',async t=>{
+ const {db,sqlite,service}=setup(t);sqlite.exec("UPDATE trips SET status='final',needs_review=0,classification='private' WHERE id='t'");const reports=createReportService(db,async()=>({userId:'u',disabled:false,sessionExpiresAt:2000000}),()=>1000000),old=await reports.create('v',{requestId:'before-review-invalidation-01',from:'1970-01-01',until:'1970-01-01',driverId:null});
+ const after=await service.edit('v','t',edit);assert.equal(after.status,'provisional');assert.equal(after.needs_review,1);const stored=await service.get('v','t');assert.equal(stored.status,'provisional');assert.equal(stored.needs_review,1);
+ const audit=sqlite.prepare("SELECT old_value_json,new_value_json FROM audit_logs WHERE entity_type='trip' AND action='update'").get();assert.equal(JSON.parse(audit.old_value_json).status,'final');assert.equal(JSON.parse(audit.new_value_json).needs_review,1);assert.deepEqual(await reports.get('v',old.id),old);assert.equal(old.rows[0].status,'final');
+});
+test('failed correction audit rolls reviewed-state invalidation back atomically',async t=>{
+ const {sqlite,service}=setup(t);sqlite.exec("UPDATE trips SET status='final',needs_review=0 WHERE id='t';CREATE TRIGGER reject_invalidation BEFORE INSERT ON audit_logs WHEN NEW.entity_type='trip' BEGIN SELECT RAISE(ABORT,'correction audit failure');END");await assert.rejects(()=>service.edit('v','t',edit),/correction audit failure/);const trip=await service.get('v','t');assert.equal(trip.status,'final');assert.equal(trip.needs_review,0);assert.equal(trip.revision,0);
+});

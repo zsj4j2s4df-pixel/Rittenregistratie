@@ -1,5 +1,9 @@
 # Persoonlijke acties
 
+## Actueel na geautoriseerde PR34-fix en eigenaarsfeedback
+
+ACT-006: eerder goedgekeurde bindings/eigenaarprovisioning én het daarna expliciet goedgekeurde PR34-codepakket zijn uitgevoerd. Eigenaar bevestigt nu inloggen en toont de centrale voertuig/instellingenschermen. De oude algemene loginFAIL hieronder is daarmee ingehaald; volledige livewrite/logout/revocationacceptatie blijft open. Screenshots tonen geen opslagfout of bevestigdewrite, dus opslagprobleem nog niet als opgelost markeren. Niet opnieuw provisionen of dezelfde toestemming vragen. Nieuwe softwarePR37–40 en opvolgende correctieguard zijn uitsluitend bron/draft; geen algemene productie- of migratietoestemming. ACT-002gescheidenidentiteit en ACT-004Apple/hardware blijven open.
+
 ## Nieuwste status — eigenaarstoegang, 19 oktober 2026
 
 ACT-006: toestemming ontvangen, configuratie/provisioning uitgevoerd. Niet hetzelfde pakket opnieuw vragen. Eén geverifieerde eigenaar en voertuigrecht ingericht, geen ritten. **Live eindtest niet geslaagd:** backend blijft aanmelden weigeren. [Bewijs](docs/TRANSFER/OWNER_ACCESS_RESULT_2026-10-19.md). Onderstaand ACT-006-voorstel is historie. Een gerichte fix mag op eigen branch worden voorbereid; beperkte live codepublicatie vraagt nieuwe toestemming, geen algemene release/migraties. ACT-002 identiteitsscheiding, ACT-004 hardware en ACT-005 persoonlijke accountbeveiliging blijven open.
