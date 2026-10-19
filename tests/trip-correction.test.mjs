@@ -25,3 +25,15 @@ test('unknown fields stay empty/null and cannot silently become a distance or en
 test('history reload after revocation denies access rather than leaking cached audit entries',async t=>{
  const {client,sqlite}=fixture(t);assert.deepEqual(await client.history('v','t'),[]);sqlite.exec('UPDATE vehicle_memberships SET active=0');await assert.rejects(()=>client.history('v','t'),e=>e.status===403);
 });
+test('explicit driver correction, clearing to unknown and revoked membership preserve exact audit and rollback',async t=>{
+ const {client,sqlite}=fixture(t);
+ sqlite.exec("UPDATE trips SET start_address='A',end_address='B' WHERE id='t'; INSERT INTO vehicle_memberships(user_id,vehicle_id) VALUES ('other','v')");
+ let trip=(await client.trips('v'))[0],data=form(trip);data.set('driverId','other');
+ trip=await client.editTrip('v','t',correctionInput(trip,data));assert.equal(trip.driver_id,'other');
+ let history=await client.history('v','t');assert.equal(JSON.parse(history[0].old_value_json).driver_id,null);assert.equal(JSON.parse(history[0].new_value_json).driver_id,'other');
+ data=form(trip);data.set('driverId','');trip=await client.editTrip('v','t',correctionInput(trip,data));assert.equal(trip.driver_id,null);
+ const before=(await client.history('v','t')).length;
+ sqlite.exec("UPDATE vehicle_memberships SET active=0 WHERE user_id='other'");data=form(trip);data.set('driverId','other');await assert.rejects(()=>client.editTrip('v','t',correctionInput(trip,data)),e=>e.status===400);
+ assert.equal((await client.trips('v'))[0].revision,trip.revision);assert.equal((await client.history('v','t')).length,before);
+ sqlite.exec("UPDATE vehicle_memberships SET active=0 WHERE user_id='u'");data.set('driverId','');await assert.rejects(()=>client.editTrip('v','t',correctionInput(trip,data)),e=>e.status===403);
+});

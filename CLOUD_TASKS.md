@@ -10,7 +10,7 @@
 | CLOUD-006 | TER CONTROLE — PR #2 afhankelijk van #1; 123 REQ-ID's/21 scenario's behouden, actuele codebasis nu aangeleverd |
 | CLOUD-002 / CLOUD-004 | TER CONTROLE — additieve databaseguards, vijf regressiecases; 37/37 tests en typecheck/lint/build PASS; verdere API/UI-dekking open |
 | CLOUD-003 | GEDEELTELIJK UITGEVOERD — twee gerichte serverkernreviews en één rapportagereview; volledige productieauth/privacyreview open |
-| CLOUD-005 | IN UITVOERING — PR #6 web/rapportage; serverkern/ritinvoer TER CONTROLE: 119 tests + lokale D1 + type/lint/build PASS; settingsopslag/Accessvoorbereiding TER CONTROLE, adres-/tariefCRUD, ritcorrectie/historie, bestuurderkeuze en ritfilters gebouwd; Cloudflare Worker/EU-D1 gepubliceerd, live gesloten API PASS; echte login/sync open |
+| CLOUD-005 | IN UITVOERING — PR #6 web/rapportage; serverkern/ritinvoer TER CONTROLE: 123 tests (nieuwste lokale groep) + eerdere lokale D1 + type/lint/build PASS; settingsopslag/Accessvoorbereiding TER CONTROLE, adres-/tariefCRUD, ritcorrectie/historie, bestuurderkeuze en ritfilters gebouwd; Cloudflare Worker/EU-D1 gepubliceerd, live gesloten API PASS; echte login/sync open |
 | CLOUD-007 | IN UITVOERING — veilige Mac→GitHub-overdracht op handover/mac-to-cloud-20261018, base cloud/cloud-006-documentatie |
 | CLOUD-008 | TER CONTROLE — 32/32 tests, typecheck/lint/build PASS; draft-PR #4; eerdere omgevingblokkades opgelost |
 
@@ -137,3 +137,7 @@ GitHub Issues niet aangemaakt: deze lijst volstaat voorlopig.
 Eigenaar bevestigt Zero Trust Free actief. Read-only API bevestigt organisatie snowy-snowflake-4760.cloudflareaccess.com; apps nog leeg, bestaande IdP type cloudflare. Hosting en exacte APP_ORIGIN opnieuw vanaf GitHub gecontroleerd: https://rittenregistratie.zsj4j2s4df.workers.dev, Workers+D1, geen eigen domein nodig voor proef. iPhone-invulvelden en veilige fallback: docs/TRANSFER/ACCESS_IPHONE_SETUP.md. Oude actie “Access activeren” is uitgevoerd; volgende eigenaaractie is app/destination/expliciete allowlist opslaan. Nog geen echte loginclaim.
 
 Nieuwste instructie: **geen nieuwe livepublicatie zonder toestemming, geen kosten**; oudere publicatieopdracht is voor volgende releases niet voldoende. Tijdens deze taak alleen read-only Cloudflare. Zelfstandig toegevoegd: offline Access-configuratiecontrole vóór latere aansluiting,122Node-tests/type/lint PASS; geen appdeploy of accountprovisioning. Draft-GitHubwijzigingen toegestaan, main ongemoeid.
+
+## 19 oktober2026 — zelfstandige vervolggroep naast Mac
+
+CLOUD-005/002/004 TER CONTROLE: bestuurder van bestaande rit corrigeren met verplichte reden/audit en actieve rechten; opgeslagen serverrapport bekijken en browser-PDF/afdruk.123Node-tests/type/lint/build en uitgebreide browser PASS;81ritten/16A4pagina's/all80extra bestemmingen PASS. Nieuwe draftbranch cloud/cloud-005-report-view vanaf #15; geen nieuwe livepublicatie. Bewijs CENTRAL_REPORT_VIEW.md. ServerPDF, coherente sync/pendingqueue/detectie/backups/MCP en echte provider/hardware blijven open.

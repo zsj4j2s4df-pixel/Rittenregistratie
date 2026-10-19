@@ -78,3 +78,22 @@ nav { display:grid; gap:6px; }.nav-item { border:0; background:transparent; colo
 
 .setting-card { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-block:12px; }
 .setting-card > div { flex:1; min-width:180px; }
+
+@media print {
+ .has-saved-report > .workspace > :not(.saved-report-view) { display:none!important; }
+ .has-saved-report .saved-report-view { display:block!important; border:0!important; padding:0!important; margin:0!important; background:white!important; }
+ .has-saved-report .saved-report-view h2,.has-saved-report .saved-report-view h3 { color:black!important; }
+}
+
+@media print {
+ .has-saved-report,.has-saved-report .print-report,.has-saved-report .report-data th { background:white!important; color:black!important; }
+ .has-saved-report .workspace { max-width:none!important; width:100%!important; }
+ .has-saved-report .print-report { border-radius:0!important; font-size:9pt; line-height:1.25; }
+ .has-saved-report .report-warnings { font-size:8pt; line-height:1.25; }
+ .has-saved-report .report-warnings li { margin-bottom:3px; }
+ .has-saved-report .report-data { width:100%!important; font-size:8pt; line-height:1.25; }
+ .has-saved-report .report-data p { margin:0 0 3px; }
+}
+@media print {
+ :root { color-scheme:light!important; background:white!important; }
+}
