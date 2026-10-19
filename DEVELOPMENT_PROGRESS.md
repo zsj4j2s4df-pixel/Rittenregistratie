@@ -1,5 +1,18 @@
 # Actuele voortgang — 18 oktober 2026
 
+## CLOUD-011 — ritkeuze/wachtrijbron, liveauth nu prioriteit
+
+19 oktober2026: vervolg op PR31/0643b8c649ea31a971a75991f27adbab47c229a1.215Node-tests/type/lint/build/lokaleD1 enChromiumkeuzeweergave/revoke/closedAPI PASS. Geautoriseerdeidempotenteclassificatie metrevision/audit/rollback; geen definitievetrip. Native actorqueue/contextbinding, AES-GCM-cipherfile/Keychainprovider enexactsend/ack alsbron toegevoegd; nieuweSwift/XCTest/iOS ALLE NIETGETEST inCloud. MacJ11/J12 expliciet in NATIVE_CHOICE_QUEUE.md. SQL0011wasvóórnieuweMacbeperkinglokaalvoorbereid; uitsluitenddraftconcept, NIETexternmigreren.
+
+NieuwsteMacbewijs PR32/head264f831b6e16a5206f3ade69d3108421d4b537f4 overgenomen zonderPR31teverliezen: eigenaarbindings/provisioningUITGEVOERD,1user/1vehicle/1recht/0trips/2audits. IngelogdecentraleAPI FAIL Aanmeldenvereist, anoniem302PASS. Niet opnieuwprovisionen of legeDBclaim. Actuelebewijs OWNER_ACCESS_RESULT_2026-10-19.md; codepublicatie/nieuwemigraties/liveCloudflarewijzigingen NIETgeautoriseerd.
+
+Volgende groep metvoorrang: gerichte Access-JWTroute versusWorkerctx.access/frameworkcontextdiagnose, oorzaakgerichtefix/regressies enbeperktreleasevoorstel vanafwerkelijklivecodebasis, nietalleconceptfeaturesbundelen. Geen tokens/claimsloggen, geen beveiligingsfallback. Huidigecheckpoint cloud/cloud-011-native-choice-queue behoudtPR31enMac32bewijs. Geen agentsmetcredittekortgestart, aankopen/kosten/mainmerge/forcepush/liveactie.
+
+## Nieuwste liveconfiguratie — 19 oktober 2026
+
+Eigenaarstoestemming uitgevoerd: Accessbindings teruggelezen, uitsluitend eigenaar/voertuigrecht met twee audits ingericht,0ritten. Anoniem gesloten302 PASS. **Ingelogde backend FAIL**; niet als werkende centrale login markeren. [Bewijs/volgende taak](docs/TRANSFER/OWNER_ACCESS_RESULT_2026-10-19.md). Geen codepublicatie, migraties of main-merge. PR31 is parallel Cloudvervolg; deze branch bewaart PR30-basis.
+
+
 ## CLOUD-011 — canonieke coördinatie, eerste groep
 
 19 oktober2026: exact geïntegreerdePR30-head677a222e3d2947510a9f9e1d736023ebf82c8118/tree f93782b3b07fde78f2ef458f0ab4dd01be962ba2 gebruikt;21Macdeltafiles bytegelijk. MAC-CLOUD-20261019-PR27-ACK-01bewijs teruggelezen PASS. MacSwift6Coretypecheck behouden; iOS/UserNotifications/XCTest/hardware blijven NIETGETEST.

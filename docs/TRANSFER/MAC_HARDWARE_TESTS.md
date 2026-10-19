@@ -38,3 +38,7 @@ Voer schermbediening stilstaand uit; rijden door bestuurder, meten door passagie
 | MAC-J10 driegebruikers/dedup | Laat2/3geautoriseerde telefoons dezelfde synthetische voertuigritclaim aanleveren, responses verliezen/herhalen en offline terugkomen | Eén canonieke voertuigrit of zichtbare overlapbeoordeling; geen stille dubbele rapportage, geen bestuurder afleiden uit CarPlaywinnaar |
 
 Een hardwareaankoop is geen automatische toestemming voor andere aankopen/licenties. Niet beschikbare hardwaretests blijven NIET GETEST. Mac levert testresultaten via eigen draft-PR; Cloud verwerkt pas echte bewijsresultaten in de acceptatiestatus.
+
+## Vervolg na bevestigde ACK — nieuwe native code
+
+MAC-ACK-01 is door Mac in PR30 werkelijk PASS bewezen; eerdere pendingtekst is historie. Nieuwe controles MAC-J11/J12 staan in NATIVE_CHOICE_QUEUE.md: Corebuild van de nieuwe queue/crypto/choicebron, bestaande XCTest indien beschikbaar en echte iOS/UserNotifications/FileProtection pas met geschikte SDK/app. Eerder Swift6Corebuildbewijs vanPR30 geldt niet voor deze nieuwe bestanden. Geen installatie/aankoop/prodactie als onderdeel van deze broncontrole. Gebruik de nieuwste opvolgende drafthead en vermeld exacte SHA bij terugmelding.

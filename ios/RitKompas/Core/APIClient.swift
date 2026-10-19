@@ -35,7 +35,7 @@ public actor APIClient {
     }
     public func close() { session.invalidateAndCancel() }
     private func send<Response: Decodable & Sendable>(segments: [String], method: String = "GET",
-                           query: [URLQueryItem] = [], body: Data? = nil) async throws -> Response {
+                           query: [URLQueryItem] = [], body: Data? = nil, expectedViewerID: String? = nil) async throws -> Response {
         let url = try origin.url(segments: segments, query: query)
         guard origin.contains(url) else { throw NativeAPIError.invalidOrigin }
         if let body, body.count > 16_384 { throw NativeAPIError.requestTooLarge }
@@ -43,6 +43,7 @@ public actor APIClient {
         guard !grant.expectedViewerID.isEmpty, grant.expectedViewerID.count <= 128,
               !grant.expectedViewerID.unicodeScalars.contains(where: { $0.value < 32 || $0.value == 127 }),
               !grant.headers.isEmpty else { throw NativeAPIError.invalidSessionGrant }
+        if let expectedViewerID, expectedViewerID != grant.expectedViewerID { throw NativeAPIError.invalidSessionGrant }
         var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData)
         request.httpMethod = method
         request.httpBody = body
@@ -107,6 +108,14 @@ public actor APIClient {
     // Reconstructing it with new IDs risks duplicate registrations/observations.
     public func register(vehicleID: String, input: DeviceRegistration) async throws -> DeviceEnvelope {
         try await send(segments: ["api", "vehicles", vehicleID, "devices"], method: "POST", body: JSONEncoder().encode(input))
+    }
+    private struct ChoiceInput: Encodable { let requestId: String; let expectedRevision: Int; let classification: TripChoice; let reason: String }
+    private struct ChoiceEnvelope: Decodable, Sendable { let receipt: TripChoiceServerReceipt }
+    public func sendChoice(_ action: QueuedTripChoice) async throws -> TripChoiceServerReceipt {
+        guard action.context.isValid, UUID(uuidString: action.requestID) != nil else { throw NativeAPIError.invalidPath }
+        let input = ChoiceInput(requestId: action.requestID, expectedRevision: action.context.revision, classification: action.choice, reason: "Expliciete keuze via iOS-melding")
+        let result: ChoiceEnvelope = try await send(segments: ["api", "vehicles", action.context.vehicleID, "journeys", action.context.proposalID, "choice"], method: "POST", body: JSONEncoder().encode(input), expectedViewerID: action.context.viewerID)
+        return result.receipt
     }
     public func deactivate(vehicleID: String, deviceID: String, input: DeviceDeactivation) async throws -> DeviceEnvelope {
         try await send(segments: ["api", "vehicles", vehicleID, "devices", deviceID], method: "PATCH", body: JSONEncoder().encode(input))

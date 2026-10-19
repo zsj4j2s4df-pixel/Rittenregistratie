@@ -1,5 +1,7 @@
 # Mac — Zero Trust-configuratie en verificatie
 
+> Vervolg na expliciete toestemming: runtimebindings en uitsluitend eigenaarprovisioning uitgevoerd, maar livebackendlogin blijft FAIL. [Nieuwste bewijs](OWNER_ACCESS_RESULT_2026-10-19.md). Onderstaande ontbrekende-bindings/geen-databasewijziging betreft de eerdere Access-only-fase.
+
 19 oktober 2026, Europe/Amsterdam. Uitgevoerd op de bestaande RitKompas-Worker, na specifieke eigenaarstoestemming in deze chat. Geen nieuwe Worker-release, abonnement, aankoop of databasewijziging.
 
 ## Vastgesteld en toegepast
