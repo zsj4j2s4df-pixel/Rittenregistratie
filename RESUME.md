@@ -1,5 +1,9 @@
 # Hervatpunt — 18 oktober 2026
 
+## Lokale backup/herstel — 19 oktober2026, niet live
+
+CLOUD-005/002/004: scripts/sqlite-backup.mjs maakt consistente SQLite-backup met AES-256-GCM/authenticated versieheader en key-file buiten Git. Restore uitsluitend nieuw pad, integrity_check/foreign_key_check, geen overschrijven/symlinks.5gerichte tests PASS inclusief echt RitKompas-schema/trips/audit/rapportimmuutheid/revisieguards; lint PASS. Bewijs SQLITE_BACKUP.md. Tijdelijke plaintext onder private0700map en crash/keybeheer/Mac/remoteD1-grenzen expliciet. Eerste streamtesthang opgelost vóór afronding; volledige eerdere133suitePASS, vijfde test apartPASS. Geen productieactie/kosten. Volgende draftbranch cloud/cloud-005-local-backup op #18. Paginatie oudere historie parallel in uitvoering; root wijzigt die bestanden niet.
+
 ## Herstelbare invoer — 19 oktober2026, niet live
 
 CLOUD-005/002/004: opt-in IndexedDB voor exacte create-trip/create-report-aanvragen, scope uit geverifieerde viewer+vehicle, expected-viewerprecondition, transactionele compare-before-delete en contextreset bij accountwissel.129Node-tests plus echte Chromium IndexedDB/tabsluiten/responseverlies/recovery/geen duplicaat/accountwissel/stale-delete/revocation PASS; type/lint/build en bestaande centrale browser/PDF PASS. Bewijs PENDING_RECOVERY.md. Geen volledige offline-/Safari-/crashclaim; PATCH-invoer en auto-sync nog open. Backupgroep parallel afzonderlijk in nieuwe bestanden; geen productieactie. Nieuwe draftbranch cloud/cloud-005-pending-recovery vanaf #17-head9246810.

@@ -12,7 +12,7 @@ Gerichte actualisatie op basis van actuele CLOUD_TASKS/RESUME/masterprompt en op
 | Accounts en Access | Mac voert dashboardtaak uit; daarna actuele app/policy/issuer/AUD teruglezen, interne gebruikers/voertuigrechten expliciet provisionen en echte login/logout/revocation testen. Geen livewijzigingen zonder eigenaar |
 | Kaarten/GPS/routes | Demo/kaart-handoff aanwezig; echte scoped GPS-opslag, opname, routes, gaten en privacyretentie nog bouwen/testen. Geen provider/account of betaalde API stil activeren |
 | PDF/rapporten | Vaste rapportweergave/browserPDF gebouwd en lange Chromium-export getest; afzonderlijke serverPDF, Safari/iPhone en toegankelijkheids-/fiscale acceptatie open |
-| Backup en herstel | Open: scoped export/versies/checksums, herstel in geïsoleerde DB en restoreproef; geen productiebackup/restore claim |
+| Backup en herstel | Lokale encrypted SQLite backup/restore met versie/AES-GCM, integriteitscontrole en herstel naar nieuw pad gebouwd;5tests inclusief echt RitKompas-schema/audit/triggers PASS. RemoteD1/export, planning/offsite/keybeheer/crashproef en productieherstel blijven open. SQLITE_BACKUP.md |
 | Read-only MCP | Open: bestaande bewezen rechten als enige autorisatie, begrensde leestoegang en metadata; echte MCP-auth/integratie testen. Geen schrijf-MCP eerst |
 | Native iPhone | Open: nativecode, simulator/appsigning en permission/achtergrondflow; fysieke iPhone/Bluetooth/CarPlay/Jeep/OBD2 via Mac. Cloud kan contracten/testfixtures/nativebroncode voorbereiden |
 | Instellingenhistorie | Leesbare centrale UI gebouwd en scoped HTTP/browser/revocation getest; toont expliciet laatste50wijzigingen, paginatie van oudere historie nog open |
