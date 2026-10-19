@@ -1,5 +1,11 @@
 # Actuele voortgang — 18 oktober 2026
 
+## Logboekcontrole expliciet afronden gebouwd
+
+Vervolg op PR41/checkpoint28dc75e8c8060ea1829633321188e32be3a05358: bevestigde handmatige logboekreview met actuele revisie, reden, actor/driverchecks, unieke onveranderlijke receipt en atomische audit/rollback. Geen automatische fiscale goedkeuring. Later corrigeren maakt controle weer ongeldig; oude retryreceipt kan die nieuwe correctie niet hergoedkeuren.240Node/type/lint/build/lokaleworkerdD1/gebouwdeWorker en Chromiumreview/lostresponse/retry/correction PASS. [Bewijs](docs/TRANSFER/EXPLICIT_TRIP_REVIEW.md).0013 alleen draft/lokaal; geen productiepublicatie.
+
+Actueel afgeronde softwaregroepen in deze run: centrale ingang/invoercontrole, periode-/bestuurdertotalen, veilige opt-in refresh, ééntripoverzetting, invalidatie oude controle en expliciete afronding. Nog geen volledigproject-klaar: nativeauth/host/queueconsumer/capture, duurzame overige writes, route-inname/kaartprovider en externe/hardware/fiscaleacceptatie blijven open. Echte iPhoneopslagmelding geen bewezen foutoorzaak. Opmaak/tekstredactie uitgesteld. GitHubketen behouden, geen kosten/mainmerge/livewijziging.
+
 ## Direct hervatten — draft-PR41
 
 Actuele cumulatieve GitHubbranch `cloud/cloud-002-review-invalidation`, draftPR41 https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/41 , codehead fb275aca1ad1d860f0baba14429cdcfe0b22dccf. BasePR40/c96126c; PR37→38→39→40→41 intact. Alle12gewijzigdePR41files bytegelijk remote; eerderePR37/38/39/40 ook13/12/10/23verified.235Node/type/lint/build/D1 en gerichte Chromiumflows PASS. Deze documentcheckpoint volgt op dezelfdebranch. Lokale gitgeschiedenis is synthetisch: nooit pushen; GitHub echteparent/tree/expectedSHA gebruiken.

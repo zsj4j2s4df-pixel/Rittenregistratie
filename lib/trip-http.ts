@@ -1,3 +1,4 @@
+import {createTripReviewService,type TripReviewInput} from './trip-review-service.ts';
 import {createRouteService} from './route-service.ts';
 import {createSyncService} from './sync-service.ts';
 import { listAccessibleVehicles, listVehicleDrivers } from './vehicle-service.ts';
@@ -22,7 +23,7 @@ export function createTripHttpHandler(options: {
   function response(status: number, body: unknown, extra: Record<string,string> = {}) {
     return new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff', 'Vary': 'Origin, Cookie', ...extra } });
   }
-  async function json(request: Request, create: boolean | 'settings' | 'report') {
+  async function json(request: Request, create: boolean | 'settings' | 'report' | 'review') {
     if (request.headers.get('origin') !== origin.origin || request.headers.get('x-csrf-protection') !== '1' || request.headers.get('sec-fetch-site') === 'cross-site') throw new TripServiceError(403, 'Ongeldige aanvraagherkomst.');
     if (request.headers.get('content-type')?.split(';')[0].trim().toLowerCase() !== 'application/json') throw new TripServiceError(415, 'JSON vereist.');
     const length = request.headers.get('content-length');
@@ -46,7 +47,7 @@ export function createTripHttpHandler(options: {
       for (const chunk of chunks) { bytes.set(chunk, offset); offset += chunk.byteLength; }
       body = JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(bytes));
     } catch { throw new TripServiceError(400, 'Ongeldige JSON.'); }
-    const allowed = create === 'report' ? ['requestId','from','until','driverId'] : create === 'settings' ? ['revision','plate','addresses','rates','reason'] : create ? [...editKeys.filter(k=>k!=='expectedRevision'), 'requestId'] : editKeys;
+    const allowed = create === 'review' ? ['requestId','expectedRevision','confirmed','reason'] : create === 'report' ? ['requestId','from','until','driverId'] : create === 'settings' ? ['revision','plate','addresses','rates','reason'] : create ? [...editKeys.filter(k=>k!=='expectedRevision'), 'requestId'] : editKeys;
     if (!body || typeof body !== 'object' || Array.isArray(body) || Object.keys(body).some(k=>!allowed.includes(k))) throw new TripServiceError(400, 'Onbekende invoervelden.');
     return body;
   }
@@ -120,11 +121,11 @@ export function createTripHttpHandler(options: {
         if (request.method === 'PATCH') return response(200,{ settings: await service.save(vehicleId,await json(request,'settings') as SettingsEdit) });
         return history ? response(200,{ history: await service.history(vehicleId,page('limit',50),page('before')) }) : response(200,{ settings: await service.get(vehicleId) });
       }
-      const match = /^\/api\/vehicles\/([^/]+)\/trips(?:\/([^/]+)(\/history)?)?$/.exec(url.pathname);
+      const match = /^\/api\/vehicles\/([^/]+)\/trips(?:\/([^/]+)(\/(?:history|review))?)?$/.exec(url.pathname);
       if (!match) return response(404, { error: 'Niet gevonden.' });
       const vehicleId = segment(match[1]), tripId = match[2] ? segment(match[2]) : null;
-      const history = Boolean(match[3]);
-      const allowed = history ? ['GET'] : tripId ? ['GET','PATCH'] : ['GET','POST'];
+      const history = match[3]==='/history',review=match[3]==='/review';
+      const allowed = review ? ['POST'] : history ? ['GET'] : tripId ? ['GET','PATCH'] : ['GET','POST'];
       if (!allowed.includes(request.method)) return response(405, { error: 'Methode niet toegestaan.' }, { Allow: allowed.join(', ') });
       const permitted = request.method==='GET' ? (!tripId ? ['limit','offset'] : history ? ['limit','before'] : []) : [];
       for (const key of url.searchParams.keys()) if (!permitted.includes(key) || url.searchParams.getAll(key).length!==1) throw new TripServiceError(400, 'Ongeldige query.');
@@ -135,6 +136,7 @@ export function createTripHttpHandler(options: {
         return Number(value);
       };
       const service = createTripService(options.db, ()=>requestSession(request), options.clock);
+      if(review)return response(200,{receipt:await createTripReviewService(options.db,()=>requestSession(request),options.clock).review(vehicleId,tripId!,await json(request,'review') as TripReviewInput)});
       if (request.method==='POST') return response(201, { trip: await service.create(vehicleId, await json(request, true) as TripCreate) });
       if (request.method==='PATCH') return response(200, { trip: await service.edit(vehicleId, tripId!, await json(request, false) as TripEdit) });
       if (history) return response(200, { history: await service.history(vehicleId, tripId!, integer('limit',50),url.searchParams.has('before')?integer('before',0):undefined) });
