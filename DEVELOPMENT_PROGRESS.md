@@ -1,5 +1,10 @@
 # Actuele voortgang — 18 oktober 2026
 
+## PR27 ontvangen — MAC-CLOUD-20261019-PR27
+
+19 oktober2026 Europe/Amsterdam: volledig memo/PR/comments/reviews gelezen op4af50d3a1fa3408cb563a2924ce9aec2784c4290. Ontwikkelbasis blijft PR26/ec44dc8ddda1361a61f9f0c8bdceebe4e20e8a01; PR1–26intact, PR27nietgemerged. Fabrikantonderzoek en concretekoopvergelijking: JEEP_HARDWARE_RESEARCH.md.16aanvullendeeisen/planning: PR27_PLAN.md, oorspronkelijke123REQ/21scenario'sbehouden. DirecteMac-threadtool ontbreekt; ontvangst hier bevestigd, gratis MAC-ACK-01 en fysiekehardwarematrix in MAC_HARDWARE_TESTS.md; uitvoering/terugkoppeling NIETBEWEZEN. Geenopdrachtverstuurdnaaranderechat, geenaankoop/kosten/accounts/productie/Cloudflaremutatie/mainmerge. Eerderesubagentcreditfoutgedocumenteerd; primaireagentdoetveiligwerk, geenbetaaldeherstart. Volgende: aanwezige devicequota/proposalbron afronden/testen en native meldingsactiebron, Swift/iPhoneblijvenNIETGETESTzonderMacbewijs.
+
+
 ## Atomaire detectiequota — 19 oktober 2026, niet live
 
 CLOUD-005/002/004:120nieuweobservaties/60s,10000/UTCdag,100000totaalobservaties en200000receipts perappinstance centraal begrensd met atomische SQLgates; exacte retries blijvenwerken en geenorphanbijreceiptcap. Operationele defaults, geen retentie/deletiebeleid.187Node-tests/type/lint/build/lokaleD1 en vier Chromiumregressieflows PASS. Bewijs DETECTION_INGEST.md. Draftbranch cloud/cloud-005-detection-quotas op #25-head57a2f48. Main opnieuw d37d8c9ongewijzigd; ruleset25339571active/PR/deletion/nonfastforward/geenbypass,0approvals; connectorPRauteur nog eigenaar296047649. Volgende: devicequota tegen instancegroei, detectievoorstellen en veilige sync; nativecompile blijftMac. Geen productiepublicatie/kosten/mainmerge.
