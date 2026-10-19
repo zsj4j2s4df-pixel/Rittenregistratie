@@ -3,6 +3,8 @@ import type {SessionResolver} from './trip-service.ts';
 import type {Principal} from './access-policy.ts';
 export type DetectionInput={requestId:string;eventId:string;observedAt:number;source:'gps'|'bluetooth'|'carplay'|'manual';kind:'location'|'start_candidate'|'end_candidate'|'connection'|'disconnection';detail?:string;location?:{latitude:number;longitude:number;accuracyMeters:number}};
 export type DetectionObservation={id:string;vehicle_id:string;user_id:string;device_id:string;event_id:string;observed_at:number;received_at:number;source:string;event_kind:string;uncertainty:'unverified_app_observation';payload_json:string};
+// Operational safety defaults, not an approved retention or sampling policy.
+export const DETECTION_LIMITS=Object.freeze({observationsPerMinute:120,observationsPerUtcDay:10000,observationsPerInstance:100000,requestReceiptsPerInstance:200000});
 const identifier=(v:unknown)=>typeof v==='string'&&/^[A-Za-z0-9_-]{16,128}$/.test(v);
 const columns='o.id,o.vehicle_id,o.user_id,o.device_id,o.event_id,o.observed_at,o.received_at,o.source,o.event_kind,o.uncertainty,o.payload_json';
 const ownActive=`EXISTS (SELECT 1 FROM registered_devices d WHERE d.id=? AND d.vehicle_id=? AND d.user_id=? AND d.active=1) AND ${membership}`;
@@ -25,13 +27,22 @@ export function createDetectionService(db:Pick<D1Database,'prepare'|'batch'>,res
    async function receipt(){const row=await db.prepare(`SELECT ${columns},r.canonical_json AS receipt_canonical FROM detection_ingest_requests r JOIN detection_observations o ON o.id=r.observation_id WHERE r.vehicle_id=? AND r.user_id=? AND r.device_id=? AND r.request_id=? AND ${ownActive}`).bind(vehicleId,p.userId,deviceId,input.requestId,...bindings(p,vehicleId,deviceId)).first<DetectionObservation&{receipt_canonical:string}>();timestamp(p);await check(p,vehicleId,deviceId);if(!row)return null;if(row.receipt_canonical!==canonical)throw new TripServiceError(409,'Herhaalcode hoort bij andere inhoud.');const {receipt_canonical:ignored,...result}=row;void ignored;return result;}
    const previous=await receipt();if(previous)return previous;
    const marker=crypto.randomUUID(),id=crypto.randomUUID(),receivedAt=timestamp(p),payloadJson=JSON.stringify(payload);
+   const dayStart=Math.floor(receivedAt/86400)*86400;
+   const receiptQuota='(SELECT count(*) FROM detection_ingest_requests WHERE vehicle_id=? AND user_id=? AND device_id=?)<?';
+   const receiptQuotaBindings=[vehicleId,p.userId,deviceId,DETECTION_LIMITS.requestReceiptsPerInstance];
+   const observationQuota=`(SELECT count(*) FROM detection_observations WHERE device_id=?)<? AND (SELECT count(*) FROM detection_observations WHERE device_id=? AND received_at>=? AND received_at<?)<? AND (SELECT count(*) FROM detection_observations WHERE device_id=? AND received_at>=? AND received_at<?)<?`;
+   const observationQuotaBindings=[deviceId,DETECTION_LIMITS.observationsPerInstance,deviceId,dayStart,dayStart+86400,DETECTION_LIMITS.observationsPerUtcDay,deviceId,Math.max(0,receivedAt-59),receivedAt+1,DETECTION_LIMITS.observationsPerMinute];
    const after:DetectionObservation={id,vehicle_id:vehicleId,user_id:p.userId,device_id:deviceId,event_id:input.eventId,observed_at:input.observedAt,received_at:receivedAt,source:input.source,event_kind:input.kind,uncertainty:'unverified_app_observation',payload_json:payloadJson};
    await db.batch([
-    db.prepare(`INSERT INTO detection_observations(id,vehicle_id,user_id,device_id,event_id,observed_at,received_at,source,event_kind,uncertainty,payload_json,canonical_json,mutation_id) SELECT ?,?,?,?,?,?,?,?,?,?,?,?,? WHERE ${ownActive} AND NOT EXISTS(SELECT 1 FROM detection_ingest_requests WHERE vehicle_id=? AND user_id=? AND device_id=? AND request_id=?) ON CONFLICT(device_id,event_id) DO NOTHING`).bind(...Object.values(after),canonical,marker,...bindings(p,vehicleId,deviceId),vehicleId,p.userId,deviceId,input.requestId),
-    db.prepare(`INSERT INTO detection_ingest_requests(vehicle_id,user_id,device_id,request_id,observation_id,canonical_json) SELECT ?,?,?,?,o.id,? FROM detection_observations o WHERE o.device_id=? AND o.event_id=? AND o.vehicle_id=? AND o.user_id=? AND o.canonical_json=? AND ${ownActive} ON CONFLICT(vehicle_id,user_id,device_id,request_id) DO NOTHING`).bind(vehicleId,p.userId,deviceId,input.requestId,canonical,deviceId,input.eventId,vehicleId,p.userId,canonical,...bindings(p,vehicleId,deviceId)),
+    db.prepare(`INSERT INTO detection_observations(id,vehicle_id,user_id,device_id,event_id,observed_at,received_at,source,event_kind,uncertainty,payload_json,canonical_json,mutation_id) SELECT ?,?,?,?,?,?,?,?,?,?,?,?,? WHERE ${ownActive} AND ${observationQuota} AND ${receiptQuota} AND NOT EXISTS(SELECT 1 FROM detection_ingest_requests WHERE vehicle_id=? AND user_id=? AND device_id=? AND request_id=?) ON CONFLICT(device_id,event_id) DO NOTHING`).bind(...Object.values(after),canonical,marker,...bindings(p,vehicleId,deviceId),...observationQuotaBindings,...receiptQuotaBindings,vehicleId,p.userId,deviceId,input.requestId),
+    db.prepare(`INSERT INTO detection_ingest_requests(vehicle_id,user_id,device_id,request_id,observation_id,canonical_json) SELECT ?,?,?,?,o.id,? FROM detection_observations o WHERE o.device_id=? AND o.event_id=? AND o.vehicle_id=? AND o.user_id=? AND o.canonical_json=? AND ${ownActive} AND ${receiptQuota} ON CONFLICT(vehicle_id,user_id,device_id,request_id) DO NOTHING`).bind(vehicleId,p.userId,deviceId,input.requestId,canonical,deviceId,input.eventId,vehicleId,p.userId,canonical,...bindings(p,vehicleId,deviceId),...receiptQuotaBindings),
     db.prepare(`INSERT INTO audit_logs(actor_id,entity_type,entity_id,action,old_value_json,new_value_json,occurred_at) SELECT ?,'detection_observation',?,'ingest',NULL,?,? WHERE EXISTS(SELECT 1 FROM detection_observations WHERE id=? AND mutation_id=?)`).bind(p.userId,id,JSON.stringify(after),receivedAt,id,marker),
    ]);
-   const saved=await receipt();if(!saved)throw new TripServiceError(409,'Event-ID, app-instantie of toegang gewijzigd.');return saved;
+   const saved=await receipt();if(saved)return saved;
+   const existing=await db.prepare('SELECT canonical_json FROM detection_observations WHERE device_id=? AND event_id=? AND vehicle_id=? AND user_id=?').bind(deviceId,input.eventId,vehicleId,p.userId).first<{canonical_json:string}>();
+   timestamp(p);await check(p,vehicleId,deviceId);
+   if(existing&&existing.canonical_json!==canonical)throw new TripServiceError(409,'Event-ID hoort bij andere inhoud.');
+   throw new TripServiceError(429,'Veiligheidslimiet voor detectie-inname bereikt; er is niets toegevoegd. Exacte herhalingen blijven beschikbaar.');
   },
  };
 }
