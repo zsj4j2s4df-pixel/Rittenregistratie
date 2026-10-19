@@ -1,10 +1,16 @@
 # RitKompas — uitvoeringsinstructies
 
+## Actuele gezamenlijke basis — na Cloud #28/#29 en Mac #30
+
+De huidige reviewbranch combineert beide voorouders met behoud van code en historie. Cloudontvangst en Mac-terugproef zijn bewezen in docs/TRANSFER/MAC_CLOUD_ACK_RESULT.md; rechtstreeks Cloud→Mac sturen is in de Cloud-sessie niet beschikbaar. Cloud gebruikt GitHub-testopdrachten. Gebruik docs/TRANSFER/PR27_PLAN.md voor centrale M27-eisen, PR27_EXECUTION_PLAN.md als aanvullende MAC27-controlekaart en RESUME voor volgende taak. Geen tweede documentaudit of hardwareonderzoek herhalen zonder nieuw bewijs.
+
 ## Nieuwste Mac-overdracht — 19 oktober 2026
 
 Lees bij hervatten het volledige [memo uit PR #27](docs/IMPORTANT_MEMO_IPHONE_RITDETECTIE.md) en [de uitvoerbare planning](docs/TRANSFER/PR27_EXECUTION_PLAN.md). Cloud coördineert de ontwikkeling, Mac verzorgt lokale native/hardwaretests. Start vanaf de nieuwste gecontroleerde ontwikkelketen, niet opnieuw vanaf de document-only main. De overige functionele mastereisen blijven gelden.
 
 De eigenaar heeft in deze Mac-run specifiek All traffic + Cloudflare account members voor uitsluitend de bestaande RitKompas-Worker goedgekeurd; dit is toegepast en read-only geverifieerd. Dat is geen algemene toestemming voor publicatie, runtimebindings, gebruikersprovisioning of extra toegang. Huidig bewijs: [Zero Trust](docs/TRANSFER/MAC_ZERO_TRUST_2026-10-19.md), [samenwerking en commando's](docs/TRANSFER/MAC_CLOUD_CHANNEL_TEST.md), [Mac-nativecontrole](docs/TRANSFER/MAC_NATIVE_VALIDATION.md). Oudere Access-ontbreektmeldingen zijn historie. `/scale` en `/do` niet als ondersteund aannemen.
+
+Nieuwste hoogprioritaire sturing: lees [PR27-memo](docs/IMPORTANT_MEMO_IPHONE_RITDETECTIE.md), [aanvullende eisen/planning](docs/TRANSFER/PR27_PLAN.md) en [Mac-testopdrachten](docs/TRANSFER/MAC_HARDWARE_TESTS.md). Native interactieve Zakelijk/Privé-melding is de praktische hoofdroute; CarPlay-knoppen vereisen passende Apple-goedkeuring. Betrouwbaar einde, twee-minutenklantstop, elektrisch rijden, drie-iPhoneprioriteit versus echte bestuurder en centrale voertuigdedup blijven expliciete acceptatiepunten. Geen automatische samenwerking/hardwarebewijs claimen; Mac beheert zijn Access/rulesetonderzoek, Cloud wijzigt die externe configuratie niet gelijktijdig.
 
 Nieuwste gebruikersbesluit, 18 oktober 2026: **Codex Cloud is hoofdontwikkelaar; Codex Mac ondersteunt lokale builds, iOS-simulator en hardwaretests. GitHub is de centrale bron van waarheid. De projecteigenaar beslist over belangrijke handelingen.** Oudere afwijkende rolverdelingen blijven alleen historie.
 

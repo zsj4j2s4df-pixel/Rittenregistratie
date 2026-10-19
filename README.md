@@ -1,5 +1,7 @@
 # RitKompas — Rittenregistratie
 
+> **Gezamenlijke actuele basis:** CloudPR28/29 en MacPR30 zijn gecombineerd. Cloud heeft PR27 aantoonbaar verwerkt; Mac heeft de GitHub-retourtest uitgevoerd. Zie [ontvangstbewijs](docs/TRANSFER/MAC_CLOUD_ACK_RESULT.md).197Node-tests/type/lint/build op Mac PASS, native iOS/hardware nog open. Volgende runs starten met RESUME.md en centrale Cloudplanning PR27_PLAN.md.
+
 > **Nieuwste overdracht, 19 oktober 2026:** lees [PR27-plan](docs/TRANSFER/PR27_EXECUTION_PLAN.md), [hervatpunt](RESUME.md), [Mac-/Cloud-ontvangstbewijs](docs/TRANSFER/MAC_CLOUD_CHANNEL_TEST.md) en [Zero Trust-resultaat](docs/TRANSFER/MAC_ZERO_TRUST_2026-10-19.md). De bestaande keten loopt tot PR #26; het parallelle memo #27 is hier meegenomen. GitHub is centraal, Cloud coördineert, Mac valideert native/hardware, eigenaar beslist over belangrijke wijzigingen. Corecompile op Mac en187Node-tests PASS; geen iPhone-acceptatieclaim.
 
 Project voor de Jeep Wrangler Unlimited 80th Anniversary 4xe: native iPhone-app, webinterface en centrale gegevensbron volgens de masterprompt.

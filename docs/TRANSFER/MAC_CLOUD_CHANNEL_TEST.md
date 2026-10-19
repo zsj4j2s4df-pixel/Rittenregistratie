@@ -1,5 +1,7 @@
 # Mac ↔ Cloud: werkelijke mogelijkheden en ontvangst
 
+> **Test afgerond:** Cloud bevestigde de exacte nonce en PR27-head, maakte [PR #28](https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/28) met onderzoek/Mac-opdracht en [PR #29](https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/29) met vervolgcode. De Cloud-turn is completed. Mac heeft de GitHub-opdracht gelezen en uitgevoerd; zie [MAC_CLOUD_ACK_RESULT](MAC_CLOUD_ACK_RESULT.md). Daarmee zijn Mac→Cloud en terugkoppeling via GitHub bewezen. Cloud meldt geen beschikbare hostlocal-threadtool, dus directe automatische tweewegsturing blijft **NIET BESCHIKBAAR in deze Cloud-sessie**. Onderstaande pending-statussen zijn behouden testhistorie, niet de actuele conclusie.
+
 Referentie `MAC-CLOUD-20261019-PR27`, 19 oktober 2026. De eigenaar heeft deze test en overdracht expliciet opgedragen.
 
 ## Feitelijk bewezen

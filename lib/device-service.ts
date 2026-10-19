@@ -4,6 +4,8 @@ import type {Principal} from './access-policy.ts';
 export type DeviceRegistration={requestId:string;id:string;name:string;platform:'ios'|'web'};
 export type DeviceDeactivation={expectedRevision:number;reason:string};
 export type RegisteredDevice={id:string;user_id:string;vehicle_id:string;name:string;platform:'ios'|'web';active:number;revision:number;created_at:number;updated_at:number};
+// Operational safety defaults per verified user + vehicle, not a retention policy.
+export const DEVICE_LIMITS=Object.freeze({registrationsPerUserVehicle:100,receiptsPerUserVehicle:100});
 const columns='id,user_id,vehicle_id,name,platform,active,revision,created_at,updated_at';
 const identifier=(v:unknown)=>typeof v==='string'&&/^[A-Za-z0-9_-]{16,128}$/.test(v);
 
@@ -31,11 +33,17 @@ export function createDeviceService(db:Pick<D1Database,'prepare'|'batch'>,resolv
    const after:RegisteredDevice={id:input.id,user_id:p.userId,vehicle_id:vehicleId,name:input.name.trim(),platform:input.platform,active:1,revision:0,created_at:now,updated_at:now};
    const gate='EXISTS (SELECT 1 FROM registered_devices WHERE id=? AND vehicle_id=? AND user_id=? AND last_mutation_id=?)';
    await db.batch([
-    db.prepare(`INSERT INTO registered_devices(${columns},last_mutation_id) SELECT ?,?,?,?,?,?,?,?,?,? WHERE ${membership} AND NOT EXISTS (SELECT 1 FROM device_register_requests WHERE vehicle_id=? AND user_id=? AND request_id=?) ON CONFLICT(id) DO NOTHING`).bind(...Object.values(after),marker,p.userId,vehicleId,vehicleId,p.userId,input.requestId),
+    db.prepare(`INSERT INTO registered_devices(${columns},last_mutation_id) SELECT ?,?,?,?,?,?,?,?,?,? WHERE ${membership} AND (SELECT count(*) FROM registered_devices WHERE vehicle_id=? AND user_id=?)<? AND (SELECT count(*) FROM device_register_requests WHERE vehicle_id=? AND user_id=?)<? AND NOT EXISTS (SELECT 1 FROM device_register_requests WHERE vehicle_id=? AND user_id=? AND request_id=?) ON CONFLICT(id) DO NOTHING`).bind(...Object.values(after),marker,p.userId,vehicleId,vehicleId,p.userId,DEVICE_LIMITS.registrationsPerUserVehicle,vehicleId,p.userId,DEVICE_LIMITS.receiptsPerUserVehicle,vehicleId,p.userId,input.requestId),
     db.prepare(`INSERT INTO device_register_requests(vehicle_id,user_id,request_id,device_id,request_json,response_json) SELECT ?,?,?,?,?,? WHERE ${gate}`).bind(vehicleId,p.userId,input.requestId,input.id,canonical,JSON.stringify(after),input.id,vehicleId,p.userId,marker),
     db.prepare(`INSERT INTO audit_logs(actor_id,entity_type,entity_id,action,old_value_json,new_value_json,occurred_at) SELECT ?,'device',?,'register',NULL,?,? WHERE ${gate}`).bind(p.userId,input.id,JSON.stringify(after),now,input.id,vehicleId,p.userId,marker),
    ]);
-   const saved=await receipt();if(!saved)throw new TripServiceError(409,'Registratie niet uitgevoerd: ID of toegangsrechten zijn gewijzigd.');return saved;
+   const saved=await receipt();if(saved)return saved;
+   const quota=await db.prepare(`SELECT (SELECT count(*) FROM registered_devices WHERE vehicle_id=? AND user_id=?) AS devices,(SELECT count(*) FROM device_register_requests WHERE vehicle_id=? AND user_id=?) AS receipts WHERE ${membership}`).bind(vehicleId,p.userId,vehicleId,p.userId,p.userId,vehicleId).first<{devices:number;receipts:number}>();
+   timestamp(p);
+   // Preserve a generic ID conflict without disclosing foreign owner/platform data.
+   if(!quota||await db.prepare('SELECT 1 FROM registered_devices WHERE id=?').bind(input.id).first())throw new TripServiceError(409,'Registratie niet uitgevoerd: ID of toegangsrechten zijn gewijzigd.');
+   if(quota.devices>=DEVICE_LIMITS.registrationsPerUserVehicle||quota.receipts>=DEVICE_LIMITS.receiptsPerUserVehicle)throw new TripServiceError(429,'Veiligheidslimiet voor appregistraties bereikt; bestaande registraties blijven behouden.');
+   throw new TripServiceError(409,'Registratie niet uitgevoerd: ID of toegangsrechten zijn gewijzigd.');
   },
   async deactivate(vehicleId:string,id:string,input:DeviceDeactivation){
    const p=await authorize(vehicleId);

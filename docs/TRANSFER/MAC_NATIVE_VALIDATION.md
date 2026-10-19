@@ -1,5 +1,9 @@
 # Native bronvalidatie op Mac — 19 oktober 2026
 
+> **Gezamenlijke vervolgcontrole na PR29:** de geïntegreerde Mac-/Cloudversie slaagt voor **197/197 Node-tests** (0fail/0skip). De 187-testbaseline hieronder blijft apart bewijs vóór Cloudvervolgcode. De nieuw toegevoegde TripChoiceNotifications.swift staat achter `#if os(iOS)` en is daardoor niet semantisch gevalideerd door een macOS-build; iOS-meldingsgedrag blijft NIET GETEST.
+
+Op dezelfde geïntegreerde werkboom: TypeScript, volledige ESLint en webbuild PASS; Swift6-Coretypecheck en syntactische parse van de meldingsbron PASS. Parse is geen iOS-typecheck, XCTest of toestemmings-/meldingsproef. Bestaande dependencies hergebruikt, niets geïnstalleerd. Geen productiepublicatie.
+
 Basis: PR #26, `ec44dc8ddda1361a61f9f0c8bdceebe4e20e8a01`, inclusief Swiftvoorbereiding uit PR #25. Bestaande bestanden hergebruikt; geen tweede iPhone-app, signing, entitlement, GPS-opname of hardwarekoppeling gemaakt.
 
 - Aanwezig: Apple Swift 6.1.2, arm64 macOS, CommandLineTools.

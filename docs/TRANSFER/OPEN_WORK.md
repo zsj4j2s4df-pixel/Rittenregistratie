@@ -1,5 +1,7 @@
 # Actuele open werkkaart — 19 oktober2026
 
+Hoogprioritaire aanvulling: [PR27_PLAN](PR27_PLAN.md), [hardwareonderzoek/koopadvies](JEEP_HARDWARE_RESEARCH.md), [Mac-proeven](MAC_HARDWARE_TESTS.md). Ontvangst bevestigd; automatische directeMacuitvoering nietbewezen. Nieuwe native melding/ritgrenzen/EV/vasteprioriteit/voertuigdedup blijven open tot bewijs.
+
 Gerichte actualisatie op basis van actuele CLOUD_TASKS/RESUME/masterprompt en open PR-keten; geen herhaling van afgeronde documentaudit. Alle123REQ-ID's en21scenario's blijven behouden. Deze kaart vervangt niet de volledige eisenregistratie. “Gebouwd” betekent ter controle, niet geaccepteerd of live.
 
 | Onderdeel | Status / concrete vervolgstap |
@@ -22,3 +24,5 @@ Gerichte actualisatie op basis van actuele CLOUD_TASKS/RESUME/masterprompt en op
 De draft-PR-keten wordt per ontwikkelgroep uitgebreid. Dat zijn review-/acceptatiepunten, geen zestien ongebouwde functies. Bestaande keten behouden; geen PR/main automatisch samenvoegen of als voltooid sluiten. Nieuwste ontwikkeling wordt als volgende draft op de bestaande keten opgeslagen.
 
 Geen nieuwe livepublicatie/kosten. Persoonlijke beslissingen, toestemming voor publicatie, echte provideridentiteiten en hardware blijven bij eigenaar/Mac. Deze afhankelijkheden blokkeren niet alle lokale ontwikkeltaken.
+
+PR27-vervolg: peruser+vehicledevice-/receiptgroei begrensd en zuivere reviewvoorstellen gebouwd/getest; native meldingsactiebron voorbereid, NIETgecompileerd. Geencentrale canoniekevoertuigritclaim, werkend achtergrondcapture of nativeclassificatiequeue. Persoonlijkehoofdgebruiker nietgeraden. WerkkaartblijftOPEN; eerstvolgendefysiekestappenstaaninMAC_HARDWARE_TESTS.

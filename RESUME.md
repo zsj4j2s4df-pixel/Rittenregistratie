@@ -1,5 +1,15 @@
 # Hervatpunt — 18 oktober 2026
 
+## Nu hervatten — gezamenlijke basis na PR28/29/30
+
+Eigen Mac-PR #30 krijgt bewust base `cloud/cloud-005-pr27-safe-development` (#29), zodat de review alleen het Mac-verschil toont; bestaande PR's #1–#29 zijn niet geretarget. Geïntegreerde hercontrole:197Node-tests, typecheck, lint, webbuild en Swift6-Coretypecheck PASS. Geen iOS/XCTest-/hardwareclaim.
+
+Cloudontvangst nonce MAC-CLOUD-20261019-PR27 en verwerking zijn **BEVESTIGD** door PR28 a6eebf5 en PR29 bdd2c11. Mac heeft de gratis MAC-ACK-01-opdracht uitgevoerd; resultaat MAC_CLOUD_ACK_RESULT.md. Direct Cloud→Mac-threadtool ontbreekt; GitHub is het retourkanaal. Onderstaande pending-ontvangstteksten zijn historie.
+
+Deze reviewbranch integreert Cloud #29 en Mac #30; beide histories behouden, geen mainmerge/retarget/forcepush. Centrale eisenplanning PR27_PLAN.md met M27-ID's; aanvullende Mac-kaart PR27_EXECUTION_PLAN.md met MAC27-ID's. Native meldingsbron/proposals/devicequota zijn al in Cloud gebouwd: niet opnieuw uitvoeren. Mac: Corecompile bewezen, XCTest/iOS/hardware blijven open. Actuele ZeroTrust-/backendtoestemmingsgrens in MAC_ZERO_TRUST_2026-10-19.md.
+
+Cloud mag vanaf deze geïntegreerde head de eerstvolgende veilige groep oppakken: centrale canonieke voertuigritcoördinatie met review/audit, duurzame native meldingsactiewachtrij en veilige sessiebinding, daarna de overige OPEN_WORK-taken. Test/controle/commit/voortgang per groep; plan echte iPhone/Jeep alleen zodra build/toegang aanwezig is. Geen onbeperkte kredietretry, extra kosten of livepublicatie.
+
 ## Actueel — Mac-overdracht en PR #27, 19 oktober 2026
 
 Basis: PR #26 commit ec44dc8; deze Mac-vervolgbranch behoudt de gehele keten en neemt het volledige parallelle memo #27 over. Lees eerst [PR27_EXECUTION_PLAN](docs/TRANSFER/PR27_EXECUTION_PLAN.md), [MAC_CLOUD_CHANNEL_TEST](docs/TRANSFER/MAC_CLOUD_CHANNEL_TEST.md) en nieuwste DEVELOPMENT_PROGRESS.
@@ -9,6 +19,21 @@ Zero Trust Free bevestigd; eigenaar keurt uitsluitend Worker-Access All traffic/
 Swift-core typecheck en Swift6-packagebuild op Mac PASS. XCTest niet beschikbaar in CommandLineTools; geen iOS/XCTest/hardwareclaim.187Node-tests PASS na macOS-realpathfix uitsluitend in de backup-testfixture. Geen installatie gedaan. Zie MAC_NATIVE_VALIDATION.md.
 
 Cloud-opdracht MAC-CLOUD-20261019-PR27 is via threadtool geregistreerd; agentantwoord/retourtest nog niet bevestigd. Geen nieuwe retries/runs starten zolang status niet duidelijk is. Cloud hervat daarna de meldings-/ritbewijs-/centrale deduplicatiegroep volgens het plan, commit/tests/security/voortgang per groep. Concrete Mac-testopdrachten staan erbij; geen extra aankopen, kosten, publicatie of main-merge.
+
+## PR27-veilige doorbouw — 19 oktober 2026, niet live
+
+Onderzoek/ontvangst/testopdrachten opgeslagen in draftPR28, heada6eebf5c4705e33e4f1a8fe9eb0cfa8dda036011, basePR26exactec44dc8. MAC-CLOUD-20261019-PR27 blijft ontvangstbevestigd; automatischeMacuitvoering NIETBEWEZEN, MAC-ACK-01wachtGitHubbewijs.
+
+Daarna devicegroei atomair begrensd op100registraties/100receipts peruser+vehicle incldisabled;14servicecasesPASS. Zuivere reviewvoorstellen gebouwd met explicietetijdankers/scope/dedup/overlap/onzekerheid/geenafstandofchauffeur;7gerichtecasesPASS. Native TripChoiceNotifications.swift bronprototype Zakelijk/Privé/defaultdismissnietclassificeren/contextvalidatie/defaultdenystore; Swiftcompile/iPhone/lockscreen/Focus ALLE NIETGETEST. Geenwerkendenativeauthqueueofautomatischritdetectieclaim.
+
+197/197Node-tests,tsc/lint/build,lokaleworkerdD1 PASS. NativebroncodevaltNIETonderditNodebewijs. Bewijs DETECTION_PROPOSALS.md/REGISTERED_DEVICES.md/IOS_CLOUD_PREPARATION.md. Eerdereagentstop workspacecredits wordt nietonbeperkt herhaald; geencreditsgekocht. NieuweGitHubcheckpointbranch cloud/cloud-005-pr27-safe-development vanafPR28. Geenpublicatie/Cloudflaremutatie/aankoop/kosten/mainmerge/forcepush.
+
+Volgende cloudgroep: gecontroleerde nativecontextstore/idempotenteclassificatiequeue en persistentevoertuigritcoördinatie, daarna monitoring/sync; nativecompile/hardware viaMacmatrix,koopbesluit pasna nulmeting. Openwerkkaart is nietafgerond. Bij hervatten eerst deze status +PR27_PLAN lezen, geen volledigedocumentaudit opnieuw.
+
+
+## PR27 ontvangen — MAC-CLOUD-20261019-PR27
+
+19 oktober2026 Europe/Amsterdam: volledig memo/PR/comments/reviews gelezen op4af50d3a1fa3408cb563a2924ce9aec2784c4290. Ontwikkelbasis blijft PR26/ec44dc8ddda1361a61f9f0c8bdceebe4e20e8a01; PR1–26intact, PR27nietgemerged. Fabrikantonderzoek en concretekoopvergelijking: JEEP_HARDWARE_RESEARCH.md.16aanvullendeeisen/planning: PR27_PLAN.md, oorspronkelijke123REQ/21scenario'sbehouden. DirecteMac-threadtool ontbreekt; ontvangst hier bevestigd, gratis MAC-ACK-01 en fysiekehardwarematrix in MAC_HARDWARE_TESTS.md; uitvoering/terugkoppeling NIETBEWEZEN. Geenopdrachtverstuurdnaaranderechat, geenaankoop/kosten/accounts/productie/Cloudflaremutatie/mainmerge. Eerderesubagentcreditfoutgedocumenteerd; primaireagentdoetveiligwerk, geenbetaaldeherstart. Volgende: aanwezige devicequota/proposalbron afronden/testen en native meldingsactiebron, Swift/iPhoneblijvenNIETGETESTzonderMacbewijs.
 
 ## Atomaire detectiequota — 19 oktober 2026, niet live
 

@@ -2,6 +2,8 @@
 
 ## Actueel — 19 oktober 2026; onderstaande oudere statussen blijven historie
 
+Cloudoverdracht is inmiddels daadwerkelijk ontvangen en uitgevoerd: PR28/29 en MAC_CLOUD_ACK_RESULT.md. Daarvoor hoef je geen credits te kopen of de opdracht opnieuw te plakken. Directe automatische Cloud→Mac-aansturing ontbreekt; GitHub-retourproef is uitgevoerd. Alleen de persoonlijke stappen hieronder blijven open.
+
 Alleen onderstaande persoonlijke reststappen zijn actueel. Cloudcoördinatie, PR27-planning en technische tests zijn agentwerk en staan in CLOUD_TASKS. De uitgevoerde main-regels en Access-setup niet opnieuw aan de eigenaar vragen.
 
 - **ACT-002 — DEELS AFGEROND, identiteitsscheiding OPEN.** Read-only hercontrole: ruleset25339571active op defaultmain; PR verplicht, forcepush/verwijderen geblokkeerd, geenbypass. Er zijn0verplichteapprovals en Codex gebruikt nog zsj4j2s4df-pixel, dezelfde identiteit als eigenaar. Alleen een reviewregel toevoegen scheidt mens/agent niet. De eerder gekozen aparte agentkoppeling blijft nodig; gebruik het bestaande plan SEPARATE_AGENT_ACCESS.md. Wijzig toegang uitsluitend met een concreet beoordeeld voorstel. Tot dan alleen eigenaar handmatig laten mergen.

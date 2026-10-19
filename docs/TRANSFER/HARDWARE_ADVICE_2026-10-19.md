@@ -1,5 +1,9 @@
 # Hardwareadvies bij PR #27
 
+> **Gezamenlijke actuele vergelijking:** [JEEP_HARDWARE_RESEARCH](JEEP_HARDWARE_RESEARCH.md) uit Cloud PR28 is de centrale koopvergelijking. De aanvullende waarnemingen hieronder blijven broncontext; de aanvankelijk getoonde NL-prijzen zijn geen live bevestigde offerte. Mac-hercontrole kon de actuele MX+-NL-prijs niet uitlezen. Gebruik voor die kandidaat voorlopig alleen de rechtstreeks gedocumenteerde fabrikantprijs US$139,95 plus nog onbekende NL-kosten.
+
+Cloud voegde **AAWireless TWO+** toe: de [fabrikantvergelijking](https://www.aawireless.io/en/articles/aawireless-vs-motorola?locale=en-US) noemt €69,99 en een standaardtelefoon met voorrang; Mac heeft dat rechtstreeks teruggelezen. De productpagina toont uitverkocht/dynamische prijsvelden. Instelbare volledige drie-iPhonevolgorde en overnemen bij later instappende vader blijven onbewezen. Daardoor een kandidaat voor een gerichte proef, geen koopgarantie. Niets besteld.
+
 Onderzoek 19 oktober 2026, geen aankoop. Jeep Wrangler 4xe 2021 is projectcontext; exacte EU-uitvoering/Uconnect en daadwerkelijke ondersteunde voertuigdata zijn niet getest. Aanbiedingsprijzen zijn momentopnamen, geen gegarandeerde eindprijs of reservering.
 
 ## Concrete kandidaten

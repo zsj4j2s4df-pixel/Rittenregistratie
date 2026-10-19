@@ -1,5 +1,11 @@
 # Cloud-taken — RitKompas
 
+## Gezamenlijke actuele status — na PR28/29/30
+
+CLOUD-009 ontvangst PR27 **BEVESTIGD**, MAC-ACK-01 **PASS via GitHub**; directe Cloud→Mac-tool ontbreekt. CLOUD-010 meldingsbron en reviewvoorstellen + devicequota **GEBOUWD TER CONTROLE in PR29**, niet opnieuw bouwen. CLOUD-011 canonieke voertuigritcoördinatie, native duurzame actiequeue/sessiebinding en fysieke acceptatie blijven OPEN. CLOUD-012 onderzoek in PR28 en aanvullende Macvergelijking opgeslagen; vaste3telefoonprioriteit niet bewezen, geen aankoop.
+
+Deze branch combineert #29 met Mac #30. Centrale M27-nummers in PR27_PLAN.md; Maccontrole gebruikt MAC27-nummers. Resultaten MAC_CLOUD_ACK_RESULT.md en MAC_NATIVE_VALIDATION.md. Cloud coördineert de volgende veilige taakgroep vanaf geïntegreerde head, Mac doet werkelijk beschikbare lokale/native/hardwareproeven. Oudere pending-ontvangst en nog-te-bouwen-meldingsstatus hieronder is historie.
+
 ## Actuele overdracht — PR #27, 19 oktober 2026
 
 Cloud blijft coördinator. De volledige memo-opdracht en 18 gekoppelde acceptatiepunten staan in [PR27_EXECUTION_PLAN](docs/TRANSFER/PR27_EXECUTION_PLAN.md); hardwareadvies in [HARDWARE_ADVICE](docs/TRANSFER/HARDWARE_ADVICE_2026-10-19.md). Alle bestaande eisen en de gestapelde PR-keten behouden. Geen dubbele herbouw.
@@ -14,6 +20,21 @@ Cloud blijft coördinator. De volledige memo-opdracht en 18 gekoppelde acceptati
 | MAC-ACCESS / Zero Trust | Free + All traffic/accountleden toegepast na eigenaarstoestemming; anon302 en bestaande eigenaarlogin PASS. Backendbindings/provisioning vereisen volgende concrete toestemming |
 
 Na iedere veilige taakgroep tests/securitycontrole, commit/PR, dit bestand, DEVELOPMENT_PROGRESS en RESUME bijwerken en volgende uitvoerbare groep oppakken. `/scale` of `/do` is niet aangetoond als productfunctie. Geen automatische main-merge of onbeperkte Cloudretry; actuele usage respecteren.
+
+## PR27-veilige doorbouw — 19 oktober 2026, niet live
+
+Onderzoek/ontvangst/testopdrachten opgeslagen in draftPR28, heada6eebf5c4705e33e4f1a8fe9eb0cfa8dda036011, basePR26exactec44dc8. MAC-CLOUD-20261019-PR27 blijft ontvangstbevestigd; automatischeMacuitvoering NIETBEWEZEN, MAC-ACK-01wachtGitHubbewijs.
+
+Daarna devicegroei atomair begrensd op100registraties/100receipts peruser+vehicle incldisabled;14servicecasesPASS. Zuivere reviewvoorstellen gebouwd met explicietetijdankers/scope/dedup/overlap/onzekerheid/geenafstandofchauffeur;7gerichtecasesPASS. Native TripChoiceNotifications.swift bronprototype Zakelijk/Privé/defaultdismissnietclassificeren/contextvalidatie/defaultdenystore; Swiftcompile/iPhone/lockscreen/Focus ALLE NIETGETEST. Geenwerkendenativeauthqueueofautomatischritdetectieclaim.
+
+197/197Node-tests,tsc/lint/build,lokaleworkerdD1 PASS. NativebroncodevaltNIETonderditNodebewijs. Bewijs DETECTION_PROPOSALS.md/REGISTERED_DEVICES.md/IOS_CLOUD_PREPARATION.md. Eerdereagentstop workspacecredits wordt nietonbeperkt herhaald; geencreditsgekocht. NieuweGitHubcheckpointbranch cloud/cloud-005-pr27-safe-development vanafPR28. Geenpublicatie/Cloudflaremutatie/aankoop/kosten/mainmerge/forcepush.
+
+Volgende cloudgroep: gecontroleerde nativecontextstore/idempotenteclassificatiequeue en persistentevoertuigritcoördinatie, daarna monitoring/sync; nativecompile/hardware viaMacmatrix,koopbesluit pasna nulmeting. Openwerkkaart is nietafgerond. Bij hervatten eerst deze status +PR27_PLAN lezen, geen volledigedocumentaudit opnieuw.
+
+
+## PR27 ontvangen — MAC-CLOUD-20261019-PR27
+
+19 oktober2026 Europe/Amsterdam: volledig memo/PR/comments/reviews gelezen op4af50d3a1fa3408cb563a2924ce9aec2784c4290. Ontwikkelbasis blijft PR26/ec44dc8ddda1361a61f9f0c8bdceebe4e20e8a01; PR1–26intact, PR27nietgemerged. Fabrikantonderzoek en concretekoopvergelijking: JEEP_HARDWARE_RESEARCH.md.16aanvullendeeisen/planning: PR27_PLAN.md, oorspronkelijke123REQ/21scenario'sbehouden. DirecteMac-threadtool ontbreekt; ontvangst hier bevestigd, gratis MAC-ACK-01 en fysiekehardwarematrix in MAC_HARDWARE_TESTS.md; uitvoering/terugkoppeling NIETBEWEZEN. Geenopdrachtverstuurdnaaranderechat, geenaankoop/kosten/accounts/productie/Cloudflaremutatie/mainmerge. Eerderesubagentcreditfoutgedocumenteerd; primaireagentdoetveiligwerk, geenbetaaldeherstart. Volgende: aanwezige devicequota/proposalbron afronden/testen en native meldingsactiebron, Swift/iPhoneblijvenNIETGETESTzonderMacbewijs.
 
 ## Atomaire detectiequota — 19 oktober 2026, niet live
 

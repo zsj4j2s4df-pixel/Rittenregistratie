@@ -1,0 +1,71 @@
+# Jeep Wrangler 4xe 2021 — OBD2, draadloze CarPlay en ritdetectie
+
+Onderzocht 19 oktober 2026, Europe/Amsterdam. Ontwerp-/koopadvies, geen bestelling. Exacte uitvoering, markt, Uconnect-versie en huidige iOS-versies moeten op de eigen Jeep worden bevestigd. Fabrikantspecificaties zijn geen test op deze auto. Geen nieuwe accounts, kosten, securitywijziging of productiepublicatie.
+
+## Advies en boodschappenlijst
+
+Eerst gratis de bestaande bedrade CarPlay en Jeep-Bluetooth testen. Een adapter is alleen nodig voor draadloos gebruik, niet voor de basis van RitKompas. Koop niet alle onderstaande alternatieven.
+
+| Product | Gevonden prijs, zonder bestelling | Advies / voordelen / nadelen |
+|---|---|---|
+| **AAWireless TWO+** (met plus, niet TWO) | **€69,99**, EUR-aanbod in de gestructureerde productdata van de Nederlandse fabrikantsite; fabrikantvergelijking bevestigt deze prijs. Productpagina toont ook uitverkocht/regionale dynamische velden; Nederlandse voorraad en eindbedrag niet bevestigd | Eerste kandidaat voor gedeelde CarPlay: iPhone X of nieuwer, bestaande bedrade CarPlay, fysieke wisselknop, fabrikant noemt instelbare standaardtelefoonvoorrang. Volledige vaste volgorde van drie iPhones en overname wanneer vader later instapt NIET bewezen. Alleen overwegen met retourmogelijkheid en bevestiging van exacte firmware/iPhone-instellingen |
+| **Ottocast U2AIR Pro** | **US$59**, rechtstreeks op de fabrikantpagina. Een regionale zoekindex gaf €51,95; die europrijs is niet live bevestigd en is geen Nederlandse checkoutofferte | Redelijk eenvoudig iPhone-only alternatief voor draadloze CarPlay; automatische herverbinding/firmware-updates. Fabrikant zegt laatst gebruikte telefoon: voldoet dus niet aantoonbaar aan vaste vaderprioriteit |
+| **CarlinKit 5.0 / CPC200-2air** | **US$54**, CarlinKit (Hong Kong) winkel; pagina meldt backorder. NL-eindprijs/voorraad niet bevestigd | Bedrade CarPlay/Android Auto naar draadloos, instelmogelijkheden en fabrikantdocumentatie. Geen officiële bevestiging van vaste vader→moeder→derde rangorde gevonden. Oudere U2W-documentatie en algemene instellingen zijn geen bewijs voor exacte 5.0-firmware. Niet de voorkeur voor deze harde eis |
+| **OBDLink MX+** | **US$139,95**, fabrikantprijs; Nederlandse verkooppagina gevonden, actuele NL-prijs niet betrouwbaar uitgelezen | Mijn voorkeurskandidaat als later OBD2 nodig blijkt: goed gedocumenteerde iOS-ondersteuning, pairingknop, versleutelde link, slaapstand en updates. Duurder, geen bewezen 4xe-tellerstand of kant-en-klare RitKompas-integratie |
+| **Vgate vLinker MC+ BT4.0** | **US$66,99**, fabrikant; Nederlandse bol-vermelding toont **€54,95** in zoekindex, voorraad/checkout niet bevestigd | Budgetalternatief voor OBD2-proef met iPhone/BLE en ELM/ST-commando's. Exact MC+ BT4.0 kiezen, niet Android-only MC of Wi-Fi-variant. Firmware-/transport-/slaapgedrag op de eigen 4xe nog te testen |
+
+Prijzen zijn waargenomen aanbiedingen, geen vaste offerte of automatisch omgerekende dollarprijzen. Voor USD/import: leverbaarheid, btw, invoer/afhandeling, verzending, garantie en retourvoorwaarden kunnen het Nederlandse eindbedrag wijzigen; geen checkout gestart. App-/VIN-licenties van derden kunnen apart kosten en zijn niet toegestaan zonder akkoord. Geen AI-box, tweede OBD-adapter, gateway-bypasskabel of abonnement nodig voor deze eerste proef.
+
+**Aankoopadvies:** nu niets bestellen. Na de gratis nulmeting is TWO+ de beste kandidaat om gericht telefoonvoorrang te verifiëren. Als exact drie vaste prioriteiten een absolute aankoopvoorwaarde zijn, eerst schriftelijke product-/firmwarebevestiging laten verkrijgen; de gevonden algemene voorkeursclaim is daarvoor onvoldoende. OBD2 uitstellen totdat de gratis signalen aantoonbaar tekortschieten of tellerstand gewenst blijft. Dan één MX+ voor de best gedocumenteerde proef, of één MC+ als prijs zwaarder weegt en extra integratietest acceptabel is. Geen van beide beloven als oplossing voor automatische ritregistratie.
+
+## 1. Bestaande Jeep en draadloze CarPlay
+
+Jeep beschrijft Uconnect 4 met CarPlay; de fabrikant beschrijft de USB-aansluiting voor ondersteunde Uconnect 4-systemen. Controleer op onze auto dat een iPhone via de **USB-datapoort** daadwerkelijk CarPlay opent. Een laadpoort of gewone Bluetoothverbinding is niet genoeg. Koop pas daarna een wired-to-wireless adapter. Uitvoering/markt of vervangen headunit kunnen verschillen; geen VIN in openbare GitHub-bewijzen zetten.
+
+Draadloze CarPlay gebruikt Bluetooth voor opzetten en wifi voor het verdere transport; een Bluetoothdongle alleen kan dit niet. CarlinKit documenteert expliciet dat Bluetooth na de handshake kan verbreken. Zo'n disconnect mag RitKompas daarom niet als riteinde behandelen. Telefoon kan buiten de auto nog binnen wifi-/Bluetoothbereik blijven; USB kan na uitschakelen nog voeding hebben. Beide moeten op de Jeep gemeten worden. Slechte kabel/USB-voeding, firmware, radiostoring en telefoonversie beïnvloeden betrouwbaarheid. Geen gemeten starttijd of uitvalpercentage beschikbaar; fabrikantsnelheids-/stabiliteitsclaims zijn geen onafhankelijke benchmark.
+
+Bronnen: [Jeep Uconnect 4](https://www.jeep.com/uconnect/systems/2021/UAM.html), [Jeep USB/CarPlay](https://www.jeep.com/sub-region/es/uconnect/features/phone.html), [CarlinKit verbindingsprincipe](https://www.carlinkit.com/faq_detail/15.html), [CarlinKit 2air](https://www.carlinkit.com/2air), [Ottocast product/FAQ](https://www.ottocast.com/products/u2-air-pro).
+
+## 2. Vader eerst: bewijs en beperkingen
+
+AAWireless noemt in zijn eigen vergelijking het kiezen van een standaardtelefoon met voorrang in de companion-app en gebruik met Android én iPhone op TWO+. De productpagina bevestigt meerdere telefoons en handmatig wisselen via de knop. Dit maakt TWO+ een gerichte kandidaat, maar documenteert niet ondubbelzinnig een volledige drie-iPhone-rangorde, hoe die uitsluitend met iPhones wordt ingesteld, maximale wachttijd of het automatisch onderbreken van moeders bestaande verbinding wanneer vader later verschijnt. Dat laatste is een aparte eis en kan muziek/navigatie onderbreken. Geen ervan als gegarandeerd markeren.
+
+Ottocast U2AIR Pro noemt expliciet herverbinden met het laatst gebruikte toestel. CarlinKit algemene documentatie heeft auto-connect en beheer van gekoppelde telefoons; daarmee is geen vaste rangorde bewezen. Een favoriete telefoon in de **Jeep Bluetooth-telefoonlijst** is evenmin bewijs van voorrang in een aparte CarPlay-adapter.
+
+Praktische fallback: vóór vertrek de juiste telefoon kiezen met adapterknop/toestellenlijst; of alleen vaders iPhone automatisch aan de adapter koppelen en andere bestuurders bewust laten wisselen. Bedrade CarPlay is het eenvoudige controlealternatief. Dit is een concessie aan automatisering, geen vervulling van vaste drietelefoonprioriteit. Geen automatische overname tijdens rijden adviseren zonder expliciete veilige UX en proef.
+
+Bronnen: [AAWireless fabrikantvergelijking](https://www.aawireless.io/en/articles/aawireless-vs-motorola?locale=en-US), [TWO+ product](https://www.aawireless.io/en/products/aawireless-two-plus), [TWO+ NL prijsdata](https://www.aawireless.io/nl/products/aawireless-two-plus), [Ottocast laatst-gebruikt](https://www.ottocast.com/products/u2-air-pro), [CarlinKit algemene instellingen](https://www.carlinkit.com/faq_detail/85.html).
+
+## 3. OBDLink MX+ versus vLinker MC+
+
+| Eigenschap | MX+ | MC+ BT4.0 |
+|---|---|---|
+| iPhone | Fabrikant ondersteunt iOS; Bluetooth **3.0**, dus géén BLE/CoreBluetooth-vervanger | Fabrikant ondersteunt iOS/BT4.0 en verbinding vanuit de diagnose-app, niet gewoon koppelen in iOS-instellingen |
+| Eigen RitKompas-app | Derde-appsteun bewezen, onze specifieke transport-/accessorytoegang en eventuele fabrikantautorisatie niet bevestigd; niet aannemen dat willekeurig BLE-code werkt | User-defined apps/ELM/ST-commando's vermeld. GATT/service-UUID's, framing en achtergrondherstel moeten bevestigd/geïmplementeerd worden |
+| Tellerstand | Geen bevestigde Wrangler 4xe 2021 PID/module/read-access gevonden | Evenmin bevestigd; protocolsteun alleen zegt niets over deze waarde |
+| Snelheid / ritdetectie | Geschikte live gegevens kunnen helpen, alleen als voertuig PID ondersteunt; adapter doet geen betrouwbare automatische RitKompas-start/eindlogica | Zelfde beperking; hardware automatisch wakker worden is niet hetzelfde als app wakker worden of werkelijk vertrek |
+| Slaap / accu | Fabrikant:62mA actief,2mA BatterySaver; geen nulverbruik of gemeten Jeep-slaapproef | Fabrikant noemt automatische sleep/wake en elektrische bescherming; exact verbruik voor geleverde revisie en Jeep-slaap niet bevestigd |
+| Veiligheid | Fabrikant noemt fysieke pairingknop en128-bit linkversleuteling; geen onafhankelijke veiligheidsgarantie | Pairing-/firmwareveiligheid en exacte BLE-toegangsbeveiliging apart verifiëren; geen gelijkwaardigheidsclaim met MX+ |
+| Betrouwbaarheid | Documentatie/ondersteuning en updates zijn pluspunt; geen eigen vergelijkende duurtest | Lagere prijs en updates; geen eigen firmware-/duurtest |
+
+De OBDLink-app noemt voertuigafhankelijke PIDs; zijn Windows-app lijst bevat SAE **0xA6 Vehicle Odometer Reading**. Het bestaan van die PID bewijst niet dat deze Europese/ingevoerde 2021-4xe hem aanbiedt, noch dat andere afstands-PIDs de dashboardteller zijn. Lees supported-PID-bitmap, eenheden en dezelfde displaystand vóór/na een korte EV-rit. Geen waarde beschikbaar betekent **onbekend**, niet0, en geen geschatte tellerstand uit GPS presenteren als uitgelezen tellerstand. JScan vermeldt Wrangler4xe, maar dat bevestigt geen gewenste PID of onze appintegratie.
+
+Gebruik alleen gecontroleerde leesopdrachten; geen coderen, DTC wissen, actuatoraansturing of beveiligingsgateway uitschakelen. Geen SGW-bypass kopen/installeren voor dit onderzoek. Voertuig-PIDs, EV-ready/parkstatus en rechten apart onderzoeken als standaardlezen onvoldoende is. Test slaap/ontwaken samen met CarPlay; een actieve app kan ECU/adapter wakker houden. Geen continue openbare opslag van VIN/rawbusgegevens. OBD-app en RitKompas tegelijk kunnen om dezelfde adapterverbinding concurreren.
+
+Bronnen: [MX+ specificaties en prijs](https://www.obdlink.com/products/obdlink-mxp/), [MC+ specificaties en prijs](https://vgatemall.com/products-detail/i-5/), [voertuigafhankelijke PIDs](https://support.obdlink.com/support/solutions/articles/43000678883-add-and-edit-dashboard-gauges), [OBDwiz PID-lijst](https://www.obdlink.com/obd-apps/obdwiz-app/), [JScan voertuigen](https://jscan.net/), [NL MC+ prijsindicatie](https://www.bol.com/nl/nl/p/vgate-vlinker-mc-elm327-obd2-bluetooth-4-0-interface/9300000128117560/), [NL MX+ verkooppagina zonder bevestigde prijs](https://obdlink.nl/producten/obdlink-mx-plus).
+
+## 4. Ontwerp voor RitKompas
+
+De hoofdroute is native iOS met een interactieve lokale melding **Zakelijk/Privé**. Apple ondersteunt notification categories/actions; zonder foregroundoptie kan een actie door de app worden verwerkt zonder volledige appopening. Toestemming, vergrendeling/ontgrendeling, Focus, meldingsinstellingen, apptermination en beperkte achtergrondtijd blijven echt te testen. Gemiste melding mag de waarnemingen/rit niet verliezen: status te controleren, later classificeren. Webpush is geen vervangende leveringsgarantie. Publieke melding geen klantadres laten tonen.
+
+CarPlay-knoppen blijven voorkeur, maar alleen na passende Apple-entitlement en toegestane templates. Apple kent inmiddels ook **driving task apps**; RitKompas is daardoor niet automatisch toegestaan of afgewezen. Geen categorieaanvraag/accountkosten of entitlementbypass. Geen willekeurig scherm injecteren of automatisch appopenen beloven. Shortcuts kan CarPlay-/Bluetoothtriggers leveren, met versie-/actieafhankelijke run-immediatelyvoorwaarden; automatisering moet door gebruiker ingesteld/gecontroleerd worden. Dit bewijst geen gegarandeerde achtergrond-GPS of bestuurderidentiteit.
+
+Combineer verbindingssignaal, echte beweging/locatiekwaliteit en optioneel betrouwbare voertuigstatus. Een connectie is alleen een kandidaat. Een disconnect, motor-RPM0 of twee minuten stilstand alleen zijn geen riteinde. Elektrisch rijden werkt zonder draaiende benzinemotor. Werkelijk parkeren/einde en nieuw vertrek moeten twee ritten kunnen geven bij een klantstop van120seconden; stoplicht/file blijven één rit. Geen universele tijdsdrempel als fiscaal verplicht invoeren. Onzekere grenzen zichtbaar bewaren en later corrigeren met audit.
+
+Vader wordt later expliciet als hoofdgebruiker/voorkeursbestuurder ingesteld na verificatie van interne account-ID; de daadwerkelijke bestuurder blijft afzonderlijk bevestigd/onbekend. Geen account raden of automatisch alle ritten aan de verbonden telefoon toewijzen. Bestaande per-device-eventdedup voorkomt geen twee ritten van twee verschillende iPhones: daarvoor centrale voertuigrit-ID/coördinatie, overlappende voorstellen en audit vereist. Onderliggende waarnemingen niet stil wissen of samenvoegen.
+
+Bronnen: [Apple meldingsacties](https://developer.apple.com/documentation/usernotifications/declaring-your-actionable-notification-types), [CarPlay categorieën](https://developer.apple.com/carplay/), [CarPlay entitlement](https://developer.apple.com/documentation/carplay/requesting-carplay-entitlements), [Shortcuts triggers](https://support.apple.com/guide/shortcuts/setting-triggers-apde31e9638b/ios), [Shortcuts automatiseringen](https://support.apple.com/en-me/guide/shortcuts/apdfbdbd7123/ios), [Stellantis elektrische 4xe](https://www.media.stellantis.com/uk-en/jeep/press/new-jeep-wrangler-4xe-the-best-of-4x4-goes-electric-to-go-anywhere).
+
+## Niet bevestigd en eerstvolgende uitvoering
+
+Geen eigen hardwareproef, geen fabrikantcontact verstuurd, geen nativecompile/simulator en geen werkende achtergrondregistratie geclaimd. Fabrikantpagina's kunnen marketingclaims en dynamische prijs/voorraadvelden bevatten. Vaste drie-iPhone-prioriteit, later-instapovername, 4xe-tellerstand/EV-status, apptransport en energieverbruik blijven open tot de concrete Mac-proeven in [MAC_HARDWARE_TESTS](MAC_HARDWARE_TESTS.md). Planning en aanvullende acceptatie-eisen staan in [PR27_PLAN](PR27_PLAN.md). Geen productbestelling of financiering is voorbereid.
