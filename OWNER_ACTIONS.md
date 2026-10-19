@@ -119,4 +119,3 @@ Beperk de toepassing tot rittenregistratie.zsj4j2s4df.workers.dev/beheer en /api
 ACT-002: handmatige instelling UITGEVOERD; technische bevestiging eerder PASS (active ruleset25339571: PR/deletion/non-fast-forward). Onafhankelijke identiteit/eigenaarsreview blijft OPEN; gedeelde GitHub-identiteit is niet door een ruleset opgelost. Geen main-merge.
 
 Hercontrole18oktober2026 na publicatie: ruleset25339571 nogactive, drie gevraagde regels en geenbypass bevestigd; mainhead d37d8c9 ongewijzigd. AccessGET opnieuw9999; read subscriptions10000Authenticationerror, geen kosten/abonnementen gewijzigd.
-

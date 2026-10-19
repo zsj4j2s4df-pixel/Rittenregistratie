@@ -48,4 +48,3 @@ Pas na concrete goedkeuring van die live configuratie-/rechtenwijziging: uitvoer
 Rollback alleen na expliciete eigenaaropdracht: de zojuist aangemaakte Worker-Access-koppeling wijzigen. Access uitschakelen zou publieke bereikbaarheid herstellen; dat is geen automatisch herstelplan.
 
 Bron voor deze configuratieroute: [Cloudflare Access voor Workers](https://developers.cloudflare.com/workers/configuration/cloudflare-access/), geraadpleegd 19 oktober 2026.
-

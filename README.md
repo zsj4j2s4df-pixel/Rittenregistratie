@@ -41,4 +41,3 @@ Open op iPhone de GitHub-branch of PR om voorgestelde documenten te bekijken; be
 ## Huidige beperking
 
 De broncode is als overdrachtsvoorstel toegevoegd boven op PR #2; PR #2 hangt af van PR #1. Geen van deze PR's is automatisch gemerged. Bestaande Cloud-documentatie en de aparte [Mac-snapshot](docs/MAC_SNAPSHOT_2026-10-18/README.md) blijven behouden. Foto en sociale preview blijven lokaal; de app gebruikt een gemarkeerde placeholder. Main-bescherming/eigenaarreview is nog niet technisch bevestigd: zie [ACT-002](OWNER_ACTIONS.md).
-

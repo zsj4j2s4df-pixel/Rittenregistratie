@@ -84,4 +84,3 @@ Officiële documentatie noemt geïsoleerde Cloudwerkruimtes, repository-toegang 
 Modeltoegang verschilt per product en account; een lokaal selecteerbare modelnaam is geen bewijs van Cloudselectie. Sol/Astra blijven voorkeuren, geen ingestelde routing. [Workspace model availability](https://learn.chatgpt.com/docs/enterprise/workspace-model-availability), geraadpleegd 18-10-2026.
 
 De GitHub-identiteitsbeperking volgt uit [Approving a pull request with required reviews](https://docs.github.com/en/pull-requests/how-tos/review-pull-requests/approving-a-pull-request-with-required-reviews). Beschermingsopties: [Managing protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches). Raadpleegdatum 18-10-2026. Geen automatische overdracht van accounts, settings of agents geclaimd.
-
