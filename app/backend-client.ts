@@ -1,3 +1,4 @@
+import type {VehicleSnapshot} from '../lib/sync-service.ts';
 import type { TripCreate, TripEdit } from '../lib/trip-service.ts';
 import type { VehicleSettings, SettingsEdit } from '../lib/settings-service.ts';
 import type { ReportRequest, ServerReport } from '../lib/report-service.ts';
@@ -19,6 +20,7 @@ export function createBackendClient(fetcher:typeof fetch=fetch){
   async vehicles(){const all:Vehicle[]=[];for(let offset=0;offset<=100000;offset+=100){const page=(await request<{vehicles:Vehicle[]}>('/api/vehicles?limit=100&offset='+offset)).vehicles;all.push(...page);if(page.length<100)return all;}throw new BackendError(413,'Te veel voertuigen om te laden.');},
   async trips(id:string){const all:BackendTrip[]=[];for(let offset=0;offset<=100000;offset+=100){const page=(await request<{trips:BackendTrip[]}>(base(id)+'/trips?limit=100&offset='+offset)).trips;all.push(...page);if(page.length<100)return all;}throw new BackendError(413,'Te veel ritten om in één overzicht te laden.');},
   async drivers(id:string){const all:Driver[]=[];for(let offset=0;offset<=100000;offset+=100){const page=(await request<{drivers:Driver[]}>(base(id)+'/drivers?limit=100&offset='+offset)).drivers;all.push(...page);if(page.length<100)return all;}throw new BackendError(413,'Te veel bestuurders om te laden.');},
+  async snapshot(id:string){return (await request<{snapshot:VehicleSnapshot}>(base(id)+'/snapshot')).snapshot;},
   async settings(id:string){return (await request<{settings:VehicleSettings}>(base(id)+'/settings')).settings;},
   async saveSettings(id:string,input:SettingsEdit){return (await request<{settings:VehicleSettings}>(base(id)+'/settings','PATCH',input)).settings;},
   async createTrip(id:string,input:TripCreate){return (await request<{trip:BackendTrip}>(base(id)+'/trips','POST',input)).trip;},

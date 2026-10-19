@@ -1,3 +1,4 @@
+import {createSyncService} from './sync-service.ts';
 import { listAccessibleVehicles, listVehicleDrivers } from './vehicle-service.ts';
 import { createReportService, type ReportRequest } from './report-service.ts';
 import { createSettingsService, type SettingsEdit } from './settings-service.ts';
@@ -63,6 +64,13 @@ export function createTripHttpHandler(options: {
         for(const key of url.searchParams.keys())if(!['limit','offset'].includes(key)||url.searchParams.getAll(key).length!==1)throw new TripServiceError(400,'Ongeldige query.');
         const page=(key:string,fallback:number)=>{const value=url.searchParams.get(key);if(value===null)return fallback;if(!/^\d+$/.test(value))throw new TripServiceError(400,'Ongeldige paginering.');return Number(value);};
         return response(200,{vehicles:await listAccessibleVehicles(options.db,()=>options.resolveSession?.(request)??Promise.resolve(null),page('limit',50),page('offset',0),options.clock)});
+      }
+      const snapshotMatch=/^\/api\/vehicles\/([^/]+)\/snapshot$/.exec(url.pathname);
+      if(snapshotMatch){
+       const vehicleId=segment(snapshotMatch[1]);
+       if(request.method!=='GET')return response(405,{error:'Methode niet toegestaan.'},{Allow:'GET'});
+       if([...url.searchParams].length)throw new TripServiceError(400,'Ongeldige query.');
+       return response(200,{snapshot:await createSyncService(options.db,()=>options.resolveSession?.(request)??Promise.resolve(null),options.clock).snapshot(vehicleId)});
       }
       const driversMatch=/^\/api\/vehicles\/([^/]+)\/drivers$/.exec(url.pathname);
       if(driversMatch){

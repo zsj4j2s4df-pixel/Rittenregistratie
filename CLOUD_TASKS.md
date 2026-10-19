@@ -10,9 +10,11 @@
 | CLOUD-006 | TER CONTROLE — PR #2 afhankelijk van #1; 123 REQ-ID's/21 scenario's behouden, actuele codebasis nu aangeleverd |
 | CLOUD-002 / CLOUD-004 | TER CONTROLE — additieve databaseguards, vijf regressiecases; 37/37 tests en typecheck/lint/build PASS; verdere API/UI-dekking open |
 | CLOUD-003 | GEDEELTELIJK UITGEVOERD — twee gerichte serverkernreviews en één rapportagereview; volledige productieauth/privacyreview open |
-| CLOUD-005 | IN UITVOERING — PR #6 web/rapportage; serverkern/ritinvoer TER CONTROLE: 123 tests (nieuwste lokale groep) + eerdere lokale D1 + type/lint/build PASS; settingsopslag/Accessvoorbereiding TER CONTROLE, adres-/tariefCRUD, ritcorrectie/historie, bestuurderkeuze en ritfilters gebouwd; Cloudflare Worker/EU-D1 gepubliceerd, live gesloten API PASS; echte login/sync open |
+| CLOUD-005 | IN UITVOERING — PR #6 web/rapportage; serverkern/ritinvoer TER CONTROLE: 127 tests (nieuwste lokale groep) + eerdere lokale D1 + type/lint/build PASS; settingsopslag/Accessvoorbereiding TER CONTROLE, adres-/tariefCRUD, ritcorrectie/historie, bestuurderkeuze en ritfilters gebouwd; Cloudflare Worker/EU-D1 gepubliceerd, live gesloten API PASS; echte login/sync open |
 | CLOUD-007 | IN UITVOERING — veilige Mac→GitHub-overdracht op handover/mac-to-cloud-20261018, base cloud/cloud-006-documentatie |
 | CLOUD-008 | TER CONTROLE — 32/32 tests, typecheck/lint/build PASS; draft-PR #4; eerdere omgevingblokkades opgelost |
+
+Actuele open werkkaart: [OPEN_WORK](docs/TRANSFER/OPEN_WORK.md).
 
 Open technische taken met acceptatie: [CLOUD_CHECKPOINT](docs/TRANSFER/CLOUD_CHECKPOINT.md). Deze checkpoint is geen volledige oplevering; providerkeuze blokkeert niet alle lokale ontwikkeling.
 
@@ -141,3 +143,7 @@ Nieuwste instructie: **geen nieuwe livepublicatie zonder toestemming, geen koste
 ## 19 oktober2026 — zelfstandige vervolggroep naast Mac
 
 CLOUD-005/002/004 TER CONTROLE: bestuurder van bestaande rit corrigeren met verplichte reden/audit en actieve rechten; opgeslagen serverrapport bekijken en browser-PDF/afdruk.123Node-tests/type/lint/build en uitgebreide browser PASS;81ritten/16A4pagina's/all80extra bestemmingen PASS. Nieuwe draftbranch cloud/cloud-005-report-view vanaf #15; geen nieuwe livepublicatie. Bewijs CENTRAL_REPORT_VIEW.md. ServerPDF, coherente sync/pendingqueue/detectie/backups/MCP en echte provider/hardware blijven open.
+
+## 19 oktober2026 — samenhangende refresh
+
+CLOUD-005/002/004: snapshotroute en transactionele UI-refresh gebouwd,127tests/type/lint/build/lokaleD1/centrale browser/geslotenAPI/PDF PASS. Geen gedeeltelijke lijst bij overschrijding. COHERENT_REFRESH.md. Cursors/auto-sync/pendingqueue en overige OPEN_WORK-taken blijven open. Geen livepublicatie.
