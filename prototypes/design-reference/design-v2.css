@@ -1,0 +1,83 @@
+/* Design review v2: expedition palette, a single vector family and stable nav. */
+:root{--sand:#d7c39e;--ink:#101717;--accent-soft:#d7c39e18;--nav-height:86px}
+body[data-theme=forest]{--sand:#b3c58a;--accent-soft:#b3c58a20}
+body[data-theme=slate]{--sand:#a9c7d1;--accent-soft:#a9c7d120}
+body[data-theme=silver]{--sand:#ced0c7;--accent-soft:#ced0c720}
+.icon-library{position:absolute;width:0;height:0;overflow:hidden}
+.rk-icon{width:24px;height:24px;display:inline-block;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle}
+.app{isolation:isolate;z-index:1}
+.home-backdrop{pointer-events:none;position:fixed;z-index:0;inset:0;opacity:0;transition:opacity .18s;background:linear-gradient(180deg,#0e1313aa 0%,#0e131399 34%,#0e1313f2 82%,#0e1313 100%),url(assets/jeep-placeholder.svg) center 25%/cover no-repeat;filter:blur(3px)}
+body.home-view .home-backdrop{opacity:.72}
+body.home-view .app{background:transparent}
+.topbar{border-bottom:1px solid #ffffff0b}
+.topbar a{min-height:36px;gap:9px}
+.topbar .rk-icon{width:19px;height:19px}
+.mast{gap:12px;margin-bottom:20px}
+.mast h1{font-size:35px;letter-spacing:-1.3px}
+.mast .compass{width:78px;height:78px;border:1px solid #d7c39e30;border-radius:21px;overflow:hidden;box-shadow:0 8px 26px #0005;flex-shrink:0}
+.brand-mark{width:100%;height:100%;object-fit:cover;display:block}
+.hero{height:auto;aspect-ratio:4/3;min-height:220px;border-radius:23px;background:#131b18;isolation:isolate}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.hero:after{z-index:1;background:linear-gradient(180deg,#0e131300 25%,#0e13132a 48%,#0e1313d9 85%,#0e1313 100%)}
+.hero:before{content:"";position:absolute;z-index:1;left:0;right:0;bottom:0;height:37%;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);mask-image:linear-gradient(transparent,#000);-webkit-mask-image:linear-gradient(transparent,#000)}
+.hero-copy{z-index:2;bottom:19px}
+.hero-copy .eyebrow{letter-spacing:1.6px;font-size:8px}
+.hero-copy h2{font-size:26px}
+.card,.metric,.trip,.quick-choice,.preferences-card{border:1px solid #ffffff0a;box-shadow:0 8px 24px #00000012}
+body.home-view .card,body.home-view .metric,body.home-view .quick-choice{background:#1b2323eb;backdrop-filter:blur(10px)}
+.primary{min-height:53px;font-weight:650;line-height:1.35}
+.primary .rk-icon{width:19px;height:19px}
+.secondary{min-height:50px}
+.vehicle-line .rk-icon{width:24px;height:24px;margin-right:6px}
+.filters{padding:0;background:none;gap:10px;margin:25px 0}
+.filters button{flex:1;min-width:0;min-height:48px;padding:12px 5px;border:1px solid #62706466;border-radius:13px;background:#1b2323;color:#c3ccc5;font-size:13px;font-weight:550;box-shadow:0 3px 8px #0002}
+.filters button[aria-pressed=true]{background:var(--sand);border-color:var(--sand);color:var(--ink);font-weight:750;box-shadow:0 4px 14px #0004}
+.trip{min-height:113px}
+.trip .pin{width:35px;height:41px;border:0;border-radius:0}
+.trip .pin .rk-icon{width:30px;height:30px}
+.badge{background:var(--accent-soft);display:inline-flex;align-items:center;gap:5px}
+.badge .rk-icon{width:13px;height:13px}
+.badge.private{background:#a1bc7018}
+.choices{gap:15px}
+.choice{min-height:174px;gap:15px;border:1px solid #7c846e66;box-shadow:0 8px 22px #0003;background:linear-gradient(145deg,#29332c,#19231e)}
+.choice:first-child{background:linear-gradient(145deg,var(--sand),color-mix(in srgb,var(--sand) 78%,#6c7259));color:#141b17}
+.choice .rk-icon{width:57px;height:57px;stroke-width:1.35}
+.choice .choice-label{font-size:17px;letter-spacing:.2px}
+.choice[data-recommended=true]{outline:2px solid var(--green);outline-offset:4px}
+.quick-choice,.preferences-card{padding:20px;margin:0 0 21px;background:var(--panel);border-radius:22px}
+.quick-choice h2{font-size:18px}
+.quick-choice p{font-size:12px;color:var(--muted);line-height:1.5;margin:10px 0 13px}
+.quick-choice .card-heading>a{width:38px;min-height:36px;display:grid;place-items:center;border:1px solid var(--line);border-radius:10px}
+.quick-buttons{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:12px}
+.quick-buttons button{display:flex;align-items:center;justify-content:center;gap:9px;min-height:49px;background:#111919;color:var(--muted);border:1px solid #69705f77;border-radius:13px;font-size:13px;font-weight:650}
+.quick-buttons button[aria-pressed=true]{background:var(--sand);color:var(--ink);border-color:var(--sand)}
+.quick-buttons .rk-icon{width:22px;height:22px}
+.quick-choice .small{font-size:11px}
+.preferences-card .eyebrow{font-size:9px;letter-spacing:1.3px}
+.preferences-card h2{font-size:23px;margin-top:10px}
+.preferences-card .small{font-size:12px}
+.theme-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:17px}
+.theme-grid button{display:flex;align-items:center;gap:9px;background:#111919;border:1px solid #68715f77;color:var(--muted);padding:13px 10px;border-radius:12px;font-size:12px;min-height:48px}
+.theme-grid button[aria-pressed=true]{border-color:var(--sand);color:var(--sand);background:var(--accent-soft)}
+.theme-grid i{display:block;width:18px;height:18px;background:var(--swatch);border-radius:50%;border:2px solid #ffffff22;flex-shrink:0}
+.preferences-card label{display:flex;align-items:center;gap:9px;font-size:12px;line-height:1.5;margin:19px 0 9px}
+.preferences-card label .rk-icon{color:var(--sand);width:20px;height:20px}
+.preferences-card input{width:100%;border:1px solid #64715d80;border-radius:12px;background:#101818;color:#f4f5ef;padding:14px;font-size:16px;line-height:1.45;min-height:50px}
+.preferences-card input::placeholder{color:#8d9b90}
+.preferences-card .primary{margin-top:19px;font-size:12px;padding:15px 12px}
+.privacy-note{border-top:1px solid #ffffff0c;padding-top:12px;font-size:11px!important}
+.interactive .screen{padding-bottom:calc(var(--nav-height) + 40px + env(safe-area-inset-bottom))}
+.screen{scroll-margin-top:90px}
+.interactive .tabs{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,440px);min-height:var(--nav-height);z-index:20;background:#15201cf5;border-top:1px solid #d7c39e33;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:11px 8px max(12px,env(safe-area-inset-bottom));box-shadow:0 -9px 30px #0003}
+.tabs a{min-height:52px;border-radius:13px;gap:6px;font-size:11px;letter-spacing:.1px}
+.tabs .tab-icon{width:26px;height:27px;display:grid;place-items:center}
+.tabs .rk-icon{width:25px;height:25px;stroke-width:1.6}
+.tabs a[aria-current=page]{background:var(--accent-soft);color:var(--sand)}
+.topbar a,.tabs a,.filters button,.choice,.quick-buttons button{-webkit-user-select:none;user-select:none}
+@media(min-width:800px){.interactive .tabs{left:calc(50% + 137.5px);border:1px solid #d7c39e33;border-radius:23px 23px 0 0}.home-backdrop{left:calc(50% + 137.5px);right:auto;width:440px;transform:translateX(-50%)}.app{overflow:visible}.topbar{border-radius:32px 32px 0 0}}
+@media(max-width:360px){.screen{padding-left:17px;padding-right:17px}.topbar{padding-left:17px;padding-right:17px}.mast h1{font-size:31px}.mast .compass{width:67px;height:67px}.filters{gap:8px}.choice .rk-icon{width:50px;height:50px}}
+@media(orientation:landscape) and (max-height:550px){.hero{aspect-ratio:16/9;min-height:160px}.interactive .tabs{--nav-height:65px;min-height:65px;padding-top:7px;padding-bottom:7px}.tabs a{min-height:44px}.tabs .rk-icon{width:20px;height:20px}.tabs .tab-icon{height:20px}.tabs a{gap:2px}.mast .compass{width:65px;height:65px}}
+@media(prefers-reduced-motion:reduce){.home-backdrop{transition:none}}
+/* Landscape phones are not desktop layouts, even above the 800px breakpoint. */
+@media(orientation:landscape) and (max-height:550px){body{padding:0}.sidebar,.interactive .sidebar{display:none}.app{max-width:640px;min-height:100svh;border:0;border-radius:0;margin:0 auto}.interactive .tabs{left:50%;width:min(100%,640px);border-radius:0}.home-backdrop{left:0;right:0;width:auto;transform:none}.topbar,.interactive .topbar{border-radius:0}.hero{height:215px;min-height:160px;aspect-ratio:auto}.hero img{object-fit:cover;object-position:center 47%}.interactive .screen{padding-bottom:110px}}
+@media print{.home-backdrop,.interactive .tabs{display:none!important}.interactive .screen{padding-bottom:20px}.app{background:white!important}}

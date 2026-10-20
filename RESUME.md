@@ -1,5 +1,11 @@
 # Hervatpunt — 18 oktober 2026
 
+## Nieuwste opdracht — volledige Desert-stijl en echte adresintegratie
+
+Lees [de complete Cloud-uitvoeropdracht](docs/TRANSFER/OWNER_DESIGN_REGISTRATION_HANDOVER.md). Basis PR56/head `8fecda44bc613f4bd463b2bda6bb1b2814454ba6`; bestaande bron, historie en 123REQ/M27 behouden. Nieuw: Home Zakelijk/Privé zonder scrollen bovenaan, Willys-icoon Mijn Jeep, echt De Voetel-logo voor Zakelijk, volledig Desert én Anthracite, meerdere zakelijke én privéadressen met plusknop en koppeling aan echte registratie/settingscode. Dit vervangt oudere accent-only/één-adres/view-memory-beperkingen voor het nieuwe werk.
+
+Status: opdracht en veilige bronreferentie voorbereid; deze nieuwe functionaliteit is NOG NIET GEÏMPLEMENTEERD. `prototypes/design-reference/` bevat alleen geschoonde vorige ontwerpbron met eigen placeholders, geen privéfoto/Canvaasset/adresgegevens. Cloud bouwt en test echte integratie op eigen draft-branch; Mac doet alleen gerichte Apple-/privémediacontrole. PR55/56 Applewijzigingen NIET GETEST; oudere PR52-pass niet hergebruiken als nieuw bewijs. Geen livepublicatie/migratie, mainmerge, kosten of beveiligingswijziging toegestaan.
+
 ## Eigenaarsfeedback native ontwerp behouden — nieuwe bron boven PR55
 
 Alle ontwerpwensen uit de owner-private Sites-preview staan in [NATIVE_DESIGN_BACKLOG](docs/TRANSFER/NATIVE_DESIGN_BACKLOG.md), naast ongewijzigde123REQ/M27. Native ontwerpproef: filters met iconen/geselecteerde toegankelijkheidsstatus, vaste onderbalk behouden, gedeelde huis/koffer-mapping, accentkeuze en lege/te wissen Home-snelvoorkeur in uitsluitend view-geheugen. Geen auto-classificatie/ritstart/grant of echte adresopslag/sync. Nieuwe privéfoto en Canva-icoon niet opgehaald/gepubliceerd; definitieve assets/vaste achtergrond en adresopslagkeuze OPEN.
