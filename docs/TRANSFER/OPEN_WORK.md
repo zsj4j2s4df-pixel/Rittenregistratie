@@ -1,5 +1,17 @@
 # Actuele open werkkaart — 19 oktober2026
 
+## Gecombineerde PR53/54-brongroep — actuele ritvoorstellen
+
+Mac PR54/head `7831bf8772d1e9e41aa6f7208eb84af568cf32b5` exact ontvangen; Applebewijs PR52 (23 XCTest/Core/iOSsemantiek/unsigned builds PASS) en geïsoleerde prototypebron behouden. Cloud PR53/head `1091d31d070e5b01a960fa46b24d8adb7f6196a4` expliciet geïntegreerd als tweede ouder; geen mainmerge of UI-overschrijving. Foto uitsluitend lokaal/ignored. Gratis Mac-testen blijft besluit; persoonlijk Xcodeaccount/toestel/signing bij Mac/eigenaar.
+
+Nieuwe minimale pending-choices readroute en native feedproducer gebouwd: echte sessie/voertuigtoegang, expliciet verversen, aparte melding op alleen een actueel feed-ID, geen auto-classificatie/driverclaim. Gesloten host niet geactiveerd. Cloud 265 Node/type/lint/build/gebouwdeWorker-lokaleD1 PASS. Zes nieuwe producer-XCTest + acht PR53-XCTest nog NIET GETEST in Cloud. [Concrete gerichte Maccheck en volgende bronstap](NATIVE_PENDING_CHOICES.md). Native browserauth/securestore/hostsessie en capture blijven open; geen nieuwe liveactie, migratie of downloadclaim.
+
+
+## Nieuwste native delta — PR53, 20 oktober 2026
+
+[PR53](https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/53) volgt exact PR52: duurzame meldingsworkflow/delegate en expliciete toestemming met gesloten host gebouwd. 257 Node/type/lint PASS; acht extra Swift-tests voorbereid, nieuwe Apple-delta NIET GETEST in Cloud. Mac meldt PR52 23 XCTest + Core/iOSsemantiek/unsigned builds PASS; bewijscommit volgt met zijn prototype. ContentView/ReviewPrototypeView uitsluitend Mac; foto lokaal/ignored. Gratis Mac-testen, geen TestFlightaankoop. [Gerichte vervolgcontrole](NATIVE_NOTIFICATION_WORKFLOW.md). Nativeauth/serverpending-producer/capture en fysieke acceptatie blijven open; geen livewijziging of downloadclaim. Oudere open-delegatestatus hieronder is historische stand.
+
+
 ## Nieuwe brongroep na PR51 — native sessiescope (draft)
 
 PR51/head `8d94ce1b6876159319c572c18134fcc9ad9998d4`, tree `d0a032971f4792bc91c2fad8fc1d6df420485865` exact ontvangen; alle6 documentblobs geverifieerd. Beperkte simulatorstart/status/relaunch door Mac PASS, Xcode-/lockblokkade afgehandeld. Nu echte nieuwe bron: minimale read-only backend sessionroute, gedeelde VerifiedNativeSession-actor met viewer/credential/logoutbinding en alleen lokale offlinequeueproof, plus bounded/defaultdeny HTTPSverifier. Geen echte login/tokenstore of hostactivatie. [Codegrenzen en concrete Mac-opdracht](NATIVE_VERIFIED_SESSION.md).
