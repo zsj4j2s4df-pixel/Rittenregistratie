@@ -1,8 +1,27 @@
 # Cloud-taken — RitKompas
 
+## Gecombineerde PR53/54-brongroep — draft PR55
+
+[PR55](https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/55), branch `cloud/cloud-011-pending-choice-recovery`, base PR54. Broncommit `248d874f4613fa1331ee5a66ed9b153fd86eabd3`, tree `076faba80a2bf8fd5876d72420533c94dcfbf71d`; echte ouders PR54 + PR53. Alle 344 lokale/remote blobs en modes exact gecontroleerd; foto afwezig. Deze volgende commit wijzigt alleen voortgangsdocumenten.
+
+Mac PR54/head `7831bf8772d1e9e41aa6f7208eb84af568cf32b5` exact ontvangen; Applebewijs PR52 (23 XCTest/Core/iOSsemantiek/unsigned builds PASS) en geïsoleerde prototypebron behouden. Cloud PR53/head `1091d31d070e5b01a960fa46b24d8adb7f6196a4` expliciet geïntegreerd als tweede ouder; geen mainmerge of UI-overschrijving. Foto uitsluitend lokaal/ignored. Gratis Mac-testen blijft besluit; persoonlijk Xcodeaccount/toestel/signing bij Mac/eigenaar.
+
+Nieuwe minimale pending-choices readroute en native feedproducer gebouwd: echte sessie/voertuigtoegang, expliciet verversen, aparte melding op alleen een actueel feed-ID, geen auto-classificatie/driverclaim. Gesloten host niet geactiveerd. Cloud 265 Node/type/lint/build/gebouwdeWorker-lokaleD1 PASS. Zes nieuwe producer-XCTest + acht PR53-XCTest nog NIET GETEST in Cloud. [Concrete gerichte Maccheck en volgende bronstap](docs/TRANSFER/NATIVE_PENDING_CHOICES.md). Native browserauth/securestore/hostsessie en capture blijven open; geen nieuwe liveactie, migratie of downloadclaim.
+
+
 ## Macopdracht PR52 uitgevoerd; eigenaarsontwerp apart
 
 23echte Mac-XCTest inclusief14nieuwe PASS, gewijzigde Core/iOSsemantiek en unsigned device/simulatorbuild PASS; geen codefix nodig voor PR52. Mac heeft op eigenaarsverzoek een geïsoleerde native ontwerpproef toegevoegd; geen auth/capture-activatie. Privéfoto nooit importeren naar Cloud/GitHub. [Bewijs en rolverdeling](docs/TRANSFER/MAC_REVIEW_PROTOTYPE_2026-10-20.md). Cloud vervolgt overige nativebrowserauth/securestore/delegate/capturebron, behoudt defaultdeny en neemt Mac-UI pas van exacte drafthead over; niet gelijktijdig ContentView/ReviewPrototypeView overschrijven. Mac blijft Appletoolchain/simulator/toestel/foto; geen productie/mainmerge/kosten. Eigenaar wil eerst gratis Mac-installatie; geen TestFlight klaarclaim.
+
+
+## Native meldingsworkflow — draft PR53 na PR52
+
+[Draft PR53](https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/53), branch `cloud/cloud-011-native-notification-workflow`; broncommit `89079a538633662fa3804a0b8e1908a0a15d4758`, echte parent PR52 behouden. Alle 12 gewijzigde remote bron/documentblobs exact teruggelezen. Latere voortgangscommit wijzigt alleen documentatie.
+
+Vanaf exact PR52/f1d73cdc86bf32a61970caeff51276594b19cbaa: duurzame pending-before-notification workflow, strikte actie-decoder, behouden iOS-delegate, expliciet toestemmingsscherm en gesloten hostruntime gebouwd. Geen auto-HTTP, fakepending, nativeauth of capture geactiveerd. Mac-prototypebestanden ContentView/ReviewPrototypeView blijven gereserveerd en ongemoeid; Jeepfoto niet uploaden. Eigenaar kiest gratis Mac-testen, geen TestFlightaankoop.
+
+Cloud 257/257 Node/type/lint PASS; acht nieuwe Swift-tests voorbereid, deze delta Swift/iOS/runtime NIET GETEST in Cloud. Mac meldt PR52 afzonderlijk 23 echte XCTest + Core/iOSsemantiek/unsigned builds PASS, bewijscommit volgt bij zijn prototypegroep. [Gerichte nieuwe Mac-opdracht en grenzen](docs/TRANSFER/NATIVE_NOTIFICATION_WORKFLOW.md). Volgende bronwerk: echte nativeauth/secure provider/sessiebootstrap, serverpending-producer en capture. Geen nieuwe livepublicatie, migratie, signing/kosten of mainmerge.
+
 
 ## Nieuwe brongroep na PR51 — native sessiescope (draft)
 

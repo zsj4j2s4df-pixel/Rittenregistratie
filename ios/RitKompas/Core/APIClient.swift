@@ -13,7 +13,7 @@ final class RefuseRedirects: NSObject, URLSessionTaskDelegate, @unchecked Sendab
     }
 }
 @available(iOS 15.0, macOS 12.0, *)
-public actor APIClient {
+public actor APIClient: PendingTripChoiceSource {
     private let origin: APIOrigin
     private let access: any SessionAccess
     private let session: URLSession
@@ -56,6 +56,7 @@ public actor APIClient {
             }
             request.setValue(value, forHTTPHeaderField: name)
         }
+        if let expectedViewerID { request.setValue(expectedViewerID, forHTTPHeaderField: "x-ritkompas-viewer") }
         if body != nil {
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             request.setValue(origin.value, forHTTPHeaderField: "Origin")
@@ -116,6 +117,12 @@ public actor APIClient {
         let input = ChoiceInput(requestId: action.requestID, expectedRevision: action.context.revision, classification: action.choice, reason: "Expliciete keuze via iOS-melding")
         let result: ChoiceEnvelope = try await send(segments: ["api", "vehicles", action.context.vehicleID, "journeys", action.context.proposalID, "choice"], method: "POST", body: JSONEncoder().encode(input), expectedViewerID: action.context.viewerID)
         return result.receipt
+    }
+    private struct PendingChoicesEnvelope: Decodable, Sendable { let pending: NativePendingChoices }
+    public func pendingChoices(vehicleID: String, expectedViewerID: String) async throws -> NativePendingChoices {
+        guard validNativeIdentifier(expectedViewerID) else { throw NativeAPIError.invalidSessionGrant }
+        let result: PendingChoicesEnvelope = try await send(segments: ["api", "vehicles", vehicleID, "pending-choices"], expectedViewerID: expectedViewerID)
+        return result.pending
     }
     public func deactivate(vehicleID: String, deviceID: String, input: DeviceDeactivation) async throws -> DeviceEnvelope {
         try await send(segments: ["api", "vehicles", vehicleID, "devices", deviceID], method: "PATCH", body: JSONEncoder().encode(input))
