@@ -1,5 +1,11 @@
 # Cloud-taken — RitKompas
 
+## Nieuwe brongroep na PR51 — native sessiescope (draft)
+
+PR51/head `8d94ce1b6876159319c572c18134fcc9ad9998d4`, tree `d0a032971f4792bc91c2fad8fc1d6df420485865` exact ontvangen; alle6 documentblobs geverifieerd. Beperkte simulatorstart/status/relaunch door Mac PASS, Xcode-/lockblokkade afgehandeld. Nu echte nieuwe bron: minimale read-only backend sessionroute, gedeelde VerifiedNativeSession-actor met viewer/credential/logoutbinding en alleen lokale offlinequeueproof, plus bounded/defaultdeny HTTPSverifier. Geen echte login/tokenstore of hostactivatie. [Codegrenzen en concrete Mac-opdracht](docs/TRANSFER/NATIVE_VERIFIED_SESSION.md).
+
+Cloud:257Node/type/lint/build en gebouwdeWorker/lokaleD1-sessionroute/viewer/revocationregressies PASS. Nieuwe Swift/XCTest NIET GETEST in Cloud; oude Macpass geldt niet voor nieuwe bron.14nieuwe XCTestgevallen voorbereid; Mac voert gewijzigde Core/XCTest/iOSsemantiek en unsigned hostbuilds uit. Opvolgende branch `cloud/cloud-011-verified-native-session` vanaf PR51; geen nieuwe livepublicatie/migratie/koppeling/kosten/mainmerge. Native browserauth/secure-store/host/delegate/capture en fysieke acceptatie blijven open; geen volledigproject-klaarclaim.
+
 ## Mac-simulatorgroep afgerond — 20 oktober 2026
 
 Na handmatige ontgrendeling bestaande app op virtuele iPhone 17 geïnstalleerd, gestart en zichtbaar herstart: PASS. Statuscontrole vraagt geen toestemming; actief/niet-actiefweergave gezien. [Bewijs en beperkingen](docs/TRANSFER/MAC_SIMULATOR_RESULT_2026-10-20.md). Geen echte iPhone of registratieacceptatie. PR50-review behouden. Cloud: vervolg met nativeprovider/sessiebinding, notificationdelegate/delivery en capture volgens bestaande planning; implementeer/test samenhangend veilig bronwerk en documenteer concrete Mac-runtimechecks. Geen tweede volledige audit of oude Xcode-/lockvraag.

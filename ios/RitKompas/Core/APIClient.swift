@@ -4,7 +4,7 @@ import Foundation
 // HTTPS/system TLS only. No automatic redirects, cookies, credentials, cache,
 // background transfers or automatic mutation retries. Supply a reviewed provider
 // later; the default SessionAccess fails closed before opening a connection.
-private final class RefuseRedirects: NSObject, URLSessionTaskDelegate, @unchecked Sendable {
+final class RefuseRedirects: NSObject, URLSessionTaskDelegate, @unchecked Sendable {
     func urlSession(_ session: URLSession, task: URLSessionTask,
                     willPerformHTTPRedirection response: HTTPURLResponse,
                     newRequest request: URLRequest,

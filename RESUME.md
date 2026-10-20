@@ -1,5 +1,11 @@
 # Hervatpunt — 18 oktober 2026
 
+## Nieuwe brongroep na PR51 — native sessiescope (draft)
+
+PR51/head `8d94ce1b6876159319c572c18134fcc9ad9998d4`, tree `d0a032971f4792bc91c2fad8fc1d6df420485865` exact ontvangen; alle6 documentblobs geverifieerd. Beperkte simulatorstart/status/relaunch door Mac PASS, Xcode-/lockblokkade afgehandeld. Nu echte nieuwe bron: minimale read-only backend sessionroute, gedeelde VerifiedNativeSession-actor met viewer/credential/logoutbinding en alleen lokale offlinequeueproof, plus bounded/defaultdeny HTTPSverifier. Geen echte login/tokenstore of hostactivatie. [Codegrenzen en concrete Mac-opdracht](docs/TRANSFER/NATIVE_VERIFIED_SESSION.md).
+
+Cloud:257Node/type/lint/build en gebouwdeWorker/lokaleD1-sessionroute/viewer/revocationregressies PASS. Nieuwe Swift/XCTest NIET GETEST in Cloud; oude Macpass geldt niet voor nieuwe bron.14nieuwe XCTestgevallen voorbereid; Mac voert gewijzigde Core/XCTest/iOSsemantiek en unsigned hostbuilds uit. Opvolgende branch `cloud/cloud-011-verified-native-session` vanaf PR51; geen nieuwe livepublicatie/migratie/koppeling/kosten/mainmerge. Native browserauth/secure-store/host/delegate/capture en fysieke acceptatie blijven open; geen volledigproject-klaarclaim.
+
 ## Hervatten na geslaagde simulatorstart — 20 oktober 2026
 
 Macontgrendeling afgehandeld. Beperkte installatie/start/status/zichtbare herstart van bestaande app op virtuele iPhone 17 PASS; [bewijs](docs/TRANSFER/MAC_SIMULATOR_RESULT_2026-10-20.md). PR50/56ea377c4b28aea9e43068a6b1a5ec549b06697d is ongewijzigde parent van deze vervolgbranch. Geen codewijziging, nieuwe build of herhaalde testsuite nodig voor deze documentgroep. Oudere lockblokkade hieronder is historie. Nativeprovider/sessiebinding, notificationdelegate/delivery en capture/lifecycle blijven open; Cloud bouwt de volgende samenhangende bron/testgroep en geeft Mac een gerichte runtimeopdracht. Geen gevoelige koppeling, productie of fysieke signing zonder toepasselijke toestemming.
