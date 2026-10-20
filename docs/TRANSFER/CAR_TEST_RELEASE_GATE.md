@@ -1,5 +1,7 @@
 # Naar een echte autotest — 20 oktober 2026
 
+**Uitgevoerd met expliciete eigenaarstoestemming:** webrelease en migraties0008–0015 voltooid, zie [resultaat](WEB_RELEASE_RESULT_2026-10-20.md) en [Mac-opdracht](MAC_NEXT_RUN.md). Onderstaande releasevoorstel-/ontbrekende-toestemmingstekst is voor dit pakket historie. Geen nieuwe algemene productieautorisatie; native autotest blijft open.
+
 Actuele overdracht: [draft-PR45](https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/45), codehead82330265b9aedc2a24533503c23de1d86546768c. Alle10gewijzigdeblobs exact teruggelezen; daarop volgt uitsluitend deze documentcheckpoint. Cloud heeft geen swift/xcodebuild gevonden. Er is geen Mac-threadtool beschikbaar; dit GitHubbestand is een concrete opdracht, geen bewezen Macontvangst/uitvoering. Automatische autotest blijft geblokkeerd op werkende native integratie en echte Apple-toolchain, plus apart goedgekeurde release/migraties. Er zijn nog overige veilige ontwikkeltaken; die zijn niet als voltooid afgesloten.
 
 ## Exacte ontwikkelbasis en geteste grens

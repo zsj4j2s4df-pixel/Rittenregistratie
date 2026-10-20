@@ -1,5 +1,13 @@
 # Cloud-taken — RitKompas
 
+Actuele GitHub-overdracht: [draft-PR46](https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/46), branch `cloud/cloud-014-live-web-handover`, code/documentbasis `b75fa0610425030253459e1b6d256fbd9ae6f8c7` (alle10gewijzigdebestanden exact remote geverifieerd). Hierop volgt uitsluitend de huidige documentcheckpoint. Geen automatische Macontvangst/uitvoering geclaimd.
+
+## Actueel — eigenaarstoestemming uitgevoerd, 20 oktober2026
+
+Goedgekeurde PR45-webcode en migraties0008–0015 LIVE: versieba2a2a9d-3a2a-4347-b146-b577d0e33989, deployment9c7c3f88-fd26-44aa-b1ca-3375aa21d122. Vierbindings/Access behouden; anoniem302 op /,/beheer,/api/vehicles PASS.249Node/type/lint/build/gebouwdeWorkerD1 PASS; versleutelde echte privésnapshot lokaal hersteld/geüpgraded met alle oorspronkelijke rijen behouden, SQLintegrity/FK en10livetabelhashes PASS. Echte ingelogde iPhonewrite/native/hardware NIETGETEST. Geen mainmerge/kosten/provisioning. [Releasebewijs inclusief uitvoeringsincident](docs/TRANSFER/WEB_RELEASE_RESULT_2026-10-20.md).
+
+Overdrachtbranch `cloud/cloud-014-live-web-handover`, basePR45/adcc6d373a1df3a0124ba680c5faed6f0564dcce. [Eén kopieerbare Mac-opdracht](docs/TRANSFER/MAC_NEXT_RUN.md); script `node scripts/check-native-readiness.mjs [--run]` inspecteert bestaande Appletoolchain en kan huidige bronnen werkelijk controleren zonder installatie/signing. Clouduitvoering: terecht NIETGETEST iOS; geen Swiftbuildpass. Nativeauth/apphost/queueconsumer/capture en echte Mac/iPhone/Jeep/CarPlay/OBD2 blijven open. Geen nieuwe productionfeaturetoestemming afleiden uit alleen dit uitgevoerde releasepakket; oude ontbrekende-toestemmingstekst hieronder is daarvoor historie.
+
 ## Actuele overdracht — 20 oktober 2026
 
 Actueel draft-PR45 https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/45 , codehead82330265b9aedc2a24533503c23de1d86546768c, branch `cloud/cloud-002-audit-upgrade-guard`, basePR44/e30027ee4914af0007a5a90ae637e42dc9fbea50. Alle10gewijzigdePR45blobs exact remote geverifieerd. SQL0015 weigert auditUPDATE/DELETE; twee gevulde upgrades vanaf0007/0008 behouden bestaande data,0/NULL/rapportbytes en guards.249/249 Node/type/volledige lint en gebouwdeWorker/lokaleD1 PASS; webbuild van ongewijzigde webbron PASS. PR43/PR44 alle20/10gewijzigdeblobs exact remote geverifieerd. [Auditbewijs](docs/TRANSFER/AUDIT_UPGRADE_GUARD.md).

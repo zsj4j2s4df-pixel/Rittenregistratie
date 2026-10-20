@@ -1,5 +1,11 @@
 # Persoonlijke acties
 
+## Actueel — eigenaarstoestemming uitgevoerd, 20 oktober2026
+
+Goedgekeurde PR45-webcode en migraties0008–0015 LIVE: versieba2a2a9d-3a2a-4347-b146-b577d0e33989, deployment9c7c3f88-fd26-44aa-b1ca-3375aa21d122. Vierbindings/Access behouden; anoniem302 op /,/beheer,/api/vehicles PASS.249Node/type/lint/build/gebouwdeWorkerD1 PASS; versleutelde echte privésnapshot lokaal hersteld/geüpgraded met alle oorspronkelijke rijen behouden, SQLintegrity/FK en10livetabelhashes PASS. Echte ingelogde iPhonewrite/native/hardware NIETGETEST. Geen mainmerge/kosten/provisioning. [Releasebewijs inclusief uitvoeringsincident](docs/TRANSFER/WEB_RELEASE_RESULT_2026-10-20.md).
+
+Overdrachtbranch `cloud/cloud-014-live-web-handover`, basePR45/adcc6d373a1df3a0124ba680c5faed6f0564dcce. [Eén kopieerbare Mac-opdracht](docs/TRANSFER/MAC_NEXT_RUN.md); script `node scripts/check-native-readiness.mjs [--run]` inspecteert bestaande Appletoolchain en kan huidige bronnen werkelijk controleren zonder installatie/signing. Clouduitvoering: terecht NIETGETEST iOS; geen Swiftbuildpass. Nativeauth/apphost/queueconsumer/capture en echte Mac/iPhone/Jeep/CarPlay/OBD2 blijven open. Geen nieuwe productionfeaturetoestemming afleiden uit alleen dit uitgevoerde releasepakket; oude ontbrekende-toestemmingstekst hieronder is daarvoor historie.
+
 ## Actueel na geautoriseerde PR34-fix en eigenaarsfeedback
 
 ACT-006: eerder goedgekeurde bindings/eigenaarprovisioning én het daarna expliciet goedgekeurde PR34-codepakket zijn uitgevoerd. Eigenaar bevestigt nu inloggen en toont de centrale voertuig/instellingenschermen. De oude algemene loginFAIL hieronder is daarmee ingehaald; volledige livewrite/logout/revocationacceptatie blijft open. Screenshots tonen geen opslagfout of bevestigdewrite, dus opslagprobleem nog niet als opgelost markeren. Niet opnieuw provisionen of dezelfde toestemming vragen. Nieuwe softwarePR37–40 en opvolgende correctieguard zijn uitsluitend bron/draft; geen algemene productie- of migratietoestemming. ACT-002gescheidenidentiteit en ACT-004Apple/hardware blijven open.
