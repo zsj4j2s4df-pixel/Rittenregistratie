@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-label="Privé Jeepfoto niet meegeleverd">
+ <rect width="1200" height="900" fill="#1b2323"/>
+ <path d="M0 620 280 330 480 540 770 220 1200 660V900H0Z" fill="#354035"/>
+ <path d="M0 750 340 520 650 710 1000 470 1200 680V900H0Z" fill="#253027"/>
+ <text x="600" y="760" text-anchor="middle" font-family="sans-serif" font-size="29" fill="#d7c39e">Privé Jeepfoto niet meegeleverd</text>
+ <text x="600" y="812" text-anchor="middle" font-family="sans-serif" font-size="22" fill="#a8b3ad">Veilige ontwerpbron · geen echte route of locatie</text>
+</svg>

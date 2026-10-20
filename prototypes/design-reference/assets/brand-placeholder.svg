@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Merkplaceholder">
+ <rect width="200" height="200" rx="32" fill="#1b2323"/>
+ <circle cx="100" cy="85" r="50" fill="none" stroke="#d7c39e" stroke-width="3"/>
+ <path d="m123 58-13 39-34 16 13-39Z" fill="none" stroke="#d7c39e" stroke-width="3"/>
+ <text x="100" y="166" text-anchor="middle" font-family="sans-serif" font-size="20" fill="#d7c39e">REFERENTIE</text>
+</svg>

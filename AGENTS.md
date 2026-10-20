@@ -1,5 +1,11 @@
 # RitKompas — uitvoeringsinstructies
 
+## Nieuwste opdracht — volledige Desert-stijl en echte adresintegratie
+
+Lees [de complete Cloud-uitvoeropdracht](docs/TRANSFER/OWNER_DESIGN_REGISTRATION_HANDOVER.md). Basis PR56/head `8fecda44bc613f4bd463b2bda6bb1b2814454ba6`; bestaande bron, historie en 123REQ/M27 behouden. Nieuw: Home Zakelijk/Privé zonder scrollen bovenaan, Willys-icoon Mijn Jeep, echt De Voetel-logo voor Zakelijk, volledig Desert én Anthracite, meerdere zakelijke én privéadressen met plusknop en koppeling aan echte registratie/settingscode. Dit vervangt oudere accent-only/één-adres/view-memory-beperkingen voor het nieuwe werk.
+
+Status: opdracht en veilige bronreferentie voorbereid; deze nieuwe functionaliteit is NOG NIET GEÏMPLEMENTEERD. `prototypes/design-reference/` bevat alleen geschoonde vorige ontwerpbron met eigen placeholders, geen privéfoto/Canvaasset/adresgegevens. Cloud bouwt en test echte integratie op eigen draft-branch; Mac doet alleen gerichte Apple-/privémediacontrole. PR55/56 Applewijzigingen NIET GETEST; oudere PR52-pass niet hergebruiken als nieuw bewijs. Geen livepublicatie/migratie, mainmerge, kosten of beveiligingswijziging toegestaan.
+
 ## Laatste eigenaarssturing — Macwerk hier, overige ontwikkeling Cloud
 
 Eerst gratis via Mac testen, geen TestFlightabonnement of kosten. Mac heeft PR52 werkelijk Applegetest (23macOS-XCTest/Core/iOSsemantiek/builds PASS) en een geïsoleerd klikbaar beoordelingsprototype gemaakt. [Checkpoint](docs/TRANSFER/MAC_REVIEW_PROTOTYPE_2026-10-20.md). Mac beheert Applebuild/simulator/toestel/localefoto; Cloud doet overige nativebron en neemt veilige UIbron over na PR. PrivateJeep.jpg is uitsluitend lokaal/ignored; nooit naar GitHub/Canva/Cloud uploaden. Prototype nooit voor werkende ritregistratie laten doorgaan. Xcodeaccount en fysieke iPhone ontbreken; eigenaar meldt persoonlijk aan en sluit toestel aan, daarna concreet signingakkoord. Geen oudere installatie-/nulmeting herhalen.
