@@ -1,5 +1,11 @@
 # Hervatpunt — 18 oktober 2026
 
+## Cloud heeft PR49 ontvangen en gericht gereviewd
+
+Exacte Mac-basis PR49/`0c52b9819505e03a29622eba447c703b461b56b2`, tree `2202a2b8cdf9aabdfb93c3f6093193dcf1564e6c`, parent PR48/`2ceca7922af3490b18db5739f97e571449dc3ab6`. Alle18 gewijzigde bestanden exact geverifieerd/import. Beperkte Cloud-bronreview van apphost/project/UI/scheme/sourceguards vond geen blokkerend defect; JSON/XML/diffcontrole, geen onnodige testherhaling. [Review en bewijsgrenzen](docs/TRANSFER/CLOUD_PR49_REVIEW_2026-10-20.md).
+
+ACT-004 installatie/licentie afgehandeld. Werkelijk Mac-bewijs:9macOS-XCTest, iOS Core/UI semantiek,9afzonderlijke smokegroepen,249+4Node/sourcechecks en unsigned device-/simulatorbuild PASS. Alleen simulatorboot PASS; appinstallatie/start/visuele proef wacht op handmatige Macontgrendeling. Geen lockomzeiling of nieuwe installatie-/licentievraag. Daarna nativeprovider/delegate/capture en fysieke acceptatie afmaken; geen automatische registratieklaarclaim. Opvolgende Cloud-reviewbranch `cloud/cloud-011-pr49-review`; geen livewijziging/mainmerge.
+
 ## Actuele Mac-Xcodecheckpoint — 20 oktober2026
 
 Eigenaar heeft installatie én licentie bevestigd. Xcode26.3/17C529, Swift6.2.4, iPhoneSDK26.2 en officiële iOS26.3.1simulator geïnstalleerd.9echte macOS-XCTest/0failures, iOS Core/UI semantiek,9extra Swift/CryptoKit-smokegroepen,249bestaande Node+4nieuwe sourceguards PASS. Eén eerste apphost hergebruikt lokale package; volledige unsigned iPhone- én simulatorbuild PASS, arm64/minimumiOS15. Geen certificaten/team/provisioning/productionacties. Basis nieuwste CloudreviewPR48/2ceca7922af3490b18db5739f97e571449dc3ab6 behouden.

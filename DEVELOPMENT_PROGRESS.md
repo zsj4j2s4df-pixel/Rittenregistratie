@@ -1,5 +1,11 @@
 # Actuele voortgang — 18 oktober 2026
 
+## Cloud heeft PR49 ontvangen en gericht gereviewd
+
+Exacte Mac-basis PR49/`0c52b9819505e03a29622eba447c703b461b56b2`, tree `2202a2b8cdf9aabdfb93c3f6093193dcf1564e6c`, parent PR48/`2ceca7922af3490b18db5739f97e571449dc3ab6`. Alle18 gewijzigde bestanden exact geverifieerd/import. Beperkte Cloud-bronreview van apphost/project/UI/scheme/sourceguards vond geen blokkerend defect; JSON/XML/diffcontrole, geen onnodige testherhaling. [Review en bewijsgrenzen](docs/TRANSFER/CLOUD_PR49_REVIEW_2026-10-20.md).
+
+ACT-004 installatie/licentie afgehandeld. Werkelijk Mac-bewijs:9macOS-XCTest, iOS Core/UI semantiek,9afzonderlijke smokegroepen,249+4Node/sourcechecks en unsigned device-/simulatorbuild PASS. Alleen simulatorboot PASS; appinstallatie/start/visuele proef wacht op handmatige Macontgrendeling. Geen lockomzeiling of nieuwe installatie-/licentievraag. Daarna nativeprovider/delegate/capture en fysieke acceptatie afmaken; geen automatische registratieklaarclaim. Opvolgende Cloud-reviewbranch `cloud/cloud-011-pr49-review`; geen livewijziging/mainmerge.
+
 ## Xcode-nativevervolg — 20 oktober2026
 
 Xcode/SDK/platform met eigenaarstoestemming en persoonlijke licentiebevestiging ingericht.9macOS-XCTest/0failures + iOS Core/UI semantische typechecks PASS;9extra Swift/CryptoKit-smokegroepen PASS;249bestaande Node en4nieuwe bronchecks PASS. Eerste echte apphost hergebruikt package, unsigned iPhone- en simulatorbuild PASS. Virtuele iPhone17 bootPASS, visuele appstart NIET GETEST door Macvergrendeling; handmatige ontgrendeling gevraagd. [Bewijs](docs/TRANSFER/MAC_XCODE_VALIDATION_2026-10-20.md). Geen signing/accounts/production; nativeauth/delegate/capture en hardware blijven open. CloudreviewPR48 behouden.
