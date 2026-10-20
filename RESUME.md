@@ -1,6 +1,8 @@
 # Hervatpunt — 18 oktober 2026
 
-## Gecombineerde PR53/54-brongroep — actuele ritvoorstellen
+## Gecombineerde PR53/54-brongroep — draft PR55
+
+[PR55](https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/55), branch `cloud/cloud-011-pending-choice-recovery`, base PR54. Broncommit `248d874f4613fa1331ee5a66ed9b153fd86eabd3`, tree `076faba80a2bf8fd5876d72420533c94dcfbf71d`; echte ouders PR54 + PR53. Alle 344 lokale/remote blobs en modes exact gecontroleerd; foto afwezig. Deze volgende commit wijzigt alleen voortgangsdocumenten.
 
 Mac PR54/head `7831bf8772d1e9e41aa6f7208eb84af568cf32b5` exact ontvangen; Applebewijs PR52 (23 XCTest/Core/iOSsemantiek/unsigned builds PASS) en geïsoleerde prototypebron behouden. Cloud PR53/head `1091d31d070e5b01a960fa46b24d8adb7f6196a4` expliciet geïntegreerd als tweede ouder; geen mainmerge of UI-overschrijving. Foto uitsluitend lokaal/ignored. Gratis Mac-testen blijft besluit; persoonlijk Xcodeaccount/toestel/signing bij Mac/eigenaar.
 
