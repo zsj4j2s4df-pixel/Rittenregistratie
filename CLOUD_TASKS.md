@@ -1,5 +1,13 @@
 # Cloud-taken — RitKompas
 
+## Actueel — PR47 door Cloud ontvangen en gericht gereviewd
+
+Mac-basis: PR47/head `072315c7d3cf6849e3f1d0bf3b5e05d99eb46af1`, parent PR46/`c615ae62e2f93fce72e735b7a46112fb1301bf32`, tree `f5c07618d1142ace74935c0b83d8632dac77eae2`. Alle11 gewijzigde bestanden exact geverifieerd/import; Cloud-bronreview van delivery/transport/queue en testbron vond geen blokkerend defect in die delta. [Review en actuele grenzen](docs/TRANSFER/CLOUD_PR47_REVIEW_2026-10-20.md).
+
+Werkelijk Mac-bewijs: eigenaarlogin/read, inhoudelijk ongewijzigde instellingenopslag en historie na volledige reload PASS; actuele Core Swift6compile/negen uitgevoerde CryptoKit-smokegroepen en249Node PASS. Geen echte XCTest/iOS/UI/Keychain/hardwarepass. Tripwrite/iPhone/Safari/live retry/revocation blijven niet getest. Cloud heeft geen native tests of volledige Node-suite onnodig herhaald en geen live Cloudflare-handeling gedaan.
+
+Volgende taak: ACT-004 eigenaarbesluit grote Xcode-installatie; daarna iOS/XCTest, apphost/nativeprovider/delegate/capture. Expliciete Core-consumer is nu gebouwd/getest op Mac; echte appintegratie blijft open. Opvolgende Cloud-reviewbranch `cloud/cloud-011-pr47-review` vanaf PR47; bestaande keten en oorspronkelijke eisen behouden. Geen nieuwe deploy-/migratie-/account-/kostentoestemming afleiden uit de beperkte Mac-instellingenproef.
+
 ## MAC-PR46 uitgevoerd — 20 oktober2026
 
 Opvolgende Macbranch `mac/pr46-native-takeover-20261020` begint exact opc615ae62e2f93fce72e735b7a46112fb1301bf32. Centrale eigenaarlogin/read/settingswrite/reload PASS, bestaande instelling inhoudelijk behouden. Corebuild en volledige nieuwe Swift6-Core/deliverycompile +9synthetische uitvoerbare queue/crypto-smokegroepen PASS;249Node PASS. [Resultaat](docs/TRANSFER/MAC_PR46_RESULT_2026-10-20.md). Expliciete single-action queueconsumer toegevoegd, geen automatische drain. Provider/apphost/delegate/capture en echte iOS/hardware blijven OPEN; volledige Xcode/SDK/XCTest ontbreekt, grote installatie eerst eigenaarbesluit. Geen liveconfiguratie/deploy/migraties of nepritten.
