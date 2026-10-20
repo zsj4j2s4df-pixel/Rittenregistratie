@@ -1,5 +1,7 @@
 # Hervatpunt — 18 oktober 2026
 
+Actuele GitHub-overdracht: [draft-PR46](https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/46), branch `cloud/cloud-014-live-web-handover`, code/documentbasis `b75fa0610425030253459e1b6d256fbd9ae6f8c7` (alle10gewijzigdebestanden exact remote geverifieerd). Hierop volgt uitsluitend de huidige documentcheckpoint. Geen automatische Macontvangst/uitvoering geclaimd.
+
 ## Actueel — eigenaarstoestemming uitgevoerd, 20 oktober2026
 
 Goedgekeurde PR45-webcode en migraties0008–0015 LIVE: versieba2a2a9d-3a2a-4347-b146-b577d0e33989, deployment9c7c3f88-fd26-44aa-b1ca-3375aa21d122. Vierbindings/Access behouden; anoniem302 op /,/beheer,/api/vehicles PASS.249Node/type/lint/build/gebouwdeWorkerD1 PASS; versleutelde echte privésnapshot lokaal hersteld/geüpgraded met alle oorspronkelijke rijen behouden, SQLintegrity/FK en10livetabelhashes PASS. Echte ingelogde iPhonewrite/native/hardware NIETGETEST. Geen mainmerge/kosten/provisioning. [Releasebewijs inclusief uitvoeringsincident](docs/TRANSFER/WEB_RELEASE_RESULT_2026-10-20.md).
