@@ -1,3 +1,4 @@
+import {createNativeSessionService} from './native-session-service.ts';
 import {createTripReviewService,type TripReviewInput} from './trip-review-service.ts';
 import {createRouteService} from './route-service.ts';
 import {createSyncService} from './sync-service.ts';
@@ -79,6 +80,12 @@ export function createTripHttpHandler(options: {
        for(const key of url.searchParams.keys())if(!['limit','after','through'].includes(key)||url.searchParams.getAll(key).length!==1)throw new TripServiceError(400,'Ongeldige query.');
        const integer=(key:string,fallback?:number)=>{const value=url.searchParams.get(key);if(value===null)return fallback;if(!/^\d+$/.test(value))throw new TripServiceError(400,'Ongeldige routepaginering.');return Number(value);};
        return response(200,{route:await createRouteService(options.db,()=>requestSession(request),options.clock).points(segment(routeMatch[1]),segment(routeMatch[2]),integer('limit',250),integer('after',0),integer('through'))});
+      }
+      const scopeMatch=/^\/api\/vehicles\/([^/]+)\/session$/.exec(url.pathname);
+      if(scopeMatch){
+       if(request.method!=='GET')return response(405,{error:'Methode niet toegestaan.'},{Allow:'GET'});
+       if([...url.searchParams].length)throw new TripServiceError(400,'Ongeldige query.');
+       return response(200,{session:await createNativeSessionService(options.db,()=>requestSession(request),options.clock).scope(segment(scopeMatch[1]))});
       }
       const snapshotMatch=/^\/api\/vehicles\/([^/]+)\/snapshot$/.exec(url.pathname);
       if(snapshotMatch){
