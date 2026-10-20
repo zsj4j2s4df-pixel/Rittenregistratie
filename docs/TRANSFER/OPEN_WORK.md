@@ -1,5 +1,11 @@
 # Actuele open werkkaart — 19 oktober2026
 
+## Actuele overdracht — 20 oktober 2026
+
+Nieuwste codebasis PR44/e30027ee4914af0007a5a90ae637e42dc9fbea50, opvolger `cloud/cloud-002-audit-upgrade-guard`. SQL0015 weigert auditUPDATE/DELETE; twee gevulde upgrades vanaf0007/0008 behouden bestaande data,0/NULL/rapportbytes en guards.249/249 Node/type/volledige lint en gebouwdeWorker/lokaleD1 PASS; webbuild van ongewijzigde webbron PASS. PR43/PR44 alle20/10gewijzigdeblobs exact remote geverifieerd. [Auditbewijs](AUDIT_UPGRADE_GUARD.md).
+
+[Concrete autotest-/release-/Mac-opdracht](CAR_TEST_RELEASE_GATE.md) is nu het hervatpunt. Handmatige webproef vergt nog afgebakende release/migratiebeslissing met actuele live-schema-/herstelcontrole; automatische autotest vergt nativeauth+apphost+capture+queueconsumer en werkelijk iOSSDK/Mac/hardwarebewijs. Defaultdenyprotocollen zijn geen werkende app. Geen nieuwe livepublicatie/migratie/provisioning/kosten/mainmerge. Live blijft PR34; screenshots bevestigen login/read, geen write. Alle oorspronkelijke eisen behouden; werk niet volledig klaar verklaren.
+
 Actueel: expliciete handmatige logboekcontrole en idempotente ontvangst/audit gebouwd/getest,240Node/type/lint/build/D1/gebouwdeWorker/ChromiumPASS. Correctie invalideert die controle; fiscale acceptatie blijft apart.0013 alleen draft/lokaal. EXPLICIT_TRIP_REVIEW.md. Oudere ontbrekende-afrondingsregels zijn hiermee ingehaald.
 
 Nieuwste integriteitsfix: correcties maken een oude controlemarkering ongeldig;235tests/type/lint/build/D1/ChromiumPASS. Expliciete logboekreviewafronding blijft open. TRIP_REVIEW_INVALIDATION.md. Dit is ontwikkeling/draft, geen nieuwe liveversie.

@@ -1,5 +1,11 @@
 # Cloud-taken — RitKompas
 
+## Actuele overdracht — 20 oktober 2026
+
+Actueel draft-PR45 https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/45 , codehead82330265b9aedc2a24533503c23de1d86546768c, branch `cloud/cloud-002-audit-upgrade-guard`, basePR44/e30027ee4914af0007a5a90ae637e42dc9fbea50. Alle10gewijzigdePR45blobs exact remote geverifieerd. SQL0015 weigert auditUPDATE/DELETE; twee gevulde upgrades vanaf0007/0008 behouden bestaande data,0/NULL/rapportbytes en guards.249/249 Node/type/volledige lint en gebouwdeWorker/lokaleD1 PASS; webbuild van ongewijzigde webbron PASS. PR43/PR44 alle20/10gewijzigdeblobs exact remote geverifieerd. [Auditbewijs](docs/TRANSFER/AUDIT_UPGRADE_GUARD.md).
+
+[Concrete autotest-/release-/Mac-opdracht](docs/TRANSFER/CAR_TEST_RELEASE_GATE.md) is nu het hervatpunt. Handmatige webproef vergt nog afgebakende release/migratiebeslissing met actuele live-schema-/herstelcontrole; automatische autotest vergt nativeauth+apphost+capture+queueconsumer en werkelijk iOSSDK/Mac/hardwarebewijs. Defaultdenyprotocollen zijn geen werkende app. Geen nieuwe livepublicatie/migratie/provisioning/kosten/mainmerge. Live blijft PR34; screenshots bevestigen login/read, geen write. Alle oorspronkelijke eisen behouden; werk niet volledig klaar verklaren.
+
 ## Actueel — Apple Kaarten-overdracht gebouwd, 19 oktober 2026
 
 Ontwikkelbasis PR43/226cb59f217e656f3800fd5eb3867388fdb7da77; opvolgende draftbranch `cloud/cloud-005-apple-map-handoff`. Expliciete bevestiging, verse viewergebonden route-read en uitsluitend betrouwbare opgeslagen eindpunten naar vaste Apple-URL zonder referrer. Geen route-/afstandoverschrijving of provideractivering.247/247 Node/type/lint/build en gerichte Chromiumroute-/account-/revocatietests PASS. [Bewijs en Mac-test](docs/TRANSFER/APPLE_MAP_HANDOFF.md).
