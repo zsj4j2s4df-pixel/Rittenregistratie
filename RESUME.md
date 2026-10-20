@@ -1,5 +1,11 @@
 # Hervatpunt — 18 oktober 2026
 
+## Mac heeft PR46 werkelijk uitgevoerd — 20 oktober2026
+
+Ontvangen vanaf exacte PR46-headc615ae62e2f93fce72e735b7a46112fb1301bf32, eigen opvolgende branch `mac/pr46-native-takeover-20261020`. Cloudantwoord bevestigd; live eigenaarlogin/read en ongewijzigde settingswrite + volledige reload/historie PASS. Geen nepritten/provisioning/CFdeploy/migraties. Swift6.1.2/macOSSDK15.5 Corebuild PASS; nieuwe expliciete queueconsumer + volledige actuele Core compile en9Swift/CryptoKit-smokegroepen PASS,249Node-regressies PASS. [Exact bewijs/grenzen](docs/TRANSFER/MAC_PR46_RESULT_2026-10-20.md).
+
+Volledige Xcode/iPhoneSDK/XCTest ontbreken; geen installatie gedaan. Geen apphost gevonden; echte provider/notificationdelegate/capture nog open. Volgende Apple-stap vraagt eigenaarbesluit over grote Xcode-installatie, daarna echte iOSsemantiek/host/auth/queue/capture bouwen/testen. Niet oude loginfix opnieuw doen of deze Macproef als iPhonepass presenteren. `node scripts/run-native-choice-smoke.mjs` is echte Coreuitvoering zonder XCTest/Keychain/netwerk, niet signing of achtergrondapp.
+
 Actuele GitHub-overdracht: [draft-PR46](https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/46), branch `cloud/cloud-014-live-web-handover`, code/documentbasis `b75fa0610425030253459e1b6d256fbd9ae6f8c7` (alle10gewijzigdebestanden exact remote geverifieerd). Hierop volgt uitsluitend de huidige documentcheckpoint. Geen automatische Macontvangst/uitvoering geclaimd.
 
 ## Actueel — eigenaarstoestemming uitgevoerd, 20 oktober2026

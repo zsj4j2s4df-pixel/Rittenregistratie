@@ -1,5 +1,9 @@
 # Persoonlijke acties
 
+## Nieuwste persoonlijke reststap — na Mac-uitvoering PR46
+
+ACT-004: Mac heeft de nieuwste Core werkelijk gebouwd,9Swift/crypto-smokegroepen en249Node-tests PASS. De beperkte live instellingenopslag/herlaadproef is ook PASS. Volledige Xcode/iPhoneSDK/XCTest ontbreken op deze Mac; geen software geïnstalleerd. Voor de grote Xcode-installatie is eerst jouw besluit nodig; eventuele Apple-aanmelding/licentievoorwaarden doe je zelf. Daarna pas iOSbuild/host/auth/meldingen/locatie en echte hardwareacceptatie. [Testbewijs/grenzen](docs/TRANSFER/MAC_PR46_RESULT_2026-10-20.md). Geen nieuwe backend-/Access-/provisioningtoestemming nodig voor de al uitgevoerde release, geen aankoop gevraagd.
+
 ## Actueel — eigenaarstoestemming uitgevoerd, 20 oktober2026
 
 Goedgekeurde PR45-webcode en migraties0008–0015 LIVE: versieba2a2a9d-3a2a-4347-b146-b577d0e33989, deployment9c7c3f88-fd26-44aa-b1ca-3375aa21d122. Vierbindings/Access behouden; anoniem302 op /,/beheer,/api/vehicles PASS.249Node/type/lint/build/gebouwdeWorkerD1 PASS; versleutelde echte privésnapshot lokaal hersteld/geüpgraded met alle oorspronkelijke rijen behouden, SQLintegrity/FK en10livetabelhashes PASS. Echte ingelogde iPhonewrite/native/hardware NIETGETEST. Geen mainmerge/kosten/provisioning. [Releasebewijs inclusief uitvoeringsincident](docs/TRANSFER/WEB_RELEASE_RESULT_2026-10-20.md).

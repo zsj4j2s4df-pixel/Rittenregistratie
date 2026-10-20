@@ -1,5 +1,9 @@
 # Cloud-taken — RitKompas
 
+## MAC-PR46 uitgevoerd — 20 oktober2026
+
+Opvolgende Macbranch `mac/pr46-native-takeover-20261020` begint exact opc615ae62e2f93fce72e735b7a46112fb1301bf32. Centrale eigenaarlogin/read/settingswrite/reload PASS, bestaande instelling inhoudelijk behouden. Corebuild en volledige nieuwe Swift6-Core/deliverycompile +9synthetische uitvoerbare queue/crypto-smokegroepen PASS;249Node PASS. [Resultaat](docs/TRANSFER/MAC_PR46_RESULT_2026-10-20.md). Expliciete single-action queueconsumer toegevoegd, geen automatische drain. Provider/apphost/delegate/capture en echte iOS/hardware blijven OPEN; volledige Xcode/SDK/XCTest ontbreekt, grote installatie eerst eigenaarbesluit. Geen liveconfiguratie/deploy/migraties of nepritten.
+
 Actuele GitHub-overdracht: [draft-PR46](https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/46), branch `cloud/cloud-014-live-web-handover`, code/documentbasis `b75fa0610425030253459e1b6d256fbd9ae6f8c7` (alle10gewijzigdebestanden exact remote geverifieerd). Hierop volgt uitsluitend de huidige documentcheckpoint. Geen automatische Macontvangst/uitvoering geclaimd.
 
 ## Actueel — eigenaarstoestemming uitgevoerd, 20 oktober2026
