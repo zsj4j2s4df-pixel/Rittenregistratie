@@ -1,6 +1,8 @@
 # Cloud-taken — RitKompas
 
-## Native meldingsworkflow — nieuwe bron na PR52
+## Native meldingsworkflow — draft PR53 na PR52
+
+[Draft PR53](https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/53), branch `cloud/cloud-011-native-notification-workflow`; broncommit `89079a538633662fa3804a0b8e1908a0a15d4758`, echte parent PR52 behouden. Alle 12 gewijzigde remote bron/documentblobs exact teruggelezen. Latere voortgangscommit wijzigt alleen documentatie.
 
 Vanaf exact PR52/f1d73cdc86bf32a61970caeff51276594b19cbaa: duurzame pending-before-notification workflow, strikte actie-decoder, behouden iOS-delegate, expliciet toestemmingsscherm en gesloten hostruntime gebouwd. Geen auto-HTTP, fakepending, nativeauth of capture geactiveerd. Mac-prototypebestanden ContentView/ReviewPrototypeView blijven gereserveerd en ongemoeid; Jeepfoto niet uploaden. Eigenaar kiest gratis Mac-testen, geen TestFlightaankoop.
 
