@@ -1,5 +1,9 @@
 # RitKompas — uitvoeringsinstructies
 
+## Nieuwste Mac-Xcodebewijs — 20 oktober2026
+
+Installatie/licentie door eigenaar bevestigd en uitgevoerd; niet opnieuw blokkeren op ontbrekende Xcode.9echte macOS-XCTest, echte iOS Core/UI semantiek,9extra smokeproeven,249+4Node/sourcechecks en eerste unsigned device/simulatorappbuild PASS. [Exacte grenzen](docs/TRANSFER/MAC_XCODE_VALIDATION_2026-10-20.md). UIproef stopt op vergrendelde Mac: handmatig ontgrendelen vragen, geen beveiliging omzeilen. Eén eerste apphost staat in ios/RitKompasApp met bestaande lokale package, geen betaalde koppeling/signing/provisioning. Nativeprovider/delegate/capture en fysieke acceptatie nog open. Oudere Xcode-ontbreektstatus hieronder is historie.
+
 ## Mac-resultaat PR46 — 20 oktober2026
 
 PR46 vanafc615ae62e2f93fce72e735b7a46112fb1301bf32 werkelijk ontvangen/uitgevoerd, Cloudantwoord bevestigd. Echte Macbrowser eigenaarlogin/read/zelfde settingswrite/reload PASS; geen privéwaarden delen. Nieuwe pure queueconsumer met volledige Core-Swift6compile/9uitgevoerde smokeproeven en249Node PASS. [Bewijs en vervolgtaken](docs/TRANSFER/MAC_PR46_RESULT_2026-10-20.md). Volledige Xcode/iPhoneSDK/XCTest ontbreken; niet installeren zonder eigenaarbesluit. Nativehost/provider/delegate/capture/hardware blijven open; geen livepublicatie/CFconfig/migraties onder dit bronwerk. Volgende run gebruikt nieuwste opvolgende Macdraft, niet stalePR30.

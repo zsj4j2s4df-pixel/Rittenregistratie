@@ -1,5 +1,11 @@
 # Hervatpunt — 18 oktober 2026
 
+## Actuele Mac-Xcodecheckpoint — 20 oktober2026
+
+Eigenaar heeft installatie én licentie bevestigd. Xcode26.3/17C529, Swift6.2.4, iPhoneSDK26.2 en officiële iOS26.3.1simulator geïnstalleerd.9echte macOS-XCTest/0failures, iOS Core/UI semantiek,9extra Swift/CryptoKit-smokegroepen,249bestaande Node+4nieuwe sourceguards PASS. Eén eerste apphost hergebruikt lokale package; volledige unsigned iPhone- én simulatorbuild PASS, arm64/minimumiOS15. Geen certificaten/team/provisioning/productionacties. Basis nieuwste CloudreviewPR48/2ceca7922af3490b18db5739f97e571449dc3ab6 behouden.
+
+**Nu alleen UIproef geblokkeerd door vergrendelde Mac.** Virtuele iPhone17 is geboot; appinstallatie/start/visuele controle nog NIET GETEST. Vraag geen installatie-/licentietoestemming opnieuw en omzeil geen lock. Na handmatig ontgrendelen eigenaar: bestaande simulatorbuild gebruiken, beperkte scherm/relaunchcontrole. [Bewijs en exact lokaal hervatpunt](docs/TRANSFER/MAC_XCODE_VALIDATION_2026-10-20.md). Nativeauth/delegate/capture en fysieke iPhone/Jeep blijven open; geen automatische registratieklaarclaim.
+
 ## Actueel — PR47 door Cloud ontvangen en gericht gereviewd
 
 Mac-basis: PR47/head `072315c7d3cf6849e3f1d0bf3b5e05d99eb46af1`, parent PR46/`c615ae62e2f93fce72e735b7a46112fb1301bf32`, tree `f5c07618d1142ace74935c0b83d8632dac77eae2`. Alle11 gewijzigde bestanden exact geverifieerd/import; Cloud-bronreview van delivery/transport/queue en testbron vond geen blokkerend defect in die delta. [Review en actuele grenzen](docs/TRANSFER/CLOUD_PR47_REVIEW_2026-10-20.md).

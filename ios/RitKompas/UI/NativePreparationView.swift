@@ -60,8 +60,8 @@ private final class NativePreparationModel: NSObject, ObservableObject, CLLocati
     }
 }
 
-// Integrate this view into the existing Mac-created app target later. There is
-// intentionally no @main app, signing profile, entitlement or background mode.
+// Reused by the separate first app host. This library view never starts capture,
+// configures signing/entitlements or requests background location.
 @available(iOS 15.0, *)
 @MainActor
 public struct NativePreparationView: View {
@@ -71,7 +71,7 @@ public struct NativePreparationView: View {
     public var body: some View {
         Form {
             Section(header: Text("RitKompas — native voorbereiding")) {
-                Text("Broncodevoorbereiding. Nog geen geïnstalleerde of op iPhone geteste app.")
+                Text("Voorbereidingsprototype. Nog geen werkende of op een echte iPhone geteste rittenregistratie.")
                 Text("Native aanmelden is niet ingericht. Er worden geen accounts, registraties of observaties verzonden.")
             }
             Section(header: Text("Locatietoestemming")) {
