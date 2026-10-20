@@ -1,5 +1,12 @@
 # Actuele voortgang — 18 oktober 2026
 
+## Native meldingsworkflow — nieuwe bron na PR52
+
+Vanaf exact PR52/f1d73cdc86bf32a61970caeff51276594b19cbaa: duurzame pending-before-notification workflow, strikte actie-decoder, behouden iOS-delegate, expliciet toestemmingsscherm en gesloten hostruntime gebouwd. Geen auto-HTTP, fakepending, nativeauth of capture geactiveerd. Mac-prototypebestanden ContentView/ReviewPrototypeView blijven gereserveerd en ongemoeid; Jeepfoto niet uploaden. Eigenaar kiest gratis Mac-testen, geen TestFlightaankoop.
+
+Cloud 257/257 Node/type/lint PASS; acht nieuwe Swift-tests voorbereid, deze delta Swift/iOS/runtime NIET GETEST in Cloud. Mac meldt PR52 afzonderlijk 23 echte XCTest + Core/iOSsemantiek/unsigned builds PASS, bewijscommit volgt bij zijn prototypegroep. [Gerichte nieuwe Mac-opdracht en grenzen](docs/TRANSFER/NATIVE_NOTIFICATION_WORKFLOW.md). Volgende bronwerk: echte nativeauth/secure provider/sessiebootstrap, serverpending-producer en capture. Geen nieuwe livepublicatie, migratie, signing/kosten of mainmerge.
+
+
 ## Nieuwe brongroep na PR51 — native sessiescope (draft)
 
 PR51/head `8d94ce1b6876159319c572c18134fcc9ad9998d4`, tree `d0a032971f4792bc91c2fad8fc1d6df420485865` exact ontvangen; alle6 documentblobs geverifieerd. Beperkte simulatorstart/status/relaunch door Mac PASS, Xcode-/lockblokkade afgehandeld. Nu echte nieuwe bron: minimale read-only backend sessionroute, gedeelde VerifiedNativeSession-actor met viewer/credential/logoutbinding en alleen lokale offlinequeueproof, plus bounded/defaultdeny HTTPSverifier. Geen echte login/tokenstore of hostactivatie. [Codegrenzen en concrete Mac-opdracht](docs/TRANSFER/NATIVE_VERIFIED_SESSION.md).
