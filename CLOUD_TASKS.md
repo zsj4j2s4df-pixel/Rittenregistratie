@@ -1,5 +1,9 @@
 # Cloud-taken — RitKompas
 
+## Macopdracht PR52 uitgevoerd; eigenaarsontwerp apart
+
+23echte Mac-XCTest inclusief14nieuwe PASS, gewijzigde Core/iOSsemantiek en unsigned device/simulatorbuild PASS; geen codefix nodig voor PR52. Mac heeft op eigenaarsverzoek een geïsoleerde native ontwerpproef toegevoegd; geen auth/capture-activatie. Privéfoto nooit importeren naar Cloud/GitHub. [Bewijs en rolverdeling](docs/TRANSFER/MAC_REVIEW_PROTOTYPE_2026-10-20.md). Cloud vervolgt overige nativebrowserauth/securestore/delegate/capturebron, behoudt defaultdeny en neemt Mac-UI pas van exacte drafthead over; niet gelijktijdig ContentView/ReviewPrototypeView overschrijven. Mac blijft Appletoolchain/simulator/toestel/foto; geen productie/mainmerge/kosten. Eigenaar wil eerst gratis Mac-installatie; geen TestFlight klaarclaim.
+
 ## Nieuwe brongroep na PR51 — native sessiescope (draft)
 
 PR51/head `8d94ce1b6876159319c572c18134fcc9ad9998d4`, tree `d0a032971f4792bc91c2fad8fc1d6df420485865` exact ontvangen; alle6 documentblobs geverifieerd. Beperkte simulatorstart/status/relaunch door Mac PASS, Xcode-/lockblokkade afgehandeld. Nu echte nieuwe bron: minimale read-only backend sessionroute, gedeelde VerifiedNativeSession-actor met viewer/credential/logoutbinding en alleen lokale offlinequeueproof, plus bounded/defaultdeny HTTPSverifier. Geen echte login/tokenstore of hostactivatie. [Codegrenzen en concrete Mac-opdracht](docs/TRANSFER/NATIVE_VERIFIED_SESSION.md).

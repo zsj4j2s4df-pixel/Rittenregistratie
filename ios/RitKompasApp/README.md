@@ -1,5 +1,13 @@
 # Eerste native apphost — nog geen werkende ritdetectie
 
+## Beoordeelbaar ontwerp
+
+De host opent nu een geïsoleerde SwiftUI-ontwerpproef: Home, Ritten/filter/details, Rapporten, Mijn Jeep, voorbeeldclassificatie en lokale ontwerpfeedback met expliciet iOS-deelvenster. Alle ritten/cijfers zijn fictief; knoppen starten geen GPS/netwerk/meldingen of echte registratie. De bestaande technische voorbereidingsinterface blijft onder Mijn Jeep bereikbaar. Zie `docs/TRANSFER/MAC_REVIEW_PROTOTYPE_2026-10-20.md` voor werkelijk Mac-bewijs en verdeling met Cloud.
+
+Optionele eigenaarsfoto: plaats uitsluitend lokaal `PrivateJeep.jpg` in deze appbronmap; dit bestand is genegeerd en mag niet worden gecommit/geüpload. Zonder foto toont de app een ingebouwde symbolische achtergrond. Deel geen screenshots/appbundles met privéfoto openbaar. Nativefeedback staat alleen lokaal in UserDefaults en bevat geen aanmeld- of ritgegevens; delen gebeurt alleen via expliciete gebruikeractie.
+
+Oudere beschrijving hieronder gaat over de behouden technische voorbereidingsview, niet over alle nieuwe ontwerpschermen. De ontwerpproef is geen activering van PR52-nativeauth.
+
 Open `RitKompasApp.xcodeproj` in Xcode. De ene app-target gebruikt het bestaande lokale Swiftpackage in de bovenliggende `ios`-map; Core/UI worden niet gekopieerd. Geen externe dependencies, Apple-account, certificaten, CarPlay-entitlement of achtergrondmodi toegevoegd. iPhone-doel vanaf iOS15, Swift6; echte toestelcompatibiliteit blijft te testen.
 
 Deze host toont alleen de bestaande, duidelijk gemarkeerde voorbereidingsinterface. De locatieknop vraagt pas na expliciete gebruikersactie toestemming tijdens gebruik; het scherm meet/verstuurt geen locaties. Het toevoegen van een privacytoelichting bewijst geen capture-, auth-, queue/delegate- of ritregistratie-integratie.

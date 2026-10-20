@@ -35,6 +35,8 @@ yarn-error.log*
 **/.swiftpm/
 **/xcuserdata/
 *.xcuserstate
+# Owner-supplied photo: local review app only, never publish this private asset.
+/ios/RitKompasApp/RitKompasApp/PrivateJeep.jpg
 *.p12
 *.pfx
 *.mobileprovision

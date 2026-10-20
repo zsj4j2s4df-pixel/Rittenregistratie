@@ -1,5 +1,9 @@
 # Actuele voortgang — 18 oktober 2026
 
+## Mac: gewijzigde nativecode getest en beoordelingsprototype gemaakt
+
+PR52 exact ontvangen:23macOS-XCTest/0failures, Corebuild/iOSsemantiek/device-/simulatorbuild PASS. Native SwiftUI-ontwerpproef in dezelfde host, met lokale optionele Jeepfoto en genummerde schermen/voorbeeldrit/filter/details/rapport/feedback. Simulatorbediening en lokale feedbackbehoud/deelvenster gecontroleerd; geen automatische verzending. [Exacte grenzen](docs/TRANSFER/MAC_REVIEW_PROTOTYPE_2026-10-20.md).7gerichte Node-sourceguards PASS; geen volledige Nodebaseline onnodig herhaald. Eigenaar koos gratis Mac-test, Xcodeaccount en echte iPhone ontbreken nog. Geen ondertekende download, geen echte automatische registratie.
+
 ## Nieuwe brongroep na PR51 — native sessiescope (draft)
 
 PR51/head `8d94ce1b6876159319c572c18134fcc9ad9998d4`, tree `d0a032971f4792bc91c2fad8fc1d6df420485865` exact ontvangen; alle6 documentblobs geverifieerd. Beperkte simulatorstart/status/relaunch door Mac PASS, Xcode-/lockblokkade afgehandeld. Nu echte nieuwe bron: minimale read-only backend sessionroute, gedeelde VerifiedNativeSession-actor met viewer/credential/logoutbinding en alleen lokale offlinequeueproof, plus bounded/defaultdeny HTTPSverifier. Geen echte login/tokenstore of hostactivatie. [Codegrenzen en concrete Mac-opdracht](docs/TRANSFER/NATIVE_VERIFIED_SESSION.md).

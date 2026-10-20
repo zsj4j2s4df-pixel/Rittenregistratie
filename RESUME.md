@@ -1,5 +1,9 @@
 # Hervatpunt — 18 oktober 2026
 
+## Mac-nativevalidatie en ontwerpproef — 20 oktober 2026
+
+PR52/f1d73cdc86bf32a61970caeff51276594b19cbaa exact opgehaald. Nieuwe Corebuild,23echte macOS-XCTest (14nieuw)/0failures, iOS Core/UI semantiek en unsigned device/simulatorbuilds PASS. Daarna eigenaarsverzoek representatief klikbaar prototype lokaal gebouwd/getest; bron wordt apart overgedragen, foto blijft ignored/lokaal. [Bewijs, testgrenzen en Mac/Cloudverdeling](docs/TRANSFER/MAC_REVIEW_PROTOTYPE_2026-10-20.md). Eigenaar kiest eerst gratis via Mac; geen TestFlightaankoop. Xcodeaccountlijst leeg en geen echte devices gevonden: eigenaar meldt zelf aan en sluit gewenste iPhone aan. Geen signing/certificaat/provisioning aangemaakt. Cloud doet overige nativebron; Mac doet Applechecks en lokale foto/UI. Geen oude suites of inventaris herhalen zonder nieuwe delta.
+
 ## Nieuwe brongroep na PR51 — native sessiescope (draft)
 
 PR51/head `8d94ce1b6876159319c572c18134fcc9ad9998d4`, tree `d0a032971f4792bc91c2fad8fc1d6df420485865` exact ontvangen; alle6 documentblobs geverifieerd. Beperkte simulatorstart/status/relaunch door Mac PASS, Xcode-/lockblokkade afgehandeld. Nu echte nieuwe bron: minimale read-only backend sessionroute, gedeelde VerifiedNativeSession-actor met viewer/credential/logoutbinding en alleen lokale offlinequeueproof, plus bounded/defaultdeny HTTPSverifier. Geen echte login/tokenstore of hostactivatie. [Codegrenzen en concrete Mac-opdracht](docs/TRANSFER/NATIVE_VERIFIED_SESSION.md).
