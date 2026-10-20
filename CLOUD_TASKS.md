@@ -1,5 +1,13 @@
 # Cloud-taken — RitKompas
 
+## Actueel — Apple Kaarten-overdracht gebouwd, 19 oktober 2026
+
+Ontwikkelbasis PR43/226cb59f217e656f3800fd5eb3867388fdb7da77; opvolgende draftbranch `cloud/cloud-005-apple-map-handoff`. Expliciete bevestiging, verse viewergebonden route-read en uitsluitend betrouwbare opgeslagen eindpunten naar vaste Apple-URL zonder referrer. Geen route-/afstandoverschrijving of provideractivering.247/247 Node/type/lint/build en gerichte Chromiumroute-/account-/revocatietests PASS. [Bewijs en Mac-test](docs/TRANSFER/APPLE_MAP_HANDOFF.md).
+
+Deze run bevat PR37–43 plus deze routegroep: centrale invoercontrole, rapportperioden, veilige refresh, gereviewde ritoverzetting, controle-invalidatie/-afronding en duurzame instellingen-/correctieherhaling. Alles draft; live blijft uitsluitend PR34. Lokale migraties0012–0014 NIET live toegepast. Screenshots eigenaar bewijzen centrale login/read, geen geslaagde write of concrete opslagfout. Geen herprovisioning.
+
+Volgende veilige taak: nativeauth/host/queueconsumer en route-inname verder voorbereiden met behoud van viewer-/sessiebinding; echte Swift/iOS/Safari/Jeep/CarPlay/OBD2-acceptatie blijft Mac/hardware. Productierelease/migraties vereisen afgebakend eigenaarbesluit; geen mainmerge/kosten/securityversoepeling. Oorspronkelijke123REQ/M27 behouden; geen volledigproject-klaarclaim. Lokale githistorie synthetisch: nooit pushen.
+
 ## Herstelbare instellingen/ritcorrecties gebouwd
 
 Vervolg op PR42/0fc1ba99e91d8aa601e1e9747d85a008936ff6ed: serverreceipts voor optionele PATCHrequestcodes + opt-in IndexedDBherstel voor settings/trip-edit. Exactretry geeft historischebevestiging zonder herapply/auditdubbel; na herstel actuele snapshot lezen. Viewerbinding, actorrevocation, target/type/canonicalconflict en atomicreceipt/auditrollback.245Node/type/lint/build/gebouwdeWorkerD1 en Chromiumtabclose/reopen/newerdata/scope/revoke/cleanup PASS; legacy trip/reportrecovery en centraleCRUD/perioden/langePDF blijven PASS. [Bewijs/grenzen](docs/TRANSFER/MUTATION_RECOVERY.md).0014 alleen draft/lokaal, geen livepublicatie/migratie.
