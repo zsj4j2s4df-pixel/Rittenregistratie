@@ -1,5 +1,13 @@
 # Actuele voortgang — 18 oktober 2026
 
+## Actueel — PR47 door Cloud ontvangen en gericht gereviewd
+
+Mac-basis: PR47/head `072315c7d3cf6849e3f1d0bf3b5e05d99eb46af1`, parent PR46/`c615ae62e2f93fce72e735b7a46112fb1301bf32`, tree `f5c07618d1142ace74935c0b83d8632dac77eae2`. Alle11 gewijzigde bestanden exact geverifieerd/import; Cloud-bronreview van delivery/transport/queue en testbron vond geen blokkerend defect in die delta. [Review en actuele grenzen](docs/TRANSFER/CLOUD_PR47_REVIEW_2026-10-20.md).
+
+Werkelijk Mac-bewijs: eigenaarlogin/read, inhoudelijk ongewijzigde instellingenopslag en historie na volledige reload PASS; actuele Core Swift6compile/negen uitgevoerde CryptoKit-smokegroepen en249Node PASS. Geen echte XCTest/iOS/UI/Keychain/hardwarepass. Tripwrite/iPhone/Safari/live retry/revocation blijven niet getest. Cloud heeft geen native tests of volledige Node-suite onnodig herhaald en geen live Cloudflare-handeling gedaan.
+
+Volgende taak: ACT-004 eigenaarbesluit grote Xcode-installatie; daarna iOS/XCTest, apphost/nativeprovider/delegate/capture. Expliciete Core-consumer is nu gebouwd/getest op Mac; echte appintegratie blijft open. Opvolgende Cloud-reviewbranch `cloud/cloud-011-pr47-review` vanaf PR47; bestaande keten en oorspronkelijke eisen behouden. Geen nieuwe deploy-/migratie-/account-/kostentoestemming afleiden uit de beperkte Mac-instellingenproef.
+
 ## Mac-opvolging PR46 — 20 oktober2026
 
 Cloud rechtstreeks bevraagd en antwoord ontvangen, PR46-exactehead als basis behouden. Echte browserlogin/read + bestaande instelling inhoudelijk ongewijzigd opgeslagen en na reload in historie bevestigd. Nieuwe pure nativequeueconsumer controleert actuele actie/sessie en passende receipt, bewaart exactretry bij fout; volledige Swift6-Corecompile en9werkelijk uitgevoerde smoke/crypto-groepen PASS.249Node-regressies PASS. [Bewijs en blokkades](docs/TRANSFER/MAC_PR46_RESULT_2026-10-20.md). Geen Xcode/iPhoneSDK/XCTest; apphost/authprovider/delegate/capture niet af. Geen nieuwe publicatie/migraties of hoofbranchwijziging.
