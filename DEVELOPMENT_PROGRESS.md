@@ -1,5 +1,12 @@
 # Actuele voortgang — 18 oktober 2026
 
+## Eigenaarsfeedback native ontwerp behouden — nieuwe bron boven PR55
+
+Alle ontwerpwensen uit de owner-private Sites-preview staan in [NATIVE_DESIGN_BACKLOG](docs/TRANSFER/NATIVE_DESIGN_BACKLOG.md), naast ongewijzigde123REQ/M27. Native ontwerpproef: filters met iconen/geselecteerde toegankelijkheidsstatus, vaste onderbalk behouden, gedeelde huis/koffer-mapping, accentkeuze en lege/te wissen Home-snelvoorkeur in uitsluitend view-geheugen. Geen auto-classificatie/ritstart/grant of echte adresopslag/sync. Nieuwe privéfoto en Canva-icoon niet opgehaald/gepubliceerd; definitieve assets/vaste achtergrond en adresopslagkeuze OPEN.
+
+7native-sourceguards/diff PASS; nieuwe SwiftUI/build/runtime NIET GETEST in Cloud. Alleen gerichte Mac-build/bedieningscontrole, bundelen met nog open PR55checks. Nativeauth/securestore/capture en echte hardwareacceptatie blijven functionele volgende taken; deze preview is geen werkende ritregistratie. Geen live-, toegangs-, betaal- of mainactie.
+
+
 ## Gecombineerde PR53/54-brongroep — draft PR55
 
 [PR55](https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/55), branch `cloud/cloud-011-pending-choice-recovery`, base PR54. Broncommit `248d874f4613fa1331ee5a66ed9b153fd86eabd3`, tree `076faba80a2bf8fd5876d72420533c94dcfbf71d`; echte ouders PR54 + PR53. Alle 344 lokale/remote blobs en modes exact gecontroleerd; foto afwezig. Deze volgende commit wijzigt alleen voortgangsdocumenten.
