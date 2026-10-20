@@ -1,6 +1,10 @@
 # Persoonlijke acties
 
-## Nu — Mac handmatig ontgrendelen
+## Nu — geen actie nodig voor de afgeronde simulatorproef
+
+Je hebt de Mac ontgrendeld. De voorbereidingsapp is nu op de virtuele iPhone geïnstalleerd, gestart en na afsluiten opnieuw zichtbaar gestart: PASS. [Bewijs](docs/TRANSFER/MAC_SIMULATOR_RESULT_2026-10-20.md). Geen aankoop of nieuwe Apple-instelling gevraagd. Er staat nog geen app op je echte iPhone; aanmelding, meldingen en ritopname moeten eerst verder worden gebouwd. Fysieke installatie/signing blijft een afzonderlijke stap met jouw controle.
+
+## Afgehandeld — Mac handmatig ontgrendelen
 
 ACT-004 Xcode-installatie/licentie **AFGEROND** met jouw bevestiging.9XCTest, iOSbroncontrole en eerste unsigned device-/simulatorbuild PASS. Verdere schermbediening stopte omdat de Mac vergrendeld is; ontgrendel hem zelf en meld dat hier. Geen wachtwoord delen, geen nieuwe aankoop/Apple-instelling nodig voor deze beperkte simulatorproef. [Bewijs/hervatpunt](docs/TRANSFER/MAC_XCODE_VALIDATION_2026-10-20.md). Daarna blijven nativeauth/capture en uiteindelijk persoonlijke signing/toestelacceptatie afzonderlijke vervolgstappen; er staat nog geen app op een echte iPhone.
 

@@ -1,5 +1,9 @@
 # Hervatpunt — 18 oktober 2026
 
+## Hervatten na geslaagde simulatorstart — 20 oktober 2026
+
+Macontgrendeling afgehandeld. Beperkte installatie/start/status/zichtbare herstart van bestaande app op virtuele iPhone 17 PASS; [bewijs](docs/TRANSFER/MAC_SIMULATOR_RESULT_2026-10-20.md). PR50/56ea377c4b28aea9e43068a6b1a5ec549b06697d is ongewijzigde parent van deze vervolgbranch. Geen codewijziging, nieuwe build of herhaalde testsuite nodig voor deze documentgroep. Oudere lockblokkade hieronder is historie. Nativeprovider/sessiebinding, notificationdelegate/delivery en capture/lifecycle blijven open; Cloud bouwt de volgende samenhangende bron/testgroep en geeft Mac een gerichte runtimeopdracht. Geen gevoelige koppeling, productie of fysieke signing zonder toepasselijke toestemming.
+
 ## Cloud heeft PR49 ontvangen en gericht gereviewd
 
 Exacte Mac-basis PR49/`0c52b9819505e03a29622eba447c703b461b56b2`, tree `2202a2b8cdf9aabdfb93c3f6093193dcf1564e6c`, parent PR48/`2ceca7922af3490b18db5739f97e571449dc3ab6`. Alle18 gewijzigde bestanden exact geverifieerd/import. Beperkte Cloud-bronreview van apphost/project/UI/scheme/sourceguards vond geen blokkerend defect; JSON/XML/diffcontrole, geen onnodige testherhaling. [Review en bewijsgrenzen](docs/TRANSFER/CLOUD_PR49_REVIEW_2026-10-20.md).
