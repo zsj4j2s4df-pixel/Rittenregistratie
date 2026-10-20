@@ -1,5 +1,7 @@
 # Naar een echte autotest — 20 oktober 2026
 
+Actuele overdracht: [draft-PR45](https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/45), codehead82330265b9aedc2a24533503c23de1d86546768c. Alle10gewijzigdeblobs exact teruggelezen; daarop volgt uitsluitend deze documentcheckpoint. Cloud heeft geen swift/xcodebuild gevonden. Er is geen Mac-threadtool beschikbaar; dit GitHubbestand is een concrete opdracht, geen bewezen Macontvangst/uitvoering. Automatische autotest blijft geblokkeerd op werkende native integratie en echte Apple-toolchain, plus apart goedgekeurde release/migraties. Er zijn nog overige veilige ontwikkeltaken; die zijn niet als voltooid afgesloten.
+
 ## Exacte ontwikkelbasis en geteste grens
 
 PR44 head e30027ee4914af0007a5a90ae637e42dc9fbea50, tree ca55ef6e41ac16d43343cb148d1ad371bc970cf7. Opvolgende audit-upgradebranch: `cloud/cloud-002-audit-upgrade-guard`. PR43 alle20 gewijzigde blobs en PR44 alle10 gewijzigde blobs exact teruggelezen. Bestaande PR-keten behouden; geen mainmerge.
