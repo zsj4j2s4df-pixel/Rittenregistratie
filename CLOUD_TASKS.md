@@ -1,5 +1,9 @@
 # Cloud-taken — RitKompas
 
+## Mac-Xcode en eerste apphost — 20 oktober2026
+
+ACT-004 installatie/licentie niet langer open: eigenaarbevestiging verwerkt, Xcode26.3+SDK/platform klaar.9echte macOS-XCTest, iOS Core/UI semantiek,9extra smokegroepen en249+4Node/sourcechecks PASS. Eén eerste app-target met bestaande lokale package, geen tweede Gitrepo/dependencies/team; volledige unsigned device- en simulatorbuild PASS. [Uitvoeringsbewijs](docs/TRANSFER/MAC_XCODE_VALIDATION_2026-10-20.md). Macvergrendeling blokkeert alleen verdere computerbediening/visuele simulatorproef; eigenaar moet ontgrendelen, niet omzeilen. Provider/delegate/capture/fysieke acceptatie blijven open. CloudPR48-review als parent behouden; geen productie-/Access-/DBwijziging.
+
 ## Actueel — PR47 door Cloud ontvangen en gericht gereviewd
 
 Mac-basis: PR47/head `072315c7d3cf6849e3f1d0bf3b5e05d99eb46af1`, parent PR46/`c615ae62e2f93fce72e735b7a46112fb1301bf32`, tree `f5c07618d1142ace74935c0b83d8632dac77eae2`. Alle11 gewijzigde bestanden exact geverifieerd/import; Cloud-bronreview van delivery/transport/queue en testbron vond geen blokkerend defect in die delta. [Review en actuele grenzen](docs/TRANSFER/CLOUD_PR47_REVIEW_2026-10-20.md).

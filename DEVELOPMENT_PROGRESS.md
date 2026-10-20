@@ -1,5 +1,9 @@
 # Actuele voortgang — 18 oktober 2026
 
+## Xcode-nativevervolg — 20 oktober2026
+
+Xcode/SDK/platform met eigenaarstoestemming en persoonlijke licentiebevestiging ingericht.9macOS-XCTest/0failures + iOS Core/UI semantische typechecks PASS;9extra Swift/CryptoKit-smokegroepen PASS;249bestaande Node en4nieuwe bronchecks PASS. Eerste echte apphost hergebruikt package, unsigned iPhone- en simulatorbuild PASS. Virtuele iPhone17 bootPASS, visuele appstart NIET GETEST door Macvergrendeling; handmatige ontgrendeling gevraagd. [Bewijs](docs/TRANSFER/MAC_XCODE_VALIDATION_2026-10-20.md). Geen signing/accounts/production; nativeauth/delegate/capture en hardware blijven open. CloudreviewPR48 behouden.
+
 ## Actueel — PR47 door Cloud ontvangen en gericht gereviewd
 
 Mac-basis: PR47/head `072315c7d3cf6849e3f1d0bf3b5e05d99eb46af1`, parent PR46/`c615ae62e2f93fce72e735b7a46112fb1301bf32`, tree `f5c07618d1142ace74935c0b83d8632dac77eae2`. Alle11 gewijzigde bestanden exact geverifieerd/import; Cloud-bronreview van delivery/transport/queue en testbron vond geen blokkerend defect in die delta. [Review en actuele grenzen](docs/TRANSFER/CLOUD_PR47_REVIEW_2026-10-20.md).

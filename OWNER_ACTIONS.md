@@ -1,5 +1,9 @@
 # Persoonlijke acties
 
+## Nu — Mac handmatig ontgrendelen
+
+ACT-004 Xcode-installatie/licentie **AFGEROND** met jouw bevestiging.9XCTest, iOSbroncontrole en eerste unsigned device-/simulatorbuild PASS. Verdere schermbediening stopte omdat de Mac vergrendeld is; ontgrendel hem zelf en meld dat hier. Geen wachtwoord delen, geen nieuwe aankoop/Apple-instelling nodig voor deze beperkte simulatorproef. [Bewijs/hervatpunt](docs/TRANSFER/MAC_XCODE_VALIDATION_2026-10-20.md). Daarna blijven nativeauth/capture en uiteindelijk persoonlijke signing/toestelacceptatie afzonderlijke vervolgstappen; er staat nog geen app op een echte iPhone.
+
 ## Nieuwste persoonlijke reststap — na Mac-uitvoering PR46
 
 ACT-004: Mac heeft de nieuwste Core werkelijk gebouwd,9Swift/crypto-smokegroepen en249Node-tests PASS. De beperkte live instellingenopslag/herlaadproef is ook PASS. Volledige Xcode/iPhoneSDK/XCTest ontbreken op deze Mac; geen software geïnstalleerd. Voor de grote Xcode-installatie is eerst jouw besluit nodig; eventuele Apple-aanmelding/licentievoorwaarden doe je zelf. Daarna pas iOSbuild/host/auth/meldingen/locatie en echte hardwareacceptatie. [Testbewijs/grenzen](docs/TRANSFER/MAC_PR46_RESULT_2026-10-20.md). Geen nieuwe backend-/Access-/provisioningtoestemming nodig voor de al uitgevoerde release, geen aankoop gevraagd.
