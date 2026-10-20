@@ -1,5 +1,9 @@
 # Persoonlijke acties
 
+## Nu — gratis iPhonetest voorbereiden
+
+Je koos eerst gratis via de Mac, zonder Apple Developer-abonnement. Het klikbare ontwerp met jouw foto draait in de simulator;23echte native Mac-tests en de unsigned builds slagen. Voor installatie op je eigen iPhone: meld je persoonlijk aan in Xcode → Settings → Apple Accounts → Add Apple Account en sluit de gewenste iPhone met kabel aan, ontgrendeld. Xcodeaccountlijst was leeg en devicectl vond geen toestel. Deel geen wachtwoord/verificatiecode. Vertrouwen/Developer Mode en eventuele voorwaarden bevestig je zelf wanneer nodig. Er is nog geen certificaat/provisioning aangemaakt of fysieke installatie uitgevoerd; daarvoor controleren we eerst exact team/toestel en vragen het concrete akkoord. Gratis profielen verlopen volgens Apple na7dagen; later opnieuw bouwen/installeren. TestFlightlink vereist ander distributietraject, dus nu geen downloadlink beloven. [Bewijs](docs/TRANSFER/MAC_REVIEW_PROTOTYPE_2026-10-20.md).
+
 ## Nu — geen actie nodig voor de afgeronde simulatorproef
 
 Je hebt de Mac ontgrendeld. De voorbereidingsapp is nu op de virtuele iPhone geïnstalleerd, gestart en na afsluiten opnieuw zichtbaar gestart: PASS. [Bewijs](docs/TRANSFER/MAC_SIMULATOR_RESULT_2026-10-20.md). Geen aankoop of nieuwe Apple-instelling gevraagd. Er staat nog geen app op je echte iPhone; aanmelding, meldingen en ritopname moeten eerst verder worden gebouwd. Fysieke installatie/signing blijft een afzonderlijke stap met jouw controle.

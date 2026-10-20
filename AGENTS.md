@@ -1,5 +1,9 @@
 # RitKompas — uitvoeringsinstructies
 
+## Laatste eigenaarssturing — Macwerk hier, overige ontwikkeling Cloud
+
+Eerst gratis via Mac testen, geen TestFlightabonnement of kosten. Mac heeft PR52 werkelijk Applegetest (23macOS-XCTest/Core/iOSsemantiek/builds PASS) en een geïsoleerd klikbaar beoordelingsprototype gemaakt. [Checkpoint](docs/TRANSFER/MAC_REVIEW_PROTOTYPE_2026-10-20.md). Mac beheert Applebuild/simulator/toestel/localefoto; Cloud doet overige nativebron en neemt veilige UIbron over na PR. PrivateJeep.jpg is uitsluitend lokaal/ignored; nooit naar GitHub/Canva/Cloud uploaden. Prototype nooit voor werkende ritregistratie laten doorgaan. Xcodeaccount en fysieke iPhone ontbreken; eigenaar meldt persoonlijk aan en sluit toestel aan, daarna concreet signingakkoord. Geen oudere installatie-/nulmeting herhalen.
+
 ## Simulatorproef na ontgrendeling — 20 oktober 2026
 
 Eigenaar heeft Mac handmatig ontgrendeld. Bestaande app geïnstalleerd, gestart, zichtbaar gecontroleerd en na terminate opnieuw gestart op virtuele iPhone 17: PASS. Statusknop behoudt ongevraagde locatietoestemming; lifecycle toont actief/niet actief. [Exact bewijs en grenzen](docs/TRANSFER/MAC_SIMULATOR_RESULT_2026-10-20.md). Geen fysieke installatie, GPS, native login of meldingen bewezen. PR50-review behouden; geen nieuwe toolchaininstallatie of volledige nulmeting. Volgende ontwikkeling onder Cloudregie: nativeprovider/sessiebinding en delegate/delivery/capture binnen bestaande veiligheidsgrenzen; Mac voert gerichte Applechecks uit.
