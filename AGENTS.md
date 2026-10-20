@@ -1,5 +1,9 @@
 # RitKompas — uitvoeringsinstructies
 
+## Mac-resultaat PR46 — 20 oktober2026
+
+PR46 vanafc615ae62e2f93fce72e735b7a46112fb1301bf32 werkelijk ontvangen/uitgevoerd, Cloudantwoord bevestigd. Echte Macbrowser eigenaarlogin/read/zelfde settingswrite/reload PASS; geen privéwaarden delen. Nieuwe pure queueconsumer met volledige Core-Swift6compile/9uitgevoerde smokeproeven en249Node PASS. [Bewijs en vervolgtaken](docs/TRANSFER/MAC_PR46_RESULT_2026-10-20.md). Volledige Xcode/iPhoneSDK/XCTest ontbreken; niet installeren zonder eigenaarbesluit. Nativehost/provider/delegate/capture/hardware blijven open; geen livepublicatie/CFconfig/migraties onder dit bronwerk. Volgende run gebruikt nieuwste opvolgende Macdraft, niet stalePR30.
+
 ## Actueel — eigenaarstoestemming uitgevoerd, 20 oktober2026
 
 Goedgekeurde PR45-webcode en migraties0008–0015 LIVE: versieba2a2a9d-3a2a-4347-b146-b577d0e33989, deployment9c7c3f88-fd26-44aa-b1ca-3375aa21d122. Vierbindings/Access behouden; anoniem302 op /,/beheer,/api/vehicles PASS.249Node/type/lint/build/gebouwdeWorkerD1 PASS; versleutelde echte privésnapshot lokaal hersteld/geüpgraded met alle oorspronkelijke rijen behouden, SQLintegrity/FK en10livetabelhashes PASS. Echte ingelogde iPhonewrite/native/hardware NIETGETEST. Geen mainmerge/kosten/provisioning. [Releasebewijs inclusief uitvoeringsincident](docs/TRANSFER/WEB_RELEASE_RESULT_2026-10-20.md).

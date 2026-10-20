@@ -1,5 +1,9 @@
 # Actuele voortgang — 18 oktober 2026
 
+## Mac-opvolging PR46 — 20 oktober2026
+
+Cloud rechtstreeks bevraagd en antwoord ontvangen, PR46-exactehead als basis behouden. Echte browserlogin/read + bestaande instelling inhoudelijk ongewijzigd opgeslagen en na reload in historie bevestigd. Nieuwe pure nativequeueconsumer controleert actuele actie/sessie en passende receipt, bewaart exactretry bij fout; volledige Swift6-Corecompile en9werkelijk uitgevoerde smoke/crypto-groepen PASS.249Node-regressies PASS. [Bewijs en blokkades](docs/TRANSFER/MAC_PR46_RESULT_2026-10-20.md). Geen Xcode/iPhoneSDK/XCTest; apphost/authprovider/delegate/capture niet af. Geen nieuwe publicatie/migraties of hoofbranchwijziging.
+
 Actuele GitHub-overdracht: [draft-PR46](https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/46), branch `cloud/cloud-014-live-web-handover`, code/documentbasis `b75fa0610425030253459e1b6d256fbd9ae6f8c7` (alle10gewijzigdebestanden exact remote geverifieerd). Hierop volgt uitsluitend de huidige documentcheckpoint. Geen automatische Macontvangst/uitvoering geclaimd.
 
 ## Actueel — eigenaarstoestemming uitgevoerd, 20 oktober2026
