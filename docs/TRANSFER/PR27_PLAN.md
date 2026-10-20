@@ -1,5 +1,7 @@
 # PR27 — aanvullende eisen en uitvoerplan
 
+Native ontwerpfeedback blijft aanvullend behouden in [NATIVE_DESIGN_BACKLOG](NATIVE_DESIGN_BACKLOG.md). Voorkeur/adres/accent is geen classificatie, routebewijs of sessiegrant; nieuwe privémedia blijven owner-private/lokaal. Functionele M27-eisen blijven ongewijzigd.
+
 Actueel na Mac49/51: Xcode/licentie/lock afgehandeld; echte macOS-XCTest/iOSsemantiek/unsigned builds en beperkte simulatorstart PASS, geen fysieke of automatische ritacceptatie. Nieuwe gedeelde native sessiebinding en minimale server-scopebron als draft gebouwd; [gerichte Mac-testopdracht](NATIVE_VERIFIED_SESSION.md). Originele M27-eisen blijven behouden; oudere ontbrekende-toolchain/hoststatus is waar ingehaald historie.
 
 > **Mac-resultaat:** [MAC_CLOUD_ACK_RESULT](MAC_CLOUD_ACK_RESULT.md) bewijst de retourproef via GitHub; directe tweewegthreadsturing niet beschikbaar. Mac-corecompile PASS, XCTest/iOS/hardware NIET GETEST. [Zero Trust](MAC_ZERO_TRUST_2026-10-19.md) is specifiek goedgekeurd/toegepast, backend blijft gesloten. Deze Cloudplanning met M27-ID's is leidend; [MAC27-controlekaart](PR27_EXECUTION_PLAN.md) is aanvullend, geen concurrerende nummering.

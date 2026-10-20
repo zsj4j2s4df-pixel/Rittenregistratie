@@ -6,6 +6,8 @@ import UIKit
 struct ReviewPrototypeView<TechnicalView: View>: View {
     let technicalView: () -> TechnicalView
     @State private var tab = 0
+    @State private var accent = ReviewAccent.sand
+    @State private var quickPreference: String?
     @State private var filter = "Alle"
     @State private var selectedTrip: ReviewTrip?
     @State private var showChoice = false
@@ -16,7 +18,7 @@ struct ReviewPrototypeView<TechnicalView: View>: View {
     @State private var reportPreview = false
     @State private var showTechnical = false
 
-    private let sand = Color(red: 0.84, green: 0.76, blue: 0.62)
+    private var sand: Color { accent.color }
     private let background = Color(red: 0.055, green: 0.075, blue: 0.075)
     private let panel = Color(red: 0.10, green: 0.13, blue: 0.13)
     private let muted = Color(red: 0.65, green: 0.70, blue: 0.68)
@@ -74,6 +76,27 @@ struct ReviewPrototypeView<TechnicalView: View>: View {
                 Image(systemName: "location.north.circle").font(.system(size: 38, weight: .ultraLight)).foregroundColor(sand)
             }
             hero
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Snelvoorkeur · ontwerpproef").font(.system(size: 14, weight: .semibold))
+                HStack(spacing: 12) {
+                    ForEach(["Zakelijk", "Privé"], id: \.self) { kind in
+                        Button { quickPreference = kind } label: {
+                            Label(kind, systemImage: classificationSymbol(kind))
+                                .font(.system(size: 14, weight: .semibold))
+                                .frame(maxWidth: .infinity).padding(.vertical, 13)
+                                .foregroundColor(quickPreference == kind ? background : .white)
+                                .background(quickPreference == kind ? sand : panel).cornerRadius(12)
+                        }
+                        .accessibilityAddTraits(quickPreference == kind ? .isSelected : [])
+                        .accessibilityIdentifier("review.preference.\(kind)")
+                    }
+                }
+                Text(quickPreference.map { "Snelvoorkeur: \($0). Kies bij het ritvoorbeeld nog expliciet het type." } ?? "Nog geen snelvoorkeur gekozen.")
+                    .font(.system(size: 12)).foregroundColor(muted)
+                Text("Alleen zolang deze ontwerpproef open is. Dit start of classificeert geen echte rit.")
+                    .font(.system(size: 12)).foregroundColor(muted)
+                if quickPreference != nil { Button("Wis snelvoorkeur") { quickPreference = nil }.font(.system(size: 12)) }
+            }
             HStack {
                 Label("Jouw Jeep, jouw overzicht", systemImage: "car.side").font(.system(size: 13, weight: .medium))
                 Spacer()
@@ -127,9 +150,11 @@ struct ReviewPrototypeView<TechnicalView: View>: View {
             HStack(spacing: 6) {
                 ForEach(["Alle", "Zakelijk", "Privé"], id: \.self) { item in
                     Button { filter = item } label: {
-                        Text(item).font(.system(size: 13, weight: .semibold)).frame(maxWidth: .infinity).padding(.vertical, 11)
+                        Label(item, systemImage: item == "Alle" ? "list.bullet" : classificationSymbol(item)).font(.system(size: 13, weight: .semibold)).frame(maxWidth: .infinity).padding(.vertical, 11)
                             .background(filter == item ? sand : panel).foregroundColor(filter == item ? background : muted).cornerRadius(12)
                     }
+                    .accessibilityAddTraits(filter == item ? .isSelected : [])
+                    .accessibilityIdentifier("review.filter.\(item)")
                 }
             }
             HStack { Text("VOORBEELDOVERZICHT").tracking(1.5); Spacer(); Text("\(ReviewTrip.examples.filter { filter == "Alle" || $0.kind == filter }.count) ritten") }.font(.system(size: 10, weight: .medium, design: .monospaced)).foregroundColor(muted)
@@ -147,7 +172,7 @@ struct ReviewPrototypeView<TechnicalView: View>: View {
                 GeometryReader { proxy in
                     HStack(spacing: 4) { Capsule().fill(background).frame(width: proxy.size.width * 0.68); Capsule().fill(Color.white.opacity(0.5)) }
                 }.frame(height: 15)
-                HStack { Label("68% zakelijk", systemImage: "circle.fill"); Spacer(); Text("32% privé") }.font(.system(size: 12, weight: .medium))
+                HStack { Label("68% zakelijk", systemImage: classificationSymbol("Zakelijk")); Spacer(); Label("32% privé", systemImage: classificationSymbol("Privé")) }.font(.system(size: 12, weight: .medium))
                 Divider().overlay(background.opacity(0.15))
                 Text("Een helder overzicht voor je administratie.").font(.system(size: 16, weight: .medium))
                 Text("Fictieve cijfers · geen fiscale controle of vergoeding berekend.").font(.system(size: 12)).opacity(0.7)
@@ -161,6 +186,14 @@ struct ReviewPrototypeView<TechnicalView: View>: View {
         VStack(alignment: .leading, spacing: 22) {
             title("Mijn Jeep", subtitle: "Gemaakt voor jouw Wrangler.")
             hero
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Appaccent · ontwerpproef").font(.system(size: 16, weight: .semibold))
+                Picker("Appaccent", selection: $accent) {
+                    ForEach(ReviewAccent.allCases) { value in Text(value.rawValue).tag(value) }
+                }.pickerStyle(.segmented)
+                Text("Alleen voor deze geopende ontwerpproef. Niet bewaard of gesynchroniseerd.")
+                    .font(.system(size: 12)).foregroundColor(muted)
+            }.padding(18).background(panel).cornerRadius(20)
             VStack(spacing: 0) {
                 info("Voertuig", "Wrangler 4xe", "car.side")
                 info("Bouwjaar", "2021", "calendar")
@@ -181,7 +214,7 @@ struct ReviewPrototypeView<TechnicalView: View>: View {
             Text("Wat voor rit\nwordt dit?").font(.system(size: 36, weight: .bold, design: .rounded))
             Text("Probeer de keuze voor Zakelijk of Privé. Er wordt geen echte rit gestart of opgeslagen.").foregroundColor(muted)
             ForEach(["Zakelijk", "Privé"], id: \.self) { kind in
-                action(kind, kind == "Zakelijk" ? "briefcase" : "house") { classification = kind; driving = true; showChoice = false }
+                action(kind, classificationSymbol(kind)) { classification = kind; driving = true; showChoice = false }
             }
             Button("Annuleren") { showChoice = false }.frame(maxWidth: .infinity)
             Spacer()
@@ -211,6 +244,7 @@ struct ReviewPrototypeView<TechnicalView: View>: View {
         Button { tab = index } label: {
             VStack(spacing: 6) { Image(systemName: icon).font(.system(size: 20)); Text(label).font(.system(size: 10, weight: .medium)) }.foregroundColor(tab == index ? sand : muted).frame(maxWidth: .infinity)
         }.accessibilityIdentifier("review.tab.\(index)")
+            .accessibilityAddTraits(tab == index ? .isSelected : [])
     }
     private func action(_ text: String, _ icon: String, perform: @escaping () -> Void) -> some View {
         Button(action: perform) { HStack { Image(systemName: icon); Text(text).fontWeight(.semibold); Spacer(); Image(systemName: "arrow.right") }.font(.system(size: 14)).padding(17).foregroundColor(background).background(sand).cornerRadius(14) }
@@ -218,8 +252,15 @@ struct ReviewPrototypeView<TechnicalView: View>: View {
     private func metric(_ label: String, _ value: String, _ unit: String) -> some View {
         VStack(alignment: .leading, spacing: 8) { Text(label).font(.system(size: 11)).foregroundColor(muted); HStack(alignment: .firstTextBaseline, spacing: 4) { Text(value).font(.system(size: 28, weight: .semibold, design: .rounded)); Text(unit).font(.system(size: 12)).foregroundColor(sand) } }.frame(maxWidth: .infinity, alignment: .leading).padding(17).background(panel).cornerRadius(18)
     }
+    private func classificationSymbol(_ kind: String) -> String {
+        switch kind {
+        case "Zakelijk": return "briefcase"
+        case "Privé": return "house"
+        default: return "questionmark.circle"
+        }
+    }
     private func badge(_ kind: String) -> some View {
-        Label(kind, systemImage: kind == "Zakelijk" ? "briefcase" : "house").font(.system(size: 10, weight: .semibold)).padding(.horizontal, 9).padding(.vertical, 6).foregroundColor(kind == "Zakelijk" ? sand : green).background((kind == "Zakelijk" ? sand : green).opacity(0.12)).cornerRadius(8)
+        Label(kind, systemImage: classificationSymbol(kind)).font(.system(size: 10, weight: .semibold)).padding(.horizontal, 9).padding(.vertical, 6).foregroundColor(kind == "Zakelijk" ? sand : green).background((kind == "Zakelijk" ? sand : green).opacity(0.12)).cornerRadius(8)
     }
     private func tripRow(_ trip: ReviewTrip) -> some View {
         Button { selectedTrip = trip } label: {
@@ -235,6 +276,18 @@ struct ReviewPrototypeView<TechnicalView: View>: View {
     }
     private func info(_ key: String, _ value: String, _ icon: String) -> some View {
         HStack { Image(systemName: icon).frame(width: 22).foregroundColor(sand); Text(key).foregroundColor(muted); Spacer(); Text(value) }.font(.system(size: 12)).padding(.vertical, 16)
+    }
+}
+
+private enum ReviewAccent: String, CaseIterable, Identifiable, Hashable {
+    case sand = "Zand", olive = "Olijf", slate = "Leisteen"
+    var id: String { rawValue }
+    var color: Color {
+        switch self {
+        case .sand: return Color(red: 0.84, green: 0.76, blue: 0.62)
+        case .olive: return Color(red: 0.72, green: 0.78, blue: 0.57)
+        case .slate: return Color(red: 0.68, green: 0.78, blue: 0.85)
+        }
     }
 }
 
