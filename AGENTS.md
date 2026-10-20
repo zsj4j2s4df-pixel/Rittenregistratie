@@ -1,5 +1,9 @@
 # RitKompas — uitvoeringsinstructies
 
+## Simulatorproef na ontgrendeling — 20 oktober 2026
+
+Eigenaar heeft Mac handmatig ontgrendeld. Bestaande app geïnstalleerd, gestart, zichtbaar gecontroleerd en na terminate opnieuw gestart op virtuele iPhone 17: PASS. Statusknop behoudt ongevraagde locatietoestemming; lifecycle toont actief/niet actief. [Exact bewijs en grenzen](docs/TRANSFER/MAC_SIMULATOR_RESULT_2026-10-20.md). Geen fysieke installatie, GPS, native login of meldingen bewezen. PR50-review behouden; geen nieuwe toolchaininstallatie of volledige nulmeting. Volgende ontwikkeling onder Cloudregie: nativeprovider/sessiebinding en delegate/delivery/capture binnen bestaande veiligheidsgrenzen; Mac voert gerichte Applechecks uit.
+
 ## Nieuwste Mac-Xcodebewijs — 20 oktober2026
 
 Installatie/licentie door eigenaar bevestigd en uitgevoerd; niet opnieuw blokkeren op ontbrekende Xcode.9echte macOS-XCTest, echte iOS Core/UI semantiek,9extra smokeproeven,249+4Node/sourcechecks en eerste unsigned device/simulatorappbuild PASS. [Exacte grenzen](docs/TRANSFER/MAC_XCODE_VALIDATION_2026-10-20.md). UIproef stopt op vergrendelde Mac: handmatig ontgrendelen vragen, geen beveiliging omzeilen. Eén eerste apphost staat in ios/RitKompasApp met bestaande lokale package, geen betaalde koppeling/signing/provisioning. Nativeprovider/delegate/capture en fysieke acceptatie nog open. Oudere Xcode-ontbreektstatus hieronder is historie.

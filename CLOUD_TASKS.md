@@ -1,5 +1,9 @@
 # Cloud-taken — RitKompas
 
+## Mac-simulatorgroep afgerond — 20 oktober 2026
+
+Na handmatige ontgrendeling bestaande app op virtuele iPhone 17 geïnstalleerd, gestart en zichtbaar herstart: PASS. Statuscontrole vraagt geen toestemming; actief/niet-actiefweergave gezien. [Bewijs en beperkingen](docs/TRANSFER/MAC_SIMULATOR_RESULT_2026-10-20.md). Geen echte iPhone of registratieacceptatie. PR50-review behouden. Cloud: vervolg met nativeprovider/sessiebinding, notificationdelegate/delivery en capture volgens bestaande planning; implementeer/test samenhangend veilig bronwerk en documenteer concrete Mac-runtimechecks. Geen tweede volledige audit of oude Xcode-/lockvraag.
+
 ## Cloud heeft PR49 ontvangen en gericht gereviewd
 
 Exacte Mac-basis PR49/`0c52b9819505e03a29622eba447c703b461b56b2`, tree `2202a2b8cdf9aabdfb93c3f6093193dcf1564e6c`, parent PR48/`2ceca7922af3490b18db5739f97e571449dc3ab6`. Alle18 gewijzigde bestanden exact geverifieerd/import. Beperkte Cloud-bronreview van apphost/project/UI/scheme/sourceguards vond geen blokkerend defect; JSON/XML/diffcontrole, geen onnodige testherhaling. [Review en bewijsgrenzen](docs/TRANSFER/CLOUD_PR49_REVIEW_2026-10-20.md).

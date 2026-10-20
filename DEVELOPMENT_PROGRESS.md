@@ -1,5 +1,9 @@
 # Actuele voortgang — 18 oktober 2026
 
+## Zichtbare simulatorproef PASS — 20 oktober 2026
+
+Mac handmatig ontgrendeld; reeds gebouwde voorbereidingsapp lokaal geïnstalleerd en gestart op virtuele iPhone 17. UI toont correcte prototypegrenzen, ongevraagde locatietoestemming en actieve/inactieve status. Statusknop en terminate/relaunch met zichtbaar teruggekeerd scherm PASS. [Uitvoering](docs/TRANSFER/MAC_SIMULATOR_RESULT_2026-10-20.md). Geen automatische prompt/login of toestemming verleend; GPS, meldingen, fysieke iPhone/CarPlay/OBD2 NIET GETEST. Alleen documentatie gewijzigd boven PR50, geen nieuwe publicatie of suites herhaald.
+
 ## Cloud heeft PR49 ontvangen en gericht gereviewd
 
 Exacte Mac-basis PR49/`0c52b9819505e03a29622eba447c703b461b56b2`, tree `2202a2b8cdf9aabdfb93c3f6093193dcf1564e6c`, parent PR48/`2ceca7922af3490b18db5739f97e571449dc3ab6`. Alle18 gewijzigde bestanden exact geverifieerd/import. Beperkte Cloud-bronreview van apphost/project/UI/scheme/sourceguards vond geen blokkerend defect; JSON/XML/diffcontrole, geen onnodige testherhaling. [Review en bewijsgrenzen](docs/TRANSFER/CLOUD_PR49_REVIEW_2026-10-20.md).
