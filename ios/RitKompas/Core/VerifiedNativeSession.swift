@@ -129,4 +129,7 @@ public actor VerifiedNativeSession: SessionAccess, ChoiceSessionBinding {
         closed = true; pinnedViewerID = nil; discardProof()
         try await credentials.clear()
     }
+    // Vehicle selection closes this binding without logging out the shared
+    // credential store. A closed binding can never reopen on a late response.
+    public func close() { closed = true; pinnedViewerID = nil; discardProof() }
 }

@@ -2,8 +2,8 @@
 import Foundation
 
 // Fixed same-origin read-only scope endpoint, no cookies/cache/redirects/login.
-// Not activated by the preparation app. Real credential acquisition remains a
-// separate reviewed integration. No JWT payload is decoded as an identity proof.
+// The host supplies a candidate from explicit interactive login or its dedicated
+// Keychain store. No JWT payload is decoded as an identity proof.
 @available(iOS 15.0, macOS 12.0, *)
 public actor HTTPSNativeScopeVerifier: NativeScopeVerifier {
     private let session: URLSession
@@ -22,9 +22,17 @@ public actor HTTPSNativeScopeVerifier: NativeScopeVerifier {
     public func close() { session.invalidateAndCancel() }
     private struct Envelope: Decodable { let session: NativeVerifiedScope }
     public func verify(origin: APIOrigin, vehicleID: String, candidate: NativeCredentialCandidate) async throws -> NativeVerifiedScope {
+        guard validNativeIdentifier(vehicleID) else { throw NativeAPIError.invalidPath }
+        let result: Envelope = try await read(origin: origin, segments: ["api", "vehicles", vehicleID, "session"], candidate: candidate)
+        return result.session
+    }
+    public func discoverVehicles(origin: APIOrigin, candidate: NativeCredentialCandidate) async throws -> VehiclesEnvelope {
+        try await read(origin: origin, segments: ["api", "vehicles"], candidate: candidate)
+    }
+    private func read<Response: Decodable>(origin: APIOrigin, segments: [String], candidate: NativeCredentialCandidate) async throws -> Response {
         try Task.checkCancellation()
-        guard validNativeIdentifier(vehicleID), validNativeHeaders(candidate.headers) else { throw NativeAPIError.invalidSessionGrant }
-        let url = try origin.url(segments: ["api", "vehicles", vehicleID, "session"])
+        guard validNativeHeaders(candidate.headers) else { throw NativeAPIError.invalidSessionGrant }
+        let url = try origin.url(segments: segments)
         guard origin.contains(url) else { throw NativeAPIError.invalidOrigin }
         var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData)
         request.httpMethod = "GET"; request.setValue("application/json", forHTTPHeaderField: "Accept")
@@ -52,7 +60,7 @@ public actor HTTPSNativeScopeVerifier: NativeScopeVerifier {
                 guard data.count < maximum else { throw NativeAPIError.responseTooLarge }
                 data.append(byte)
             }
-            do { return try JSONDecoder().decode(Envelope.self, from: data).session }
+            do { return try JSONDecoder().decode(Response.self, from: data) }
             catch { throw NativeAPIError.invalidResponse }
         } catch let error as NativeAPIError { throw error }
         catch is CancellationError { throw CancellationError() }
