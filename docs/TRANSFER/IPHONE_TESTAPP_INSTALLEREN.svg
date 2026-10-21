@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="1120" viewBox="0 0 920 1120" role="img" aria-labelledby="title desc">
+<title id="title">RitKompas gratis op iPhone installeren</title><desc id="desc">Schematische instructie in zes stappen via een Mac met Xcode. Nog geen downloadlink of installatiebewijs.</desc>
+<rect width="920" height="1120" fill="#eee5d6"/>
+<g font-family="Arial, sans-serif" fill="#292e30"><text x="50" y="65" font-size="34" font-weight="bold">RitKompas op je iPhone</text><text x="50" y="104" font-size="21">Gratis test via de Mac • geen TestFlight nodig</text>
+<rect x="40" y="140" width="840" height="116" rx="20" fill="#fffaf2" stroke="#c9bda9"/>
+<circle cx="94" cy="196" r="28" fill="#343b3c"/><text x="94" y="205" text-anchor="middle" fill="white" font-size="25">1</text>
+<text x="145" y="184" font-size="23" font-weight="bold">MAC VOORBEREIDEN</text><text x="145" y="220" font-size="20">Codex Mac bouwt en test de app.</text>
+<rect x="40" y="280" width="840" height="116" rx="20" fill="#fffaf2" stroke="#c9bda9"/>
+<circle cx="94" cy="336" r="28" fill="#343b3c"/><text x="94" y="345" text-anchor="middle" fill="white" font-size="25">2</text>
+<text x="145" y="324" font-size="23" font-weight="bold">IPHONE AANSLUITEN</text><text x="145" y="360" font-size="20">Kabel aansluiten • ontgrendelen • Vertrouw</text>
+<rect x="40" y="420" width="840" height="116" rx="20" fill="#fffaf2" stroke="#c9bda9"/>
+<circle cx="94" cy="476" r="28" fill="#343b3c"/><text x="94" y="485" text-anchor="middle" fill="white" font-size="25">3</text>
+<text x="145" y="464" font-size="23" font-weight="bold">EIGEN APPLE ACCOUNT</text><text x="145" y="500" font-size="20">Jij logt in • Mac kiest Personal Team</text>
+<rect x="40" y="560" width="840" height="116" rx="20" fill="#fffaf2" stroke="#c9bda9"/>
+<circle cx="94" cy="616" r="28" fill="#343b3c"/><text x="94" y="625" text-anchor="middle" fill="white" font-size="25">4</text>
+<text x="145" y="604" font-size="23" font-weight="bold">ONTWIKKELAARSMODUS</text><text x="145" y="640" font-size="20">Alleen indien gevraagd • herstart bevestigen</text>
+<rect x="40" y="700" width="840" height="116" rx="20" fill="#fffaf2" stroke="#c9bda9"/>
+<circle cx="94" cy="756" r="28" fill="#343b3c"/><text x="94" y="765" text-anchor="middle" fill="white" font-size="25">5</text>
+<text x="145" y="744" font-size="23" font-weight="bold">INSTALLEREN MET XCODE</text><text x="145" y="780" font-size="20">Mac kiest jouw iPhone en klikt ▶ Run</text>
+<rect x="40" y="840" width="840" height="116" rx="20" fill="#fffaf2" stroke="#c9bda9"/>
+<circle cx="94" cy="896" r="28" fill="#343b3c"/><text x="94" y="905" text-anchor="middle" fill="white" font-size="25">6</text>
+<text x="145" y="884" font-size="23" font-weight="bold">TESTEN MET DRIE ACCOUNTS</text><text x="145" y="920" font-size="20">Dennis • Ingrid • Jesse — apart aanmelden</text>
+<text x="50" y="1030" font-size="21" font-weight="bold">Nog geen downloadlink beschikbaar</text><text x="50" y="1065" font-size="19">Schema, geen echt installatiescherm • gratis build tijdelijk geldig</text></g></svg>

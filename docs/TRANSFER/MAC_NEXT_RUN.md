@@ -1,5 +1,7 @@
 # Eén opdracht voor Codex Mac — na Cloudrelease 20 oktober2026
 
+**Nieuwste eigenaaropdracht:** gebruik voortaan [MAC_FINISH_AND_RELEASE](MAC_FINISH_AND_RELEASE.md), met huidige PR58-bron, geautoriseerde huidige Cloudflare-update, werkelijke connectorblokkade en native/web/iPhone/CarPlay/Copilot-taken. Onderstaande PR46-opdracht blijft uitsluitend historie en is niet de actuele startbasis.
+
 > **Ontvangen en gedeeltelijk uitgevoerd door Mac op20oktober:** [daadwerkelijk resultaat](MAC_PR46_RESULT_2026-10-20.md). Toolchain/Core en nieuwe expliciete queueconsumer getest, live instellingenwrite/herlaadproef PASS. Volledige Xcode/iPhoneSDK/XCTest en apphost ontbreken; resterende native-/hardwarestappen blijven open. Niet opnieuw dezelfde inventaris/loginfix/voorziening uitvoeren. Onderstaande oorspronkelijke opdracht blijft de scope, niet de claim dat alle stappen al af zijn.
 
 Actuele GitHub-overdracht: [draft-PR46](https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/46), branch `cloud/cloud-014-live-web-handover`, code/documentbasis `b75fa0610425030253459e1b6d256fbd9ae6f8c7` (alle10gewijzigdebestanden exact remote geverifieerd). Hierop volgt uitsluitend de huidige documentcheckpoint. Geen automatische Macontvangst/uitvoering geclaimd.

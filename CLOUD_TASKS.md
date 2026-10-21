@@ -1,4 +1,13 @@
+> Eigenaaraanvulling: Mac moet Dennis, Ingrid en Jesse afzonderlijk testen (identiteit/rechten, opslaan+reload, historie, veilige accountwisseling en native receipt/herstel). Nog NIET GETEST. Zie docs/TRANSFER/MAC_FINISH_AND_RELEASE.md en de nieuwe visuele gratis iPhone-installatiehandleiding docs/TRANSFER/IPHONE_TESTAPP_INSTALLEREN.md. Geen nieuwe accounts/rechten of geslaagde installatie claimen.
+
 # Cloud-taken — RitKompas
+
+## Nieuwe eigenaaropdracht — Mac afronding + Cloudflare toegestaan, uitvoering geblokkeerd
+
+[Concrete Mac-uitvoeropdracht en kopieerbare prompt](docs/TRANSFER/MAC_FINISH_AND_RELEASE.md). Eigenaar vraagt Mac nativeapp én mobiel/breedbeeldweb af te maken, GitHub/Cloudflare bij te werken en gratis iPhone-installatie/test en CarPlay/Copilot-plan te verzorgen. Bestaande RitKompas-update met noodzakelijke additieve0016 is nu geautoriseerd na actuele backup/live-/schema-/bindingcontroles. Geen nieuwe toestemming voor precies dit pakket vragen; kosten/mainmerge/securityuitschakeling/destructief herstel/nieuwe gevoelige koppelingen blijven uitgesloten.
+
+Cloudflare.search, whoami en readonly execute geven MCP -32603 Internal error; geen liveidentiteit/version/schema/backup kon deze run worden gelezen en GEEN deploy/migratie is uitgevoerd. Geen alternatieve CLIcredentials geconfigureerd. GitHub werkt. PR58/head2bdec13662864e44c44fac6d0a3340b913ce168e blijft gecontroleerde bronbasis, lokale nieuwe bundle48modules/23assets en gebouwdeWorkerrookproef PASS; [hashmanifest](docs/TRANSFER/PR58_RELEASE_MANIFEST.json). Geen actueel livebewijs of nieuwe Swiftpass claimen. Mac leest actuele liveversie met eigen toegestane toegang, voert alleen noodzakelijke Applechecks uit en levert daadwerkelijke iPhoneinstallatie of concrete persoonlijke blokkade. CarPlayhardware/entitlement en Copilotclient/OAuth/licentie/consent blijven open, geen integraties geactiveerd.
+
 
 ## Nieuwe implementatie — draft PR58 boven exact PR57
 
