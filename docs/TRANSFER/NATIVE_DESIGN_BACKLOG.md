@@ -1,5 +1,7 @@
 # Native ontwerpbacklog — eigenaarsfeedback 20 oktober 2026
 
+Nieuwe opdracht uit PR57 is deels als echte bron uitgevoerd: [ADDRESS_THEME_IMPLEMENTATION](ADDRESS_THEME_IMPLEMENTATION.md). Centrale locaties/ritkeuze en webthema lokaal bewezen; native Home/Willys/themaclientbron nog Applecheck, logo403 en nativeauth/adressenbediening/capture blijven open. Oudere uitsluitend-accent/view-memory-beperkingen gelden niet meer voor het nieuwe volledige thema of centrale adressen; privacy-/defaultdeny-eisen blijven.
+
 ## Nieuwste opdracht — volledige Desert-stijl en echte adresintegratie
 
 Lees [de complete Cloud-uitvoeropdracht](OWNER_DESIGN_REGISTRATION_HANDOVER.md). Basis PR56/head `8fecda44bc613f4bd463b2bda6bb1b2814454ba6`; bestaande bron, historie en 123REQ/M27 behouden. Nieuw: Home Zakelijk/Privé zonder scrollen bovenaan, Willys-icoon Mijn Jeep, echt De Voetel-logo voor Zakelijk, volledig Desert én Anthracite, meerdere zakelijke én privéadressen met plusknop en koppeling aan echte registratie/settingscode. Dit vervangt oudere accent-only/één-adres/view-memory-beperkingen voor het nieuwe werk.

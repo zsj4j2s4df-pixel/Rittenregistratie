@@ -28,15 +28,20 @@ export function SettingsManager({settings,busy,onSave}:{settings:VehicleSettings
   <label>Reden adres- of tariefwijziging<input value={reason} onChange={e=>setReason(e.target.value)} maxLength={500} required disabled={locked}/></label>
   {error&&<p role="alert">{error} Controleer na een verbindingsfout eerst de opgeslagen instellingen; probeer daarna met dezelfde invoer opnieuw.</p>}
   {notice&&<p role="status">{notice}</p>}
-  <h3>Zakelijke voorkeursadressen</h3>
-  {!settings.addresses.length&&<p>Geen voorkeursadressen ingesteld.</p>}
-  {settings.addresses.map(a=><div className="setting-card" key={a.id}><div><strong>{a.label}</strong><p>{a.address} · {a.enabled?'Actief':'Uitgeschakeld'}</p><p>{a.note}</p></div>
-   <button disabled={locked} onClick={()=>{addressId.current=a.id;setAddress({...a});}}>Adres bewerken</button>
-   <button disabled={locked} onClick={()=>save(()=>replaceSetting(settings,'address',{...a,enabled:!a.enabled}))}>{a.enabled?'Adres uitschakelen':'Adres inschakelen'}</button>
-   <button disabled={locked} onClick={()=>{if(window.confirm(`Voorkeursadres “${a.label}” verwijderen? Bestaande ritten en rapporten blijven behouden.`))void save(()=>({...settings,addresses:settings.addresses.filter(v=>v.id!==a.id)}),()=>{if(address.id===a.id)resetAddress();});}}>Adres verwijderen</button>
-  </div>)}
+  {(['business','private'] as const).map(kind=><section key={kind} aria-label={kind==='business'?'Zakelijke locaties':'Privélocaties'}>
+   <h3>{kind==='business'?'Zakelijke locaties':'Privélocaties'}</h3>
+   <button type="button" disabled={locked} onClick={()=>{addressId.current='';setAddress({id:'',label:'',address:'',enabled:true,note:'',kind});document.getElementById('central-address-label')?.focus();}}>+ {kind==='business'?'Zakelijke locatie':'Privélocatie'} toevoegen</button>
+   {!settings.addresses.some(a=>(a.kind??'business')===kind)&&<p>Nog geen locaties van deze soort.</p>}
+   {settings.addresses.filter(a=>(a.kind??'business')===kind).map(a=><div className="setting-card" key={a.id}><div><strong>{a.label}</strong><p>{a.address} · {a.enabled?'Actief':'Uitgeschakeld'}{a.businessRole==='customer'?' · Klant':a.businessRole==='supplier'?' · Leverancier':''}</p><p>{a.note}</p></div>
+    <button disabled={locked} onClick={()=>{addressId.current=a.id;setAddress({...a});}}>Adres bewerken</button>
+    <button disabled={locked} onClick={()=>save(()=>replaceSetting(settings,'address',{...a,enabled:!a.enabled}))}>{a.enabled?'Adres uitschakelen':'Adres inschakelen'}</button>
+    <button disabled={locked} onClick={()=>{if(window.confirm(`Voorkeursadres “${a.label}” verwijderen? Bestaande ritten en rapporten blijven behouden.`))void save(()=>({...settings,addresses:settings.addresses.filter(v=>v.id!==a.id)}),()=>{if(address.id===a.id)resetAddress();});}}>Adres verwijderen</button>
+   </div>)}
+  </section>)}
   <form className="editor-grid" onSubmit={e=>{e.preventDefault();void save(()=>{addressId.current ||=crypto.randomUUID();return replaceSetting(settings,'address',{...address,id:address.id||addressId.current});},resetAddress);}}>
-   <label>Naam voorkeursadres<input required maxLength={100} value={address.label} disabled={locked} onChange={e=>setAddress({...address,label:e.target.value})}/></label>
+   <label>Soort locatie<select aria-label="Soort locatie" disabled={locked} value={address.kind??'business'} onChange={e=>setAddress({...address,kind:e.target.value as 'business'|'private',businessRole:undefined})}><option value="business">Zakelijk</option><option value="private">Privé</option></select></label>
+   {(address.kind??'business')==='business'&&<label>Zakelijke relatie<select aria-label="Zakelijke relatie" disabled={locked} value={address.businessRole??''} onChange={e=>setAddress({...address,businessRole:e.target.value?e.target.value as 'customer'|'supplier':undefined})}><option value="">Overig / niet gekozen</option><option value="customer">Klant</option><option value="supplier">Leverancier</option></select></label>}
+   <label>Naam voorkeursadres<input id="central-address-label" required maxLength={100} value={address.label} disabled={locked} onChange={e=>setAddress({...address,label:e.target.value})}/></label>
    <label>Voorkeursadres<input required maxLength={450} value={address.address} disabled={locked} onChange={e=>setAddress({...address,address:e.target.value})}/></label>
    <label>Adresnotitie<textarea maxLength={1000} value={address.note} disabled={locked} onChange={e=>setAddress({...address,note:e.target.value})}/></label>
    <label><input type="checkbox" checked={address.enabled} disabled={locked} onChange={e=>setAddress({...address,enabled:e.target.checked})}/>Adres actief</label>

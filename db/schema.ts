@@ -76,6 +76,8 @@ export const routePoints = sqliteTable('route_points', {
 }, table => [index('idx_route_points_trip_time').on(table.tripId, table.recordedAt)]);
 
 export const businessAddresses = sqliteTable('business_addresses', {
+  kind: text('kind', { enum: ['business', 'private'] }).notNull().default('business'),
+  businessRole: text('business_role', { enum: ['customer', 'supplier'] }),
   vehicleId: text('vehicle_id').references(() => vehicles.id),
   id: text('id').primaryKey(),
   label: text('label').notNull(),
@@ -87,7 +89,10 @@ export const businessAddresses = sqliteTable('business_addresses', {
   notes: text('notes'),
   createdBy: text('created_by').notNull().references(() => users.id),
   createdAt: integer('created_at', { mode: 'timestamp' }).notNull(),
-});
+}, table => [
+  check('address_kind', sql`${table.kind} IN ('business','private')`),
+  check('address_business_role', sql`${table.businessRole} IS NULL OR (${table.kind}='business' AND ${table.businessRole} IN ('customer','supplier'))`),
+]);
 
 export const mileageRates = sqliteTable('mileage_rates', {
   vehicleId: text('vehicle_id').references(() => vehicles.id),

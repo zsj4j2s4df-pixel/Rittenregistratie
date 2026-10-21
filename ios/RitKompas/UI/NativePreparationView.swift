@@ -96,6 +96,7 @@ public struct NativePreparationView: View {
                 Text("Onbekende routes en ontbrekende segmenten worden niet ingevuld. Hardware-, energie- en herstarttests moeten op een echte iPhone plaatsvinden.")
             }
         }
+        .nativeFormAppearance()
         .navigationTitle("Voorbereiding")
         .onAppear { model.phaseChanged(scenePhase) }
         .onChange(of: scenePhase) { model.phaseChanged($0) }

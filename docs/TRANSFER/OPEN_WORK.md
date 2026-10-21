@@ -1,5 +1,14 @@
 # Actuele open werkkaart — 19 oktober2026
 
+## Nieuwe implementatie — draft PR58 boven exact PR57
+
+[PR58](https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/58), branch `cloud/cloud-011-address-kinds-desert`, base PR57. Broncommit `55aa187c89e3f085e330c5b7af75d10b4f9efbf2`, tree `136392ca68a39d8fd4c1e6ee90347d960da0a903`; alle364lokale/remote blobs en modes exact geverifieerd, geen privéfoto. Volgende commit actualiseert uitsluitend voortgang.
+
+Werkelijk ontvangen PR57/head `a40684226f256c3b6bb235240caf8d04cd3c94f3`, parent PR56/8fecda44bc613f4bd463b2bda6bb1b2814454ba6, tree43acdc68b1a1992f318174ba37b8b0292141b0ac. Compatibele0016-adresuitbreiding, echte centrale plus-/beheer-/ritkeuze, getypeerde native settingsclient, Homekeuzes boven scroll/foto, Willysfront en volledigethema-bron gebouwd. [Exact bewijs, grenzen en Mac-opdracht](ADDRESS_THEME_IMPLEMENTATION.md).
+
+PASS273Node/type/lint/build/gebouwdeWorker-lokaleD1 en mobiele Chromium→HTTP/SQLite (vierlocaties, Desertreload, rittekst/historie en logout). Nieuwe Swift/iOS NIET GETEST in Cloud; vier extra XCTestgevallen voorbereid, verwacht41totaal alleen na werkelijke Macuitvoering. De Voetelbron403 vanuit Cloud, logoasset OPEN; geen ANWB/AI-vervanger of private media. Nativeauth/securestore/host/adressenbediening/capture blijven OPEN. Geen tweede lokale adresdemo.0016 uitsluitend draft, geen livepublicatie/migratie/kosten/mainmerge. Volgende grens: gerichte Applebuild en echte native sessiebootstrap, daarna centrale nativeadressen-UI aansluiten; alle123REQ/M27 behouden.
+
+
 ## Eigenaarsfeedback native ontwerp behouden — nieuwe bron boven PR55
 
 Alle ontwerpwensen uit de owner-private Sites-preview staan in [NATIVE_DESIGN_BACKLOG](NATIVE_DESIGN_BACKLOG.md), naast ongewijzigde123REQ/M27. Native ontwerpproef: filters met iconen/geselecteerde toegankelijkheidsstatus, vaste onderbalk behouden, gedeelde huis/koffer-mapping, accentkeuze en lege/te wissen Home-snelvoorkeur in uitsluitend view-geheugen. Geen auto-classificatie/ritstart/grant of echte adresopslag/sync. Nieuwe privéfoto en Canva-icoon niet opgehaald/gepubliceerd; definitieve assets/vaste achtergrond en adresopslagkeuze OPEN.

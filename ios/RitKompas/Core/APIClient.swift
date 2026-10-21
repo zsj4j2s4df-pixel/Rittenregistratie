@@ -118,6 +118,17 @@ public actor APIClient: PendingTripChoiceSource {
         let result: ChoiceEnvelope = try await send(segments: ["api", "vehicles", action.context.vehicleID, "journeys", action.context.proposalID, "choice"], method: "POST", body: JSONEncoder().encode(input), expectedViewerID: action.context.viewerID)
         return result.receipt
     }
+    private struct NativeSettingsEnvelope: Decodable, Sendable { let settings: NativeVehicleSettings }
+    public func settings(vehicleID: String, expectedViewerID: String) async throws -> NativeVehicleSettings {
+        guard validNativeIdentifier(expectedViewerID) else { throw NativeAPIError.invalidSessionGrant }
+        let result: NativeSettingsEnvelope = try await send(segments: ["api", "vehicles", vehicleID, "settings"], expectedViewerID: expectedViewerID)
+        return result.settings
+    }
+    public func saveSettings(vehicleID: String, input: NativeSettingsEdit, expectedViewerID: String) async throws -> NativeVehicleSettings {
+        guard input.isValid, validNativeIdentifier(expectedViewerID) else { throw NativeAPIError.invalidPath }
+        let result: NativeSettingsEnvelope = try await send(segments: ["api", "vehicles", vehicleID, "settings"], method: "PATCH", body: JSONEncoder().encode(input), expectedViewerID: expectedViewerID)
+        return result.settings
+    }
     private struct PendingChoicesEnvelope: Decodable, Sendable { let pending: NativePendingChoices }
     public func pendingChoices(vehicleID: String, expectedViewerID: String) async throws -> NativePendingChoices {
         guard validNativeIdentifier(expectedViewerID) else { throw NativeAPIError.invalidSessionGrant }

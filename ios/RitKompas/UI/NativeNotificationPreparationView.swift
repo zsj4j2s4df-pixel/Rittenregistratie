@@ -105,6 +105,7 @@ public struct NativeNotificationPreparationView: View {
                 Text("Aanmelden en automatische ritregistratie zijn nog niet aangesloten. Er wordt geen voorbeeldrit of meldingskeuze als echte registratie verstuurd.")
             }
         }
+        .nativeFormAppearance()
         .navigationTitle("Meldingen")
         .task { await model.refreshPermission() }
         .onChange(of: phase) { value in
