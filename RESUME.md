@@ -2,6 +2,12 @@
 
 # Hervatpunt — 18 oktober 2026
 
+## Nieuwe opnamegroep — alleen tijdens gebruik, nog geen definitieve automatische rit
+
+[Actueel bron-/test-/acceptatiebewijs](docs/TRANSFER/FOREGROUND_CAPTURE_2026-10-21.md). Boven exact PR60/fc0cf5a gebouwd: expliciete GPS-opt-in tijdens gebruik, conservatieve start-/120sstopvoorstellen, quality-/gapguards, scoped encrypted96observaties-outbox en expliciete authenticatedexactretry naar bestaande observatieroute. Geen automatische classificatie/bestuurder/journey/materialisatie/achtergrondclaim.58echte native-XCTest en279Node/lint/Core/iOSsemantiek/unsigned beide appbuilds PASS. Simulator geïnstalleerd/gestart, visuele bediening NIET GETEST doordat Mac opnieuw vergrendeld raakte. Geen echte GPS/observaties of accountregistratie naar productie.
+
+Cloudflareplugin faalt nog; bestaande Wrangler niet aangemeld. Concrete beperkte officiële lokale aanmelding met productrechten gevraagd, nog NIET geautoriseerd/uitgevoerd. Bestaande releasegoedkeuring geldt maar backup/upgrade/livepreflight blijft verplicht. Geen iPhone verbonden, Xcode Apple Accounts live leeg; persoonlijk aanmelden/aansluiten nodig. Dennis/Ingrid/Jesse echte tests NIET GETEST. Publicatie, fysieke installatie en volledige automatische opname blijven OPEN. Geen main/kosten/live/Accesswijziging of privéassetupload. Eerst persoonlijke stappen, dan exact huidige code/releasepreflight/echte acceptatie, geen volledige nulmeting herhalen.
+
 ## Mac vervolgt PR59 — actuele bron en testgrenzen
 
 PR59/head `accfb507c431e8a1a2845e16efbc912ce4e5f417` ontvangen; wijzigingen uit gestopte Mac-chat behouden/afgemaakt. [Actueel resultaat en hervatopdracht](docs/TRANSFER/MAC_PR59_RESULT_2026-10-21.md). Native interactieve Accesslogin/Keychain/serverbinding, echte centrale adresbediening, encrypted exactretry/recovery en veilige logoutbron gebouwd; publieke originele De Voetelasset toegevoegd, privéfoto/Canva niet. 50echte Mac-XCTest/0failures, iOS Core/UI semantiek en actuele unsigned device/simulatorbuilds PASS. Chromium→HTTP/SQLite multi-adres/historie/logout en6breedtes375–1920 PASS. Sourceguards zijn geen echte accountacceptatie.

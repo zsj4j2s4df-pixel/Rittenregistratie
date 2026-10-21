@@ -15,7 +15,7 @@ public enum NativeAPIError: Error, LocalizedError, Sendable {
         case .responseTooLarge: return "De serverreactie is te groot; er zijn geen gegevens afgeknipt."
         case .redirectRefused: return "Aanmelden of een doorverwijzing is vereist. De aanvraag wordt niet doorgestuurd."
         case .invalidResponse: return "Geen geldige API-reactie ontvangen."
-        case .signInRequired: return "Meld opnieuw aan via de nog te implementeren native aanmeldkoppeling."
+        case .signInRequired: return "Meld opnieuw aan via Centrale registratie."
         case .accessDenied: return "Geen actieve toegang tot dit voertuig of deze app-instantie."
         case .conflict: return "Gegevens, account of registratie zijn gewijzigd. Controleer de actuele gegevens."
         case .unavailable: return "De beveiligde backend is niet beschikbaar."

@@ -79,6 +79,8 @@ final class NativeAccountModel: ObservableObject {
     private var producer: PendingTripChoiceProducer?
     private var workflow: TripChoiceWorkflow?
     private var recovery: NativeSettingsRecovery?
+    private var captureOutbox: NativeCaptureOutbox?
+    private weak var capture: NativeCaptureModel?
     private var retry: NativeSettingsEdit?
     var hasRetry: Bool { retry != nil }
     private weak var notifications: NativeNotificationModel?
@@ -86,7 +88,7 @@ final class NativeAccountModel: ObservableObject {
         KeychainNativeCredentials(origin: Self.origin,
             service: (Bundle.main.bundleIdentifier ?? "RitKompas") + ".native-access-v1")
     }
-    func configure(_ notifications: NativeNotificationModel) { self.notifications = notifications }
+    func configure(_ notifications: NativeNotificationModel, capture: NativeCaptureModel) { self.notifications = notifications; self.capture = capture }
     // Login, vehicle changes and logout advance generation before any await.
     // Late data from a closed account must never repopulate the new screen.
     func open(cookie: NativeAccessCookie? = nil) async {
@@ -117,13 +119,14 @@ final class NativeAccountModel: ObservableObject {
     func selectVehicle(_ id: String, persist: Bool = false) async {
         guard !busy, vehicles.contains(where: { $0.id == id }), let credentials else { return }
         busy = true; generation = UUID(); let started = generation
-        let old = client; let oldAccess = access; let oldProducer = producer; let oldRecovery = recovery
+        let old = client; let oldAccess = access; let oldProducer = producer; let oldRecovery = recovery; let oldCapture = captureOutbox
+        capture?.disconnect(); captureOutbox = nil
         client = nil; access = nil; producer = nil; workflow = nil; retry = nil; recovery = nil
         settings = nil; pending = nil; actions = []; viewerID = ""; vehicleID = ""
         notifications?.bind(store: UnconfiguredTripChoiceStore())
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         UNUserNotificationCenter.current().removeAllDeliveredNotifications()
-        await old?.close(); await oldAccess?.close(); await oldProducer?.clear(); await oldRecovery?.close()
+        await old?.close(); await oldAccess?.close(); await oldProducer?.clear(); await oldRecovery?.close(); await oldCapture?.close()
         guard generation == started else { return }
         let session = VerifiedNativeSession(origin: Self.origin, vehicleID: id, credentials: credentials, verifier: HTTPSNativeScopeVerifier())
         let api = APIClient(origin: Self.origin, access: session)
@@ -151,6 +154,10 @@ final class NativeAccountModel: ObservableObject {
             vehicleID = id; viewerID = scope.viewerID; settings = fresh
             notifications?.bind(store: flow)
             actions = queued; recovery = recoveryStore; retry = restored
+            let captureStore = NativeCaptureOutbox(persistence: EncryptedChoiceQueuePersistence(
+                directory: directory.appendingPathComponent("Capture-" + recoveryID), keyProvider: key),
+                binding: session, viewerID: scope.viewerID, vehicleID: id)
+            captureOutbox = captureStore; capture?.configure(outbox: captureStore, transport: api)
             busy = false; message = "Verbonden met de centrale registratie."
         } catch { await failed(error, started: started) }
     }
@@ -236,13 +243,14 @@ final class NativeAccountModel: ObservableObject {
     @discardableResult
     private func close(clearCredentials: Bool) async -> UUID {
         generation = UUID(); let closedGeneration = generation
-        let oldClient = client; let oldAccess = access; let oldCredentials = credentials; let oldProducer = producer; let oldRecovery = recovery
+        let oldClient = client; let oldAccess = access; let oldCredentials = credentials; let oldProducer = producer; let oldRecovery = recovery; let oldCapture = captureOutbox
+        capture?.disconnect(); captureOutbox = nil
         client = nil; access = nil; credentials = nil; producer = nil; workflow = nil; retry = nil; recovery = nil
         vehicles = []; vehicleID = ""; viewerID = ""; settings = nil; pending = nil; actions = []
         notifications?.bind(store: UnconfiguredTripChoiceStore())
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         UNUserNotificationCenter.current().removeAllDeliveredNotifications()
-        await oldClient?.close(); await oldAccess?.close(); await oldProducer?.clear(); await oldRecovery?.close()
+        await oldClient?.close(); await oldAccess?.close(); await oldProducer?.clear(); await oldRecovery?.close(); await oldCapture?.close()
         if clearCredentials {
             credentialDeletionFailed = false
             do { try await (oldCredentials ?? credentialStore()).clear() }
@@ -257,6 +265,7 @@ final class NativeAccountModel: ObservableObject {
 
 struct NativeAccountView: View {
     @StateObject private var model = NativeAccountModel()
+    @StateObject private var capture = NativeCaptureModel()
     @EnvironmentObject private var notifications: NativeNotificationModel
     @Environment(\.scenePhase) private var phase
     @State private var browser: NativeLoginBrowser?
@@ -356,17 +365,19 @@ struct NativeAccountView: View {
                     }
                 } }
                 Section {
+                    if !model.viewerID.isEmpty { Text("Ritdetectie hieronder vereist afzonderlijk inschakelen en iOS-toestemming.") }
                     NavigationLink("Meldingstoestemming", destination: NativeNotificationPreparationView())
                     Link("Ritten, historie en rapporten op de website", destination: URL(string: NativeAccountModel.origin.value + "/beheer")!)
-                    Text("Automatische ritdetectie is nog niet aangesloten. Een keuzemelding vereist een werkelijk ontvangen open rit.").font(.footnote)
+                    Text("Volledige automatische ritregistratie is nog niet gereed. Een keuzemelding vereist een werkelijk ontvangen open rit.").font(.footnote)
                 }
+                if !model.viewerID.isEmpty { NativeCaptureSection(model: capture) }
             }
             .nativeFormAppearance()
             .navigationTitle("RitKompas")
-            .task { model.configure(notifications) }
+            .task { model.configure(notifications, capture: capture) }
             .onChange(of: model.viewerID) { _ in resetForm() }
             .onChange(of: phase) { value in
-                if value != .active { resetForm() }
+                if value != .active { resetForm(); capture.stop() }
             }
             .overlay { if phase != .active { Color(UIColor.systemBackground).overlay(Text("RitKompas").font(.title)) } }
         }

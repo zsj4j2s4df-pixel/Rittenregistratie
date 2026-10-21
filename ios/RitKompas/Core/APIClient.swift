@@ -13,7 +13,7 @@ final class RefuseRedirects: NSObject, URLSessionTaskDelegate, @unchecked Sendab
     }
 }
 @available(iOS 15.0, macOS 12.0, *)
-public actor APIClient: PendingTripChoiceSource {
+public actor APIClient: PendingTripChoiceSource, NativeCaptureTransport {
     private let origin: APIOrigin
     private let access: any SessionAccess
     private let session: URLSession
@@ -109,6 +109,15 @@ public actor APIClient: PendingTripChoiceSource {
     // Reconstructing it with new IDs risks duplicate registrations/observations.
     public func register(vehicleID: String, input: DeviceRegistration) async throws -> DeviceEnvelope {
         try await send(segments: ["api", "vehicles", vehicleID, "devices"], method: "POST", body: JSONEncoder().encode(input))
+    }
+    public func registerCapture(vehicleID: String, input: DeviceRegistration, expectedViewerID: String) async throws -> RegisteredDevice {
+        let result: DeviceEnvelope = try await send(segments: ["api", "vehicles", vehicleID, "devices"], method: "POST", body: JSONEncoder().encode(input), expectedViewerID: expectedViewerID)
+        return result.device
+    }
+    private struct DetectionEnvelope: Decodable, Sendable { let observation: DetectionObservation }
+    public func ingestCapture(vehicleID: String, deviceID: String, input: DetectionInput, expectedViewerID: String) async throws -> DetectionObservation {
+        let result: DetectionEnvelope = try await send(segments: ["api", "vehicles", vehicleID, "devices", deviceID, "detections"], method: "POST", body: JSONEncoder().encode(input), expectedViewerID: expectedViewerID)
+        return result.observation
     }
     private struct ChoiceInput: Encodable { let requestId: String; let expectedRevision: Int; let classification: TripChoice; let reason: String }
     private struct ChoiceEnvelope: Decodable, Sendable { let receipt: TripChoiceServerReceipt }
