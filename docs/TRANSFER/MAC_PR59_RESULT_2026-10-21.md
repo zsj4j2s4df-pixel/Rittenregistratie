@@ -79,6 +79,26 @@ beloven zodra privéadressen bestaan. Herstel bestaande connector-/CLItoegang
 via eigenaarroute, voer exact PR59-releasepreflight uit en publiceer daarna pas.
 Niet opnieuw toestemming voor dezelfde al toegestane release vragen.
 
+### Aanvullende alleen-lezen dashboardpreflight na bron-PR
+
+Bestaande UI verder gecontroleerd, geen nieuwe Cloudflare-identiteit of credentials:
+Worker-Settings bevat ACCESS_AUDIENCE/ACCESS_ISSUER/APP_ORIGIN en één DB-binding naar
+de bestaande RitKompas-D1. Waarden corresponderen met het bestaande Access-app-
+audience/issuer en APP_ORIGIN; DB-ID is gelijk aan de historische release. Runtime
+2026-05-22 + nodejs_compat, geen Git-buildkoppeling ingesteld of aangemaakt.
+D1 Settings toont EU/Eastern Europe; read-replication Disabled, niets gewijzigd.
+Time Travel biedt herstel naar datum/bookmark, GEEN restore uitgevoerd of voorbereid.
+
+In D1 Studio uitsluitend SELECT uitgevoerd op migratie-/schemametadata, geen
+gebruikers-/rit-/adresrijen gelezen of gewijzigd:16ledgerregels, laatste
+`0015_immutable_audit_history.sql`,0kolommen met naam kind/business_role in
+business_addresses.0016 is dus werkelijk nog niet toegepast. Dit verkleint de
+preflightonzekerheid; het is nog GEEN consistente geëxporteerde/versleutelde back-up,
+lokale gevulde upgradeproef, integriteits-/FK-/databehoudtest of gecontroleerde
+release. Dashboard biedt op de bekeken query alleen Export query results; dat is
+geen aangetoonde volledige databaseback-up. Geen cookies/tokens uit browser naar
+CLI kopiëren en geen restore/migratie om een back-up te omzeilen.
+
 ## Echte acceptatie en noodzakelijke vervolgstappen
 
 Mac was bij Computer Use vergrendeld; om handmatig ontgrendelen gevraagd. Geen
