@@ -1,0 +1,92 @@
+{
+  "sourceCommit": "2bdec13662864e44c44fac6d0a3340b913ce168e",
+  "sourceTree": "537a19c6e46b135855344a06c2a2af40c6a0dd25",
+  "worker": "rittenregistratie",
+  "origin": "https://rittenregistratie.zsj4j2s4df.workers.dev",
+  "payloadSha256": "e99d4512752f8801bcb667fd7f19cf4680261bd742fd8b4f882bff13a87f6975",
+  "moduleCount": 48,
+  "embeddedAssetCount": 23,
+  "compatibilityDate": "2026-05-22",
+  "compatibilityFlags": [
+    "nodejs_compat"
+  ],
+  "migrations": [
+    {
+      "name": "0000_medical_maestro.sql",
+      "sha256": "4605c0ad8d1ee191f2a1ef658c2ca376853f169bec5a9d4946c8689c4c4b30a9"
+    },
+    {
+      "name": "0001_guard_trip_integrity.sql",
+      "sha256": "96561fa38e3a2cfc4aa5b8b14084ec14271f1bb34cd731925e1aec4277f005f2"
+    },
+    {
+      "name": "0002_server_trip_core.sql",
+      "sha256": "def366be08b1a9bdbac3b708172b9adc6a42824b7740a8c223461f20f1bdff02"
+    },
+    {
+      "name": "0003_guard_trip_revisions.sql",
+      "sha256": "951f905a73f4c7d1f47f9d2abafaa8f95bb5c468640fc11ba14a3c00d6e5b950"
+    },
+    {
+      "name": "0004_distance_provenance.sql",
+      "sha256": "254a1e696111e6564f934f892f40547d79890ecc509afd6188a81a76328ea823"
+    },
+    {
+      "name": "0005_trip_create_receipts.sql",
+      "sha256": "33f7097947945444694a374d2467fb6a83076245a1081d250692deae54c621d0"
+    },
+    {
+      "name": "0006_vehicle_settings_scope.sql",
+      "sha256": "33eb3ccc679aa3980c0777215aa0d8add1423bb6a66183473cf3a067f279e4d2"
+    },
+    {
+      "name": "0007_immutable_report_snapshots.sql",
+      "sha256": "fb66e798a839a603eae82c3f350c626d8f46e3e80e8c07e21f9ee9754182bf56"
+    },
+    {
+      "name": "0008_registered_devices.sql",
+      "sha256": "42e922b4c772964a06ec7beddf3afdcfb1b47114fb0b160141c916ec16801d56"
+    },
+    {
+      "name": "0009_detection_ingest.sql",
+      "sha256": "a46b2614c9b5649970d995a1e2149f066ca914481edaf183ce225f6f54b02a66"
+    },
+    {
+      "name": "0010_vehicle_journeys.sql",
+      "sha256": "e3a728b5b198eb248f5af13bb93da72b514abfe0ebcdca800ec6ed57261e7d28"
+    },
+    {
+      "name": "0011_journey_choices.sql",
+      "sha256": "566de6b5179feebb3804d010abb51f6f35d9ca662fd09a44a579247b10370e31"
+    },
+    {
+      "name": "0012_journey_materialization.sql",
+      "sha256": "ad70c27290fed0b4be4d210e0c065784df199e1c96d561a98181d1931c884b3b"
+    },
+    {
+      "name": "0013_trip_review_receipts.sql",
+      "sha256": "c0a4ad61217635b9418892fcfeacbcea1b73ce42aad1d08eeb6cf2f9239685ec"
+    },
+    {
+      "name": "0014_mutation_recovery_receipts.sql",
+      "sha256": "d8864685a92842951d8e202fe9a7f93844e312e8b9073af643f3683836cd1821"
+    },
+    {
+      "name": "0015_immutable_audit_history.sql",
+      "sha256": "704c53d3041c8a1706fb017473f2c0ba6f424430354a86824b4734920b275010"
+    },
+    {
+      "name": "0016_address_categories.sql",
+      "sha256": "220b636a6eba928df14e6d1121a65bbaa27cbd6d373f04e4ddbdac49da449a57"
+    }
+  ],
+  "expectedPredecessorSchema": "0000-0015; must be verified live",
+  "targetSchema": "0000-0016",
+  "cloudflareStatus": "NOT_READ_OR_PUBLISHED: cloudflare.search, cloudflare.whoami and read-only execute GET Worker settings return MCP -32603 Internal error",
+  "liveVersion": "NOT_VERIFIED_THIS_RUN",
+  "liveBackup": "NOT_CREATED_THIS_RUN",
+  "secretsIncluded": false,
+  "artifactPortable": false,
+  "note": "Rebuild on Mac from exact source, test, record its own hash; do not assume generated bundles byte-identical across machines. This manifest is not a deployment receipt.",
+  "localBuiltWorkerSmoke": "PASS: actual embedded framework/workerd/local D1, synthetic signed JWT only; not a live deployment"
+}

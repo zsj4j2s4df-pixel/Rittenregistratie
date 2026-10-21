@@ -1,5 +1,9 @@
 # Persoonlijke acties
 
+## Nu — bestaande publicatie toegestaan; alleen echte persoonlijke stappen
+
+Je nieuwste opdracht geeft toestemming voor de huidige gecontroleerde RitKompas-update en noodzakelijke0016 na actuele gegevens-/herstelcontrole. Geen herhaalde publicatietoestemming nodig. Cloudflare-plugin geeft Cloud interne fouten; Mac controleert eerst zijn bestaande toegestane toegang. Alleen wanneer die ook ontbreekt kan persoonlijk herstellen van de bestaande koppeling nodig zijn, zonder tokens in chat of nieuw account/abonnement. Voor gratis iPhoneinstallatie blijf jij zelf Applelogin/2FA, doeltoestel aansluiten/vertrouwen/DeveloperMode en eventuele persoonlijke teamkeuze uitvoeren. Geen TestFlightabonnement of betaald programma. Werkgever-/Copilotkoppeling en nieuwe kosten zijn niet geautoriseerd. [Volledige Macopdracht](docs/TRANSFER/MAC_FINISH_AND_RELEASE.md).
+
 ## Nieuwe brongroep boven PR57
 
 Voor bronwerk/nieuwe lokale tests is geen extra persoonlijke actie nodig. Adrescategorieën en thema staan uitsluitend als draft; voor een latere code+0016-livepublicatie blijft apart afgebakend akkoord nodig. Mac voert eerst de gerichte Applecheck uit. De officiële publieke logo-URL gaf Cloud403; Mac controleert de bron/asset, geen privéfoto/Canvaasset of echte adressen delen. Eigen Xcodeaanmelding, iPhone aansluiten en concreet signingakkoord blijven de bestaande persoonlijke stappen; geen abonnement gevraagd. [Resultaat en grenzen](docs/TRANSFER/ADDRESS_THEME_IMPLEMENTATION.md).

@@ -1,5 +1,12 @@
 # Cloud-taken — RitKompas
 
+## Nieuwe eigenaaropdracht — Mac afronding + Cloudflare toegestaan, uitvoering geblokkeerd
+
+[Concrete Mac-uitvoeropdracht en kopieerbare prompt](docs/TRANSFER/MAC_FINISH_AND_RELEASE.md). Eigenaar vraagt Mac nativeapp én mobiel/breedbeeldweb af te maken, GitHub/Cloudflare bij te werken en gratis iPhone-installatie/test en CarPlay/Copilot-plan te verzorgen. Bestaande RitKompas-update met noodzakelijke additieve0016 is nu geautoriseerd na actuele backup/live-/schema-/bindingcontroles. Geen nieuwe toestemming voor precies dit pakket vragen; kosten/mainmerge/securityuitschakeling/destructief herstel/nieuwe gevoelige koppelingen blijven uitgesloten.
+
+Cloudflare.search, whoami en readonly execute geven MCP -32603 Internal error; geen liveidentiteit/version/schema/backup kon deze run worden gelezen en GEEN deploy/migratie is uitgevoerd. Geen alternatieve CLIcredentials geconfigureerd. GitHub werkt. PR58/head2bdec13662864e44c44fac6d0a3340b913ce168e blijft gecontroleerde bronbasis, lokale nieuwe bundle48modules/23assets en gebouwdeWorkerrookproef PASS; [hashmanifest](docs/TRANSFER/PR58_RELEASE_MANIFEST.json). Geen actueel livebewijs of nieuwe Swiftpass claimen. Mac leest actuele liveversie met eigen toegestane toegang, voert alleen noodzakelijke Applechecks uit en levert daadwerkelijke iPhoneinstallatie of concrete persoonlijke blokkade. CarPlayhardware/entitlement en Copilotclient/OAuth/licentie/consent blijven open, geen integraties geactiveerd.
+
+
 ## Nieuwe implementatie — draft PR58 boven exact PR57
 
 [PR58](https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/58), branch `cloud/cloud-011-address-kinds-desert`, base PR57. Broncommit `55aa187c89e3f085e330c5b7af75d10b4f9efbf2`, tree `136392ca68a39d8fd4c1e6ee90347d960da0a903`; alle364lokale/remote blobs en modes exact geverifieerd, geen privéfoto. Volgende commit actualiseert uitsluitend voortgang.

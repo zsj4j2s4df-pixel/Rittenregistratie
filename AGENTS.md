@@ -1,5 +1,9 @@
 # RitKompas — uitvoeringsinstructies
 
+## Nieuwste eigenaaropdracht — Mac voert native/webafronding en publicatie uit
+
+Lees docs/TRANSFER/MAC_FINISH_AND_RELEASE.md. Mac maakt nativeapp en mobiele/breedbeeldwebsite af, test iPhone en werkt GitHub/bestaande RitKompas-CloudflareWorker bij. Cloud draagt concrete bron/releasevoorbereiding over. Publicatietoestemming voor huidige gecontroleerde update incl noodzakelijke0016 is aanwezig, geen mainmerge/kosten/securityversoepeling/nieuwe gevoelige AI- of werkgeverkoppeling/destructieve restore. Oude toestemming-ontbreektstatus geldt hiervoor niet meer. Cloudflare-plugin geeft in Cloud search/whoami/readonly-execute interne MCP -32603; niet als livepublicatie of ingetrokken toestemming presenteren. Alle liveguards/backup/binding-/schema-/identitychecks echt uitvoeren, fout betekent stoppen vóór volgende mutation. Geen dubbele nulmeting, geen fake auth, geen privéasset-upload.
+
 ## Nieuwste opdracht — volledige Desert-stijl en echte adresintegratie
 
 Lees [de complete Cloud-uitvoeropdracht](docs/TRANSFER/OWNER_DESIGN_REGISTRATION_HANDOVER.md). Basis PR56/head `8fecda44bc613f4bd463b2bda6bb1b2814454ba6`; bestaande bron, historie en 123REQ/M27 behouden. Nieuw: Home Zakelijk/Privé zonder scrollen bovenaan, Willys-icoon Mijn Jeep, echt De Voetel-logo voor Zakelijk, volledig Desert én Anthracite, meerdere zakelijke én privéadressen met plusknop en koppeling aan echte registratie/settingscode. Dit vervangt oudere accent-only/één-adres/view-memory-beperkingen voor het nieuwe werk.
