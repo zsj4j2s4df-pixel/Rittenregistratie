@@ -97,3 +97,9 @@ nav { display:grid; gap:6px; }.nav-item { border:0; background:transparent; colo
 @media print {
  :root { color-scheme:light!important; background:white!important; }
 }
+
+/* Complete central Desert surface palette; appearance only, never an account setting. */
+.central-shell.sand { --bg:#eee5d4; --panel:#faf4e8; --panel2:#e7ddcb; --text:#242b29; --muted:#5b625e; --line:#b8ad9a; --accent:#424a47; --blue:#354e5a; }
+.central-shell.sand .form-error { color:#8f2020; }
+.central-shell.sand button:disabled { color:#626761; background:#ded5c4; opacity:1; }
+.central-shell button,.central-shell select { min-height:44px; }

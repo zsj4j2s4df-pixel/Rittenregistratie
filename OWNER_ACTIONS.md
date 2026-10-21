@@ -1,5 +1,9 @@
 # Persoonlijke acties
 
+## Nieuwe brongroep boven PR57
+
+Voor bronwerk/nieuwe lokale tests is geen extra persoonlijke actie nodig. Adrescategorieën en thema staan uitsluitend als draft; voor een latere code+0016-livepublicatie blijft apart afgebakend akkoord nodig. Mac voert eerst de gerichte Applecheck uit. De officiële publieke logo-URL gaf Cloud403; Mac controleert de bron/asset, geen privéfoto/Canvaasset of echte adressen delen. Eigen Xcodeaanmelding, iPhone aansluiten en concreet signingakkoord blijven de bestaande persoonlijke stappen; geen abonnement gevraagd. [Resultaat en grenzen](docs/TRANSFER/ADDRESS_THEME_IMPLEMENTATION.md).
+
 ## Nieuwe ontwerp-/adresopdracht — nu geen actie nodig
 
 De nieuwe Home-, Willys-/De Voetel-, Desert-/Anthracite- en meerdere-adressenwensen zijn vastgelegd voor Cloud. Hiervoor zijn nu geen echte adressen, foto-upload, nieuwe accountkoppeling of aankoop nodig. Cloud gebruikt fictieve testgegevens. Bestaande Apple-/toestelacties hieronder blijven afzonderlijk; deze overdracht installeert geen app op je iPhone.

@@ -16,6 +16,7 @@ export function replaceSetting(settings:VehicleSettings, kind:'address'|'rate', 
  let next:VehicleSettings;
  if(kind==='address'){
   const address=value as StoredAddress;validateAddress(address);
+  if((address.kind!==undefined&&!['business','private'].includes(address.kind))||(address.businessRole!==undefined&&!['customer','supplier'].includes(address.businessRole))||(address.kind==='private'&&address.businessRole!==undefined))throw Error('Controleer adressoort en zakelijke relatie.');
   const normalized={...address,label:address.label.trim(),address:address.address.trim(),note:address.note.trim()};
   next={...settings,addresses:settings.addresses.some(a=>a.id===value.id)?settings.addresses.map(a=>a.id===value.id?normalized:a):[...settings.addresses,normalized]};
  }else{

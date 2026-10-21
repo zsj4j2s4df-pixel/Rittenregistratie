@@ -4,13 +4,13 @@ import type { SessionResolver } from './trip-service.ts';
 import { validateRates, type MileageRate } from '../app/report-domain.ts';
 import type { Principal } from './access-policy.ts';
 
-export type StoredAddress = { id: string; label: string; address: string; enabled: boolean; note: string };
+export type StoredAddress = { id: string; label: string; address: string; enabled: boolean; note: string; kind?: 'business'|'private'; businessRole?: 'customer'|'supplier' };
 export type VehicleSettings = { revision: number; plate: string; addresses: StoredAddress[]; rates: MileageRate[] };
 export type SettingsEdit = VehicleSettings & { reason: string;requestId?:string };
 
 export type SettingsRow={revision:number;plate:string|null;addresses:string;rates:string};
 export const settingsReadSql=`SELECT settings_revision AS revision,registration_plate AS plate,
-   (SELECT json_group_array(json_object('id',id,'label',label,'address',address,'enabled',enabled,'note',COALESCE(notes,''))) FROM (SELECT * FROM business_addresses WHERE vehicle_id=vehicles.id ORDER BY id)) AS addresses,
+   (SELECT json_group_array(json_object('id',id,'label',label,'address',address,'enabled',enabled,'note',COALESCE(notes,''),'kind',kind,'businessRole',business_role)) FROM (SELECT * FROM business_addresses WHERE vehicle_id=vehicles.id ORDER BY id)) AS addresses,
    (SELECT json_group_array(json_object('id',id,'micros',amount_micros,'start',valid_from,'end',valid_until)) FROM (SELECT * FROM mileage_rates WHERE vehicle_id=vehicles.id ORDER BY valid_from,id)) AS rates
    FROM vehicles WHERE id=? AND ${membership}`;
 export function decodeSettingsRow(vehicleId:string,row:SettingsRow){
@@ -23,7 +23,7 @@ export function decodeSettingsRow(vehicleId:string,row:SettingsRow){
   const addressIds=new Map(addresses.map(a=>[externalId(a.id),a.id]));
   const rateIds=new Map(rates.map(r=>[externalId(r.id),r.id]));
   if(addressIds.size!==addresses.length||rateIds.size!==rates.length)throw new TripServiceError(409,'Bestaande instellingen hebben conflicterende IDs; gecontroleerd herstel nodig.');
-  const settings: VehicleSettings={revision:row.revision,plate:row.plate??'',addresses:addresses.map(a=>({...a,id:externalId(a.id),enabled:a.enabled===1})),rates:rates.map(r=>({id:externalId(r.id),microsPerKm:r.micros!,validFrom:dateString(r.start),...(r.end===null?{}:{validUntil:dateString(r.end)})}))};
+  const settings: VehicleSettings={revision:row.revision,plate:row.plate??'',addresses:addresses.map(a=>({id:externalId(a.id),label:a.label,address:a.address,note:a.note,enabled:a.enabled===1,...(a.kind==='private'?{kind:'private' as const}:{}),...(a.businessRole?{businessRole:a.businessRole}:{})})),rates:rates.map(r=>({id:externalId(r.id),microsPerKm:r.micros!,validFrom:dateString(r.start),...(r.end===null?{}:{validUntil:dateString(r.end)})}))};
   return {settings,addressIds,rateIds};
 }
 
@@ -45,7 +45,8 @@ export function createSettingsService(db: Pick<D1Database,'prepare'|'batch'>, re
   const ids=new Set<string>();
   const addresses=input.addresses.map(a=>{
    if(!a||!id(a.id)||ids.has(a.id)||typeof a.label!=='string'||!a.label.trim()||a.label.length>100||typeof a.address!=='string'||!a.address.trim()||a.address.length>450||typeof a.enabled!=='boolean'||typeof a.note!=='string'||a.note.length>1000)throw new TripServiceError(400,'Ongeldig voorkeursadres.');
-   ids.add(a.id);return {id:a.id,label:a.label.trim(),address:a.address.trim(),enabled:a.enabled,note:a.note.trim()};
+   if((a.kind!==undefined&&!['business','private'].includes(a.kind))||(a.businessRole!==undefined&&!['customer','supplier'].includes(a.businessRole))||(a.kind==='private'&&a.businessRole!==undefined))throw new TripServiceError(400,'Ongeldige adressoort of zakelijke relatie.');
+   ids.add(a.id);return {...(a.kind==='private'?{kind:'private' as const}:{}),...(a.businessRole?{businessRole:a.businessRole}:{}),id:a.id,label:a.label.trim(),address:a.address.trim(),enabled:a.enabled,note:a.note.trim()};
   }).sort((a,b)=>a.id.localeCompare(b.id));
   try { if(input.rates.some(r=>!r||!id(r.id)||typeof r.validFrom!=='string'||(r.validUntil!==undefined&&typeof r.validUntil!=='string')))throw Error();validateRates(input.rates); } catch { throw new TripServiceError(400,'Ongeldige of overlappende tariefperioden.'); }
   const rates=input.rates.map(r=>({id:r.id,microsPerKm:r.microsPerKm,validFrom:r.validFrom,...(r.validUntil===undefined?{}:{validUntil:r.validUntil})})).sort((a,b)=>a.validFrom.localeCompare(b.validFrom)||a.id.localeCompare(b.id));
@@ -56,6 +57,7 @@ export function createSettingsService(db: Pick<D1Database,'prepare'|'batch'>, re
   async history(vehicleId:string,limit=50,before?:number){const p=await authorize(vehicleId);if(!Number.isSafeInteger(limit)||limit<1||limit>100||(before!==undefined&&(!Number.isSafeInteger(before)||before<1)))throw new TripServiceError(400,'Ongeldige paginering.');return (await db.prepare(`SELECT * FROM audit_logs WHERE entity_type='vehicle_settings' AND entity_id=? AND ${membership} AND (? IS NULL OR id<?) ORDER BY id DESC LIMIT ?`).bind(vehicleId,p.userId,vehicleId,before??null,before??null,limit).all()).results;},
   async save(vehicleId:string,input:SettingsEdit){
    const p=await authorize(vehicleId);const after=normalize(input);const recovery=mutationReceipts(db,p,vehicleId,'settings',vehicleId,input.requestId,JSON.stringify({expectedRevision:input.revision,...after,reason:input.reason.trim()}),clock);const replay=await recovery.read<VehicleSettings>();if(replay)return replay;const record=await read(p,vehicleId);const before=record.settings;
+   for(const old of before.addresses)if(old.kind==='private'&&input.addresses.some(a=>a.id===old.id&&a.kind===undefined))throw new TripServiceError(409,'Privéadres mist de adressoort; laad het actuele adrescontract opnieuw.');
    if(before.revision!==input.revision)throw new TripServiceError(409,'Instellingen zijn gewijzigd; laad opnieuw.');
    const now=clock();if(!Number.isFinite(now)||p.sessionExpiresAt<=now)throw new TripServiceError(401,'Aanmelden vereist.');
    const occurredAt=Math.floor(now/1000);if(!Number.isSafeInteger(occurredAt))throw new TripServiceError(500,'Ongeldige servertijd.');
@@ -70,11 +72,11 @@ export function createSettingsService(db: Pick<D1Database,'prepare'|'batch'>, re
     db.prepare(`UPDATE vehicles SET registration_plate=?,settings_revision=settings_revision+1,settings_mutation_id=? WHERE id=? AND settings_revision=? AND ${membership} AND ${recovery.guard}`).bind(after.plate||null,marker,vehicleId,input.revision,p.userId,vehicleId,...recovery.params),
     db.prepare(`DELETE FROM business_addresses WHERE vehicle_id=? AND id NOT IN (${after.addresses.map(()=>'?').join(',')||"''"}) AND ${gate}`).bind(vehicleId,...after.addresses.map(a=>addressId(a.id)),vehicleId,marker),
     db.prepare(`DELETE FROM mileage_rates WHERE vehicle_id=? AND id NOT IN (${after.rates.map(()=>'?').join(',')||"''"}) AND ${gate}`).bind(vehicleId,...after.rates.map(r=>rateId(r.id)),vehicleId,marker),
-    ...after.addresses.map(a=>db.prepare(`INSERT INTO business_addresses(id,vehicle_id,label,address,enabled,notes,created_by,created_at) SELECT ?,?,?,?,?,?,?,? WHERE ${gate}
-     ON CONFLICT(id) DO UPDATE SET id=CASE WHEN business_addresses.vehicle_id=excluded.vehicle_id THEN business_addresses.id ELSE NULL END,label=excluded.label,address=excluded.address,enabled=excluded.enabled,notes=excluded.notes,
+    ...after.addresses.map(a=>db.prepare(`INSERT INTO business_addresses(id,vehicle_id,label,address,enabled,notes,created_by,created_at,kind,business_role) SELECT ?,?,?,?,?,?,?,?,?,? WHERE ${gate}
+     ON CONFLICT(id) DO UPDATE SET id=CASE WHEN business_addresses.vehicle_id=excluded.vehicle_id THEN business_addresses.id ELSE NULL END,label=excluded.label,address=excluded.address,enabled=excluded.enabled,notes=excluded.notes,kind=excluded.kind,business_role=excluded.business_role,
        latitude=CASE WHEN business_addresses.address=excluded.address THEN business_addresses.latitude ELSE NULL END,
        longitude=CASE WHEN business_addresses.address=excluded.address THEN business_addresses.longitude ELSE NULL END
-`).bind(addressId(a.id),vehicleId,a.label,a.address,a.enabled?1:0,a.note,p.userId,occurredAt,vehicleId,marker)),
+`).bind(addressId(a.id),vehicleId,a.label,a.address,a.enabled?1:0,a.note,p.userId,occurredAt,a.kind??'business',a.businessRole??null,vehicleId,marker)),
     ...after.rates.map(r=>db.prepare(`INSERT INTO mileage_rates(id,vehicle_id,amount_per_km,amount_micros,valid_from,valid_until,created_by) SELECT ?,?,?,?,?,?,? WHERE ${gate}
      ON CONFLICT(id) DO UPDATE SET id=CASE WHEN mileage_rates.vehicle_id=excluded.vehicle_id THEN mileage_rates.id ELSE NULL END,amount_per_km=excluded.amount_per_km,amount_micros=excluded.amount_micros,valid_from=excluded.valid_from,valid_until=excluded.valid_until,
        source_url=CASE WHEN mileage_rates.amount_micros=excluded.amount_micros AND mileage_rates.valid_from=excluded.valid_from AND mileage_rates.valid_until IS excluded.valid_until THEN mileage_rates.source_url ELSE NULL END

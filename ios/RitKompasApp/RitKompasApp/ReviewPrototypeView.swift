@@ -1,11 +1,14 @@
 import SwiftUI
 import UIKit
+import RitKompasPreparationUI
 
 // Isolated design-review shell. No API, sensor, notification or trip-storage
 // integration. Example choices are memory-only and never become real records.
 struct ReviewPrototypeView<TechnicalView: View>: View {
     let technicalView: () -> TechnicalView
     @State private var tab = 0
+    @AppStorage(NativeAppearanceTheme.storageKey) private var themeValue = NativeAppearanceTheme.anthracite.rawValue
+    private var theme: NativeAppearanceTheme { NativeAppearanceTheme(rawValue: themeValue) ?? .anthracite }
     @State private var accent = ReviewAccent.sand
     @State private var quickPreference: String?
     @State private var filter = "Alle"
@@ -18,11 +21,11 @@ struct ReviewPrototypeView<TechnicalView: View>: View {
     @State private var reportPreview = false
     @State private var showTechnical = false
 
-    private var sand: Color { accent.color }
-    private let background = Color(red: 0.055, green: 0.075, blue: 0.075)
-    private let panel = Color(red: 0.10, green: 0.13, blue: 0.13)
-    private let muted = Color(red: 0.65, green: 0.70, blue: 0.68)
-    private let green = Color(red: 0.60, green: 0.73, blue: 0.40)
+    private var sand: Color { theme == .desert ? theme.accent : accent.color }
+    private var background: Color { theme.background }
+    private var panel: Color { theme.panel }
+    private var muted: Color { theme.muted }
+    private var green: Color { theme.positive }
     private var screenID: String { ["01 · Home", "02 · Ritten", "04 · Rapporten", "05 · Mijn Jeep"][tab] }
 
     var body: some View {
@@ -35,6 +38,7 @@ struct ReviewPrototypeView<TechnicalView: View>: View {
                     Label("Geef feedback", systemImage: "bubble.left").font(.system(size: 12, weight: .semibold))
                 }.accessibilityIdentifier("review.feedback")
             }.foregroundColor(sand).padding(.horizontal, 22).padding(.vertical, 12)
+            if tab == 0 { fixedHomeActions.padding(.horizontal, 22) }
             ScrollView {
                 VStack(alignment: .leading, spacing: 22) {
                     if tab == 0 { home }
@@ -52,8 +56,8 @@ struct ReviewPrototypeView<TechnicalView: View>: View {
                 tabButton("Mijn Jeep", "car.side", 3)
             }.padding(.top, 14).padding(.bottom, 8).background(panel)
         }
-        .background(background.ignoresSafeArea()).foregroundColor(.white)
-        .preferredColorScheme(.dark).tint(sand)
+        .background(background.ignoresSafeArea()).foregroundColor(theme.text)
+        .preferredColorScheme(theme.scheme).tint(sand)
         .sheet(isPresented: $showChoice) { choiceSheet }
         .sheet(item: $selectedTrip) { trip in detail(trip) }
         .sheet(isPresented: $showFeedback) { ReviewFeedbackView(screen: feedbackContext ?? screenID) }
@@ -65,38 +69,38 @@ struct ReviewPrototypeView<TechnicalView: View>: View {
         } message: { Text("Dit scherm laat de vormgeving zien. Er wordt nog geen rapport gegenereerd of verstuurd.") }
     }
 
-    private var home: some View {
-        VStack(alignment: .leading, spacing: 22) {
+    private var fixedHomeActions: some View {
+        VStack(alignment: .leading, spacing: 8) {
             HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: 5) {
                     Text("ELKE RIT. HELDER.").font(.system(size: 10, weight: .semibold, design: .monospaced)).tracking(2).foregroundColor(sand)
-                    Text("RitKompas").font(.system(size: 36, weight: .bold, design: .rounded)).tracking(-1.5)
+                    Text("RitKompas").font(.system(size: 28, weight: .bold, design: .rounded)).tracking(-1.5)
                 }
                 Spacer()
-                Image(systemName: "location.north.circle").font(.system(size: 38, weight: .ultraLight)).foregroundColor(sand)
+                WillysFront().frame(width: 42, height: 34).foregroundColor(sand)
             }
-            hero
-            VStack(alignment: .leading, spacing: 12) {
-                Text("Snelvoorkeur · ontwerpproef").font(.system(size: 14, weight: .semibold))
+            VStack(alignment: .leading, spacing: 6) {
                 HStack(spacing: 12) {
                     ForEach(["Zakelijk", "Privé"], id: \.self) { kind in
                         Button { quickPreference = kind } label: {
-                            Label(kind, systemImage: classificationSymbol(kind))
-                                .font(.system(size: 14, weight: .semibold))
-                                .frame(maxWidth: .infinity).padding(.vertical, 13)
-                                .foregroundColor(quickPreference == kind ? background : .white)
+                            HStack(spacing: 8) { classificationMark(kind); Text(kind).font(.system(size: 15, weight: .semibold)) }
+                                .frame(maxWidth: .infinity, minHeight: 48)
+                                .foregroundColor(quickPreference == kind ? background : theme.text)
                                 .background(quickPreference == kind ? sand : panel).cornerRadius(12)
-                        }
-                        .accessibilityAddTraits(quickPreference == kind ? .isSelected : [])
-                        .accessibilityIdentifier("review.preference.\(kind)")
+                        }.accessibilityAddTraits(quickPreference == kind ? .isSelected : [])
+                         .accessibilityIdentifier("review.preference.\(kind)")
                     }
                 }
-                Text(quickPreference.map { "Snelvoorkeur: \($0). Kies bij het ritvoorbeeld nog expliciet het type." } ?? "Nog geen snelvoorkeur gekozen.")
-                    .font(.system(size: 12)).foregroundColor(muted)
-                Text("Alleen zolang deze ontwerpproef open is. Dit start of classificeert geen echte rit.")
-                    .font(.system(size: 12)).foregroundColor(muted)
-                if quickPreference != nil { Button("Wis snelvoorkeur") { quickPreference = nil }.font(.system(size: 12)) }
+                Text(quickPreference.map { "Voorkeur: \($0) · geen actieve gekoppelde rit" } ?? "Kies een voorkeur · geen actieve gekoppelde rit")
+                    .font(.system(size: 11)).foregroundColor(muted)
+                if quickPreference != nil { Button("Wis snelvoorkeur") { quickPreference = nil }.font(.system(size: 11)) }
             }
+        }
+    }
+
+    private var home: some View {
+        VStack(alignment: .leading, spacing: 22) {
+            hero
             HStack {
                 Label("Jouw Jeep, jouw overzicht", systemImage: "car.side").font(.system(size: 13, weight: .medium))
                 Spacer()
@@ -132,13 +136,13 @@ struct ReviewPrototypeView<TechnicalView: View>: View {
                     Image(uiImage: photo).resizable().scaledToFill().frame(width: proxy.size.width, height: proxy.size.height).clipped()
                 } else {
                     LinearGradient(colors: [panel, .black], startPoint: .topLeading, endPoint: .bottomTrailing)
-                    Image(systemName: "car.side.hill.up.fill").font(.system(size: 72)).foregroundColor(sand.opacity(0.7)).frame(maxWidth: .infinity, maxHeight: .infinity)
+                    WillysFront().frame(width: 100, height: 80).foregroundColor(sand.opacity(0.7)).frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             }
             LinearGradient(colors: [.clear, .black.opacity(0.12), .black.opacity(0.85)], startPoint: .top, endPoint: .bottom)
             VStack(alignment: .leading, spacing: 6) {
                 Text("BUILT FOR YOUR JOURNEY").font(.system(size: 9, weight: .semibold, design: .monospaced)).tracking(2.2).foregroundColor(sand)
-                Text("Mijn Jeep").font(.system(size: 28, weight: .semibold, design: .rounded))
+                Text("Mijn Jeep").font(.system(size: 28, weight: .semibold, design: .rounded)).foregroundColor(.white)
                 Text("Wrangler 4xe · 2021").font(.system(size: 12)).foregroundColor(.white.opacity(0.8))
             }.padding(20)
         }.frame(height: 250).cornerRadius(24).overlay(RoundedRectangle(cornerRadius: 24).stroke(sand.opacity(0.14)))
@@ -187,6 +191,10 @@ struct ReviewPrototypeView<TechnicalView: View>: View {
             title("Mijn Jeep", subtitle: "Gemaakt voor jouw Wrangler.")
             hero
             VStack(alignment: .leading, spacing: 12) {
+                Picker("Volledig app-thema", selection: $themeValue) {
+                    ForEach(NativeAppearanceTheme.allCases) { value in Text(value.rawValue).tag(value.rawValue) }
+                }.pickerStyle(.segmented)
+                Text("Thema wordt alleen op dit apparaat bewaard; geen account- of adresgegevens.").font(.system(size: 12)).foregroundColor(muted)
                 Text("Appaccent · ontwerpproef").font(.system(size: 16, weight: .semibold))
                 Picker("Appaccent", selection: $accent) {
                     ForEach(ReviewAccent.allCases) { value in Text(value.rawValue).tag(value) }
@@ -203,7 +211,7 @@ struct ReviewPrototypeView<TechnicalView: View>: View {
             }.padding(.horizontal, 16).background(panel).cornerRadius(20)
             Button { showTechnical = true } label: {
                 HStack { Label("Technische voorbereiding", systemImage: "slider.horizontal.3"); Spacer(); Image(systemName: "chevron.right") }.font(.system(size: 14)).padding(18).background(panel).cornerRadius(16)
-            }.foregroundColor(.white)
+            }.foregroundColor(theme.text)
             action("Vertel wat je wilt aanpassen", "square.and.pencil") { feedbackContext = screenID; showFeedback = true }
         }
     }
@@ -218,7 +226,7 @@ struct ReviewPrototypeView<TechnicalView: View>: View {
             }
             Button("Annuleren") { showChoice = false }.frame(maxWidth: .infinity)
             Spacer()
-        }.padding(28).padding(.top, 25).frame(maxWidth: .infinity).background(background).foregroundColor(.white).preferredColorScheme(.dark)
+        }.padding(28).padding(.top, 25).frame(maxWidth: .infinity).background(background).foregroundColor(theme.text).preferredColorScheme(theme.scheme)
     }
 
     private func detail(_ trip: ReviewTrip) -> some View {
@@ -234,7 +242,7 @@ struct ReviewPrototypeView<TechnicalView: View>: View {
             HStack { Text("Classificatie"); Spacer(); badge(trip.kind) }.padding(18).background(panel).cornerRadius(16)
             Button { selectedTrip = nil; feedbackContext = "03 · Ritdetails"; showFeedback = true } label: { Label("Opmerking over ritdetails", systemImage: "bubble.left").font(.system(size: 14)) }
             Spacer()
-        }.padding(24).padding(.top, 16).background(background).foregroundColor(.white).preferredColorScheme(.dark)
+        }.padding(24).padding(.top, 16).background(background).foregroundColor(theme.text).preferredColorScheme(theme.scheme)
     }
 
     private func title(_ text: String, subtitle: String) -> some View {
@@ -242,7 +250,7 @@ struct ReviewPrototypeView<TechnicalView: View>: View {
     }
     private func tabButton(_ label: String, _ icon: String, _ index: Int) -> some View {
         Button { tab = index } label: {
-            VStack(spacing: 6) { Image(systemName: icon).font(.system(size: 20)); Text(label).font(.system(size: 10, weight: .medium)) }.foregroundColor(tab == index ? sand : muted).frame(maxWidth: .infinity)
+            VStack(spacing: 6) { Group { if index == 3 { WillysFront().frame(width: 26, height: 22) } else { Image(systemName: icon).font(.system(size: 20)) } }; Text(label).font(.system(size: 10, weight: .medium)) }.foregroundColor(tab == index ? sand : muted).frame(maxWidth: .infinity)
         }.accessibilityIdentifier("review.tab.\(index)")
             .accessibilityAddTraits(tab == index ? .isSelected : [])
     }
@@ -251,6 +259,11 @@ struct ReviewPrototypeView<TechnicalView: View>: View {
     }
     private func metric(_ label: String, _ value: String, _ unit: String) -> some View {
         VStack(alignment: .leading, spacing: 8) { Text(label).font(.system(size: 11)).foregroundColor(muted); HStack(alignment: .firstTextBaseline, spacing: 4) { Text(value).font(.system(size: 28, weight: .semibold, design: .rounded)); Text(unit).font(.system(size: 12)).foregroundColor(sand) } }.frame(maxWidth: .infinity, alignment: .leading).padding(17).background(panel).cornerRadius(18)
+    }
+    @ViewBuilder private func classificationMark(_ kind: String) -> some View {
+        if kind == "Zakelijk", let path = Bundle.main.path(forResource: "DeVoetelLogo", ofType: "gif"), let logo = UIImage(contentsOfFile: path) {
+            Image(uiImage: logo).resizable().scaledToFit().frame(width: 52, height: 28).accessibilityHidden(true)
+        } else { Image(systemName: classificationSymbol(kind)).accessibilityHidden(true) }
     }
     private func classificationSymbol(_ kind: String) -> String {
         switch kind {
@@ -266,7 +279,7 @@ struct ReviewPrototypeView<TechnicalView: View>: View {
         Button { selectedTrip = trip } label: {
             HStack(spacing: 14) {
                 Image(systemName: "location.circle").font(.system(size: 28, weight: .ultraLight)).foregroundColor(sand)
-                VStack(alignment: .leading, spacing: 8) { Text(trip.route).font(.system(size: 14, weight: .medium)).foregroundColor(.white); Text("\(trip.time) · \(trip.distance) km · demo").font(.system(size: 11)).foregroundColor(muted); badge(trip.kind) }
+                VStack(alignment: .leading, spacing: 8) { Text(trip.route).font(.system(size: 14, weight: .medium)).foregroundColor(theme.text); Text("\(trip.time) · \(trip.distance) km · demo").font(.system(size: 11)).foregroundColor(muted); badge(trip.kind) }
                 Spacer(); Image(systemName: "chevron.right").font(.system(size: 11)).foregroundColor(muted)
             }.padding(16).background(panel).cornerRadius(18)
         }
@@ -276,6 +289,23 @@ struct ReviewPrototypeView<TechnicalView: View>: View {
     }
     private func info(_ key: String, _ value: String, _ icon: String) -> some View {
         HStack { Image(systemName: icon).frame(width: 22).foregroundColor(sand); Text(key).foregroundColor(muted); Spacer(); Text(value) }.font(.system(size: 12)).padding(.vertical, 16)
+    }
+}
+
+// Original geometric front illustration; no external/private Jeep asset.
+private struct WillysFront: View {
+    var body: some View {
+        GeometryReader { g in
+            let w = g.size.width, h = g.size.height
+            Path { p in
+                p.addRoundedRect(in: CGRect(x: w*0.04, y: h*0.23, width: w*0.92, height: h*0.58), cornerSize: CGSize(width: w*0.06, height: h*0.06))
+                p.addEllipse(in: CGRect(x: w*0.10, y: h*0.37, width: w*0.16, height: w*0.16))
+                p.addEllipse(in: CGRect(x: w*0.74, y: h*0.37, width: w*0.16, height: w*0.16))
+                for i in 0..<7 { let x = w*(0.34+CGFloat(i)*0.053); p.move(to: CGPoint(x: x,y:h*0.36));p.addLine(to: CGPoint(x:x,y:h*0.69)) }
+                p.move(to: CGPoint(x:w*0.16,y:h*0.20));p.addLine(to: CGPoint(x:w*0.23,y:h*0.04));p.addLine(to: CGPoint(x:w*0.77,y:h*0.04));p.addLine(to: CGPoint(x:w*0.84,y:h*0.20))
+                p.move(to: CGPoint(x:0,y:h*0.92));p.addLine(to: CGPoint(x:w,y:h*0.92))
+            }.stroke(style: StrokeStyle(lineWidth: max(1,w*0.035), lineCap: .round, lineJoin: .round))
+        }.accessibilityLabel("Klassiek Willys-front")
     }
 }
 
@@ -306,6 +336,8 @@ private struct ReviewTrip: Identifiable {
 }
 
 private struct ReviewFeedbackView: View {
+    @AppStorage(NativeAppearanceTheme.storageKey) private var themeValue = NativeAppearanceTheme.anthracite.rawValue
+    private var theme: NativeAppearanceTheme { NativeAppearanceTheme(rawValue: themeValue) ?? .anthracite }
     let screen: String
     @Environment(\.dismiss) private var dismiss
     @AppStorage("ritkompas.designReviewNotes.v1") private var savedNotes = ""
@@ -324,10 +356,10 @@ private struct ReviewFeedbackView: View {
                     if saved { Text("Lokaal bewaard. Nog niet met de ontwikkelaar gedeeld.").foregroundColor(.green) }
                     ShareLinkCompat(text: notes)
                 } footer: { Text("Geen adressen, ritgegevens of aanmeldcodes invoeren. Feedback blijft lokaal tenzij je zelf deelt.") }
-            }.navigationTitle("Jouw aanwijzingen")
+            }.nativeFormAppearance().navigationTitle("Jouw aanwijzingen")
                 .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Gereed") { dismiss() } } }
                 .onAppear { notes = savedNotes }
-        }.preferredColorScheme(.dark)
+        }.preferredColorScheme(theme.scheme)
     }
 }
 
