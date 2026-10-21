@@ -1,7 +1,7 @@
 import Foundation
 public enum NativeAddressKind: String, Codable, Sendable { case business, `private` }
 public enum NativeBusinessRole: String, Codable, Sendable { case customer, supplier }
-public struct NativeStoredAddress: Codable, Sendable {
+public struct NativeStoredAddress: Codable, Equatable, Sendable {
     public let id: String
     public let label: String
     public let address: String
@@ -21,7 +21,7 @@ public struct NativeStoredAddress: Codable, Sendable {
             && note.count <= 1000 && !(effectiveKind == .private && businessRole != nil)
     }
 }
-public struct NativeMileageRate: Codable, Sendable {
+public struct NativeMileageRate: Codable, Equatable, Sendable {
     public let id: String
     public let microsPerKm: Int64
     public let validFrom: String
@@ -40,8 +40,9 @@ public struct NativeVehicleSettings: Codable, Sendable {
     }
 }
 // Keep this entire immutable input/requestId for exact retry after uncertainty.
-// No implicit retry, background upload or local address persistence is added.
-public struct NativeSettingsEdit: Encodable, Sendable {
+// No implicit retry or background upload. The host may retain this exact input
+// in the encrypted, account/vehicle-bound recovery outbox until acknowledged.
+public struct NativeSettingsEdit: Codable, Equatable, Sendable {
     public let requestId: String
     public let revision: Int
     public let plate: String

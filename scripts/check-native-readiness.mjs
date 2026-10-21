@@ -35,7 +35,11 @@ if(process.platform!=='darwin'){
     const {readdirSync}=await import('node:fs');
     for(const [dir,module]of [['Core','RitKompasCore'],['UI','RitKompasPreparationUI']]){
      const files=readdirSync(path.join(root,'ios/RitKompas',dir)).filter(n=>n.endsWith('.swift')).sort().map(n=>path.join('ios/RitKompas',dir,n));
-     check(`iOS ${dir} semantische typecheck`,'xcrun',['swiftc','-swift-version','6','-sdk',sdk.stdout.trim(),'-target','arm64-apple-ios15.0','-module-cache-path',path.join(scratch,'module-cache'),'-typecheck','-module-name',module,...files]);
+     const args=['-swift-version','6','-sdk',sdk.stdout.trim(),'-target','arm64-apple-ios15.0','-module-cache-path',path.join(scratch,'module-cache'),'-I',scratch,'-module-name',module,...files];
+     // UI imports Core: emit the checked iOS module rather than attempting to
+     // resolve a macOS SwiftPM artefact or an absent module from a typecheck.
+     const ok=check(`iOS ${dir} semantische typecheck`,'xcrun',['swiftc',...args,...(dir==='Core'?['-emit-module','-emit-module-path',path.join(scratch,'RitKompasCore.swiftmodule')]:['-typecheck'])]);
+     if(!ok)break;
     }
    }
   }finally{rmSync(scratch,{recursive:true,force:true});}

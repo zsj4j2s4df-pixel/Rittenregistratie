@@ -103,3 +103,12 @@ nav { display:grid; gap:6px; }.nav-item { border:0; background:transparent; colo
 .central-shell.sand .form-error { color:#8f2020; }
 .central-shell.sand button:disabled { color:#626761; background:#ded5c4; opacity:1; }
 .central-shell button,.central-shell select { min-height:44px; }
+
+/* Native date controls have intrinsic widths in WebKit. Shrink within the
+   grid instead of letting the control push the mobile document sideways. */
+.central-shell .editor-grid > *, .central-shell label { min-width:0; }
+.central-shell input:not([type=checkbox]):not([type=radio]),
+.central-shell select,.central-shell textarea { min-width:0; width:100%; box-sizing:border-box; }
+.central-shell input[type=date],.central-shell input[type=datetime-local] { appearance:none; min-height:44px; }
+.central-shell :is(button,a,input,select,textarea):focus-visible { outline:3px solid var(--accent); outline-offset:3px; }
+@media(min-width:1440px) { .central-shell .workspace { max-width:1600px; padding-inline:40px; } }

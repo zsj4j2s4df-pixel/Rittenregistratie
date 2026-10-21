@@ -136,6 +136,18 @@ final class VerifiedNativeSessionTests: XCTestCase {
         do { try await sut.signOut(); XCTFail("Deletion failure") } catch NativeFixtureError.clearFailed {}
         do { _ = try await sut.grant(for: origin); XCTFail("Closed even when disk fails") } catch NativeAPIError.signInRequired {}
     }
+    func testVehicleBindingClosesWithoutDeletingSharedCredentialsOrAcceptingLateProof() async throws {
+        let credentials = CandidateFixture(), verifier = ScopeFixture(), sut = make(credentials, verifier)
+        await verifier.holdNext()
+        let targetOrigin = origin
+        let pending = Task { try await sut.grant(for: targetOrigin) }
+        await verifier.waitForHeld(); await sut.close(); await verifier.release()
+        do { _ = try await pending.value; XCTFail("Closed binding accepted late proof") }
+        catch NativeAPIError.signInRequired {}
+        _ = try await credentials.candidate(for: origin) // Vehicle switch is not logout.
+        do { _ = try await sut.verifiedScope(vehicleID: "vehicle"); XCTFail("Closed queue binding reopened") }
+        catch NativeAPIError.signInRequired {}
+    }
     func testCancelledGrantMakesNoVerificationAndHeadersNeverDebugPrint() async throws {
         let verifier = ScopeFixture(), sut = make(CandidateFixture(), verifier)
         let targetOrigin = origin

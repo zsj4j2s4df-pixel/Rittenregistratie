@@ -12,10 +12,16 @@ public final class NativeNotificationModel: ObservableObject {
     @Published public private(set) var mayRequest = false
     @Published public private(set) var message = "Geen keuze ontvangen. Native aanmelden is nog niet ingericht."
     private let notifications = TripChoiceNotifications()
-    private let handler: TripChoiceResponseHandler
+    private var handler: TripChoiceResponseHandler
     private var delegate: TripChoiceNotificationDelegate?
     public init(store: any TripChoiceStore = UnconfiguredTripChoiceStore()) {
         handler = TripChoiceResponseHandler(store: store)
+    }
+    public func bind(store: any TripChoiceStore) {
+        handler = TripChoiceResponseHandler(store: store)
+        delegate = nil
+        message = "Geen keuze ontvangen in de huidige sessie."
+        install()
     }
     // Construct one owner, without reading Keychain, creating directories or
     // opening a session. Default scope/transport deny before persistence/network.
@@ -102,7 +108,7 @@ public struct NativeNotificationPreparationView: View {
             }
             Section(header: Text("Laatste actie")) { Text(model.message) }
             Section(header: Text("Nog in voorbereiding")) {
-                Text("Aanmelden en automatische ritregistratie zijn nog niet aangesloten. Er wordt geen voorbeeldrit of meldingskeuze als echte registratie verstuurd.")
+                Text("Aanmelden verloopt via Centrale registratie. Automatische ritregistratie is nog niet aangesloten. Alleen een werkelijk ontvangen open rit kan na jouw keuze expliciet worden verzonden; een voorbeeldrit nooit.")
             }
         }
         .nativeFormAppearance()

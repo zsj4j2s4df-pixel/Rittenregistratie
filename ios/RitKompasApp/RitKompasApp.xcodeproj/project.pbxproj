@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A10000000000000000000001 /* RitKompasPreparationUI in Frameworks */ = {isa = PBXBuildFile; productRef = A10000000000000000000002 /* RitKompasPreparationUI */; };
+		A20000000000000000000001 = {isa = PBXBuildFile; productRef = A20000000000000000000002; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A10000000000000000000001 /* RitKompasPreparationUI in Frameworks */,
+                A20000000000000000000001,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +73,7 @@
 			name = RitKompasApp;
 			packageProductDependencies = (
 				A10000000000000000000002 /* RitKompasPreparationUI */,
+                A20000000000000000000002,
 			);
 			productName = RitKompasApp;
 			productReference = 82BC9C4F3087A786004E9C3B /* RitKompasApp.app */;
@@ -355,6 +358,7 @@
 			package = A10000000000000000000003 /* XCLocalSwiftPackageReference ".." */;
 			productName = RitKompasPreparationUI;
 		};
+		A20000000000000000000002 = {isa = XCSwiftPackageProductDependency; productName = RitKompasCore; };
 /* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 82BC9C473087A786004E9C3B /* Project object */;

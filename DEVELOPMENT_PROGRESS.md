@@ -2,6 +2,12 @@
 
 # Actuele voortgang — 18 oktober 2026
 
+## Mac vervolgt PR59 — actuele bron en testgrenzen
+
+PR59/head `accfb507c431e8a1a2845e16efbc912ce4e5f417` ontvangen; wijzigingen uit gestopte Mac-chat behouden/afgemaakt. [Actueel resultaat en hervatopdracht](docs/TRANSFER/MAC_PR59_RESULT_2026-10-21.md). Native interactieve Accesslogin/Keychain/serverbinding, echte centrale adresbediening, encrypted exactretry/recovery en veilige logoutbron gebouwd; publieke originele De Voetelasset toegevoegd, privéfoto/Canva niet. 50echte Mac-XCTest/0failures, iOS Core/UI semantiek en actuele unsigned device/simulatorbuilds PASS. Chromium→HTTP/SQLite multi-adres/historie/logout en6breedtes375–1920 PASS. Sourceguards zijn geen echte accountacceptatie.
+
+Cloudflare-plugin faalt nog; bestaande Codex-IAB WEL ingelogd, UI-readback All traffic + accountmembers en versieprefix ba2a2a9d/100%/Ready. Geen volledige actuele DBback-up/schema/bindingpreflight, dus GEEN deploy/migratie uitgevoerd. Bestaande PR59publicatietoestemming blijft geldig, niet opnieuw vragen. Mac vergrendeld (handmatig ontgrendelen gevraagd), geen echte iPhone verbonden. Dennis/Ingrid/Jesse echte login/rechten/save/read/retry/accountwissel NIET GETEST, geen provisioningtoestemming. Volgende groep: gerichte simulator/authbediening, gecontroleerde releasepreflight na herstel bestaande toegang en gratis installatie op gekozen eigen toestel/PersonalTeam. Capture/GPS/achtergrond/EV/2minstop/CarPlay/hardware/Copilotintegratie blijven open; geen volwaardige automatische appclaim.
+
 ## Nieuwe eigenaaropdracht — Mac afronding + Cloudflare toegestaan, uitvoering geblokkeerd
 
 [Concrete Mac-uitvoeropdracht en kopieerbare prompt](docs/TRANSFER/MAC_FINISH_AND_RELEASE.md). Eigenaar vraagt Mac nativeapp én mobiel/breedbeeldweb af te maken, GitHub/Cloudflare bij te werken en gratis iPhone-installatie/test en CarPlay/Copilot-plan te verzorgen. Bestaande RitKompas-update met noodzakelijke additieve0016 is nu geautoriseerd na actuele backup/live-/schema-/bindingcontroles. Geen nieuwe toestemming voor precies dit pakket vragen; kosten/mainmerge/securityuitschakeling/destructief herstel/nieuwe gevoelige koppelingen blijven uitgesloten.

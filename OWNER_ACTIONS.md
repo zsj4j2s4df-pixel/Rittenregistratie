@@ -1,5 +1,9 @@
 # Persoonlijke acties
 
+## PR59 — concrete huidige persoonlijke stappen
+
+Ontgrendel de Mac zelf voor simulator-/Xcodeschermcontrole. Sluit voor de gratis test je gewenste iPhone ontgrendeld met kabel aan; er is nu geen toestel gevonden. Laat persoonlijk Applelogin/2FA/teamkeuze/vertrouwen/DeveloperMode bij jou, deel geen codes. Dennis/Ingrid/Jesse moeten ieder zelf met hun bestaande identiteit aanmelden wanneer de native/backendproef klaarstaat; geen nieuwe rechten/accounts nodig om tests groen te maken. Alle drie echte acceptaties nog NIET GETEST. De bestaande Codex-browser is al ingelogd bij Cloudflare: niet onnodig opnieuw aanmelden. De Cloudflare-connector geeft een interne fout; herstel die bestaande koppeling vóór de vereiste volledige database-/releasepreflight. De toestemming voor PR59release hoeft niet opnieuw. Geen echte iPhone-installatie of downloadlink voltooid. [Details](docs/TRANSFER/MAC_PR59_RESULT_2026-10-21.md).
+
 ## Nu — bestaande publicatie toegestaan; alleen echte persoonlijke stappen
 
 Je nieuwste opdracht geeft toestemming voor de huidige gecontroleerde RitKompas-update en noodzakelijke0016 na actuele gegevens-/herstelcontrole. Geen herhaalde publicatietoestemming nodig. Cloudflare-plugin geeft Cloud interne fouten; Mac controleert eerst zijn bestaande toegestane toegang. Alleen wanneer die ook ontbreekt kan persoonlijk herstellen van de bestaande koppeling nodig zijn, zonder tokens in chat of nieuw account/abonnement. Voor gratis iPhoneinstallatie blijf jij zelf Applelogin/2FA, doeltoestel aansluiten/vertrouwen/DeveloperMode en eventuele persoonlijke teamkeuze uitvoeren. Geen TestFlightabonnement of betaald programma. Werkgever-/Copilotkoppeling en nieuwe kosten zijn niet geautoriseerd. [Volledige Macopdracht](docs/TRANSFER/MAC_FINISH_AND_RELEASE.md).
