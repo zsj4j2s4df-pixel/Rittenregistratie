@@ -1,5 +1,9 @@
 # Persoonlijke acties
 
+## Opnamegroep — benodigde persoonlijke handelingen
+
+Mac opnieuw ontgrendelen en tijdens schermtests ontgrendeld houden. Gewenste iPhone ontgrendeld met kabel aansluiten; Xcode Apple Accounts is werkelijk leeg, dus zelf Applelogin/2FA doen. Geen wachtwoorden/codes delen. Voor Cloudflare is gevraagd of officiële beperkte Wrangleraanmelding mag worden geopend: bestaande account/user lezen + Workers-scripts/D1 wijzigen; dit is nieuwe persistente lokale toegang en productrechten kunnen meer resources in hetzelfde account raken. Jij beoordeelt/bevestigt het officiële scherm; nog niets geautoriseerd of aangemeld. Geen nieuwe release-toestemming gevraagd, die is er al. Daarna echte eigen logins Dennis/Ingrid/Jesse testen, geen accounts/rechten aanmaken. [Huidig bewijs en beperkingen](docs/TRANSFER/FOREGROUND_CAPTURE_2026-10-21.md).
+
 ## PR59 — concrete huidige persoonlijke stappen
 
 Ontgrendel de Mac zelf voor simulator-/Xcodeschermcontrole. Sluit voor de gratis test je gewenste iPhone ontgrendeld met kabel aan; er is nu geen toestel gevonden. Laat persoonlijk Applelogin/2FA/teamkeuze/vertrouwen/DeveloperMode bij jou, deel geen codes. Dennis/Ingrid/Jesse moeten ieder zelf met hun bestaande identiteit aanmelden wanneer de native/backendproef klaarstaat; geen nieuwe rechten/accounts nodig om tests groen te maken. Alle drie echte acceptaties nog NIET GETEST. De bestaande Codex-browser is al ingelogd bij Cloudflare: niet onnodig opnieuw aanmelden. De Cloudflare-connector geeft een interne fout; herstel die bestaande koppeling vóór de vereiste volledige database-/releasepreflight. De toestemming voor PR59release hoeft niet opnieuw. Geen echte iPhone-installatie of downloadlink voltooid. [Details](docs/TRANSFER/MAC_PR59_RESULT_2026-10-21.md).

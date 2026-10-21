@@ -3,7 +3,7 @@ import Foundation
 // Wire models mirror existing server contracts. Device IDs are app-instance
 // claims, never hardware attestation, session credentials or driver proof.
 public enum DevicePlatform: String, Codable, Sendable { case ios, web }
-public struct DeviceRegistration: Codable, Sendable {
+public struct DeviceRegistration: Codable, Equatable, Sendable {
     public let requestId: String
     public let id: String
     public let name: String
@@ -61,7 +61,7 @@ public enum ObservationKind: String, Codable, Sendable {
     case location, connection, disconnection
     case startCandidate = "start_candidate", endCandidate = "end_candidate"
 }
-public struct ObservationLocation: Codable, Sendable {
+public struct ObservationLocation: Codable, Equatable, Sendable {
     public let latitude: Double
     public let longitude: Double
     public let accuracyMeters: Double
@@ -71,7 +71,7 @@ public struct ObservationLocation: Codable, Sendable {
         self.accuracyMeters = accuracyMeters
     }
 }
-public struct DetectionInput: Codable, Sendable {
+public struct DetectionInput: Codable, Equatable, Sendable {
     public let requestId: String
     public let eventId: String
     public let observedAt: Int64
