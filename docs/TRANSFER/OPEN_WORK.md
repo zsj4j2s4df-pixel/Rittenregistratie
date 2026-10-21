@@ -1,6 +1,8 @@
 # Actuele open werkkaart — 19 oktober2026
 
-## Nieuwe implementatie boven exact PR57 — centrale adrescategorieën en native Desert
+## Nieuwe implementatie — draft PR58 boven exact PR57
+
+[PR58](https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/58), branch `cloud/cloud-011-address-kinds-desert`, base PR57. Broncommit `55aa187c89e3f085e330c5b7af75d10b4f9efbf2`, tree `136392ca68a39d8fd4c1e6ee90347d960da0a903`; alle364lokale/remote blobs en modes exact geverifieerd, geen privéfoto. Volgende commit actualiseert uitsluitend voortgang.
 
 Werkelijk ontvangen PR57/head `a40684226f256c3b6bb235240caf8d04cd3c94f3`, parent PR56/8fecda44bc613f4bd463b2bda6bb1b2814454ba6, tree43acdc68b1a1992f318174ba37b8b0292141b0ac. Compatibele0016-adresuitbreiding, echte centrale plus-/beheer-/ritkeuze, getypeerde native settingsclient, Homekeuzes boven scroll/foto, Willysfront en volledigethema-bron gebouwd. [Exact bewijs, grenzen en Mac-opdracht](ADDRESS_THEME_IMPLEMENTATION.md).
 
