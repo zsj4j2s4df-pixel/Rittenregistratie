@@ -10,6 +10,23 @@ Exacte ontwikkelbasis: PR58/head `2bdec13662864e44c44fac6d0a3340b913ce168e`, tre
 
 De nieuwste opdracht autoriseert het bijwerken van de bestaande RitKompas-Worker vanuit de gecontroleerde huidige bron. De bijbehorende noodzakelijke additieve0016-adresmigratie valt binnen deze afgebakende update, na actuele backup/upgrade-/integriteitscontrole. Niet opnieuw toestemming voor precies deze gewone update vragen. Dit geeft geen toestemming voor kosten, nieuwe externe accounts, nieuwe gevoelige AI-/werkgever-/OAuthkoppelingen, destructief herstel of beveiligingsversoepeling. Bij werkelijk noodzakelijke persoonlijke identiteit-/toestelkeuze vraag alleen die concrete informatie.
 
+## Aanvulling eigenaar — drie accounts en installatie-uitleg
+
+Test expliciet **Dennis, Ingrid en Jesse**, ieder met eigen bestaande identiteit en sessie. Zie [de installatiehandleiding](IPHONE_TESTAPP_INSTALLEREN.md). Dit is een verplichte acceptatiegroep, nog NIET UITGEVOERD.
+
+| Test per account | Dennis | Ingrid | Jesse |
+| --- | --- | --- | --- |
+| Eigen login, juiste identiteit en bestaande voertuigrechten | NIET GETEST | NIET GETEST | NIET GETEST |
+| Toegestane rit opslaan, herladen, corrigeren en historie controleren | NIET GETEST | NIET GETEST | NIET GETEST |
+| Centrale instellingen/adressen volgens bestaande rechten; geen onbedoelde bevoegdheden | NIET GETEST | NIET GETEST | NIET GETEST |
+| Uitloggen/account wisselen: geen vorige persoonsgegevens, queue of keuze onder nieuw account | NIET GETEST | NIET GETEST | NIET GETEST |
+| Native Zakelijk/Privé, receipt/exactretry en herstel na appherstart | NIET GETEST | NIET GETEST | NIET GETEST |
+| Onbevoegde requests weigeren en bestaande historie/actor behouden | NIET GETEST | NIET GETEST | NIET GETEST |
+
+Gebruik synthetische testgegevens/lokale fixtures waar mogelijk. Een bestaande leesrol moet schrijfacties weigeren; verleen geen extra rechten om een test groen te maken. Geen nieuwe accounts, identity-provisioning of live ritvervuiling afleiden uit deze testopdracht. Als een identiteit/toegang ontbreekt: concreet blokkade en noodzakelijke eigenaaractie melden. Laat iedereen zelf inloggen; geen wachtwoorden/codes delen. Alleen geanonimiseerd testbewijs in GitHub, geen e-mails, tokens, echte adressen of screenshots met privégegevens. Logout trekt bestaande centrale data niet in: gedeelde gegevens blijven alleen zichtbaar waar de nieuwe gebruiker werkelijk recht op heeft.
+
+Mac controleert de installatiehandleiding tegen de werkelijke Xcode/iOS-schermen, vult de echte build/device-resultaten in en levert de gebruiker een concrete gratis installatie-afspraak. Geen unsigned IPA als werkende download aanbieden. Cloud heeft geen fysieke installatie of accounttest uitgevoerd.
+
 ## Feitelijke tussenstand
 
 - PR58: echte centrale adressencategorieën business/private en klant/leverancier, plus-/wijzig-/deactiveer-/verwijderbediening, keuze bij echte handmatige ritinvoer. Zelfde scoped services/revisions/audit/receipt en gecombineerde40limiet. Oude businessrijen blijven business met originele IDs, geen tweede adresdemo. Historische ritten bewaren eigen adrestekst.

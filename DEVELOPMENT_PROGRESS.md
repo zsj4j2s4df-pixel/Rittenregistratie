@@ -1,3 +1,5 @@
+> Eigenaaraanvulling: Mac moet Dennis, Ingrid en Jesse afzonderlijk testen (identiteit/rechten, opslaan+reload, historie, veilige accountwisseling en native receipt/herstel). Nog NIET GETEST. Zie docs/TRANSFER/MAC_FINISH_AND_RELEASE.md en de nieuwe visuele gratis iPhone-installatiehandleiding docs/TRANSFER/IPHONE_TESTAPP_INSTALLEREN.md. Geen nieuwe accounts/rechten of geslaagde installatie claimen.
+
 # Actuele voortgang — 18 oktober 2026
 
 ## Nieuwe eigenaaropdracht — Mac afronding + Cloudflare toegestaan, uitvoering geblokkeerd
