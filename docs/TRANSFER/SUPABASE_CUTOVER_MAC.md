@@ -1,5 +1,7 @@
 # RitKompas — Supabase-aanmelding en drie iPhone-installaties
 
+Overdracht: [draft PR62](https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/62), branch `cloud/supabase-auth-three-iphones`. Broncommit `16fd4e23bfeb2b0180eccd2c0ef945277c96e8d6`, tree `173726bb732f72a7a38ed228c7b468f633006903`:393blobs+modes exact lokaal/remote teruggelezen. Opvolgende documenthead behouden. GitHubopslag is geen bewijs dat Mac al heeft uitgevoerd.
+
 ## Ontvangst en opdracht
 
 Eigenaar vraagt uitvoering van Supabase Auth vóór de bestaande D1-ritdatabase, drie persoonlijke accounts Dennis/Ingrid/Jesse, ingelogd blijven en wachtwoord vergeten, GitHub-overdracht aan Mac en opnieuw installeren via Xcode op drie iPhones. Geen gedeelde beheerlogin/passkey/wachtwoorden. Deze opdracht autoriseert de afgebakende veilige auth-overgang en drie appaccounts, geen betaald project, abonnement, mainmerge of uitschakelen van beveiliging.
