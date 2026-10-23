@@ -16,8 +16,11 @@ export type SavedReport={id:string;created_by:string;created_at:number};
 export type TripHistoryEntry={id:number;actor_id:string;action:string;occurred_at:number;old_value_json:string|null;new_value_json:string|null};
 export class BackendError extends Error{status:number;constructor(status:number,message:string){super(message);this.status=status;}}
 export function createBackendClient(fetcher:typeof fetch=fetch){
+ let refreshFlight:Promise<boolean>|null=null;
+ async function refreshSession(){if(!refreshFlight)refreshFlight=fetcher('/api/auth/refresh',{method:'POST',credentials:'same-origin',cache:'no-store',redirect:'error',headers:{'Content-Type':'application/json','x-csrf-protection':'1'},body:'{}'}).then(r=>r.ok).catch(()=>false).finally(()=>{refreshFlight=null;});return refreshFlight;}
  async function send(path:string,method='GET',body?:unknown,expectedViewerId?:string,signal?:AbortSignal):Promise<Response>{
   let response:Response;try{response=await fetcher(path,{signal,method,credentials:'same-origin',cache:'no-store',redirect:'error',headers:{...(body===undefined?{}:{'Content-Type':'application/json','x-csrf-protection':'1'}),...(expectedViewerId?{'x-ritkompas-viewer':expectedViewerId}:{})},body:body===undefined?undefined:JSON.stringify(body)});}catch{throw new BackendError(0,'Geen verbinding. Probeer opnieuw.');}
+  if(response.status===401&&method==='GET'&&await refreshSession()){response=await fetcher(path,{signal,method,credentials:'same-origin',cache:'no-store',redirect:'error',headers:expectedViewerId?{'x-ritkompas-viewer':expectedViewerId}:{}});}
   if(!response.ok){let message='Aanvraag mislukt.';try{const value=await response.json();if(value&&typeof value==='object'&&'error' in value&&typeof value.error==='string')message=value.error;}catch{}throw new BackendError(response.status,message);}
   return response;
  }

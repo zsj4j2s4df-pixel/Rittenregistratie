@@ -1,3 +1,7 @@
+## Nieuwste eigenaaropdracht — Supabase Auth vóór bestaande D1
+
+Lees docs/TRANSFER/SUPABASE_CUTOVER_MAC.md. Eigenaar vraagt drie persoonlijke accounts, Ingelogd blijven, Wachtwoord vergeten en drie Xcode-iPhone-updates. Actuele basis werkelijk PR61/69fe81378029271bfffd648108e392ee312b214b; native auth/capture behouden. Nieuwe authbron, /login, beveiligde HttpOnlycookies/refresh/logout, expliciete identitymapping en additieve0017 lokaal gebouwd. Niet live geactiveerd, geen uitnodigingen/wachtwoorden aangemaakt; projectkeuze gedeeld Todo versus gescheiden gevraagd, officiële Authadmin/config ontbreekt in Cloudtools. Cloudflare-API werkt weer readonly; D1 nog0000–0015. Echte drieaccounts/native/uitnodigingsmail/installatie NIET GETEST. Mac krijgt concrete vervolgbron/test/releaseopdracht; geen algemene securityuitschakeling, kosten of mainmerge. Privéadressen alleen in eigenaarchat, nooit publieke GitHub.
+
 # Persoonlijke acties
 
 ## Opnamegroep — benodigde persoonlijke handelingen

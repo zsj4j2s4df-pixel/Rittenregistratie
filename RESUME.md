@@ -1,3 +1,7 @@
+## Nieuwste eigenaaropdracht — Supabase Auth vóór bestaande D1
+
+Lees docs/TRANSFER/SUPABASE_CUTOVER_MAC.md. Eigenaar vraagt drie persoonlijke accounts, Ingelogd blijven, Wachtwoord vergeten en drie Xcode-iPhone-updates. Actuele basis werkelijk PR61/69fe81378029271bfffd648108e392ee312b214b; native auth/capture behouden. Nieuwe authbron, /login, beveiligde HttpOnlycookies/refresh/logout+browserbinding, expliciete identitymapping en additieve0017 lokaal gebouwd.296Node/type/lint/build, beide echte workerd/local-D1-providermodi en Chromium-login-UX PASS (Auth gesimuleerd; geen echt account/mailbewijs). Niet live geactiveerd, geen uitnodigingen/wachtwoorden aangemaakt; projectkeuze gedeeld Todo versus gescheiden gevraagd, officiële Authadmin/config ontbreekt in Cloudtools. Cloudflare-API werkt weer readonly; D1 nog0000–0015. Echte drieaccounts/native/uitnodigingsmail/installatie NIET GETEST. Mac krijgt concrete vervolgbron/test/releaseopdracht; geen algemene securityuitschakeling, kosten of mainmerge. Privéadressen alleen in eigenaarchat, nooit publieke GitHub.
+
 > Eigenaaraanvulling: Mac moet Dennis, Ingrid en Jesse afzonderlijk testen (identiteit/rechten, opslaan+reload, historie, veilige accountwisseling en native receipt/herstel). Nog NIET GETEST. Zie docs/TRANSFER/MAC_FINISH_AND_RELEASE.md en de nieuwe visuele gratis iPhone-installatiehandleiding docs/TRANSFER/IPHONE_TESTAPP_INSTALLEREN.md. Geen nieuwe accounts/rechten of geslaagde installatie claimen.
 
 # Hervatpunt — 18 oktober 2026

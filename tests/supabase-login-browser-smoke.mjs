@@ -1,0 +1,16 @@
+// Browser UX only, auth responses mocked. Real service/SQLite and built runtime
+// are verified separately in supabase-auth.test / supabase-built-worker-smoke.
+import assert from 'node:assert/strict';
+const {chromium}=await import(process.env.PLAYWRIGHT_MODULE??'/workspace/scratch/ritkompas-browser/node_modules/playwright/index.mjs');
+const browser=await chromium.launch({executablePath:process.env.BROWSER_EXECUTABLE??'/usr/bin/chromium',args:['--no-sandbox']});
+try{
+ const origin=process.env.APP_URL??'http://127.0.0.1:4191',context=await browser.newContext({viewport:{width:390,height:844}}),page=await context.newPage();const calls=[];
+ await page.route('**/api/auth/**',async route=>{const r=route.request(),action=new URL(r.url()).pathname.split('/').pop(),body=r.postDataJSON();calls.push({action,body});await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(action==='status'?{provider:'supabase',authenticated:false}:{message:'Controleer je e-mail.',viewerId:'synthetic'})});});
+ await page.route('**/api/vehicles**',r=>r.fulfill({status:200,contentType:'application/json',body:'{"vehicles":[]}'}));
+ await page.goto(origin+'/login');await page.getByRole('button',{name:'Inloggen',exact:true}).waitFor();await page.getByRole('button',{name:'Inloggen',exact:true}).isEnabled();
+ await page.getByText('Wachtwoord vergeten',{exact:true}).click();const recoveryForm=page.locator('details form');await recoveryForm.getByLabel('E-mailadres',{exact:true}).fill('synthetic@example.test');await recoveryForm.getByRole('button',{name:'Stuur herstellink'}).click();await page.getByRole('status').filter({hasText:'Controleer je e-mail.'}).waitFor();assert.equal(calls.find(c=>c.action==='recover').body.email,'synthetic@example.test');
+ const login=page.locator('form').first();await login.getByLabel('E-mailadres',{exact:true}).fill('synthetic@example.test');await login.getByLabel('Wachtwoord',{exact:true}).fill('synthetic-password-only');await login.getByLabel('Ingelogd blijven op dit eigen apparaat').check();await login.getByRole('button',{name:'Inloggen',exact:true}).click();await page.waitForURL('**/beheer');assert.equal(calls.find(c=>c.action==='login').body.remember,true);
+ await page.goto(origin+'/login#type=recovery&access_token=synthetic_token&refresh_token=synthetic_refresh');await page.getByRole('heading',{name:'Kies je wachtwoord'}).waitFor();assert.equal(new URL(page.url()).hash,'');await page.getByLabel('Nieuw wachtwoord',{exact:true}).fill('synthetic-new-password');await page.getByLabel('Herhaal wachtwoord',{exact:true}).fill('synthetic-new-password');await page.getByRole('button',{name:'Wachtwoord opslaan'}).click();await page.getByRole('status').filter({hasText:'Je wachtwoord is ingesteld.'}).waitFor();assert.equal(calls.find(c=>c.action==='password').body.password,'synthetic-new-password');assert.equal(await page.evaluate(()=>localStorage.length),0);
+ for(const width of [375,390,844,1440]){await page.setViewportSize({width,height:844});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));}
+ console.log('PASS Chromium login UX: remember opt-in, recovery form, password confirmation, immediate fragment removal, no token localStorage, four widths. Auth mocked; NOT live mail/account/iPhone proof.');
+}finally{await browser.close();}

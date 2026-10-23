@@ -193,3 +193,18 @@ export const tripReviewRequests=sqliteTable('trip_review_requests',{
 export const mutationRequests=sqliteTable('mutation_requests',{
  vehicleId:text('vehicle_id').notNull().references(()=>vehicles.id),userId:text('user_id').notNull().references(()=>users.id),requestId:text('request_id').notNull(),operation:text('operation').notNull(),entityId:text('entity_id').notNull(),requestJson:text('request_json').notNull(),responseJson:text('response_json').notNull(),
 },t=>[primaryKey({columns:[t.vehicleId,t.userId,t.requestId]}),check('mutation_operation',sql`${t.operation} IN ('trip-edit','settings')`),check('mutation_payload_size',sql`length(CAST(${t.requestJson} AS BLOB))<=16384 AND length(CAST(${t.responseJson} AS BLOB))<=65536`)]);
+
+// Provider identities preserve internal IDs and existing audit/vehicle ownership.
+export const authIdentities=sqliteTable('auth_identities',{
+ issuer:text('issuer').notNull(),subject:text('subject').notNull(),userId:text('user_id').notNull().references(()=>users.id),active:integer('active').notNull().default(1),
+},t=>[primaryKey({columns:[t.issuer,t.subject]}),uniqueIndex('idx_auth_identity_user').on(t.issuer,t.userId),check('auth_identity_active',sql`${t.active} IN (0,1)`)]);
+export const authSessionRevocations=sqliteTable('auth_session_revocations',{
+ issuer:text('issuer').notNull(),sessionId:text('session_id').notNull(),revokedAt:integer('revoked_at').notNull(),
+},t=>[primaryKey({columns:[t.issuer,t.sessionId]})]);
+export const authAttempts=sqliteTable('auth_attempts',{
+ bucket:integer('bucket').notNull(),ipHash:text('ip_hash').notNull(),attempts:integer('attempts').notNull(),
+},t=>[primaryKey({columns:[t.bucket,t.ipHash]})]);
+
+export const authBrowserBindings=sqliteTable('auth_browser_bindings',{
+ id:text('id').primaryKey(),version:text('version').notNull(),issuer:text('issuer').notNull(),userId:text('user_id').notNull().references(()=>users.id),sessionId:text('session_id').notNull(),
+});

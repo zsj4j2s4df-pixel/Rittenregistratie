@@ -120,6 +120,13 @@
       "when": 1792540800000,
       "tag": "0016_address_categories",
       "breakpoints": true
+    },
+    {
+      "idx": 17,
+      "version": "6",
+      "when": 1792767338774,
+      "tag": "0017_supabase_identities",
+      "breakpoints": true
     }
   ]
 }
