@@ -9,7 +9,7 @@ try{
  const f=setup({after:fn=>cleanup.push(fn)});let principal={userId:'u',disabled:false,sessionExpiresAt:Date.now()+3600000};
  const service=createSettingsService(f.db,async()=>principal),handle=createTripHttpHandler({db:f.db,origin,resolveSession:async()=>principal});
  await page.route('**/api/vehicles**',async route=>{const req=route.request(),r=await handle(new Request(req.url(),{method:req.method(),headers:await req.allHeaders(),body:req.postData()??undefined}));await route.fulfill({status:r.status,headers:Object.fromEntries(r.headers),body:Buffer.from(await r.arrayBuffer())});});
- await page.goto(origin);await page.getByRole('heading',{name:'Opgeslagen ritten',exact:true}).waitFor();
+ await page.goto(origin+'/beheer');await page.getByRole('heading',{name:'Opgeslagen ritten',exact:true}).waitFor();
  for(const kind of ['business','private'])for(let n=0;n<2;n++){
   await page.getByRole('button',{name:kind==='business'?'+ Zakelijke locatie toevoegen':'+ Privélocatie toevoegen',exact:true}).click();
   await page.getByLabel('Naam voorkeursadres',{exact:true}).fill('Fixture '+kind+' '+n);

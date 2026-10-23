@@ -12,7 +12,7 @@ const browser=await chromium.launch({executablePath:process.env.BROWSER_EXECUTAB
 const cleanup=[];
 try{
  const context=await browser.newContext({timezoneId:'Europe/Amsterdam',viewport:{width:1440,height:1100},acceptDownloads:true});const page=await context.newPage();
- await page.goto(origin);await page.getByRole('alert').filter({hasText:'De beveiligde backend is nog niet beschikbaar.'}).waitFor();assert.equal(await page.getByRole('button',{name:'Rit opslaan',exact:true}).count(),0);assert.equal(await page.getByText('Utrecht → Amersfoort',{exact:true}).count(),0);
+ await page.goto(origin+'/beheer');await page.getByRole('alert').filter({hasText:'De beveiligde backend is nog niet beschikbaar.'}).waitFor();assert.equal(await page.getByRole('button',{name:'Rit opslaan',exact:true}).count(),0);assert.equal(await page.getByText('Utrecht → Amersfoort',{exact:true}).count(),0);
  const {db,sqlite}=setup({after:fn=>cleanup.push(fn)});const principal={userId:'u',disabled:false,sessionExpiresAt:Date.now()+3600000};const handle=createTripHttpHandler({db,origin,resolveSession:async()=>principal});let loseCreateResponse=true;
  await page.route('**/api/vehicles**',async route=>{
   const req=route.request();const response=await handle(new Request(req.url(),{method:req.method(),headers:await req.allHeaders(),body:req.postData()??undefined}));

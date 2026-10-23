@@ -14,7 +14,7 @@ try{
   if(isSnapshot&&holdNext){holdNext=false;await new Promise(resolve=>{release=resolve;});}
   try{await route.fulfill({status:response.status,headers:Object.fromEntries(response.headers),body:Buffer.from(await response.arrayBuffer())});}catch{/* A cancelled scoped read must never apply its result. */}
  });
- await page.goto(origin);await page.getByRole('heading',{name:'Opgeslagen ritten',exact:true}).waitFor();
+ await page.goto(origin+'/beheer');await page.getByRole('heading',{name:'Opgeslagen ritten',exact:true}).waitFor();
  const toggle=page.getByRole('checkbox',{name:'Automatisch centraal verversen'});assert.equal(await toggle.isChecked(),false);assert.equal(snapshots,1);
  sqlite.exec("UPDATE trips SET start_address='Remote A',end_address='Destination',revision=revision+1 WHERE id='t'");await toggle.check();await page.getByText('Remote A → Destination',{exact:true}).waitFor();assert.equal(snapshots,2);
  await toggle.uncheck();let before=snapshots;await page.clock.fastForward(60000);assert.equal(snapshots,before);

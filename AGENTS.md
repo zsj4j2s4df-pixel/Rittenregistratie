@@ -1,3 +1,9 @@
+## Actuele website- en Mac-beeldopdracht — 23 oktober 2026
+
+Nieuwe websitebron boven PR62: rittenlijst/maand/totaal, bestaande correcties+historie, rapporten/CSV en browser-PDF, mobiel/desktop en dezelfde centrale login. Zie [implementatie en bewijs](docs/TRANSFER/WEB_APP_IMPLEMENTATION.md). 299Node/type/lint/build en nieuwe echte HTTP/SQLite-Chromiumgroep PASS; synthetische identiteit, niet live.
+
+[Concrete Mac-opdracht](docs/TRANSFER/MAC_WEB_VISUAL_ASSETS.md): visueel gelijkmaken met nativeapp en geselecteerde foto/logo/iconen op openbare GitHub plaatsen, met manifest en geoptimaliseerde publicatiekopieën. Eigenaar heeft dit nu expliciet gevraagd; oudere lokaal-onlyregels worden uitsluitend voor deze gekozen publicatiebestanden vervangen. Geen andere privédata uploaden. Assets nog NIET ontvangen; Macuitvoering nog OPEN. Supabase-mail/drieaccountacceptatie/nativebinding/drie iPhone-updates blijven OPEN.
+
 > Definitief eigenaarbesluit: uitsluitend een APART Supabase-project voor RitKompas, met eigen drie accounts, wachtwoorden, herstel en redirectinstellingen. Geen andere app/project hergebruiken of aanpassen. Organisatie jesse gekozen; apart project RitKompas werkelijk aangemaakt na actuele $0/maand-kostencontrole: vcrhkfqmsaqszvsyfzba, EU/Frankfurt, ACTIVE_HEALTHY. Publieke tabellen leeg en beperkte securityadvisor zonder bevindingen. Appkoppeling/uitnodiging/installatie nog NIET uitgevoerd. Standaardmail is beperkt tot projectteamleden; configureer een toegestane mailvoorziening zonder gebruikers beheerrechten te geven.
 
 ## Nieuwste eigenaaropdracht — Supabase Auth vóór bestaande D1

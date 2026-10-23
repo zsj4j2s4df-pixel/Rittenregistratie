@@ -1,0 +1,11 @@
+# Website met dezelfde centrale registratie — 23 oktober 2026
+
+Basis: PR62, exacte remote head `7f399149e00b25ca69195fd12edb0ac2b207b0bf`, tree `10e8eba4120b9a220335ce1f3c5522a42add91a8`. Geen native bron overschreven.
+
+Gebouwd: `/` en `/ritten` tonen echte centrale ritten, maandfilter en bekende kilometertotalen, classificatie-/bestuurder-/zoekfilters en details. Ritcorrecties gebruiken de bestaande revision/receipt/auditservice, expliciete controle vóór schrijven en behoud van historie. `/rapporten` maakt bestaande onveranderlijke rapportmomentopnamen en downloadt CSV; PDF gebruikt de geautoriseerde afdrukweergave en de browseroptie Bewaar als PDF, geen nieuwe server-PDFgenerator. `/mijn-jeep` en `/instellingen` gebruiken dezelfde voertuigen/thema’s/accountcontext; uitgebreid beheer blijft `/beheer`. Desktopzijbalk en mobiele vaste ondernavigatie, Desert/Anthracite. Login gaat na succes naar `/ritten`; bestaande Supabase/Access-providerkeuze en centrale rechten blijven behouden. Geen tweede lokale ritdatabase of extra migratie.
+
+PASS: 299 Node-tests; typecheck, lint en productiebuild. Nieuwe Chromium-proef met werkelijke gedeelde HTTP/SQLite-service: maand/filter/totaal, correctie+historie, opgeslagen rapport, echte CSV-download, geautoriseerde print en synthetisch PDFartifact, onveranderlijk rapport na latere ritcorrectie, zes breedtes375–1920, themaherstel en persoonlijke gegevens verwijderd bij autorisatieverlies. Identity/provider zijn synthetisch: geen echte Supabase-mail/account/iPhoneacceptatie. Mac doet de gerichte visuele/assetgroep in `MAC_WEB_VISUAL_ASSETS.md`.
+
+Niet live gepubliceerd; geen D1-migratie, Accessconfig of nieuw account aangepast. Echte drieaccounts, mailbezorging, native Supabase-sessiebinding en drie Xcode-installaties blijven de bestaande Mac-vervolgopdracht. Geen foto-/logo-upload als voltooid claimen voordat de echte gekozen bestanden op GitHub staan. Geen automatische achtergrond-GPS/CarPlay/OBD2- of appdownloadclaim.
+
+Aanvullend PASS: gebouwde framework/workerd/local-D1 in beide providermodi, bestaande multi-adres-browserregressie en login-UX-regressie. Providerreacties gesimuleerd. Beperkte patrooncontrole410bestanden/953historischeblobs zonder bevindingen; geen volledige securitycertificering.
