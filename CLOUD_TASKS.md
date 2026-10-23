@@ -1,3 +1,7 @@
+## Nieuwste Mac-uitvoering — PR63 LIVE, authovergang OPEN
+
+[Releasebewijs](docs/TRANSFER/MAC_WEB_RELEASE_2026-10-23.md). Versie638dcf97/100%,0016 na verse herstelproef;21oude datatabellen behouden.299Node/type/lint/build/lokaleWorker/browser PASS. Access/vierbindings behouden. Niet opnieuw oude PR59 publiceren. Volgende groep: persoonlijke eigenaarlogin/live-read; Supabase-mail/uitnodigingen/0017/mappings/nativebinding/drie iPhoneupdates en visuele assets OPEN. Geen nieuwe appaccounts/GPS als gereed melden.
+
 ## Actuele website- en Mac-beeldopdracht — 23 oktober 2026
 
 Nieuwe websitebron boven PR62: rittenlijst/maand/totaal, bestaande correcties+historie, rapporten/CSV en browser-PDF, mobiel/desktop en dezelfde centrale login. Zie [implementatie en bewijs](docs/TRANSFER/WEB_APP_IMPLEMENTATION.md). 299Node/type/lint/build en nieuwe echte HTTP/SQLite-Chromiumgroep PASS; synthetische identiteit, niet live.

@@ -1,3 +1,7 @@
+## 23 oktober — nieuwste Cloudwebsite PR63 werkelijk live
+
+[Releasebewijs](docs/TRANSFER/MAC_WEB_RELEASE_2026-10-23.md). Versie638dcf97-999a-4df6-afd7-d3fc1ae42723/deployment83e16f83-dfd3-42b3-8a8b-f11467301b9d/100% teruggelezen. Verse herstelproef/0015schema/0016upgrade en21oorspronkelijke datatabellen na migratie+deploy PASS.299Node/type/lint/build/gebouwdeWorker/responsivebrowser PASS. Access behouden/anoniem302. Live-eindtest vraagt heraanmelding. Supabase/0017/mail/drieaccount/native/iPhoneupdate/beeldopdracht OPEN. Geen mainmerge/kosten/securityuitschakeling.
+
 ## Actuele website- en Mac-beeldopdracht — 23 oktober 2026
 
 Nieuwe websitebron boven PR62: rittenlijst/maand/totaal, bestaande correcties+historie, rapporten/CSV en browser-PDF, mobiel/desktop en dezelfde centrale login. Zie [implementatie en bewijs](docs/TRANSFER/WEB_APP_IMPLEMENTATION.md). 299Node/type/lint/build en nieuwe echte HTTP/SQLite-Chromiumgroep PASS; synthetische identiteit, niet live.
