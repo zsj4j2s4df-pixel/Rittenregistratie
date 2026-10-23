@@ -4,6 +4,10 @@
 
 Lees docs/TRANSFER/SUPABASE_CUTOVER_MAC.md. Eigenaar vraagt drie persoonlijke accounts, Ingelogd blijven, Wachtwoord vergeten en drie Xcode-iPhone-updates. Actuele basis werkelijk PR61/69fe81378029271bfffd648108e392ee312b214b; native auth/capture behouden. Nieuwe authbron, /login, beveiligde HttpOnlycookies/refresh/logout, expliciete identitymapping en additieve0017 lokaal gebouwd. Niet live geactiveerd, geen uitnodigingen/wachtwoorden aangemaakt; apart RitKompas-project vcrhkfqmsaqszvsyfzba in organisatie jesse bestaat nu; officiële Authadmin/config en toegestane mailbezorging zijn vervolgstappen. Cloudflare-API werkt weer readonly; D1 nog0000–0015. Echte drieaccounts/native/uitnodigingsmail/installatie NIET GETEST. Mac krijgt concrete vervolgbron/test/releaseopdracht; geen algemene securityuitschakeling, kosten of mainmerge. Privéadressen alleen in eigenaarchat, nooit publieke GitHub.
 
+## 23 oktober — vernieuwde website live, bestaande aanmelding nog nodig
+
+Open https://rittenregistratie.zsj4j2s4df.workers.dev/ritten en meld persoonlijk aan via de bestaande Cloudflare-toegang. Nieuwe persoonlijke Supabase-appaccounts/herstelmail zijn nog NIET actief; geen nieuw Cloudflareaccount maken of wachtwoorden/codes delen. [Uitvoering en grenzen](docs/TRANSFER/MAC_WEB_RELEASE_2026-10-23.md). Drieaccount-/telefoonupdates en gekozen publieke beelden blijven vervolgstappen.
+
 # Persoonlijke acties
 
 ## Opnamegroep — benodigde persoonlijke handelingen

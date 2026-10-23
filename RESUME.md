@@ -1,3 +1,7 @@
+## Nieuwste Mac-checkpoint — PR63 website LIVE
+
+[Releasebewijs](docs/TRANSFER/MAC_WEB_RELEASE_2026-10-23.md). Exact PR63/ce94803 gepubliceerd als638dcf97-999a-4df6-afd7-d3fc1ae42723/100%.0016toegepast na verse encrypted backup/restore/upgrade;21oude datatabellen na migratie+deploy behouden.299Node/type/lint/build/gebouwdeWorker/6breedtesbrowser PASS. Access/vierbindings behouden, vieranonieme302PASS. Persoonlijke heraanmelding voor live-eindtest nodig. Supabase/0017/mail/drieaccounts/nativebinding/iPhoneupdates en gedeelde beelden OPEN. Geen oude PR59 publiceren of0016 herhalen.
+
 ## Actuele website- en Mac-beeldopdracht — 23 oktober 2026
 
 Nieuwe websitebron boven PR62: rittenlijst/maand/totaal, bestaande correcties+historie, rapporten/CSV en browser-PDF, mobiel/desktop en dezelfde centrale login. Zie [implementatie en bewijs](docs/TRANSFER/WEB_APP_IMPLEMENTATION.md). 299Node/type/lint/build en nieuwe echte HTTP/SQLite-Chromiumgroep PASS; synthetische identiteit, niet live.
