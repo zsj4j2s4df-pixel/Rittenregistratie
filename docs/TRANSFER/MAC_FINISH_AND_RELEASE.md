@@ -1,3 +1,5 @@
+> Nieuwste opvolgende opdracht: lees [Supabase-overgang en drie iPhone-installaties](SUPABASE_CUTOVER_MAC.md) vóór onderstaande oudere Accesslogin-stappen. Alle bestaande native/capture-/web-/hardware-eisen blijven behouden.
+
 # Mac — afronden native app, mobiele/brede website en Cloudflare
 
 ## Nieuwe eigenaaropdracht en ontvangststatus
