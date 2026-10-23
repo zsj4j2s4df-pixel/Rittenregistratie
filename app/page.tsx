@@ -1,1 +1,1 @@
-export {default} from './beheer/page';
+export {default} from './web-registration';

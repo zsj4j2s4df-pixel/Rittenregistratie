@@ -48,7 +48,7 @@ try{
  await db.prepare("UPDATE users SET disabled=0 WHERE id='u'").run();await db.prepare('UPDATE vehicle_memberships SET active=0').run();const revoked=await mf.dispatchFetch(origin+'/api/vehicles/v/trips',{headers:{cookie:'CF_Authorization='+jwt}});assert.equal(revoked.status,403);
  const revokedScope=await mf.dispatchFetch(origin+'/api/vehicles/v/session',{headers:{cookie:'CF_Authorization='+jwt}});assert.equal(revokedScope.status,403);
  assert.equal((await pendingRead()).status,403);
- const rootResponse=await mf.dispatchFetch(origin+'/');assert.equal(rootResponse.status,200);const rootHtml=await rootResponse.text();assert.doesNotMatch(rootHtml,/Lokale demonstratie|Utrecht → Amersfoort/);assert.match(rootHtml,/Centrale registratie/);
+ const rootResponse=await mf.dispatchFetch(origin+'/');assert.equal(rootResponse.status,200);const rootHtml=await rootResponse.text();assert.doesNotMatch(rootHtml,/Lokale demonstratie|Utrecht → Amersfoort/);assert.match(rootHtml,/Jouw ritten|Ritten/);
  const page=await mf.dispatchFetch(origin+'/beheer');assert.equal(page.status,200);
  console.log('PASS built embedded wrapper + actual framework routing + local workerd/D1: root serves central registration, signed header/cookie, minimal native scope/pending proposals/materialized exclusion/viewer mismatch/revocation, save/read/exact retry, categorized multi-address settings/correction receipts and exact retry, explicit trip review/exact retry, atomic reviewed journey materialization/exact retry, forged header denial, disabled user, revoked membership, beheer shell. Synthetic JWKS only; NOT live Access/browser login.');
 }finally{await mf.dispose();}
