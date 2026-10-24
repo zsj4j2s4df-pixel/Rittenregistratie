@@ -1,3 +1,7 @@
+## 24 oktober — huisstijl LIVE; Supabase nativevoorbereiding, accounts nog open
+
+[Exact releasebewijs en direct hervatpunt](docs/design/ONLINE_AND_SUPABASE_2026-10-24.md). PR65-bron b2d9da4/tree ea10f920 gepubliceerd als a315a6ed-2d6b-4e36-9dbf-258af6965042/deployment007cde54/100%; bindings/Access behouden, vieranonieme302PASS. Verse encryptedrestore en22tabellen na deploy gelijk. Supabaseprojecthealthy/authaccounts0; cookiecontract+7nieuwe tests/65Swift totaal en unsigneddevicebuildPASS. Adapter NIET geactiveerd; officiële Authadminbrowser/SMTP/3accounts/mappings/0017/native refresh/logout en fysiekeupdates OPEN. Geen mainmerge/kosten/securityversoepeling. Niet0016herhalen.
+
 ## Nieuwste Mac-uitvoering — PR63 LIVE, authovergang OPEN
 
 [Releasebewijs](docs/TRANSFER/MAC_WEB_RELEASE_2026-10-23.md). Versie638dcf97/100%,0016 na verse herstelproef;21oude datatabellen behouden.299Node/type/lint/build/lokaleWorker/browser PASS. Access/vierbindings behouden. Niet opnieuw oude PR59 publiceren. Volgende groep: persoonlijke eigenaarlogin/live-read; Supabase-mail/uitnodigingen/0017/mappings/nativebinding/drie iPhoneupdates en visuele assets OPEN. Geen nieuwe appaccounts/GPS als gereed melden.

@@ -1,5 +1,13 @@
 > Definitief eigenaarbesluit: uitsluitend een APART Supabase-project voor RitKompas, met eigen drie accounts, wachtwoorden, herstel en redirectinstellingen. Geen andere app/project hergebruiken of aanpassen. Organisatie jesse gekozen; apart project RitKompas werkelijk aangemaakt na actuele $0/maand-kostencontrole: vcrhkfqmsaqszvsyfzba, EU/Frankfurt, ACTIVE_HEALTHY. Publieke tabellen leeg en beperkte securityadvisor zonder bevindingen. Appkoppeling/uitnodiging/installatie nog NIET uitgevoerd. Standaardmail is beperkt tot projectteamleden; configureer een toegestane mailvoorziening zonder gebruikers beheerrechten te geven.
 
+## Acties na publicatie24oktober
+
+1. Bekijk de huisstijl op https://rittenregistratie.zsj4j2s4df.workers.dev/ritten via de bestaande toegangsaanmelding.
+2. Geef aan welke bestaande SMTP-mailprovider voor RitKompas gebruikt mag worden; geen wachtwoord/sleutel in chat/GitHub. Zonder eigen bezorging geen drie persoonlijke uitnodigingen/herstelmail afronden; geen dashboardrechten als omweg geven.
+3. Maak de eigen Supabase-beheerbrowser beschikbaar voor officiële Authconfig/uitnodigingen: https://supabase.com/dashboard/project/vcrhkfqmsaqszvsyfzba/auth/users . Accounts bestaan nog niet. Ieder kiest straks zelf zijn wachtwoord.
+
+Geen nieuwe Apple-installatie, aankoop of Xcode-licentie nodig voor bovenstaande. Fysieke iPhoneupdates volgen afzonderlijk; niets verwijderen.
+
 ## Nieuwste eigenaaropdracht — Supabase Auth vóór bestaande D1
 
 Lees docs/TRANSFER/SUPABASE_CUTOVER_MAC.md. Eigenaar vraagt drie persoonlijke accounts, Ingelogd blijven, Wachtwoord vergeten en drie Xcode-iPhone-updates. Actuele basis werkelijk PR61/69fe81378029271bfffd648108e392ee312b214b; native auth/capture behouden. Nieuwe authbron, /login, beveiligde HttpOnlycookies/refresh/logout, expliciete identitymapping en additieve0017 lokaal gebouwd. Niet live geactiveerd, geen uitnodigingen/wachtwoorden aangemaakt; apart RitKompas-project vcrhkfqmsaqszvsyfzba in organisatie jesse bestaat nu; officiële Authadmin/config en toegestane mailbezorging zijn vervolgstappen. Cloudflare-API werkt weer readonly; D1 nog0000–0015. Echte drieaccounts/native/uitnodigingsmail/installatie NIET GETEST. Mac krijgt concrete vervolgbron/test/releaseopdracht; geen algemene securityuitschakeling, kosten of mainmerge. Privéadressen alleen in eigenaarchat, nooit publieke GitHub.
