@@ -1,3 +1,11 @@
+## Actueel: eenvoudige startuitleg en veilige loginvolgorde
+
+[Uitleg en reviewmail](docs/onboarding/README.md) · [Resultaat/hervatpunt](docs/onboarding/DELIVERY_STATUS_2026-10-24.md) · [Projectstructuur](docs/PROJECT_STRUCTURE.md).
+Nieuwe publieke route `/hulp`; remember-keuze vóór credentials, standaard uit.
+Eerst Jesse's review, dan pas overige persoonlijke uitnodigingen. Mail NIET
+verzonden; doorstuurbare uitleg beschikbaar. Native/hardware nog open.
+Actuele livestatus staat uitsluitend in bovenstaand resultaatdocument.
+
 ## Actueel: goedgekeurde iconen LIVE in bewezen RitKompas-account
 
 [Exact account-, publicatie- en testbewijs](docs/design/APP_ICON_LIVE_2026-10-24.md).

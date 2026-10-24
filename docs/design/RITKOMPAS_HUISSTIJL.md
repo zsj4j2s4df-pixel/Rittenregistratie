@@ -1,5 +1,16 @@
 # RitKompas — bindende huisstijl
-Versie 1.4 · 24 oktober 2026 · eigenaar: projecteigenaar RitKompas
+Versie 1.5 · 24 oktober 2026 · eigenaar: projecteigenaar RitKompas
+
+## Aanvulling 1.5 — eenvoudige startuitleg
+
+Eigenaar vraagt korte klik-voor-klik-uitleg, spamwaarschuwing en web/nativeverschil.
+Publieke `/hulp` gebruikt Desert-tokens, goedgekeurd Willys/kompasbeeld, genummerde
+kaarten, leesbare16px-tekst, echte links en printbare opmaak; geen privé-invites.
+Aanmelden: expliciete opt-in ‘Ingelogd blijven’ vóór credentials, standaard UIT,
+44px-label en waarschuwing gedeeld apparaat. Geen gedwongen persistentie.
+Jesse controleert de algemene uitleg vóór andere persoonlijke uitnodigingen.
+Native automatische GPS/CarPlay/OBD2 nog niet als werkelijk werkend presenteren.
+Bewijs/verzend- en livestatus: docs/onboarding/DELIVERY_STATUS_2026-10-24.md.
 
 ## Eigenaarfeedback 1.4 — goedgekeurd appicoon en Willys-navigatie
 

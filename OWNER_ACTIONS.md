@@ -1,3 +1,11 @@
+## Nu persoonlijk nodig: laat Jesse de startuitleg controleren
+
+Stuur de algemene uitleg/reviewmail uit [docs/onboarding/README.md](docs/onboarding/README.md)
+aan Jesse en geef zijn akkoord of correcties door. Automatische mailverzending
+was niet beschikbaar en is NIET uitgevoerd. Pas daarna volgen de twee persoonlijke
+uitnodigingen. Geen wachtwoorden of persoonlijke uitnodigingslinks hier delen.
+Daarna helpen bij echte iPhone/Safari-beginschermcontrole; geen nieuw abonnement nodig.
+
 ## Actueel: goedgekeurde iconen LIVE in bewezen RitKompas-account
 
 [Exact account-, publicatie- en testbewijs](docs/design/APP_ICON_LIVE_2026-10-24.md).

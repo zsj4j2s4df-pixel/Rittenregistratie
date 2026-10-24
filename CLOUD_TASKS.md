@@ -1,3 +1,12 @@
+## Actueel: onboarding gereed, wacht op Jesse's inhoudelijke review
+
+[Nieuwste bewijs/volgorde](docs/onboarding/DELIVERY_STATUS_2026-10-24.md),
+[bronstructuur](docs/PROJECT_STRUCTURE.md). Login remember boven credentials,
+standaard uit; `/hulp` met echte web/nativegrens. Geen nieuwe API/schema.
+NIET opnieuw Jesse uitnodigen. Overige twee invites/mappings pas na zijn review.
+Mail niet verzonden: eigenaar heeft doorstuurtekst. Geen automatische Cloudrun-
+ontvangst uit GitHubpublicatie afleiden. Native/hardware blijven apart open.
+
 ## Actueel: goedgekeurde iconen LIVE in bewezen RitKompas-account
 
 [Exact account-, publicatie- en testbewijs](docs/design/APP_ICON_LIVE_2026-10-24.md).
