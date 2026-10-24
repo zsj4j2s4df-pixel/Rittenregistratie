@@ -1,3 +1,15 @@
+## Actueel: Jesse webaanmelding door eigenaar bevestigd
+
+[Acceptatie, aanvullende securitytests en direct vervolg](docs/TRANSFER/JESSE_WEB_ACCEPTANCE_2026-10-24.md).
+Eigenaar bevestigt geslaagde iPhone-weblogin en tevreden huidig ontwerp. Nieuwe
+gebouwde Workerproef zonder buitenpoort PASS: zes private routes anoniem401,
+identity-/membership-/account-/viewer-/CSRFguards en logoutreplay. Provider synthetisch.
+Eigenaar wil extra Cloudflarelogin straks weg; eerst gericht akkoord op concrete
+poortvervanging en rollback, dashboard/andere diensten ongewijzigd. Native dubbele-
+poortacceptatie nog niet bewezen; geen iPhone nu lokaal bereikbaar. Dennis/Ingrid
+nog open. Supabase leaked-passwordwarning vereist betaald plan: niet activeren.
+Geen nieuwe publicatie/DB/gatewijziging door deze testgroep. Historie hieronder.
+
 ## Nieuwste status: Supabase beschermd LIVE, eigenaarpilot bij Accesspoort
 
 [Leidend livebewijs en direct hervatpunt](docs/TRANSFER/SUPABASE_PROTECTED_LIVE_2026-10-24.md).
