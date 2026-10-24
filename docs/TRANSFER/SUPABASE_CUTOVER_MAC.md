@@ -1,3 +1,17 @@
+## Actueel — 24 oktober 2026: Supabase-voorbereiding uitgevoerd, live-pilot open
+
+[Leidend uitvoeringsbewijs en hervatplan](../../docs/TRANSFER/SUPABASE_EXECUTION_2026-10-24.md).
+SMTP/redirect en Nederlandse invite/reset-sjablonen opgeslagen. D1 **0017 LIVE**,
+ledger18, nul mappings, verse backup/restore en 21 bestaande datatabellen behouden.
+Native Supabase login/refresh/Keychain/logout geïntegreerd in bron; **79 Swift en
+302 Node-tests**, type/lint/webbuild, beide gebouwde Worker-authroutes en unsigned
+Xcode-devicebuild PASS. **Niet geïnstalleerd; echte drieaccountacceptatie NIET GETEST.**
+Website blijft a315a6ed/Access; nieuwe authcode NIET geactiveerd/gepubliceerd.
+Drie persoonlijke accounts/uitnodigingen/mappings nog open. Volgende groep:
+eigenaar aanwezig voor gecontroleerde beschermde setup/login/reset-pilot, daarna
+pas gecontroleerde overgang en fysieke iPhoneupdates. Geen mainmerge/bypass/kosten.
+Oudere statusregels hieronder zijn historische checkpoints, niet het hervatpunt.
+
 # RitKompas — Supabase-aanmelding en drie iPhone-installaties
 
 Overdracht: [draft PR62](https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/62), branch `cloud/supabase-auth-three-iphones`. Broncommit `16fd4e23bfeb2b0180eccd2c0ef945277c96e8d6`, tree `173726bb732f72a7a38ed228c7b468f633006903`:393blobs+modes exact lokaal/remote teruggelezen. Opvolgende documenthead behouden. GitHubopslag is geen bewijs dat Mac al heeft uitgevoerd.

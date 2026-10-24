@@ -6,7 +6,10 @@ import Foundation
 public struct NativeCredentialCandidate: Sendable, CustomStringConvertible, CustomDebugStringConvertible {
     public let version: UUID
     public let headers: [String: String]
-    public init(version: UUID, headers: [String: String]) { self.version = version; self.headers = headers }
+    public let expectedViewerID: String?
+    public init(version: UUID, headers: [String: String], expectedViewerID: String? = nil) {
+        self.version = version; self.headers = headers; self.expectedViewerID = expectedViewerID
+    }
     public var description: String { "NativeCredentialCandidate(redacted)" }
     public var debugDescription: String { description }
 }
@@ -89,10 +92,14 @@ public actor VerifiedNativeSession: SessionAccess, ChoiceSessionBinding {
         try Task.checkCancellation()
         let latest = try await credentials.candidate(for: origin)
         guard !closed else { throw NativeAPIError.signInRequired }
-        guard candidate.version == latest.version, candidate.headers == latest.headers else {
+        guard candidate.version == latest.version, candidate.headers == latest.headers,
+              candidate.expectedViewerID == latest.expectedViewerID else {
             discardProof(); throw ChoiceQueueError.sessionChanged
         }
         guard fresh(scope) else { discardProof(); throw NativeAPIError.invalidSessionGrant }
+        if let expected = candidate.expectedViewerID, expected != scope.viewerID {
+            closed = true; discardProof(); throw ChoiceQueueError.sessionChanged
+        }
         if let viewer = pinnedViewerID, viewer != scope.viewerID {
             closed = true; pinnedViewerID = nil; discardProof()
             throw ChoiceQueueError.sessionChanged
@@ -115,7 +122,8 @@ public actor VerifiedNativeSession: SessionAccess, ChoiceSessionBinding {
         try Task.checkCancellation()
         guard !closed else { throw NativeAPIError.signInRequired }
         if let proof = queueProof, let old = proofCandidate, fresh(proof),
-           proof.viewerID == pinnedViewerID, candidate.version == old.version, candidate.headers == old.headers {
+           proof.viewerID == pinnedViewerID, candidate.version == old.version, candidate.headers == old.headers,
+           candidate.expectedViewerID == old.expectedViewerID {
             return ChoiceSessionScope(viewerID: proof.viewerID, vehicleID: proof.vehicleID)
         }
         discardProof()

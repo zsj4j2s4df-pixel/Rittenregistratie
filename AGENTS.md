@@ -1,3 +1,17 @@
+## Actueel — 24 oktober 2026: Supabase-voorbereiding uitgevoerd, live-pilot open
+
+[Leidend uitvoeringsbewijs en hervatplan](docs/TRANSFER/SUPABASE_EXECUTION_2026-10-24.md).
+SMTP/redirect en Nederlandse invite/reset-sjablonen opgeslagen. D1 **0017 LIVE**,
+ledger18, nul mappings, verse backup/restore en 21 bestaande datatabellen behouden.
+Native Supabase login/refresh/Keychain/logout geïntegreerd in bron; **79 Swift en
+302 Node-tests**, type/lint/webbuild, beide gebouwde Worker-authroutes en unsigned
+Xcode-devicebuild PASS. **Niet geïnstalleerd; echte drieaccountacceptatie NIET GETEST.**
+Website blijft a315a6ed/Access; nieuwe authcode NIET geactiveerd/gepubliceerd.
+Drie persoonlijke accounts/uitnodigingen/mappings nog open. Volgende groep:
+eigenaar aanwezig voor gecontroleerde beschermde setup/login/reset-pilot, daarna
+pas gecontroleerde overgang en fysieke iPhoneupdates. Geen mainmerge/bypass/kosten.
+Oudere statusregels hieronder zijn historische checkpoints, niet het hervatpunt.
+
 ## Verplichte RitKompas-huisstijl
 
 Lees vóór alle RitKompas-interfaces en visuele uitingen volledig

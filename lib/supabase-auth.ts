@@ -90,7 +90,10 @@ export function createSupabaseAuth(options:SupabaseOptions){
  async function handle(request:Request):Promise<Response>{
   try{
    const target=new URL(request.url);if(target.origin!==origin||target.search)throw new AuthError(403,'Ongeldige aanvraagherkomst.');
-   if(target.pathname==='/api/auth/status'&&request.method==='GET')return response(200,{provider:'supabase',authenticated:!!await resolveSession(request)});
+   if(target.pathname==='/api/auth/status'&&request.method==='GET'){
+    const principal=await resolveSession(request);
+    return response(200,{provider:'supabase',authenticated:!!principal,...(principal?{viewerId:principal.userId,expiresAt:principal.sessionExpiresAt}:{})});
+   }
    if(request.method!=='POST')return response(405,{error:'Methode niet toegestaan.'});
    if(request.headers.get('origin')!==origin||request.headers.get('x-csrf-protection')!=='1'||request.headers.get('sec-fetch-site')==='cross-site')throw new AuthError(403,'Ongeldige aanvraagherkomst.');
    if(request.headers.get('content-type')?.split(';')[0]!=='application/json')throw new AuthError(415,'JSON vereist.');

@@ -1,3 +1,15 @@
+## Actueel — wat de eigenaar nog moet doen
+
+SMTP en appwachtwoord zijn al geregeld; niet opnieuw instellen of delen.
+Volgende stap: aanwezig zijn voor één afgesproken persoonlijke aanmeldpilot en
+zelf je wachtwoord kiezen. Daarna ontgrendelde iPhones met kabel beschikbaar
+maken voor ondertekende installatie. Tot de veilige callback/live-pilot gereed is
+sturen we geen drie persoonlijke uitnodigingen. Je hoeft nu geen nieuw account,
+Apple-lidmaatschap of dienst te kopen.
+
+[Wat al gedaan is en de precieze resterende stappen](docs/TRANSFER/SUPABASE_EXECUTION_2026-10-24.md).
+Oudere SMTP-keuzeverzoeken hieronder zijn afgehandelde historie.
+
 > Definitief eigenaarbesluit: uitsluitend een APART Supabase-project voor RitKompas, met eigen drie accounts, wachtwoorden, herstel en redirectinstellingen. Geen andere app/project hergebruiken of aanpassen. Organisatie jesse gekozen; apart project RitKompas werkelijk aangemaakt na actuele $0/maand-kostencontrole: vcrhkfqmsaqszvsyfzba, EU/Frankfurt, ACTIVE_HEALTHY. Publieke tabellen leeg en beperkte securityadvisor zonder bevindingen. Appkoppeling/uitnodiging/installatie nog NIET uitgevoerd. Standaardmail is beperkt tot projectteamleden; configureer een toegestane mailvoorziening zonder gebruikers beheerrechten te geven.
 
 ## Acties na publicatie24oktober

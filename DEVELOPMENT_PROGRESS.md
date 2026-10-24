@@ -1,3 +1,17 @@
+## Actueel — 24 oktober 2026: Supabase-voorbereiding uitgevoerd, live-pilot open
+
+[Leidend uitvoeringsbewijs en hervatplan](docs/TRANSFER/SUPABASE_EXECUTION_2026-10-24.md).
+SMTP/redirect en Nederlandse invite/reset-sjablonen opgeslagen. D1 **0017 LIVE**,
+ledger18, nul mappings, verse backup/restore en 21 bestaande datatabellen behouden.
+Native Supabase login/refresh/Keychain/logout geïntegreerd in bron; **79 Swift en
+302 Node-tests**, type/lint/webbuild, beide gebouwde Worker-authroutes en unsigned
+Xcode-devicebuild PASS. **Niet geïnstalleerd; echte drieaccountacceptatie NIET GETEST.**
+Website blijft a315a6ed/Access; nieuwe authcode NIET geactiveerd/gepubliceerd.
+Drie persoonlijke accounts/uitnodigingen/mappings nog open. Volgende groep:
+eigenaar aanwezig voor gecontroleerde beschermde setup/login/reset-pilot, daarna
+pas gecontroleerde overgang en fysieke iPhoneupdates. Geen mainmerge/bypass/kosten.
+Oudere statusregels hieronder zijn historische checkpoints, niet het hervatpunt.
+
 ## 24 oktober — huisstijl LIVE; Supabase nativevoorbereiding, accounts nog open
 
 [Exact releasebewijs en direct hervatpunt](docs/design/ONLINE_AND_SUPABASE_2026-10-24.md). PR65-bron b2d9da4/tree ea10f920 gepubliceerd als a315a6ed-2d6b-4e36-9dbf-258af6965042/deployment007cde54/100%; bindings/Access behouden, vieranonieme302PASS. Verse encryptedrestore en22tabellen na deploy gelijk. Supabaseprojecthealthy/authaccounts0; cookiecontract+7nieuwe tests/65Swift totaal en unsigneddevicebuildPASS. Adapter NIET geactiveerd; officiële Authadminbrowser/SMTP/3accounts/mappings/0017/native refresh/logout en fysiekeupdates OPEN. Geen mainmerge/kosten/securityversoepeling. Niet0016herhalen.

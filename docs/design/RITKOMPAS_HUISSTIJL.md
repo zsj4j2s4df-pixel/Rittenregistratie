@@ -1,5 +1,18 @@
 # RitKompas — bindende huisstijl
-Versie 1.2 · 24 oktober 2026 · eigenaar: projecteigenaar RitKompas
+Versie 1.3 · 24 oktober 2026 · eigenaar: projecteigenaar RitKompas
+
+## Aanvulling 1.3 — persoonlijke aanmelding en e-mail
+
+Native accountaanmelding behoudt de bestaande RitKompas-componenten; tekst
+spreekt over een persoonlijke sessie, niet uitsluitend een Cloudflare-cookie.
+Uitnodiging en herstelmail zijn helder Nederlands met RitKompas in het onderwerp,
+antraciet #242b29, eenvoudige Arial-tekst en één duidelijke persoonlijke actie.
+Geen externe foto's, tracking of nepknoppen die niet bij de providerlink horen.
+Bewaar de echte ConfirmationURL-placeholder; geen wachtwoord/token in uitleg.
+Sjablonen en onderwerpen staan in docs/auth-email/, via Supabase UI opgeslagen.
+Nativebron unsigned gebouwd en unitgetest; driepersoonlijke live-mail/login en
+nieuwe fysieke iPhone-installaties NIET GETEST. Geen liveclaim uit een preview.
+Zie docs/TRANSFER/SUPABASE_EXECUTION_2026-10-24.md voor actueel bewijs.
 
 ## Geldigheid en onderhoud
 Deze standaard geldt voor ALLE RitKompas-interfaces en zichtbare projectuitingen:
