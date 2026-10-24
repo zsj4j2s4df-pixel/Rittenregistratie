@@ -1,3 +1,12 @@
+## Actueel: eerst review startuitleg, nog geen overige invites
+
+[Nieuwste resultaat en directe vervolgvolgorde](docs/onboarding/DELIVERY_STATUS_2026-10-24.md).
+`/hulp` en remember-boven-credentials gereed;308Node/type/lint/build/WorkerPASS.
+Geen nieuwe accounts, invites of private data naar GitHub. Geen mailkanaal:
+algemene mail/uitleg aan eigenaar voor Jesse; NIET VERZONDEN/NIET GOEDGEKEURD.
+Wacht op Jesse's review, daarna veilige tweeaccountpilot uit bestaand draaiboek.
+Native niet gewijzigd/geïnstalleerd. Publicatiestatus: resultaatdocument leidend.
+
 ## Actueel: goedgekeurde iconen LIVE in bewezen RitKompas-account
 
 [Exact account-, publicatie- en testbewijs](docs/design/APP_ICON_LIVE_2026-10-24.md).

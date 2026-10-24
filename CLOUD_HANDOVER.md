@@ -1,3 +1,11 @@
+## Actueel: accountstartuitleg en review vóór nieuwe invites
+
+[Nieuwste resultaat/hervatpunt](docs/onboarding/DELIVERY_STATUS_2026-10-24.md).
+Uitleg `/hulp`, reviewmail en bronstructuurindex beschikbaar; remember vóór
+credentials, standaard uit. Eerst Jesse's inhoudelijke akkoord; bestaande Jesse
+behouden, overige twee officiële invites/mappings pas daarna. Mail NIET verzonden.
+Geen Cloudrunontvangst claimen; native-installatie en hardware blijven Macwerk.
+
 ## Actueel: goedgekeurde iconen LIVE in bewezen RitKompas-account
 
 [Exact account-, publicatie- en testbewijs](docs/design/APP_ICON_LIVE_2026-10-24.md).

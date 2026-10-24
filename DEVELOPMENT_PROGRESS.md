@@ -1,3 +1,10 @@
+## Actueel: eenvoudige onboarding en duidelijker sessiekeuze
+
+[Nieuwste test-/verzend-/releasestatus](docs/onboarding/DELIVERY_STATUS_2026-10-24.md).
+308Node/type/lint/build/gebouwdeWorkerPASS; publieke handleiding en reviewmail
+klaar, opt-in vóór invoervelden. Projectstructuurindex veilig zonder privédata.
+Eerst Jesse controleren; overige invites NIET verstuurd. Geen nieuw nativebewijs.
+
 ## Actueel: goedgekeurde iconen LIVE in bewezen RitKompas-account
 
 [Exact account-, publicatie- en testbewijs](docs/design/APP_ICON_LIVE_2026-10-24.md).
