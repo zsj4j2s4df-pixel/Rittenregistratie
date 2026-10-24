@@ -8,7 +8,19 @@ reviewmail herschikt:1aanmeldlink,2Wachtwoord vergeten→Stuur herstellink + mai
 Echte knopnamen op livepagina gecontroleerd zonder herstelmail te versturen.
 Account moet vooraf klaarstaan; recovery maakt geen account of rechten aan.
 Bestaand werkend wachtwoord: sla herstel over. Huisstijl1.6 gespiegeld; geen
-nieuwe assets, accounts, rechten, mails of nativewijziging. Publicatiebewijs volgt.
+nieuwe assets, accounts, rechten, mails of nativewijziging.
+
+Correctie werkelijk LIVE: versie200c1939-9277-4b6a-9009-53f7ae1b245e,
+deployment6b475726-593a-4e71-bb70-6ebe5c5d4119/100%, teruggelezen in hetzelfde
+geverifieerde RitKompas-account. Alle7bindings exact voor/na gelijk.
+Gepubliceerde bron1a56eb1d3bae241ab5a732ecb87971ffda1e65ad, exact tree
+a0745cfd986d9b71701bf37592b64863d9022805 (lokaal8457124). PR68 bijgewerkt.
+310Node/type/lint/build, gebouwdeWorker-auth/assets en lokale productieChrome
+PASS. LiveChrome vierstappenvolgorde/heen-terug/nummers/zesformaten/200%tekst
+zonder pageerrors of overloop PASS. ZevenassetsMIME/hash/HEAD, private401/no-store
+en foreign-origin403PASS. Screenshot lokaal bekeken; geen nieuwe fysieke
+iPhone/mail/accountacceptatie geclaimd. Nog steeds eerst Jesse's inhoudelijke
+review, geen persoonlijke uitnodiging of herstelmail in deze taak verstuurd.
 
 ## Definitief: LIVE en browseracceptatie PASS
 
