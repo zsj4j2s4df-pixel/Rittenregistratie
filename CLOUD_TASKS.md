@@ -1,3 +1,12 @@
+## Nieuwste pilotpreflight: geen live-omschakeling uitgevoerd
+
+[Preflight en concrete beslisgrens](docs/TRANSFER/SUPABASE_PILOT_PREFLIGHT_2026-10-24.md).
+Eigenaar aanwezig; verse encrypted backup/restore26tabellen PASS. Metadata-PATCH
+naar Supabase door veiligheidscontrole geweigerd vóór wijziging wegens globale
+authimpact. Niet via UI/CLI omzeilen. Eerst concreet akkoord op beschermde live-
+test met impact op bestaande Access-only appsessies; daarna verificatie/rollback.
+Geen accounts/mappings/invites/gate/deploy uitgevoerd; formulier blijft disabled.
+
 ## Actueel — 24 oktober 2026: Supabase-voorbereiding uitgevoerd, live-pilot open
 
 [Leidend uitvoeringsbewijs en hervatplan](docs/TRANSFER/SUPABASE_EXECUTION_2026-10-24.md).
