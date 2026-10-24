@@ -1,5 +1,15 @@
 # Eerste native apphost — nog geen werkende ritdetectie
 
+## Actueel 24 oktober 2026 — native Supabase-bron bijgewerkt
+
+De accountview ondersteunt nu servergekozen Access of Supabase, strikte cookies,
+refresh, opt-in Keychain en lokaal sluiten vóór logout. 79 kernproeven en unsigned
+generic iOS-devicebuild PASS. Dit is bijgewerkte bron, geen fysieke installatie.
+Live blijft Access; Supabase-accountacceptatie/activering staan nog open.
+Leidend bewijs en hervatplan: [Supabase-uitvoering](../../docs/TRANSFER/SUPABASE_EXECUTION_2026-10-24.md).
+Het actuele blijvende project staat onder work/ritkompas-current-20261024/ios/.
+Oudere beschrijvingen hieronder zijn historie, niet de huidige authstatus.
+
 ## Beoordeelbaar ontwerp
 
 De host opent nu een geïsoleerde SwiftUI-ontwerpproef: Home, Ritten/filter/details, Rapporten, Mijn Jeep, voorbeeldclassificatie en lokale ontwerpfeedback met expliciet iOS-deelvenster. Alle ritten/cijfers zijn fictief; knoppen starten geen GPS/netwerk/meldingen of echte registratie. De bestaande technische voorbereidingsinterface blijft onder Mijn Jeep bereikbaar. Zie `docs/TRANSFER/MAC_REVIEW_PROTOTYPE_2026-10-20.md` voor werkelijk Mac-bewijs en verdeling met Cloud.

@@ -19,6 +19,9 @@ private actor CandidateFixture: NativeCredentialSource {
         value = NativeCredentialCandidate(version: sameVersion ? value!.version : UUID(), headers: ["Cookie": "CF_Authorization=synthetic-rotated-not-a-token"])
     }
     func clearFailure() { failClear = true }
+    func expectViewer(_ id: String) {
+        value = NativeCredentialCandidate(version: UUID(), headers: value!.headers, expectedViewerID: id)
+    }
     func clear() async throws { if failClear { throw NativeFixtureError.clearFailed }; value = nil }
 }
 private actor ScopeFixture: NativeScopeVerifier {
@@ -110,6 +113,15 @@ final class VerifiedNativeSessionTests: XCTestCase {
         do { _ = try await sut.grant(for: origin); XCTFail("Must not switch account") } catch ChoiceQueueError.sessionChanged {}
         await verifier.set(NativeVerifiedScope(viewerID: "server-viewer", vehicleID: "vehicle", expiresAt: 2000000))
         do { _ = try await sut.grant(for: origin); XCTFail("Must stay closed") } catch NativeAPIError.signInRequired {}
+    }
+    func testAuthenticatedStatusAndVehicleScopeMustAgreeOnViewer() async throws {
+        let credentials = CandidateFixture(), verifier = ScopeFixture()
+        await credentials.expectViewer("different-status-viewer")
+        let sut = make(credentials, verifier)
+        do { _ = try await sut.grant(for: origin); XCTFail("Status and scope identity mismatch") }
+        catch ChoiceQueueError.sessionChanged {}
+        do { _ = try await sut.verifiedScope(vehicleID: "vehicle"); XCTFail("Mismatched account must stay closed") }
+        catch NativeAPIError.signInRequired {}
     }
     func testCredentialRotationDuringResponseRejectsOldProofIncludingBrokenVersionSource() async throws {
         for sameVersion in [false, true] {

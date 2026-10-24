@@ -1,5 +1,6 @@
 // Isolated built release-wrapper + real local workerd/D1. Synthetic JWKS only.
 import {createRequire} from 'node:module';
+import {fileURLToPath} from 'node:url';
 import {readFileSync,readdirSync} from 'node:fs';
 import assert from 'node:assert/strict';
 const require=createRequire(import.meta.url),wranglerRequire=createRequire(require.resolve('wrangler/package.json'));
@@ -11,7 +12,7 @@ const enc=value=>Buffer.from(JSON.stringify(value)).toString('base64url'),now=Ma
 const input=enc({alg:'RS256',kid:jwk.kid})+'.'+enc({iss:issuer,aud:[audience],exp:now+600,iat:now-1,type:'app',sub:'synthetic-sub',email:'synthetic@example.test'});
 const jwt=input+'.'+Buffer.from(await crypto.subtle.sign('RSASSA-PKCS1-v1_5',pair.privateKey,new TextEncoder().encode(input))).toString('base64url');
 const mock=createFetchMock();mock.disableNetConnect();mock.get(issuer).intercept({path:'/cdn-cgi/access/certs'}).reply(200,JSON.stringify({keys:[jwk]}),{headers:{'content-type':'application/json'}}).persist();
-const root=new URL('../dist/server/',import.meta.url).pathname.replace(/\/$/,'');
+const root=fileURLToPath(new URL('../dist/server/',import.meta.url)).replace(/\/$/,'');
 const paths=[];function walk(dir){for(const item of readdirSync(dir,{withFileTypes:true})){const path=dir+'/'+item.name;if(item.isDirectory())walk(path);else if(path.endsWith('.js'))paths.push(path);}}walk(root);
 paths.sort((a,b)=>Number(b===root+'/release-entry.js')-Number(a===root+'/release-entry.js'));
 const mf=new Miniflare({modules:paths.map(path=>({type:'ESModule',path,contents:readFileSync(path,'utf8')})),modulesRoot:root,compatibilityDate:'2026-05-22',compatibilityFlags:['nodejs_compat'],d1Databases:['DB'],bindings:{APP_ORIGIN:origin,ACCESS_ISSUER:issuer,ACCESS_AUDIENCE:audience},fetchMock:mock});

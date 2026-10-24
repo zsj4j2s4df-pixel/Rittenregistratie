@@ -1,6 +1,7 @@
 // Built framework + embedded release entry + real local workerd/D1.
 // Supabase Auth network responses are synthetic; no real users/passwords/emails.
 import {createRequire} from 'node:module';
+import {fileURLToPath} from 'node:url';
 import {readFileSync,readdirSync} from 'node:fs';
 import assert from 'node:assert/strict';
 const require=createRequire(import.meta.url),wranglerRequire=createRequire(require.resolve('wrangler/package.json'));
@@ -13,7 +14,7 @@ const mock=createFetchMock();mock.disableNetConnect();const service=mock.get(url
 service.intercept({path:'/auth/v1/user',method:'GET'}).reply(200,JSON.stringify(user),{headers:{'content-type':'application/json'}}).persist();
 for(const grant of ['password','refresh_token'])service.intercept({path:'/auth/v1/token?grant_type='+grant,method:'POST'}).reply(200,JSON.stringify({access_token:jwt,refresh_token:'synthetic_refresh'}),{headers:{'content-type':'application/json'}}).persist();
 service.intercept({path:'/auth/v1/logout?scope=local',method:'POST'}).reply(204,'').persist();
-const root=new URL('../dist/server/',import.meta.url).pathname.replace(/\/$/,'');
+const root=fileURLToPath(new URL('../dist/server/',import.meta.url)).replace(/\/$/,'');
 const paths=[];function walk(dir){for(const item of readdirSync(dir,{withFileTypes:true})){const p=dir+'/'+item.name;if(item.isDirectory())walk(p);else if(p.endsWith('.js'))paths.push(p);}}walk(root);
 paths.sort((a,b)=>Number(b===root+'/release-entry.js')-Number(a===root+'/release-entry.js'));
 const mf=new Miniflare({modules:paths.map(path=>({type:'ESModule',path,contents:readFileSync(path,'utf8')})),modulesRoot:root,compatibilityDate:'2026-05-22',compatibilityFlags:['nodejs_compat'],d1Databases:['DB'],bindings:{APP_ORIGIN:origin,AUTH_PROVIDER:'supabase',SUPABASE_URL:url,SUPABASE_PUBLISHABLE_KEY:'sb_publishable_synthetic'},fetchMock:mock});
