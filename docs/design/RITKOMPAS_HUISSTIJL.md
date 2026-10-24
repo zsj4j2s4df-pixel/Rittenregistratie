@@ -1,5 +1,25 @@
 # RitKompas — bindende huisstijl
-Versie 1.3 · 24 oktober 2026 · eigenaar: projecteigenaar RitKompas
+Versie 1.4 · 24 oktober 2026 · eigenaar: projecteigenaar RitKompas
+
+## Eigenaarfeedback 1.4 — goedgekeurd appicoon en Willys-navigatie
+
+Eigenaar markeert in mobiele rittenpagina het bovenlogo rood: kleuren omdraaien
+en gebruiken als app/webappicoon; Mijn Jeep onderin blauw: duidelijker Willys.
+Eigenaar keurt daarna expliciet de aangehechte zand/antraciet-bitmap goed
+(“Deze is goed”). Gebruik PRECIES dat ontwerp, niet de latere vectorreconstructie
+en niet opnieuw genereren. Publicatiekopie public/brand/ritkompas-mark-approved.png,
+1024pxRGB. De gekozen bitmap heeft vijf grillsleuven: expliciete eigenaarselectie
+gaat voor eerdere zeven-sleuvenregel voor dit merkbeeld. Niet stilzwijgend wijzigen.
+Navigatie-Willys blijft een eigen strak lijnicoon met zeven sleuven, ronde lampen,
+recht gedeeld voorruitframe, vlakke spatborden/bumper en twee losse terreinbanden.
+Web en nativebron gebruiken dezelfde geometrische richting, in huidige themakleur.
+Logo overal zandachtergrond met antracietbeeld, geen automatische CSS-inversie.
+Webmanifest192/512px, Apple-touch180px en nativeAppIcon1024px uit dezelfde
+goedgekeurde bron, zonder metadata/alpha. Geen fictieve dark/tintedvarianten.
+Een webmanifest is geen offline-app/GPSclaim. Nativecatalogus ingevuld en unsigned
+gebouwd, NIET opnieuw geïnstalleerd. Huidige livewebsite blijft apart vastgelegd;
+een stijlopdracht autoriseert geen nieuwe publicatie of accountwijziging.
+Zie docs/design/APP_ICON_APPROVAL_2026-10-24.md voor bewijs en resterende stappen.
 
 ## Aanvulling 1.3 — persoonlijke aanmelding en e-mail
 

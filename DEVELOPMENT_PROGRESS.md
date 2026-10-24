@@ -1,3 +1,13 @@
+## Nieuwste ontwerpgroep: goedgekeurd icoon in bron, NIET live
+
+[Exacte eigenaarselectie en verificatie](docs/design/APP_ICON_APPROVAL_2026-10-24.md).
+Goedgekeurde zand/antracietbitmap als header/Apple-touch/webmanifest/nativeAppIcon;
+verbeterde zeven-sleuven-Willys voor Mijn Jeep.306Node/type/lint/webbuild/unsigned
+Xcode/gebouwdeWorkerassets+auth/browserzesgroottesPASS. Huisstijl1.4 bijgewerkt.
+Nieuwe productiepublicatie en fysieke iPhoneinstallatie nog NIET uitgevoerd.
+Eerdere directe Supabase-login/Cloudflareverwijdering blijven ongewijzigd.
+Volgende stap: eigenaarakkoord icoonpublicatie, daarna echte Safari/homescreentest.
+
 ## Actueel: extra Cloudflare-inlog verwijderd, Supabase beschermt ritgegevens
 
 [Exact uitvoeringsbewijs en hervatpunt](docs/TRANSFER/DIRECT_LOGIN_2026-10-24.md).

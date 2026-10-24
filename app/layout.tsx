@@ -6,6 +6,11 @@ export const metadata: Metadata = {
   metadataBase: new URL('http://localhost:3000'),
   title: 'RitKompas — Rittenregistratie',
   description: 'Centrale rittenregistratie voor je voertuig.',
+  manifest: '/manifest.webmanifest',
+  icons: {
+    icon: [{ url: '/brand/ritkompas-icon-192.png', sizes: '192x192', type: 'image/png' }],
+    apple: [{ url: '/brand/ritkompas-apple-touch.png', sizes: '180x180', type: 'image/png' }],
+  },
   openGraph: {
     title: 'RitKompas',
     description: 'Jouw ritten. Duidelijk geregistreerd.',
