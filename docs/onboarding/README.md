@@ -1,7 +1,7 @@
 # Eenvoudig starten met RitKompas
 
 De publieksuitleg staat in `app/hulp/page.tsx`, bereikbaar op
-https://rittenregistratie.zsj4j2s4df.workers.dev/hulp zodra deze release live is.
+https://rittenregistratie.zsj4j2s4df.workers.dev/hulp — LIVE, doorklikken gecontroleerd.
 Deze pagina is leesbaar zonder account, heeft geen persoonsgegevens en kan
 worden doorgestuurd of afgedrukt. De uitleg bevat geen persoonlijke invite.
 

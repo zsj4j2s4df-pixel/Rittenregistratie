@@ -1,5 +1,29 @@
 # Startuitleg en loginvolgorde — 24 oktober 2026
 
+## Definitief: LIVE en browseracceptatie PASS
+
+- Uitleg: https://rittenregistratie.zsj4j2s4df.workers.dev/hulp
+- Aanmelden: https://rittenregistratie.zsj4j2s4df.workers.dev/login
+- GitHub [PR68](https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/68),
+  branchmac/onboarding-help-20261024, bovenPR67; geen mainmerge.
+- Gepubliceerde bron774a5bf24f99416ba1f7136aef289437d89b768a /
+  treea23b960c1e9d3129e4353eed117e911d59d3ea47, exact lokaal d64f9b5.
+- Werkelijke versiea9f0ee9b-08c8-4eca-b076-0183e837a39c,
+  deploymenta544276e-2c0b-4a52-9088-3113019c1e22/100%, na publicatie teruggelezen
+  uitsluitend in juiste account e9922d90d4223d8522e44cb000c5d608.
+- Alle7bindings exact met beoordeelde configuratie vergeleken en behouden.
+  Directe login/hulp200. Echte anonieme liveChrome: ready, vinkje standaarduit/
+  aan/uit zonder submit, hulp openen en terug, zichtbare nummers/vierformaten,
+  geen pageerrors PASS. Zeven assets MIME/hash/HEAD/manifest en Willys behouden.
+  Zes private API's401/no-store, vervalste oudecredentials401 en foreign-origin403.
+-309Node/type/lint/build, lokale productieChrome en synthetische Worker/Auth/D1
+  PASS. Laatste beperkte patrooncheck460files/1194historische blobs:0bevindingen.
+- GEEN mail verzonden, GEEN nieuwe accounts/invites/rechten. Doorstuurbare algemene
+  uitleg klaar; Jesse moet eerst controleren. Geen nieuwe nativeinstallatie.
+
+Dit is de actuele status. Onderstaande eerste-publicatie-/voorbereidingsregels
+zijn uitvoeringshistorie, niet een open blokkade voor de huidige hulplink.
+
 Eigenaar keurde plan goed: eerst algemene uitleg laten controleren door Jesse,
 daarna pas de twee overige persoonlijke uitnodigingen. Die stap niet overslaan.
 
