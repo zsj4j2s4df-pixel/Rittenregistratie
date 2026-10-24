@@ -1,5 +1,15 @@
 # Startuitleg en loginvolgorde — 24 oktober 2026
 
+## Nieuwste tekstcorrectie: eerst link openen, daarna herstel
+
+Eigenaar vraagt na de chattekst opnieuw hetzelfde mooie overzicht. `/hulp` en
+reviewmail herschikt:1aanmeldlink,2Wachtwoord vergeten→Stuur herstellink + mail/spam,
+3Nieuw wachtwoord/Herhaal wachtwoord/Wachtwoord opslaan,4Inloggen met eerst opt-in.
+Echte knopnamen op livepagina gecontroleerd zonder herstelmail te versturen.
+Account moet vooraf klaarstaan; recovery maakt geen account of rechten aan.
+Bestaand werkend wachtwoord: sla herstel over. Huisstijl1.6 gespiegeld; geen
+nieuwe assets, accounts, rechten, mails of nativewijziging. Publicatiebewijs volgt.
+
 ## Definitief: LIVE en browseracceptatie PASS
 
 - Uitleg: https://rittenregistratie.zsj4j2s4df.workers.dev/hulp

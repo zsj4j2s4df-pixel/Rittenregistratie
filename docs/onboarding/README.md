@@ -33,10 +33,14 @@ https://rittenregistratie.zsj4j2s4df.workers.dev/hulp
 Jouw bestaande account blijft hetzelfde. Deze mail is geen nieuwe uitnodiging.
 Controleer vooral of de stappen hieronder begrijpelijk zijn:
 
-1. Zoek de persoonlijke mail ‘RitKompas — stel je account in’. Kijk ook bij Spam
-   of Ongewenste e-mail. Je persoonlijke uitnodiging volgt apart.
-2. Klik op de uitnodigingsknop. Kies een uniek wachtwoord van minstens 12 tekens.
-   Vul het tweemaal in en klik op ‘Wachtwoord opslaan’.
+1. Open https://rittenregistratie.zsj4j2s4df.workers.dev/login in Safari op je
+   iPhone of in de browser op je laptop. Je account moet vooraf klaarstaan.
+2. Klik onder Inloggen op ‘Wachtwoord vergeten’. Vul in het extra vak je eigen
+   e-mailadres in en klik op ‘Stuur herstellink’. Zoek de mail ‘RitKompas — herstel
+   je wachtwoord’, ook bij Spam/Ongewenste e-mail. Klik op de link, kies een uniek
+   wachtwoord van minstens 12 tekens, vul dit tweemaal in en klik op ‘Wachtwoord
+   opslaan’. Dit maakt geen nieuw account aan. Heb je al een werkend wachtwoord?
+   Sla het herstellen dan over.
 3. Open de aanmelding. Kies eerst eventueel ‘Ingelogd blijven op dit eigen
    apparaat’, alleen op je eigen telefoon of laptop. Vul je e-mailadres en je
    nieuwe RitKompas-wachtwoord in. Klik op ‘Inloggen’.

@@ -1,5 +1,13 @@
 # RitKompas — bindende huisstijl
-Versie 1.5 · 24 oktober 2026 · eigenaar: projecteigenaar RitKompas
+Versie 1.6 · 24 oktober 2026 · eigenaar: projecteigenaar RitKompas
+
+## Aanvulling 1.6 — eerst link, dan wachtwoordherstel
+
+Eigenaar vraagt hetzelfde mooie overzicht, maar eerst aanmeldlink openen,
+daarna exact ‘Wachtwoord vergeten’ → ‘Stuur herstellink’, mail/spam, wachtwoord
+kiezen en dan inloggen. Vier genummerde Desert-kaarten, bestaande merkassets.
+Account moet vooraf klaarstaan; herstel is geen accountaanmaak of rechtentoekenning.
+Geen accounts/mails/backendwijziging uit deze tekstaanpassing afleiden.
 
 ## Aanvulling 1.5 — eenvoudige startuitleg
 

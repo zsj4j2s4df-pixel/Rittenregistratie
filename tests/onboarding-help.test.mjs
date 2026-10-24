@@ -14,8 +14,13 @@ test('remember remains opt-in, accessible and before credentials with explicit s
 test('public onboarding guide has no personal invite or misleading native availability',()=>{
  for(const text of ['Spam','Ongewenste e-mail','Wachtwoord opslaan','minstens 12 tekens','Zet op beginscherm','Open als webapp','Voeg toe aan Dock','Pagina installeren als app','nog niet allemaal af en op echte toestellen getest'])assert.ok(help.includes(text),text);
  assert.doesNotMatch(help,/access_token=|refresh_token=|token_hash=|@devoetel|@hotmail/);
- assert.match(help,/Deze uitleg is niet je uitnodiging/);
+ assert.match(help,/je account moet door de beheerder zijn klaargezet/);
  assert.match(help,/Je hebt internet nodig/);
+});
+test('start guide opens login before requesting recovery and choosing password',()=>{
+ const sequence=['Open eerst de link','Vraag een wachtwoordlink aan','Kies je eigen wachtwoord','<h2>Log in</h2>'];let position=-1;
+ for(const text of sequence){const next=help.indexOf(text);assert.ok(next>position,text);position=next;}
+ assert.match(help,/Stuur herstellink/);assert.match(help,/Met deze uitleg maak je geen nieuw account aan/);
 });
 test('account and help links use full document navigation, not the failing deployed Link handler',()=>{
  for(const source of [login,help]){assert.doesNotMatch(source,/from ['"]next\/link['"]/);assert.match(source,/<a href=\{href\}/);}

@@ -1,5 +1,6 @@
 // Anonymous read-only checks. Never log in, send email or write trip data.
 import assert from 'node:assert/strict';
+import {mkdirSync} from 'node:fs';
 const origin=process.env.APP_URL;
 if(!origin)throw Error('APP_URL required');
 for(const path of ['/login','/hulp']){
@@ -15,7 +16,10 @@ try{
  await page.goto(origin+'/login');await page.waitForFunction(()=>document.querySelector('input[name=email]')?.disabled===false);
  const remember=page.getByLabel('Ingelogd blijven op dit eigen apparaat');assert.equal(await remember.isChecked(),false);await remember.check();assert.equal(await remember.isChecked(),true);await remember.uncheck();assert.equal(new URL(page.url()).pathname,'/login');
  await page.getByRole('link',{name:'Hulp bij starten en op je beginscherm zetten'}).click();try{await page.getByRole('heading',{name:'Zo start je met RitKompas'}).waitFor({timeout:10000});}catch(e){console.log('Navigation diagnostics',new URL(page.url()).pathname,failures,await page.locator('main').innerText());throw e;}assert.equal(await page.locator('ol').first().evaluate(el=>getComputedStyle(el).listStyleType),'decimal');
- for(const[width,height]of [[375,812],[390,844],[844,390],[1440,1000]]){await page.setViewportSize({width,height});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));}
+ assert.deepEqual((await page.locator('.rk-help-card h2').allTextContents()).slice(0,4),['Open eerst de link','Vraag een wachtwoordlink aan','Kies je eigen wachtwoord','Log in']);await page.getByRole('link',{name:'Open de aanmeldpagina',exact:true}).waitFor();assert.ok((await page.locator('main').innerText()).includes('Met deze uitleg maak je geen nieuw account aan'));
+ if(process.env.ARTIFACT_DIR){mkdirSync(process.env.ARTIFACT_DIR,{recursive:true});await page.screenshot({path:process.env.ARTIFACT_DIR+'/startuitleg-390.png',fullPage:true,animations:'disabled'});}
+ for(const[width,height]of [[375,812],[390,844],[844,390],[1280,800],[1440,1000],[1920,1080]]){await page.setViewportSize({width,height});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));}
+ await page.setViewportSize({width:390,height:844});await page.evaluate(()=>{const els=[...document.querySelectorAll('h1,h2,h3,p,li,a')],sizes=els.map(el=>parseFloat(getComputedStyle(el).fontSize));els.forEach((el,i)=>el.style.fontSize=sizes[i]*2+'px');});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
  await page.getByRole('link',{name:'Open RitKompas',exact:true}).click();await page.waitForURL('**/login');assert.deepEqual(failures,[]);
  console.log('PASS live anonymous Chrome: login ready, unchecked/toggleable opt-in, help navigation and numbered responsive guide; no runtime errors. No personal credentials, email or iPhone test.');
 }finally{await browser.close();}
