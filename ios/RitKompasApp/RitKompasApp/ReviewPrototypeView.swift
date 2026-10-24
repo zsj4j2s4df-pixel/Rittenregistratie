@@ -255,14 +255,16 @@ struct ReviewPrototypeView<TechnicalView: View>: View {
             .accessibilityAddTraits(tab == index ? .isSelected : [])
     }
     private func action(_ text: String, _ icon: String, perform: @escaping () -> Void) -> some View {
-        Button(action: perform) { HStack { Image(systemName: icon); Text(text).fontWeight(.semibold); Spacer(); Image(systemName: "arrow.right") }.font(.system(size: 14)).padding(17).foregroundColor(background).background(sand).cornerRadius(14) }
+        Button(action: perform) { HStack { if text == "Zakelijk" { classificationMark(text) } else { Image(systemName: icon) }; Text(text).fontWeight(.semibold); Spacer(); Image(systemName: "arrow.right") }.font(.system(size: 14)).padding(17).foregroundColor(background).background(sand).cornerRadius(14) }
     }
     private func metric(_ label: String, _ value: String, _ unit: String) -> some View {
         VStack(alignment: .leading, spacing: 8) { Text(label).font(.system(size: 11)).foregroundColor(muted); HStack(alignment: .firstTextBaseline, spacing: 4) { Text(value).font(.system(size: 28, weight: .semibold, design: .rounded)); Text(unit).font(.system(size: 12)).foregroundColor(sand) } }.frame(maxWidth: .infinity, alignment: .leading).padding(17).background(panel).cornerRadius(18)
     }
     @ViewBuilder private func classificationMark(_ kind: String) -> some View {
-        if kind == "Zakelijk", let path = Bundle.main.path(forResource: "DeVoetelLogo", ofType: "gif"), let logo = UIImage(contentsOfFile: path) {
-            Image(uiImage: logo).resizable().scaledToFit().frame(width: 52, height: 28).accessibilityHidden(true)
+        if kind == "Zakelijk", let path = Bundle.main.path(forResource: "DeVoetelLogoTransparent", ofType: "png"), let logo = UIImage(contentsOfFile: path) {
+            Image(uiImage: logo).renderingMode(.original).resizable().scaledToFit().frame(width: 52, height: 28)
+                .shadow(color: theme == .anthracite ? Color.white.opacity(0.85) : .clear, radius: 0.6)
+                .accessibilityHidden(true)
         } else { Image(systemName: classificationSymbol(kind)).accessibilityHidden(true) }
     }
     private func classificationSymbol(_ kind: String) -> String {
@@ -273,7 +275,7 @@ struct ReviewPrototypeView<TechnicalView: View>: View {
         }
     }
     private func badge(_ kind: String) -> some View {
-        Label(kind, systemImage: classificationSymbol(kind)).font(.system(size: 10, weight: .semibold)).padding(.horizontal, 9).padding(.vertical, 6).foregroundColor(kind == "Zakelijk" ? sand : green).background((kind == "Zakelijk" ? sand : green).opacity(0.12)).cornerRadius(8)
+        HStack(spacing: 5) { classificationMark(kind); Text(kind) }.font(.system(size: 10, weight: .semibold)).padding(.horizontal, 9).padding(.vertical, 6).foregroundColor(kind == "Zakelijk" ? sand : green).background((kind == "Zakelijk" ? sand : green).opacity(0.12)).cornerRadius(8)
     }
     private func tripRow(_ trip: ReviewTrip) -> some View {
         Button { selectedTrip = trip } label: {

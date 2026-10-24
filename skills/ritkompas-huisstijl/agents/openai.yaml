@@ -1,0 +1,6 @@
+interface:
+  display_name: "RitKompas-huisstijl"
+  short_description: "Pas de vaste appstijl toe en houd deze actueel"
+  default_prompt: "Gebruik $ritkompas-huisstijl voor deze RitKompas-interface en werk de stijlgids bij."
+policy:
+  allow_implicit_invocation: true
