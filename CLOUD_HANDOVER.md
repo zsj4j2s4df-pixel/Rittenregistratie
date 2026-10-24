@@ -1,3 +1,14 @@
+## Actueel: goedgekeurde iconen LIVE in bewezen RitKompas-account
+
+[Exact account-, publicatie- en testbewijs](docs/design/APP_ICON_LIVE_2026-10-24.md).
+PR67bron558c89ec gepubliceerd als b919671a/deploymentd634c2cc/100%. Doelaccount
+expliciet e9922d90… met subdomain/Worker/DB geverifieerd; andere koppeling niet
+gebruikt.7bindings/directe Supabase-login behouden. Zeven liveassets MIME/hash,
+manifest/HTML, zes private routes401 en foreign-origin403PASS. Verse encrypted
+restore26tabellen + na-export alle26ongewijzigdPASS. Geen mainmerge/kosten/DBmutatie.
+NativeAppIcon wel gebouwd maar nog NIET op telefoon geïnstalleerd. Safari kan
+oud homescreenicoon cachen; echte nieuwe homescreentest nog open. Historie hieronder.
+
 ## Actueel: extra Cloudflare-inlog verwijderd, Supabase beschermt ritgegevens
 
 [Exact uitvoeringsbewijs en hervatpunt](docs/TRANSFER/DIRECT_LOGIN_2026-10-24.md).

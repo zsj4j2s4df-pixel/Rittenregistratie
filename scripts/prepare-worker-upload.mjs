@@ -5,8 +5,9 @@ const modules={};
 function walk(dir,fn){for(const entry of readdirSync(dir,{withFileTypes:true})){const path=join(dir,entry.name);if(entry.isDirectory())walk(path,fn);else fn(path);}}
 walk('dist/server',path=>{if(path.endsWith('.js'))modules[relative('dist/server',path)]=readFileSync(path,'utf8');});
 const assets={};
-const brandAssets=new Set(['/brand/de-voetel-transparent.png','/brand/ritkompas-mark.webp','/brand/jeep-offroad.webp']);
-walk('dist/client',path=>{const name='/'+relative('dist/client',path);if(!name.startsWith('/_next/static/')&&!/^\/[^/]+\.svg$/.test(name)&&!brandAssets.has(name))return;const ext=path.split('.').pop();assets[name]={data:readFileSync(path).toString('base64'),type:({js:'text/javascript; charset=utf-8',css:'text/css; charset=utf-8',svg:'image/svg+xml',png:'image/png',webp:'image/webp'})[ext]??'application/octet-stream'};});
+const brandManifest=JSON.parse(readFileSync('public/brand/asset-manifest.json','utf8'));
+const brandAssets=new Set([...brandManifest.assets.map(asset=>{if(!/^\/brand\/[a-z0-9.-]+$/.test(asset.path))throw Error('Unsafe asset path');return asset.path;}),'/manifest.webmanifest']);
+walk('dist/client',path=>{const name='/'+relative('dist/client',path);if(!name.startsWith('/_next/static/')&&!/^\/[^/]+\.svg$/.test(name)&&!brandAssets.has(name))return;const ext=path.split('.').pop();assets[name]={data:readFileSync(path).toString('base64'),type:({js:'text/javascript; charset=utf-8',css:'text/css; charset=utf-8',svg:'image/svg+xml',png:'image/png',webp:'image/webp',webmanifest:'application/manifest+json'})[ext]??'application/octet-stream'};});
 modules['embedded-assets.js']='export default '+JSON.stringify(assets)+';';
 modules['release-entry.js']=`import app from './index.js';
 import assets from './embedded-assets.js';

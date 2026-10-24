@@ -1,5 +1,5 @@
 {
-  "version": "1.2",
+  "version": "1.4",
   "reviewedAt": "2026-10-24",
   "publicationScope": "Only selected RitKompas publication copies; originals and other private files remain excluded. Owner requested visual alignment with the app; see MAC_WEB_VISUAL_ASSETS.md.",
   "assets": [
@@ -30,9 +30,7 @@
       "rights": "Project-approved brand reference, not an official Jeep endorsement",
       "metadataRemoved": true,
       "usage": [
-        "desktop brand",
-        "mobile header",
-        "login"
+        "retained legacy reference; not current header or AppIcon"
       ],
       "limitation": "200px preview; do not upscale as a 1024px native AppIcon."
     },
@@ -57,6 +55,68 @@
       "limitation": "Automated background extraction, visually reviewed; no claim of pixel-identical original. Original GIF retained.",
       "transparent": true,
       "editing": "Canva background remover requires paid plan; built-in imagegen background extraction used instead. No paid plan enabled."
+    },
+    {
+      "path": "/brand/ritkompas-mark-approved.png",
+      "mime": "image/png",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 635137,
+      "sha256": "ce7a7659a5cb2f7223955010c70dd5a7a95b47cb2947d8919dfdb3e5f1b1cbc2",
+      "source": "Exact owner-approved attached sand/anthracite Willys-compass image, 24 October 2026; resize/re-encode only",
+      "rights": "Owner approved project brand; no official Jeep affiliation",
+      "metadataRemoved": true,
+      "usage": [
+        "header",
+        "login",
+        "native AppIcon master"
+      ],
+      "limitation": "Approved bitmap retained exactly in composition, including five grille slots; explicit owner approval supersedes earlier seven-slot brand rule. Navigation Willys remains seven-slot."
+    },
+    {
+      "path": "/brand/ritkompas-icon-192.png",
+      "mime": "image/png",
+      "width": 192,
+      "height": 192,
+      "bytes": 35481,
+      "sha256": "17de4d28fe70c3b12c0718b48c683171ee665939e18aae529f6336150d412979",
+      "source": "Exact owner-approved attached sand/anthracite Willys-compass image, 24 October 2026; resize/re-encode only",
+      "rights": "Owner approved project brand; no official Jeep affiliation",
+      "metadataRemoved": true,
+      "usage": [
+        "web app manifest icon"
+      ],
+      "limitation": "Approved bitmap retained exactly in composition, including five grille slots; explicit owner approval supersedes earlier seven-slot brand rule. Navigation Willys remains seven-slot."
+    },
+    {
+      "path": "/brand/ritkompas-icon-512.png",
+      "mime": "image/png",
+      "width": 512,
+      "height": 512,
+      "bytes": 200253,
+      "sha256": "ca41e6daba2626fa715ba783f9bfea3029bc4ff98d70c2f82e4cbad4d86945b7",
+      "source": "Exact owner-approved attached sand/anthracite Willys-compass image, 24 October 2026; resize/re-encode only",
+      "rights": "Owner approved project brand; no official Jeep affiliation",
+      "metadataRemoved": true,
+      "usage": [
+        "web app manifest icon"
+      ],
+      "limitation": "Approved bitmap retained exactly in composition, including five grille slots; explicit owner approval supersedes earlier seven-slot brand rule. Navigation Willys remains seven-slot."
+    },
+    {
+      "path": "/brand/ritkompas-apple-touch.png",
+      "mime": "image/png",
+      "width": 180,
+      "height": 180,
+      "bytes": 31760,
+      "sha256": "632f66593e6a17d564874ea1bac6188205c5d3177689f2a713e2eaf2badc3e55",
+      "source": "Exact owner-approved attached sand/anthracite Willys-compass image, 24 October 2026; resize/re-encode only",
+      "rights": "Owner approved project brand; no official Jeep affiliation",
+      "metadataRemoved": true,
+      "usage": [
+        "Apple touch icon"
+      ],
+      "limitation": "Approved bitmap retained exactly in composition, including five grille slots; explicit owner approval supersedes earlier seven-slot brand rule. Navigation Willys remains seven-slot."
     }
   ]
 }

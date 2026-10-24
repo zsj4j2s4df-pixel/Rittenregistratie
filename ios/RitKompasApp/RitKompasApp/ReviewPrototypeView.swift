@@ -300,12 +300,22 @@ private struct WillysFront: View {
         GeometryReader { g in
             let w = g.size.width, h = g.size.height
             Path { p in
-                p.addRoundedRect(in: CGRect(x: w*0.04, y: h*0.23, width: w*0.92, height: h*0.58), cornerSize: CGSize(width: w*0.06, height: h*0.06))
-                p.addEllipse(in: CGRect(x: w*0.10, y: h*0.37, width: w*0.16, height: w*0.16))
-                p.addEllipse(in: CGRect(x: w*0.74, y: h*0.37, width: w*0.16, height: w*0.16))
-                for i in 0..<7 { let x = w*(0.34+CGFloat(i)*0.053); p.move(to: CGPoint(x: x,y:h*0.36));p.addLine(to: CGPoint(x:x,y:h*0.69)) }
-                p.move(to: CGPoint(x:w*0.16,y:h*0.20));p.addLine(to: CGPoint(x:w*0.23,y:h*0.04));p.addLine(to: CGPoint(x:w*0.77,y:h*0.04));p.addLine(to: CGPoint(x:w*0.84,y:h*0.20))
-                p.move(to: CGPoint(x:0,y:h*0.92));p.addLine(to: CGPoint(x:w,y:h*0.92))
+                func line(_ points: [(CGFloat, CGFloat)]) {
+                    guard let first = points.first else { return }
+                    p.move(to: CGPoint(x: first.0*w, y: first.1*h))
+                    for point in points.dropFirst() { p.addLine(to: CGPoint(x: point.0*w, y: point.1*h)) }
+                }
+                line([(0.24,0.37),(0.24,0.10),(0.76,0.10),(0.76,0.37)])
+                line([(0.29,0.30),(0.29,0.16),(0.71,0.16),(0.71,0.30)])
+                line([(0.50,0.16),(0.50,0.30)])
+                line([(0.20,0.54),(0.20,0.42),(0.29,0.34),(0.71,0.34),(0.80,0.42),(0.80,0.54)])
+                for row in [(0.20,0.70,0.80),(0.14,0.77,0.86),(0.26,0.84,0.74)] as [(CGFloat,CGFloat,CGFloat)] { line([(row.0,row.1),(row.2,row.1)]) }
+                line([(0.50,0.78),(0.50,0.88)]); line([(0.20,0.52),(0.07,0.52)]); line([(0.80,0.52),(0.93,0.52)])
+                p.addRoundedRect(in: CGRect(x:w*0.07,y:h*0.61,width:w*0.13,height:h*0.32), cornerSize: CGSize(width:w*0.03,height:h*0.03))
+                p.addRoundedRect(in: CGRect(x:w*0.80,y:h*0.61,width:w*0.13,height:h*0.32), cornerSize: CGSize(width:w*0.03,height:h*0.03))
+                p.addEllipse(in: CGRect(x:w*0.20,y:h*0.44,width:w*0.14,height:h*0.14))
+                p.addEllipse(in: CGRect(x:w*0.66,y:h*0.44,width:w*0.14,height:h*0.14))
+                for i in 0..<7 { let x = 0.356+CGFloat(i)*0.048; line([(x,0.46),(x,0.65)]) }
             }.stroke(style: StrokeStyle(lineWidth: max(1,w*0.035), lineCap: .round, lineJoin: .round))
         }.accessibilityLabel("Klassiek Willys-front")
     }

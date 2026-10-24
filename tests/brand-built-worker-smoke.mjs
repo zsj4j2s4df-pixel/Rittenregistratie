@@ -13,5 +13,6 @@ const mf=new Miniflare({modules:paths.map(path=>({type:'ESModule',path,contents:
 try{
  const manifest=JSON.parse(readFileSync(new URL('../public/brand/asset-manifest.json',import.meta.url)));
  for(const asset of manifest.assets){const url='https://synthetic.example'+asset.path,r=await mf.dispatchFetch(url);assert.equal(r.status,200);assert.equal(r.headers.get('content-type'),asset.mime);const bytes=Buffer.from(await r.arrayBuffer());assert.equal(createHash('sha256').update(bytes).digest('hex'),asset.sha256);assert.equal((await mf.dispatchFetch(url,{method:'HEAD'})).status,200);assert.equal((await mf.dispatchFetch(url,{method:'POST'})).status,405);}
- console.log('PASS actual built release-wrapper/workerd: three selected assets served with exact MIME/hash; HEAD supported and POST rejected. No deployment or live authentication proof.');
+ const webmanifest=await mf.dispatchFetch('https://synthetic.example/manifest.webmanifest');assert.equal(webmanifest.status,200);assert.equal(webmanifest.headers.get('content-type'),'application/manifest+json');const body=await webmanifest.json();assert.equal(body.start_url,'/ritten');assert.equal(body.icons.length,2);
+ console.log('PASS actual built release-wrapper/workerd: all selected brand/icon assets have exact MIME/hash; manifest served; HEAD supported and POST rejected. No deployment or live authentication proof.');
 }finally{await mf.dispose();}
