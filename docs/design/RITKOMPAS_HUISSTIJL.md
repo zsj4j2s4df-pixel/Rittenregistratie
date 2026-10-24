@@ -3,6 +3,12 @@ Versie 1.4 · 24 oktober 2026 · eigenaar: projecteigenaar RitKompas
 
 ## Eigenaarfeedback 1.4 — goedgekeurd appicoon en Willys-navigatie
 
+Publicatiestatus: goedgekeurde1.4 website-iconen werkelijk LIVE als b919671a,
+deploymentd634c2cc/100% in bewezen RitKompas-account;7bindings/auth behouden,
+liveasset-MIME/hash/manifest en private401PASS. Native wel gebouwd, niet opnieuw
+geïnstalleerd. Bewijs docs/design/APP_ICON_LIVE_2026-10-24.md. Onderstaande eerdere
+niet-liveverklaring is historie van bronoplevering, geen actuele blokkade.
+
 Eigenaar markeert in mobiele rittenpagina het bovenlogo rood: kleuren omdraaien
 en gebruiken als app/webappicoon; Mijn Jeep onderin blauw: duidelijker Willys.
 Eigenaar keurt daarna expliciet de aangehechte zand/antraciet-bitmap goed
