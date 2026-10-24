@@ -1,3 +1,15 @@
+## Actueel: extra Cloudflare-inlog verwijderd, Supabase beschermt ritgegevens
+
+[Exact uitvoeringsbewijs en hervatpunt](docs/TRANSFER/DIRECT_LOGIN_2026-10-24.md).
+Met concreet eigenaarakkoord alleen de RitKompas-Accessapp verwijderd; privé
+herstelconfig bewaard. Website /login direct200, status supabasefalse/no-store,
+zes private routes anoniem401, vervalste Access/bearer401, foreign-origin403.
+Versie da1419ca/deployment6b5c31bd/100% en7bindings gelijk; geen DB/codepublicatie.
+Jesse-login eerder eigenaarbevestigd; na poortvervanging eigenaarlogin/reset nog
+niet opnieuw getest. Native dubbelepoortblokkade vervallen, fysieke update nog open.
+Dennis/Ingrid accounts nog open. Dashboard/andere diensten niet gewijzigd.
+Oudere behouden-poort/akkoord-nodigregels hieronder zijn historie, niet hervatpunt.
+
 ## Nieuwste status: Supabase beschermd LIVE, eigenaarpilot bij Accesspoort
 
 [Leidend livebewijs en direct hervatpunt](docs/TRANSFER/SUPABASE_PROTECTED_LIVE_2026-10-24.md).
