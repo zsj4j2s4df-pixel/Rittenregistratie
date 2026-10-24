@@ -9,6 +9,9 @@
   "workers_dev": true,
   "preview_urls": false,
   "vars": {
+    "AUTH_PROVIDER": "supabase",
+    "SUPABASE_URL": "https://vcrhkfqmsaqszvsyfzba.supabase.co",
+    "SUPABASE_PUBLISHABLE_KEY": "sb_publishable_Ip_QGwcYS-p7a05hBUgjwg_LQXWjEkU",
     "APP_ORIGIN": "https://rittenregistratie.zsj4j2s4df.workers.dev",
     "ACCESS_ISSUER": "https://snowy-snowflake-4760.cloudflareaccess.com",
     "ACCESS_AUDIENCE": "552d760968b163dd31a00c1b880c749970c7e4ab0ee4963073f1af06e6ac7f02"

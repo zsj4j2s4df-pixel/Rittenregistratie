@@ -1,3 +1,16 @@
+## Nieuwste status: Supabase beschermd LIVE, eigenaarpilot bij Accesspoort
+
+[Leidend livebewijs en direct hervatpunt](SUPABASE_PROTECTED_LIVE_2026-10-24.md).
+Versie da1419ca/100%,deployment6b5c31bd;7bindings met Supabase actief, Accesspoort
+ongewijzigd. Formulier enabled; zonder appsessie geen rittoegang. Jesse officieel
+uitgenodigd en expliciet gekoppeld aan bestaande rechten met audit; mailadres
+bevestigd. Eigenaar ziet na Outlook→Safari de Cloudflarepoort: eerst zelf bestaande
+Cloudflare-aanmelding afronden, zo nodig daarna nieuwe recoverymail. Nog GEEN
+bewezen appaanmelding/wachtwoordsetup/nativeinstallatie. Dennis/Ingrid nog OPEN.
+Verse restore26tabellen en24overige tabellen gelijk;302Node/TypeScript PASS.
+Oudere 'niet geactiveerd'/afwijzingsregels hieronder zijn historie. Geen mainmerge,
+securitybypass of nieuwe kosten. Alleen publieke publishable key inconfig.
+
 ## Actueel — 24 oktober 2026: Supabase-voorbereiding uitgevoerd, live-pilot open
 
 [Leidend uitvoeringsbewijs en hervatplan](../../docs/TRANSFER/SUPABASE_EXECUTION_2026-10-24.md).
