@@ -1,3 +1,11 @@
+## Verplichte RitKompas-huisstijl
+
+Lees vóór alle RitKompas-interfaces en visuele uitingen volledig
+skills/ritkompas-huisstijl/SKILL.md en docs/design/RITKOMPAS_HUISSTIJL.md.
+Pas deze toe en onderhoud ze bij nieuwe eigenaarfeedback. Maak onderscheid
+tussen ontwerp, functionaliteit en werkelijk geteste native/web/live-status.
+Geen kosten, publicatie, accountrechten of veiligheidsversoepeling uit stijl afleiden.
+
 ## Actuele website- en Mac-beeldopdracht — 23 oktober 2026
 
 Nieuwe websitebron boven PR62: rittenlijst/maand/totaal, bestaande correcties+historie, rapporten/CSV en browser-PDF, mobiel/desktop en dezelfde centrale login. Zie [implementatie en bewijs](docs/TRANSFER/WEB_APP_IMPLEMENTATION.md). 299Node/type/lint/build en nieuwe echte HTTP/SQLite-Chromiumgroep PASS; synthetische identiteit, niet live.

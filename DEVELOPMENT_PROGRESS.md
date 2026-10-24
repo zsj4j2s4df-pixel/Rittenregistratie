@@ -1,3 +1,11 @@
+## 24 oktober — huisstijl LIVE; Supabase nativevoorbereiding, accounts nog open
+
+[Exact releasebewijs en direct hervatpunt](docs/design/ONLINE_AND_SUPABASE_2026-10-24.md). PR65-bron b2d9da4/tree ea10f920 gepubliceerd als a315a6ed-2d6b-4e36-9dbf-258af6965042/deployment007cde54/100%; bindings/Access behouden, vieranonieme302PASS. Verse encryptedrestore en22tabellen na deploy gelijk. Supabaseprojecthealthy/authaccounts0; cookiecontract+7nieuwe tests/65Swift totaal en unsigneddevicebuildPASS. Adapter NIET geactiveerd; officiële Authadminbrowser/SMTP/3accounts/mappings/0017/native refresh/logout en fysiekeupdates OPEN. Geen mainmerge/kosten/securityversoepeling. Niet0016herhalen.
+
+## 24 oktober — transparant logo en huisstijl1.2 lokaal gereed
+
+[Controle en hervatpunt](docs/design/LOGO_UPDATE_2026-10-24.md). De Voetel zonder wit vlak in web/nativebron; 301tests/type/lint/build/unsignedXcode en Chromiumregistratie/login/zesbreedtes + gebouwdeWorkerbeelden PASS. Alleen lokaal, niet op fysieke iPhone/live gepubliceerd. Geen kosten/securitywijziging. Blijvende checkout work/ritkompas-current-20261024; oudere tijdelijke werkmappen niet gebruiken.
+
 ## 23 oktober — nieuwste Cloudwebsite PR63 werkelijk live
 
 [Releasebewijs](docs/TRANSFER/MAC_WEB_RELEASE_2026-10-23.md). Versie638dcf97-999a-4df6-afd7-d3fc1ae42723/deployment83e16f83-dfd3-42b3-8a8b-f11467301b9d/100% teruggelezen. Verse herstelproef/0015schema/0016upgrade en21oorspronkelijke datatabellen na migratie+deploy PASS.299Node/type/lint/build/gebouwdeWorker/responsivebrowser PASS. Access behouden/anoniem302. Live-eindtest vraagt heraanmelding. Supabase/0017/mail/drieaccount/native/iPhoneupdate/beeldopdracht OPEN. Geen mainmerge/kosten/securityuitschakeling.

@@ -1,0 +1,25 @@
+# Huisstijl live en Supabase-vervolg — 24 oktober 2026
+
+## Werkelijk gepubliceerd
+Eigenaar: ‘Mooi push online en verder met overgang naar supa base’. Alleen geteste PR65-bron b2d9da4b251c0bf668d1bcc9bd84ec2a5da60a22/tree ea10f920adbb3a6b313e2eb2f1bfcff9baf5c7d8, parent exact PR64. Lokale commit19d96dd heeft dezelfde tree maar andere auteurmetadata. CLIpush had geen GitHubcredentials; via bestaande GitHub-connector gepubliceerd zonder nieuwe rechten. Geen mainmerge/forcepush.
+
+URL: https://rittenregistratie.zsj4j2s4df.workers.dev/ritten .
+Worker-versie a315a6ed-2d6b-4e36-9dbf-258af6965042; deployment007cde54-22f5-47b5-9e79-3485f7613551,100%, API teruggelezen,2026-10-24T06:08:12Z. Alle vier bindings DB/APP_ORIGIN/ACCESS_ISSUER/ACCESS_AUDIENCE exact behouden. Geen AUTH_PROVIDER/Supabasebinding gewijzigd. Bestaande Worker-Accessapp4fa445ac-ed67-487b-8ecb-a60d49bec944 blijft accountleden vereisen. Anoniem /,/ritten,/api/vehicles en nieuwePNG302 naar dezelfde Accessorganisatie PASS. Ingelogde live-UI/beeldrequests NIET GETEST: beheerbrowser in deze sessie niet beschikbaar, geen bypass.
+
+Verse private volledige D1-export, AES256GCMbackup/decrypt/lokale restore en integrity/FK PASS. Na publicatie volledige privéexport vergeleken: alle22oorspronkelijke tabellen inclusief17ledgerregels tot0016 ongewijzigd. Geen databasewrite/migratie/test-rit. Backups/sleutel/logs/exportlinks uitsluitend lokaal onder ignored work/style-private-20261024; niet naar GitHub. Eerste lokale backuptest had syntaxfout vóór uitvoering, gecorrigeerd en pas na PASS gepubliceerd; geen productiemutatie op basis van fout.
+
+Geteste webuitvoering:301Node/type/lint/build/dryrun, echte lokale Worker-asset-MIME/hash/HEAD/POST en Chromiumregistratie/login/responsiviteit PASS; zie LOGO_UPDATE_2026-10-24.md voor grenzen. Nieuwe foto's/logo alleen gekozen metadata-vrije publicatiekopieën, niet de oorspronkelijke privéfoto.
+
+## Supabase daadwerkelijk gecontroleerd en doorontwikkeld
+Alleen bestaand RitKompas-project vcrhkfqmsaqszvsyfzba: ACTIVE_HEALTHY/Frankfurt; auth.users count0; beperkte securityadvisor0bevindingen. Geen ander project aangepast, geen nieuw project, geen kosten/keys/accounts/uitnodigingen aangemaakt. Geen directe SQLwrites in authschema. Officiële actuele SMTPdocumentatie bevestigt standaardbezorging alleen aan projectteamadressen: https://supabase.com/docs/guides/auth/auth-smtp . Geen teamrechten toevoegen als mailomweg. Changelog gecontroleerd; aangekondigde CBC-TLS-uitfasering vereist geen verzwakking van systeembrede TLS.
+
+Nieuwe pure nativecontractbron NativeSupabaseCookies.swift met7nieuwe XCTestgevallen: exact host/root/Secure/HttpOnly, vier unieke cookievelden, verplichte sessie PLUS browserbinding; geen CFfallback. APIheaders bevatten alleen sessie/binding, refreshtoken uitsluitend voor expliciete authactie. Opt-in remember=yes met echte cookie-expiratie vereist vóór persistentietoestemming; sessioncookies nooit stilzwijgend langdurig bewaren. Codable/restore revalideert origin/lifetimes/waarden. Redacted description/debug, geen JWTidentityafleiding. Huidige browser/Keychain/provider ongewijzigd: deze adapter is bewust NOG NIET geactiveerd. Hij geeft geen lokale voertuigrechten.
+
+Echte Swift-suite65tests/0failures (58bestaand+7nieuw) en unsigned huidige iPhoneSDK-devicebuild PASS. Eerste malformedcookie-testfixture werd door Foundation geweigerd; fixturecrash hersteld door echte decode/restoregrens te testen; definitieve volledige suite PASS. Geen echte iPhone-installatie, Safari, mail-/providerlogin/refresh/logoutacceptatie in deze groep. Deze nativevoorbereiding is niet het reeds gepubliceerde webpakket.
+
+## Echte grenzen en volgende stap
+Computer Use IAB niet beschikbaar; Safari-nativepipe gesloten. Connector heeft geen Authadmin/config-tool. Gebruik geen bestaande secrets uit andere systemen, geen service-rolekey zoeken, geen tijdelijke adminendpoint maken. Eigenaar gevraagd welke bestaande SMTPvoorziening gebruikt mag worden; nog geen antwoord. Zonder officiële adminbrowser en toegestane bezorging geen veilige uitnodiging/werkende drieaccounts te bewijzen.
+
+Volg SUPABASE_CUTOVER_MAC.md met deze actualisatie:0016 IS live, niet herhalen;0017 IS NIET live. Eerst eigen SMTP/redirects en drie officiële accounts, ieder eigen wachtwoord, expliciete bestaande interne-IDmapping met verse backup. Voltooi native providerkeuze/status,/login-extractie, Keychain remember-on/off, refreshrotatie/accountwissel en server+lokale logout; nieuwe helper alleen is niet genoeg. Test nieuwe appauth onder bestaande Accesspoort met echte eigenaar; Access pas vervangen na bewijs en noodzakelijke toestemming. Daarna beschikbare iPhones apart actualiseren, niets verwijderen. Bestaande GPS/CarPlay/OBD2acceptatie blijft open. Geen accounttoegang of volledige Supabasemigratie claimen; ritdatabase blijft D1.
+
+Code-only rollback voor deze huisstijlgroep kan alleen gecontroleerd naar compatibele voorgaande versie638dcf97-999a-4df6-afd7-d3fc1ae42723 met dezelfde bindings/Access; geen automatische rollback uitgevoerd. Geen datadowngrade/restore zonder apart besluit.

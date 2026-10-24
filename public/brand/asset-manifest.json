@@ -1,0 +1,62 @@
+{
+  "version": "1.2",
+  "reviewedAt": "2026-10-24",
+  "publicationScope": "Only selected RitKompas publication copies; originals and other private files remain excluded. Owner requested visual alignment with the app; see MAC_WEB_VISUAL_ASSETS.md.",
+  "assets": [
+    {
+      "path": "/brand/jeep-offroad.webp",
+      "mime": "image/webp",
+      "width": 1280,
+      "height": 960,
+      "bytes": 293574,
+      "sha256": "f8fbb575aaecaa3ca9499fd199f918752d4e6b8c3ccdac4f6522ceb90226eaf7",
+      "source": "Owner Foto1.jpg, approved existing imagegen offroad edit v2; no new generation",
+      "rights": "Owner-supplied project photograph/edit, not a stock/open-source licence",
+      "metadataRemoved": true,
+      "privacy": "Neutral plate; no identifiable face; no EXIF/XMP. Edited scenery, not trip evidence.",
+      "usage": [
+        "Mijn Jeep hero",
+        "login illustration"
+      ]
+    },
+    {
+      "path": "/brand/ritkompas-mark.webp",
+      "mime": "image/webp",
+      "width": 200,
+      "height": 200,
+      "bytes": 8028,
+      "sha256": "d74e31dcd930d3c7afc317947341233f38a7fb6a7fc0524f7bbbe5364f5d8f59",
+      "source": "Owner-approved existing Canva Willys/compass preview",
+      "rights": "Project-approved brand reference, not an official Jeep endorsement",
+      "metadataRemoved": true,
+      "usage": [
+        "desktop brand",
+        "mobile header",
+        "login"
+      ],
+      "limitation": "200px preview; do not upscale as a 1024px native AppIcon."
+    },
+    {
+      "path": "/brand/de-voetel-transparent.png",
+      "mime": "image/png",
+      "width": 1040,
+      "height": 533,
+      "bytes": 269014,
+      "sha256": "66d187214f71d7c15ab72025eff8cf4264cf478660f341c59a9296031e508f83",
+      "source": "Original DeVoetelLogo.gif already in native source; https://devoetel.nl/img/De%20Voetel%20Logo.gif",
+      "sourceSha256": "efbae653267ad2689d8b806102f52ee38b18a6ced6f8f75c71b72754623a2eb3",
+      "rights": "De Voetel retains trademark/copyright; project-owner requested use, no general licence",
+      "metadataRemoved": true,
+      "usage": [
+        "business filters",
+        "business trip icons",
+        "native quick preference",
+        "native business badges",
+        "native business choice"
+      ],
+      "limitation": "Automated background extraction, visually reviewed; no claim of pixel-identical original. Original GIF retained.",
+      "transparent": true,
+      "editing": "Canva background remover requires paid plan; built-in imagegen background extraction used instead. No paid plan enabled."
+    }
+  ]
+}
