@@ -35,6 +35,15 @@ geheimenvrijgarantie. Bestaande private data/certificaten/builds blijven uitgesl
 
 Publicatie wordt pas als LIVE gemarkeerd nadat account-/bindingsreadback en
 anonieme HTTP-/browsercontroles geslaagd zijn; zie eventuele releaseaanvulling.
+Eerste publicatie345ad32c/deployment50657c5d gaf publieke HTTP200 maar de echte
+Chrome-doorklik faalde met framework-Linkfout ‘e is not a function’. Niet als
+geslaagde browseracceptatie opgeleverd. Gerichte correctie: gewone documentlinks
+voor login/hulp, geen account-/API-/securitywijziging. Extra lokale productie-
+browserharness met echte workerd en lege lokaleD1 voorkomt dev-onlyacceptatie.
+Deze gecorrigeerde productiebuild is vervolgens écht via lokale HTTP→Chrome→
+workerd getest: loginready, vinkje aan/uit zonder submit, hulp openen en terug naar
+login, zichtbare nummers en vier formaten PASS, geen pageerrors. Nieuwe guard
+tegen herinvoeren van framework-Link; totaaltelling nu309Node-tests PASS.
 Doel uitsluitend bestaand account e9922d90d4223d8522e44cb000c5d608,
 Worker rittenregistratie, subdomainzsj4j2s4df, bestaande DB/Supabase behouden.
 Extra verse D1-export door veiligheidscontrole geweigerd; geen omweg. Bestaande

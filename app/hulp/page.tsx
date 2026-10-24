@@ -1,5 +1,8 @@
-import Link from 'next/link';
+// Public guide links work without hydration or the deployed framework's Link handler.
+import type {ReactNode} from 'react';
 import {BrandMark} from '../brand';
+
+function Link({href,children,className}:{href:string;children:ReactNode;className?:string}){return <a href={href} className={className}>{children}</a>;}
 
 export const metadata={title:'Eenvoudig starten — RitKompas'};
 

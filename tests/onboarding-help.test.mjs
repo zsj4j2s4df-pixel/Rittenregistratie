@@ -17,3 +17,6 @@ test('public onboarding guide has no personal invite or misleading native availa
  assert.match(help,/Deze uitleg is niet je uitnodiging/);
  assert.match(help,/Je hebt internet nodig/);
 });
+test('account and help links use full document navigation, not the failing deployed Link handler',()=>{
+ for(const source of [login,help]){assert.doesNotMatch(source,/from ['"]next\/link['"]/);assert.match(source,/<a href=\{href\}/);}
+});
