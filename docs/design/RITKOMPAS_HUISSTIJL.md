@@ -1,5 +1,17 @@
 # RitKompas — bindende huisstijl
-Versie 1.6 · 24 oktober 2026 · eigenaar: projecteigenaar RitKompas
+Versie 1.7 · 24 oktober 2026 · eigenaar: projecteigenaar RitKompas
+
+## Aanvulling 1.7 — echte native voorbereiding en installatie-artifact
+
+Native build2 krijgt exact goedgekeurd merkbeeld in de echte registratie en
+de goedgekeurde offroadfoto als gebundelde native-JPEG in de gelabelde demo.
+AppIcon blijft exact. Geen AI-hertekening of privéfoto opnieuw publiceren.
+Op simulator beide thema's/merkheader en aparte fotopreview gezien; functionele
+nativeForm heeft nog platformeigen kaarten, niet de hele vernieuwde webUI.
+PDF + mobielHTML gebruiken Desert, ronde kaarten, klikpaden en duidelijke
+statuslabels: unsignedbuild/simulator is geen fysieke installatie/downloadlink.
+Instructies uitsluitend echte iPhone-app; geen PWA-beginschermroute verwarren.
+Bron/bewijs: docs/installatie/NATIVE_READINESS_2026-10-24.md.
 
 ## Aanvulling 1.6 — eerst link, dan wachtwoordherstel
 

@@ -1,3 +1,11 @@
+## Actueel: echte iPhone-app voor drie toestellen voorbereid, niet downloadklaar
+
+[Native voorbereiding, actuele status en operatorstappen](docs/installatie/NATIVE_READINESS_2026-10-24.md).
+Build1.0(2) unsigned device+simulator PASS,79Swift/312Node PASS. Goedgekeurd
+merkbeeld in echte registratie en offroadfoto in gelabelde demo; simulatorbeide
+thema's bekeken. Geen fysieke installatie/TestFlight. Twee accounts en signing/
+drieaccountacceptatie open. PDF+mobielHTML-artifact gemaakt; geen IPA of webapp.
+
 ## Actueel: eenvoudige startuitleg en veilige loginvolgorde
 
 [Uitleg en reviewmail](docs/onboarding/README.md) · [Resultaat/hervatpunt](docs/onboarding/DELIVERY_STATUS_2026-10-24.md) · [Projectstructuur](docs/PROJECT_STRUCTURE.md).

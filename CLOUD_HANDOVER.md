@@ -1,3 +1,23 @@
+## Actueel 25 oktober: installatievoorbereiding, accounts en ondertekening open
+
+[Direct uitvoerplan en acceptatiematrix](docs/installatie/MAC_NEXT_INSTALL_2026-10-25.md).
+PR69 bewaart native build2 en goedgekeurde beelden. Xcode26.3 huidige checkout
+bevestigd; Dennis iPhone15 available/paired. Bestaande Xcodefout: provisioning
+profile ontbreekt. Geen fysieke update/signing uitgevoerd. Twee Authaccounts en
+interne gebruikers/memberships ontbreken nog; specifieke Cloud-accountopdracht
+vervangt daarvoor de oude reviewwachtstap. Officiële Supabase-beheerlogin in Chrome
+nodig zodra bevoegde persoon beschikbaar is; geen wachtwoord of SMTP-reset vragen.
+
+## Actueel: echte native testbuild2 + installatiedraaiboek
+
+[Leidende nativevoorbereiding](docs/installatie/NATIVE_READINESS_2026-10-24.md).
+Geupdate nativebron niet als reeds gedistribueerde app presenteren. Build2,
+goedgekeurd merkheader en fotopreview,79Swift/312Node/beide SDK's/simulatorUI PASS.
+PDF+HTML-artifactbron/safe nativebuildscript beschikbaar. Signing en drie echte
+installaties/aanmeldingen blijven Mac/eigenaarwerk; tweeaccounts na Jesse-review.
+Volledige webUI nog niet volledig native; automatischeGPS/CarPlay/OBD2 blijven open.
+Geen accountrechten/Team/bundle-ID/nativegegevens veranderen of mainmerge afleiden.
+
 ## Actueel: accountstartuitleg en review vóór nieuwe invites
 
 [Nieuwste resultaat/hervatpunt](docs/onboarding/DELIVERY_STATUS_2026-10-24.md).

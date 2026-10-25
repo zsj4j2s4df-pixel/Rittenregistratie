@@ -13,6 +13,7 @@ Cloudwerk/imports breken. Deze index organiseert de bestaande bron, niet privéd
 | Goedgekeurde publieke beelden/iconen | `public/brand/`, inclusief assetmanifest |
 | Bindende huisstijl en semantische tokens | `docs/design/`, `skills/ritkompas-huisstijl/` |
 | Accountmails en uitleg voor gebruikers | `docs/auth-email/`, `docs/onboarding/` |
+| Echte native installatie en artifactbron | `docs/installatie/`, `scripts/prepare-native-test-build.mjs` |
 | Technische overdracht en testbewijs | `docs/TRANSFER/` |
 | Actuele taken, eigenaaracties, hervatten | `CLOUD_TASKS.md`, `OWNER_ACTIONS.md`, `RESUME.md` |
 | Overzicht, voortgang, Cloudoverdracht | `README.md`, `DEVELOPMENT_PROGRESS.md`, `CLOUD_HANDOVER.md` |

@@ -1,5 +1,16 @@
 # Eerste native apphost — nog geen werkende ritdetectie
 
+## Nieuwste: drie-iPhone-voorbereiding en native testbuild1.0(2)
+
+[Actuele native status en installatiedraaiboek](../../docs/installatie/NATIVE_READINESS_2026-10-24.md).
+Native Supabase-bron plus goedgekeurd headerlogo/AppIcon en offroadfoto in de
+afzonderlijke ontwerpproef.79Swift/312Node/device+simulatorbuild en simulatorUI PASS.
+Website gebruikt inmiddels Supabase en directe login; oude Access-liveclaims
+hieronder zijn historie. Geen fysieke build2-installatie of TestFlight-download.
+Dennis bereikbaar/DeveloperModeaan; overige telefoons en twee accounts nog open.
+Sign/teamkeuze en alle echte nativeaccountsessies nog te bevestigen. Geen account-
+of signingwijziging uitgevoerd. De eerste echte registratie en demo zijn apart.
+
 ## Actueel 24 oktober 2026 — native Supabase-bron bijgewerkt
 
 De accountview ondersteunt nu servergekozen Access of Supabase, strikte cookies,
