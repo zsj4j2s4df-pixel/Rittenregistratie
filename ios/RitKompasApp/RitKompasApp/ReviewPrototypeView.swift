@@ -132,7 +132,9 @@ struct ReviewPrototypeView<TechnicalView: View>: View {
     private var hero: some View {
         ZStack(alignment: .bottomLeading) {
             GeometryReader { proxy in
-                if let path = Bundle.main.path(forResource: "PrivateJeep", ofType: "jpg"), let photo = UIImage(contentsOfFile: path) {
+                if let photo = UIImage(named: "JeepOffroad") {
+                    Image(uiImage: photo).resizable().scaledToFill().frame(width: proxy.size.width, height: proxy.size.height).clipped()
+                } else if let path = Bundle.main.path(forResource: "PrivateJeep", ofType: "jpg"), let photo = UIImage(contentsOfFile: path) {
                     Image(uiImage: photo).resizable().scaledToFill().frame(width: proxy.size.width, height: proxy.size.height).clipped()
                 } else {
                     LinearGradient(colors: [panel, .black], startPoint: .topLeading, endPoint: .bottomTrailing)

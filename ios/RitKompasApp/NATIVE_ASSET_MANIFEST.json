@@ -1,0 +1,10 @@
+{
+  "version":"1.0",
+  "reviewedAt":"2026-10-24",
+  "scope":"Native test build2 only. No new artwork or private original published.",
+  "assets":[
+    {"path":"RitKompasApp/Assets.xcassets/RitKompasBrand.imageset/brand.png","mime":"image/png","width":1024,"height":1024,"sha256":"ce7a7659a5cb2f7223955010c70dd5a7a95b47cb2947d8919dfdb3e5f1b1cbc2","source":"Exact public/brand/ritkompas-mark-approved.png; identical approved composition, including five grille slots","use":"Native functional registration header; existing AppIcon master unchanged"},
+    {"path":"RitKompasApp/Assets.xcassets/JeepOffroad.imageset/jeep.jpg","mime":"image/jpeg","width":1280,"height":960,"sha256":"4fb0ca53eb0ef5584e2b011edcc9a50df355c69d6f234d7eb90d67e352c86482","source":"Approved public/brand/jeep-offroad.webp; technical JPEG conversion quality94 for native UIImage, unchanged composition; not pixel-identical lossless data","use":"Clearly labelled separate native design preview, not a functional trip or GPS image","metadataRemoved":true,"privacy":"Approved neutral plate and nonidentifiable face; no private photo original or location history"}
+  ],
+  "rights":"Project-owner approved publication copies; no official Jeep affiliation. Original rights/provenance remain in public/brand/asset-manifest.json."
+}

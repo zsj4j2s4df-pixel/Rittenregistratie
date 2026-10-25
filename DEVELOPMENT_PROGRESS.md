@@ -1,3 +1,11 @@
+## Actueel: native voorbereiding en artifact voor drie iPhones
+
+[Nieuwste resultaat en grenzen](docs/installatie/NATIVE_READINESS_2026-10-24.md).
+1.0(2) unsigned beide SDK's,79Swift/312Node PASS. Simulator werkelijk gestart,
+beide thema's/nieuw merkheader en fotopreview gezien. PDF5pagina's/mobielHTML
+met benodigde/optionele iOS-instellingen en eigen afvinklijst. Geen nieuwe
+fysieke installatie/signing/accounts/locaties/mail/productie of TestFlightlink.
+
 ## Actueel: eenvoudige onboarding en duidelijker sessiekeuze
 
 [Nieuwste test-/verzend-/releasestatus](docs/onboarding/DELIVERY_STATUS_2026-10-24.md).

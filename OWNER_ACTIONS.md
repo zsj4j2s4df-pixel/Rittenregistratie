@@ -1,3 +1,14 @@
+## Nu persoonlijk nodig: echte app op drie iPhones voorbereiden
+
+Bekijk het installatie-artifact voor de ECHTE iPhone-app, niet Safari/PWA.
+Bevestig Jesse's review van de startuitleg; daarna eigen uitnodigingen voor twee
+overige accounts afhandelen. Bevestig op de Mac het bestaande Apple PersonalTeam.
+Breng de drie ontgrendelde telefoons met datakabel een voor een bij de Mac.
+Dennis is deze run al verbonden/DeveloperModeaan; voor anderen nog controleren.
+Codes/wachtwoorden en herstart-/vertrouwensbevestigingen doe je zelf. Geen nieuw
+abonnement/Appleaccountwissel nodig voor de gekozen route. Zie
+[actuele voorbereiding en alle klikpaden](docs/installatie/NATIVE_READINESS_2026-10-24.md).
+
 ## Nu persoonlijk nodig: laat Jesse de startuitleg controleren
 
 Stuur de algemene uitleg/reviewmail uit [docs/onboarding/README.md](docs/onboarding/README.md)

@@ -1,3 +1,13 @@
+## Nu hervatten: native build2 staat klaar voor bevestigde signing en drie toestellen
+
+[Leidend nativebewijs en installatiedraaiboek](docs/installatie/NATIVE_READINESS_2026-10-24.md).
+Nieuwste native1.0(2),79Swift/312Node, unsigned device+simulator en echte simulatorUI
+PASS. Nieuwe foto alleen in aparte demo; logo echte registratie. Geen nieuw
+persoonlijk account, signing/profielwijziging of fysieke installatie. Dennis is
+connected/paired/DeveloperModeenabled; andere telefoons niet bereikbaar geverifieerd.
+Eerst reviewakkoord en tweeaccounts/mappings, bevestigd bestaand PersonalTeam,
+dan per toestel installeren en persoonlijke nativeacceptatie. Geen TestFlightlink.
+
 ## Actueel: eerst review startuitleg, nog geen overige invites
 
 [Nieuwste resultaat en directe vervolgvolgorde](docs/onboarding/DELIVERY_STATUS_2026-10-24.md).

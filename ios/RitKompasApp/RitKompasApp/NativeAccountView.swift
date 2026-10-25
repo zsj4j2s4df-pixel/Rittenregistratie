@@ -307,6 +307,13 @@ struct NativeAccountView: View {
         NavigationView {
             Form {
                 Section(header: Text("Centrale registratie")) {
+                    HStack(spacing: 14) {
+                        Image("RitKompasBrand").resizable().scaledToFit().frame(width: 56, height: 56).cornerRadius(13).accessibilityHidden(true)
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("RitKompas").font(.headline)
+                            Text("Persoonlijke testapp").font(.caption).foregroundColor(.secondary)
+                        }
+                    }
                     Text(model.message).accessibilityIdentifier("native-status")
                     if model.viewerID.isEmpty {
                         Button("Aanmelden") {
