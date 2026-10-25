@@ -1,3 +1,8 @@
+## Actualisering 25 oktober
+
+Lees [het actuele uitvoerplan](MAC_NEXT_INSTALL_2026-10-25.md). De specifieke
+accountopdracht vervangt de historische reviewwachtstap hieronder.
+
 # Echte iPhone-app: voorbereiding voor drie toestellen
 
 ## Actueel resultaat
