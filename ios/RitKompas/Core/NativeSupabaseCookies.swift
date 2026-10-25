@@ -1,7 +1,7 @@
 import Foundation
 
 /// Cookie candidates only: no JWT decoding or local identity/vehicle grant.
-/// Not activated in the app until the provider, refresh and logout lifecycle is integrated.
+/// Integrated in native source; live activation and physical-device acceptance remain separate.
 public struct NativeSupabaseCookies: Codable, Sendable, CustomStringConvertible, CustomDebugStringConvertible {
     private static let session = "__Host-ritkompas-session"
     private static let binding = "__Host-ritkompas-binding"

@@ -1,3 +1,63 @@
+## Actueel: extra Cloudflare-inlog verwijderd, Supabase beschermt ritgegevens
+
+[Exact uitvoeringsbewijs en hervatpunt](docs/TRANSFER/DIRECT_LOGIN_2026-10-24.md).
+Met concreet eigenaarakkoord alleen de RitKompas-Accessapp verwijderd; privé
+herstelconfig bewaard. Website /login direct200, status supabasefalse/no-store,
+zes private routes anoniem401, vervalste Access/bearer401, foreign-origin403.
+Versie da1419ca/deployment6b5c31bd/100% en7bindings gelijk; geen DB/codepublicatie.
+Jesse-login eerder eigenaarbevestigd; na poortvervanging eigenaarlogin/reset nog
+niet opnieuw getest. Native dubbelepoortblokkade vervallen, fysieke update nog open.
+Dennis/Ingrid accounts nog open. Dashboard/andere diensten niet gewijzigd.
+Oudere behouden-poort/akkoord-nodigregels hieronder zijn historie, niet hervatpunt.
+
+## Actueel: Jesse webaanmelding door eigenaar bevestigd
+
+[Acceptatie, aanvullende securitytests en direct vervolg](docs/TRANSFER/JESSE_WEB_ACCEPTANCE_2026-10-24.md).
+Eigenaar bevestigt geslaagde iPhone-weblogin en tevreden huidig ontwerp. Nieuwe
+gebouwde Workerproef zonder buitenpoort PASS: zes private routes anoniem401,
+identity-/membership-/account-/viewer-/CSRFguards en logoutreplay. Provider synthetisch.
+Eigenaar wil extra Cloudflarelogin straks weg; eerst gericht akkoord op concrete
+poortvervanging en rollback, dashboard/andere diensten ongewijzigd. Native dubbele-
+poortacceptatie nog niet bewezen; geen iPhone nu lokaal bereikbaar. Dennis/Ingrid
+nog open. Supabase leaked-passwordwarning vereist betaald plan: niet activeren.
+Geen nieuwe publicatie/DB/gatewijziging door deze testgroep. Historie hieronder.
+
+## Nieuwste status: Supabase beschermd LIVE, eigenaarpilot bij Accesspoort
+
+[Leidend livebewijs en direct hervatpunt](docs/TRANSFER/SUPABASE_PROTECTED_LIVE_2026-10-24.md).
+Versie da1419ca/100%,deployment6b5c31bd;7bindings met Supabase actief, Accesspoort
+ongewijzigd. Formulier enabled; zonder appsessie geen rittoegang. Jesse officieel
+uitgenodigd en expliciet gekoppeld aan bestaande rechten met audit; mailadres
+bevestigd. Eigenaar ziet na Outlook→Safari de Cloudflarepoort: eerst zelf bestaande
+Cloudflare-aanmelding afronden, zo nodig daarna nieuwe recoverymail. Nog GEEN
+bewezen appaanmelding/wachtwoordsetup/nativeinstallatie. Dennis/Ingrid nog OPEN.
+Verse restore26tabellen en24overige tabellen gelijk;302Node/TypeScript PASS.
+Oudere 'niet geactiveerd'/afwijzingsregels hieronder zijn historie. Geen mainmerge,
+securitybypass of nieuwe kosten. Alleen publieke publishable key inconfig.
+
+## Nieuwste pilotpreflight: geen live-omschakeling uitgevoerd
+
+[Preflight en concrete beslisgrens](docs/TRANSFER/SUPABASE_PILOT_PREFLIGHT_2026-10-24.md).
+Eigenaar aanwezig; verse encrypted backup/restore26tabellen PASS. Metadata-PATCH
+naar Supabase door veiligheidscontrole geweigerd vóór wijziging wegens globale
+authimpact. Niet via UI/CLI omzeilen. Eerst concreet akkoord op beschermde live-
+test met impact op bestaande Access-only appsessies; daarna verificatie/rollback.
+Geen accounts/mappings/invites/gate/deploy uitgevoerd; formulier blijft disabled.
+
+## Actueel — 24 oktober 2026: Supabase-voorbereiding uitgevoerd, live-pilot open
+
+[Leidend uitvoeringsbewijs en hervatplan](docs/TRANSFER/SUPABASE_EXECUTION_2026-10-24.md).
+SMTP/redirect en Nederlandse invite/reset-sjablonen opgeslagen. D1 **0017 LIVE**,
+ledger18, nul mappings, verse backup/restore en 21 bestaande datatabellen behouden.
+Native Supabase login/refresh/Keychain/logout geïntegreerd in bron; **79 Swift en
+302 Node-tests**, type/lint/webbuild, beide gebouwde Worker-authroutes en unsigned
+Xcode-devicebuild PASS. **Niet geïnstalleerd; echte drieaccountacceptatie NIET GETEST.**
+Website blijft a315a6ed/Access; nieuwe authcode NIET geactiveerd/gepubliceerd.
+Drie persoonlijke accounts/uitnodigingen/mappings nog open. Volgende groep:
+eigenaar aanwezig voor gecontroleerde beschermde setup/login/reset-pilot, daarna
+pas gecontroleerde overgang en fysieke iPhoneupdates. Geen mainmerge/bypass/kosten.
+Oudere statusregels hieronder zijn historische checkpoints, niet het hervatpunt.
+
 ## 24 oktober — huisstijl LIVE; Supabase nativevoorbereiding, accounts nog open
 
 [Exact releasebewijs en direct hervatpunt](docs/design/ONLINE_AND_SUPABASE_2026-10-24.md). PR65-bron b2d9da4/tree ea10f920 gepubliceerd als a315a6ed-2d6b-4e36-9dbf-258af6965042/deployment007cde54/100%; bindings/Access behouden, vieranonieme302PASS. Verse encryptedrestore en22tabellen na deploy gelijk. Supabaseprojecthealthy/authaccounts0; cookiecontract+7nieuwe tests/65Swift totaal en unsigneddevicebuildPASS. Adapter NIET geactiveerd; officiële Authadminbrowser/SMTP/3accounts/mappings/0017/native refresh/logout en fysiekeupdates OPEN. Geen mainmerge/kosten/securityversoepeling. Niet0016herhalen.

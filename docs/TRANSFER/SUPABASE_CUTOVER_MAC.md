@@ -1,3 +1,42 @@
+## Actueel: extra Cloudflare-inlog verwijderd, Supabase beschermt ritgegevens
+
+[Exact uitvoeringsbewijs en hervatpunt](DIRECT_LOGIN_2026-10-24.md).
+Met concreet eigenaarakkoord alleen de RitKompas-Accessapp verwijderd; privé
+herstelconfig bewaard. Website /login direct200, status supabasefalse/no-store,
+zes private routes anoniem401, vervalste Access/bearer401, foreign-origin403.
+Versie da1419ca/deployment6b5c31bd/100% en7bindings gelijk; geen DB/codepublicatie.
+Jesse-login eerder eigenaarbevestigd; na poortvervanging eigenaarlogin/reset nog
+niet opnieuw getest. Native dubbelepoortblokkade vervallen, fysieke update nog open.
+Dennis/Ingrid accounts nog open. Dashboard/andere diensten niet gewijzigd.
+Oudere behouden-poort/akkoord-nodigregels hieronder zijn historie, niet hervatpunt.
+
+## Nieuwste status: Supabase beschermd LIVE, eigenaarpilot bij Accesspoort
+
+[Leidend livebewijs en direct hervatpunt](SUPABASE_PROTECTED_LIVE_2026-10-24.md).
+Versie da1419ca/100%,deployment6b5c31bd;7bindings met Supabase actief, Accesspoort
+ongewijzigd. Formulier enabled; zonder appsessie geen rittoegang. Jesse officieel
+uitgenodigd en expliciet gekoppeld aan bestaande rechten met audit; mailadres
+bevestigd. Eigenaar ziet na Outlook→Safari de Cloudflarepoort: eerst zelf bestaande
+Cloudflare-aanmelding afronden, zo nodig daarna nieuwe recoverymail. Nog GEEN
+bewezen appaanmelding/wachtwoordsetup/nativeinstallatie. Dennis/Ingrid nog OPEN.
+Verse restore26tabellen en24overige tabellen gelijk;302Node/TypeScript PASS.
+Oudere 'niet geactiveerd'/afwijzingsregels hieronder zijn historie. Geen mainmerge,
+securitybypass of nieuwe kosten. Alleen publieke publishable key inconfig.
+
+## Actueel — 24 oktober 2026: Supabase-voorbereiding uitgevoerd, live-pilot open
+
+[Leidend uitvoeringsbewijs en hervatplan](../../docs/TRANSFER/SUPABASE_EXECUTION_2026-10-24.md).
+SMTP/redirect en Nederlandse invite/reset-sjablonen opgeslagen. D1 **0017 LIVE**,
+ledger18, nul mappings, verse backup/restore en 21 bestaande datatabellen behouden.
+Native Supabase login/refresh/Keychain/logout geïntegreerd in bron; **79 Swift en
+302 Node-tests**, type/lint/webbuild, beide gebouwde Worker-authroutes en unsigned
+Xcode-devicebuild PASS. **Niet geïnstalleerd; echte drieaccountacceptatie NIET GETEST.**
+Website blijft a315a6ed/Access; nieuwe authcode NIET geactiveerd/gepubliceerd.
+Drie persoonlijke accounts/uitnodigingen/mappings nog open. Volgende groep:
+eigenaar aanwezig voor gecontroleerde beschermde setup/login/reset-pilot, daarna
+pas gecontroleerde overgang en fysieke iPhoneupdates. Geen mainmerge/bypass/kosten.
+Oudere statusregels hieronder zijn historische checkpoints, niet het hervatpunt.
+
 # RitKompas — Supabase-aanmelding en drie iPhone-installaties
 
 Overdracht: [draft PR62](https://github.com/zsj4j2s4df-pixel/Rittenregistratie/pull/62), branch `cloud/supabase-auth-three-iphones`. Broncommit `16fd4e23bfeb2b0180eccd2c0ef945277c96e8d6`, tree `173726bb732f72a7a38ed228c7b468f633006903`:393blobs+modes exact lokaal/remote teruggelezen. Opvolgende documenthead behouden. GitHubopslag is geen bewijs dat Mac al heeft uitgevoerd.

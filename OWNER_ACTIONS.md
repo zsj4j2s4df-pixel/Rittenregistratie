@@ -1,3 +1,61 @@
+## Actueel: extra Cloudflare-inlog verwijderd, Supabase beschermt ritgegevens
+
+[Exact uitvoeringsbewijs en hervatpunt](docs/TRANSFER/DIRECT_LOGIN_2026-10-24.md).
+Met concreet eigenaarakkoord alleen de RitKompas-Accessapp verwijderd; privé
+herstelconfig bewaard. Website /login direct200, status supabasefalse/no-store,
+zes private routes anoniem401, vervalste Access/bearer401, foreign-origin403.
+Versie da1419ca/deployment6b5c31bd/100% en7bindings gelijk; geen DB/codepublicatie.
+Jesse-login eerder eigenaarbevestigd; na poortvervanging eigenaarlogin/reset nog
+niet opnieuw getest. Native dubbelepoortblokkade vervallen, fysieke update nog open.
+Dennis/Ingrid accounts nog open. Dashboard/andere diensten niet gewijzigd.
+Oudere behouden-poort/akkoord-nodigregels hieronder zijn historie, niet hervatpunt.
+
+## Actueel: Jesse webaanmelding door eigenaar bevestigd
+
+[Acceptatie, aanvullende securitytests en direct vervolg](docs/TRANSFER/JESSE_WEB_ACCEPTANCE_2026-10-24.md).
+Eigenaar bevestigt geslaagde iPhone-weblogin en tevreden huidig ontwerp. Nieuwe
+gebouwde Workerproef zonder buitenpoort PASS: zes private routes anoniem401,
+identity-/membership-/account-/viewer-/CSRFguards en logoutreplay. Provider synthetisch.
+Eigenaar wil extra Cloudflarelogin straks weg; eerst gericht akkoord op concrete
+poortvervanging en rollback, dashboard/andere diensten ongewijzigd. Native dubbele-
+poortacceptatie nog niet bewezen; geen iPhone nu lokaal bereikbaar. Dennis/Ingrid
+nog open. Supabase leaked-passwordwarning vereist betaald plan: niet activeren.
+Geen nieuwe publicatie/DB/gatewijziging door deze testgroep. Historie hieronder.
+
+## Nieuwste status: Supabase beschermd LIVE, eigenaarpilot bij Accesspoort
+
+[Leidend livebewijs en direct hervatpunt](docs/TRANSFER/SUPABASE_PROTECTED_LIVE_2026-10-24.md).
+Versie da1419ca/100%,deployment6b5c31bd;7bindings met Supabase actief, Accesspoort
+ongewijzigd. Formulier enabled; zonder appsessie geen rittoegang. Jesse officieel
+uitgenodigd en expliciet gekoppeld aan bestaande rechten met audit; mailadres
+bevestigd. Eigenaar ziet na Outlook→Safari de Cloudflarepoort: eerst zelf bestaande
+Cloudflare-aanmelding afronden, zo nodig daarna nieuwe recoverymail. Nog GEEN
+bewezen appaanmelding/wachtwoordsetup/nativeinstallatie. Dennis/Ingrid nog OPEN.
+Verse restore26tabellen en24overige tabellen gelijk;302Node/TypeScript PASS.
+Oudere 'niet geactiveerd'/afwijzingsregels hieronder zijn historie. Geen mainmerge,
+securitybypass of nieuwe kosten. Alleen publieke publishable key inconfig.
+
+## Nieuwste pilotpreflight: geen live-omschakeling uitgevoerd
+
+[Preflight en concrete beslisgrens](docs/TRANSFER/SUPABASE_PILOT_PREFLIGHT_2026-10-24.md).
+Eigenaar aanwezig; verse encrypted backup/restore26tabellen PASS. Metadata-PATCH
+naar Supabase door veiligheidscontrole geweigerd vóór wijziging wegens globale
+authimpact. Niet via UI/CLI omzeilen. Eerst concreet akkoord op beschermde live-
+test met impact op bestaande Access-only appsessies; daarna verificatie/rollback.
+Geen accounts/mappings/invites/gate/deploy uitgevoerd; formulier blijft disabled.
+
+## Actueel — wat de eigenaar nog moet doen
+
+SMTP en appwachtwoord zijn al geregeld; niet opnieuw instellen of delen.
+Volgende stap: aanwezig zijn voor één afgesproken persoonlijke aanmeldpilot en
+zelf je wachtwoord kiezen. Daarna ontgrendelde iPhones met kabel beschikbaar
+maken voor ondertekende installatie. Tot de veilige callback/live-pilot gereed is
+sturen we geen drie persoonlijke uitnodigingen. Je hoeft nu geen nieuw account,
+Apple-lidmaatschap of dienst te kopen.
+
+[Wat al gedaan is en de precieze resterende stappen](docs/TRANSFER/SUPABASE_EXECUTION_2026-10-24.md).
+Oudere SMTP-keuzeverzoeken hieronder zijn afgehandelde historie.
+
 > Definitief eigenaarbesluit: uitsluitend een APART Supabase-project voor RitKompas, met eigen drie accounts, wachtwoorden, herstel en redirectinstellingen. Geen andere app/project hergebruiken of aanpassen. Organisatie jesse gekozen; apart project RitKompas werkelijk aangemaakt na actuele $0/maand-kostencontrole: vcrhkfqmsaqszvsyfzba, EU/Frankfurt, ACTIVE_HEALTHY. Publieke tabellen leeg en beperkte securityadvisor zonder bevindingen. Appkoppeling/uitnodiging/installatie nog NIET uitgevoerd. Standaardmail is beperkt tot projectteamleden; configureer een toegestane mailvoorziening zonder gebruikers beheerrechten te geven.
 
 ## Acties na publicatie24oktober

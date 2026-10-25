@@ -7,7 +7,7 @@ import RitKompasCore
 import RitKompasPreparationUI
 
 // Login is interactive in an isolated WebKit store. Only the exact app origin's
-// Secure/HttpOnly Access cookie is offered as a candidate; no DOM/JS scraping,
+// Secure/HttpOnly same-origin cookies are offered as candidates; no DOM/JS scraping,
 // token entry, decoded JWT identity or shared Safari cookie import.
 @MainActor
 final class NativeLoginBrowser: NSObject, ObservableObject, WKNavigationDelegate {
@@ -21,7 +21,7 @@ final class NativeLoginBrowser: NSObject, ObservableObject, WKNavigationDelegate
         configuration.websiteDataStore = .nonPersistent()
         web = WKWebView(frame: .zero, configuration: configuration)
         super.init(); web.navigationDelegate = self
-        web.load(URLRequest(url: URL(string: origin.value + "/api/vehicles")!))
+        web.load(URLRequest(url: URL(string: origin.value + "/login")!))
     }
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         location = webView.url?.host ?? ""
@@ -32,8 +32,8 @@ final class NativeLoginBrowser: NSObject, ObservableObject, WKNavigationDelegate
         // handle custom schemes, certificate exceptions, popups or downloads.
         decisionHandler(navigationAction.request.url?.scheme == "https" ? .allow : .cancel)
     }
-    func credential() async throws -> NativeAccessCookie {
-        guard let url = web.url, origin.contains(url), url.path == "/api/vehicles" else {
+    func credential() async throws -> NativeLoginCredential {
+        guard let url = web.url, origin.contains(url), ["/login", "/ritten", "/api/vehicles"].contains(url.path) else {
             throw NativeAPIError.signInRequired
         }
         let cookies = await web.configuration.websiteDataStore.httpCookieStore.allCookies()
@@ -41,11 +41,23 @@ final class NativeLoginBrowser: NSObject, ObservableObject, WKNavigationDelegate
         let matches = cookies.filter {
             $0.name == "CF_Authorization" && $0.domain == host && $0.path == "/" && $0.isSecure && $0.isHTTPOnly
         }
-        guard matches.count == 1, let cookie = matches.first, let expiry = cookie.expiresDate else {
-            throw NativeAPIError.signInRequired
+        let transport = HTTPSNativeSupabaseTransport()
+        // Provider status comes only from the fixed backend. No cookie sniffing fallback.
+        var accessHeaders: [String: String] = [:]
+        if matches.count == 1, let cookie = matches.first, let expiry = cookie.expiresDate {
+            accessHeaders = try NativeAccessCookie(origin: origin, value: cookie.value,
+                expiresAt: Int64(expiry.timeIntervalSince1970 * 1000)).headers(for: origin, now: Int64(Date().timeIntervalSince1970 * 1000))
         }
-        return try NativeAccessCookie(origin: origin, value: cookie.value,
-            expiresAt: Int64(expiry.timeIntervalSince1970 * 1000))
+        let provider: NativeLoginProvider
+        do { provider = try await transport.provider(origin: origin, accessHeaders: accessHeaders); await transport.close() }
+        catch { await transport.close(); throw error }
+        switch provider {
+        case .access:
+            guard matches.count == 1, let cookie = matches.first, let expiry = cookie.expiresDate else { throw NativeAPIError.signInRequired }
+            return .access(try NativeAccessCookie(origin: origin, value: cookie.value, expiresAt: Int64(expiry.timeIntervalSince1970 * 1000)))
+        case .supabase:
+            return .supabase(try NativeSupabaseCookies(origin: origin, cookies: cookies))
+        }
     }
     func clear() async {
         web.stopLoading()
@@ -73,7 +85,7 @@ final class NativeAccountModel: ObservableObject {
     private var generation = UUID()
     private var closingSession = false
     private var credentialDeletionFailed = false
-    private var credentials: KeychainNativeCredentials?
+    private var credentials: (any NativeAccountCredentialSource)?
     private var access: VerifiedNativeSession?
     private var client: APIClient?
     private var producer: PendingTripChoiceProducer?
@@ -84,21 +96,27 @@ final class NativeAccountModel: ObservableObject {
     private var retry: NativeSettingsEdit?
     var hasRetry: Bool { retry != nil }
     private weak var notifications: NativeNotificationModel?
-    private func credentialStore() -> KeychainNativeCredentials {
-        KeychainNativeCredentials(origin: Self.origin,
-            service: (Bundle.main.bundleIdentifier ?? "RitKompas") + ".native-access-v1")
+    private func credentialStore() -> any NativeAccountCredentialSource {
+        let service = Bundle.main.bundleIdentifier ?? "RitKompas"
+        if UserDefaults.standard.string(forKey: "ritkompas.native-provider.v1") == NativeLoginProvider.supabase.rawValue {
+            return NativeSupabaseSession(origin: Self.origin, transport: HTTPSNativeSupabaseTransport(),
+                persistence: KeychainSupabasePersistence(origin: Self.origin, service: service + ".native-supabase-v1"))
+        }
+        // Existing installs remain explicit legacy Access until a verified provider selection.
+        return KeychainNativeCredentials(origin: Self.origin, service: service + ".native-access-v1")
     }
     func configure(_ notifications: NativeNotificationModel, capture: NativeCaptureModel) { self.notifications = notifications; self.capture = capture }
     // Login, vehicle changes and logout advance generation before any await.
     // Late data from a closed account must never repopulate the new screen.
-    func open(cookie: NativeAccessCookie? = nil) async {
+    func open(cookie: NativeLoginCredential? = nil) async {
         guard !busy else { return }
         busy = true
         let started = await close(clearCredentials: false)
         guard generation == started else { return }
+        if let cookie { UserDefaults.standard.set(cookie.provider.rawValue, forKey: "ritkompas.native-provider.v1") }
         let store = credentialStore(); credentials = store
         do {
-            if let cookie { try await store.stage(cookie) }
+            if let cookie { try await store.stageLogin(cookie) }
             // Discovery authenticates through the same credential actor. It
             // grants no vehicle scope; the backend returns existing rights only.
             let discovery = HTTPSNativeScopeVerifier()
@@ -234,10 +252,15 @@ final class NativeAccountModel: ObservableObject {
     func logout() async {
         guard !closingSession else { return }
         closingSession = true
-        busy = true; await close(clearCredentials: true); busy = false
+        busy = true
+        let old = credentials ?? credentialStore()
+        await close(clearCredentials: false)
+        var logoutFailed = false
+        do { try await old.logout() } catch { logoutFailed = true }
+        busy = false
         closingSession = false
-        message = credentialDeletionFailed
-            ? "Sessie lokaal gesloten. Verwijderen uit de sleutelhanger is niet bevestigd; controleer dit voordat je het apparaat overdraagt."
+        message = logoutFailed
+            ? "Sessie lokaal gesloten. Serverafmelding of verwijderen uit de sleutelhanger is niet bevestigd. Controleer dit voordat je het apparaat overdraagt."
             : "Uitgelogd op dit apparaat. Meld voor accountwisseling opnieuw aan."
     }
     @discardableResult
@@ -397,7 +420,7 @@ struct NativeAccountView: View {
                                 let cookie = try await browser.credential()
                                 await browser.clear(); showLogin = false
                                 await model.open(cookie: cookie)
-                            } catch { browser.issue = "Rond eerst de aanmelding af. Alleen de bestaande RitKompas-sessie kan worden gebruikt." }
+                            } catch { browser.issue = "Rond eerst je persoonlijke aanmelding af. De server moet de RitKompas-sessie bevestigen." }
                         } } }
                     }
                 }

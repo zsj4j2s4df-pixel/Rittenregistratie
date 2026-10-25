@@ -11,6 +11,15 @@ const token=(patch={})=>[Buffer.from('{"alg":"ES256"}').toString('base64url'),Bu
 const bindingID='44444444-4444-4444-8444-444444444444',version='55555555-5555-4555-8555-555555555555';
 const cookie=jwt=>appCookie+'='+jwt+'; __Host-ritkompas-binding='+bindingID+'.'+version;
 const request=(action,body={},headers={})=>new Request(origin+'/api/auth/'+action,{method:'POST',headers:{origin,'content-type':'application/json','x-csrf-protection':'1',...headers},body:JSON.stringify(body)});
+test('native status exposes expiry/viewer only after online verification plus binding and mapping',async t=>{
+ const {auth,sqlite}=fixture(t);
+ const status=headers=>auth.handle(new Request(origin+'/api/auth/status',{headers}));
+ assert.deepEqual(await(await status({})).json(),{provider:'supabase',authenticated:false});
+ const r=await status({cookie:cookie(token())});assert.equal(r.headers.get('cache-control'),'no-store');
+ assert.deepEqual(await r.json(),{provider:'supabase',authenticated:true,viewerId:'u',expiresAt:2000000});
+ sqlite.exec('DELETE FROM auth_identities');
+ assert.deepEqual(await(await status({cookie:cookie(token())})).json(),{provider:'supabase',authenticated:false});
+});
 function fixture(t,extra={}){
  const {db,sqlite}=setup(t);sqlite.prepare('INSERT INTO auth_identities(issuer,subject,user_id) VALUES(?,?,?)').run(url+'/auth/v1',sub,'u');
  sqlite.prepare('INSERT INTO auth_browser_bindings(id,version,issuer,user_id,session_id) VALUES(?,?,?,?,?)').run(bindingID,version,url+'/auth/v1','u',sid);
