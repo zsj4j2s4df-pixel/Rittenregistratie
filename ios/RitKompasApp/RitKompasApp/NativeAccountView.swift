@@ -139,6 +139,7 @@ final class NativeAccountModel: ObservableObject {
         busy = true; generation = UUID(); let started = generation
         let old = client; let oldAccess = access; let oldProducer = producer; let oldRecovery = recovery; let oldCapture = captureOutbox
         NativeTripIntentBridge.handler = nil
+        NativeTripIntentBridge.recordingHandler = nil
         capture?.disconnect(); captureOutbox = nil
         client = nil; access = nil; producer = nil; workflow = nil; retry = nil; recovery = nil
         settings = nil; pending = nil; actions = []; viewerID = ""; vehicleID = ""
@@ -177,6 +178,19 @@ final class NativeAccountModel: ObservableObject {
                 directory: directory.appendingPathComponent("Capture-" + recoveryID), keyProvider: key),
                 binding: session, viewerID: scope.viewerID, vehicleID: id)
             captureOutbox = captureStore; capture?.configure(outbox: captureStore, transport: api)
+            let trial = NativeTrialTrip(disk: EncryptedChoiceQueuePersistence(
+                directory: directory.appendingPathComponent("Trial-" + recoveryID), keyProvider: key),
+                binding: session, viewerID: scope.viewerID, vehicleID: id)
+            capture?.configureTrial(trial, sync: { tripID in
+                NativeTrialSync(disk: EncryptedChoiceQueuePersistence(
+                    directory: directory.appendingPathComponent("TrialSync-" + recoveryID).appendingPathComponent(tripID), keyProvider: key),
+                    binding: session, viewerID: scope.viewerID, vehicleID: id)
+            })
+            notifications?.bind(store: TrialChoiceRouter(trial: trial, proposals: flow))
+            NativeTripIntentBridge.recordingHandler = { [weak self] action in
+                guard let self, let capture = self.capture, !self.viewerID.isEmpty else { throw NativeAPIError.sessionNotConfigured }
+                switch action { case .start: try await capture.startTrip(); case .stop: try await capture.stopTrip() }
+            }
             NativeTripIntentBridge.handler = { [weak self] choice in
                 guard let self else { throw NativeAPIError.sessionNotConfigured }
                 try await self.chooseUsingVoice(choice)
@@ -227,15 +241,10 @@ final class NativeAccountModel: ObservableObject {
         }
     }
     private func chooseUsingVoice(_ choice: TripChoice) async throws {
-        guard !busy, let producer, let workflow else { throw NativeAPIError.sessionNotConfigured }
-        busy = true; let started = generation
-        defer { if generation == started { busy = false } }
-        try await producer.chooseOnlyPending(choice)
-        guard generation == started else { throw NativeAPIError.sessionNotConfigured }
-        let ready = try await workflow.actions(viewerID: viewerID, vehicleID: vehicleID)
-        guard generation == started else { throw NativeAPIError.sessionNotConfigured }
-        actions = ready
-        message = "Keuze lokaal bewaard. Centrale verzending moet nog worden bevestigd."
+        guard !busy, let capture, let trip = capture.trip, trip.endedAt == nil else {
+            throw TrialTripError.noActiveTrip
+        }
+        try await capture.chooseTrip(choice)
     }
     func notify(_ id: String) async {
         guard !busy, let producer else { return }
@@ -284,6 +293,7 @@ final class NativeAccountModel: ObservableObject {
         generation = UUID(); let closedGeneration = generation
         let oldClient = client; let oldAccess = access; let oldCredentials = credentials; let oldProducer = producer; let oldRecovery = recovery; let oldCapture = captureOutbox
         NativeTripIntentBridge.handler = nil
+        NativeTripIntentBridge.recordingHandler = nil
         capture?.disconnect(); captureOutbox = nil
         client = nil; access = nil; credentials = nil; producer = nil; workflow = nil; retry = nil; recovery = nil
         vehicles = []; vehicleID = ""; viewerID = ""; settings = nil; pending = nil; actions = []
@@ -415,7 +425,7 @@ struct NativeAccountView: View {
                     if !model.viewerID.isEmpty { Text("Ritdetectie hieronder vereist afzonderlijk inschakelen en iOS-toestemming.") }
                     NavigationLink("Meldingstoestemming", destination: NativeNotificationPreparationView())
                     Link("Ritten, historie en rapporten op de website", destination: URL(string: NativeAccountModel.origin.value + "/beheer")!)
-                    Text("Volledige automatische ritregistratie is nog niet gereed. Een keuzemelding vereist een werkelijk ontvangen open rit.").font(.footnote)
+                    Text("De GPS-ritproef hieronder heeft een eigen actieve rit en keuzemelding. Automatisering via de autoverbinding en Siri moet op jouw iPhone worden ingericht en getest; dit is nog geen bewezen volledige automatische registratie.").font(.footnote)
                 }
                 if !model.viewerID.isEmpty { NativeCaptureSection(model: capture) }
             }
@@ -424,7 +434,8 @@ struct NativeAccountView: View {
             .task { model.configure(notifications, capture: capture) }
             .onChange(of: model.viewerID) { _ in resetForm() }
             .onChange(of: phase) { value in
-                if value != .active { resetForm(); capture.stop() }
+                if value != .active { resetForm(); capture.sceneInactive() }
+                else { Task { await capture.restoreTrip() } }
             }
             .overlay { if phase != .active { Color(UIColor.systemBackground).overlay(Text("RitKompas").font(.title)) } }
         }

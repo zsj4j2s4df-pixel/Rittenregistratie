@@ -1,5 +1,19 @@
 # RitKompas — bindende huisstijl
-Versie 1.7 · 24 oktober 2026 · eigenaar: projecteigenaar RitKompas
+Versie 1.8 · 26 oktober 2026 · eigenaar: projecteigenaar RitKompas
+
+## Aanvulling 1.8 — samenhangende native GPS-ritproef
+
+Eigenaar vraagt vóór fysieke installatie een zo compleet mogelijke GPS-ritproef,
+actieve start/stop, privé-eerst met onderscheid expliciet/standaard, lockscreen-
+melding en Siri. Native functionele Formstijl behouden; geen productiepreview als
+bewijs. Ritstatus toont echte puntentelling, gemeten deelafstand en meetgaten.
+Kaart uitsluitend op uitdrukkelijk openen, met huidige thematint; geen lijn over
+lange/ongeldige GPS-gaten. Geen locatie-/naamgegevens op lockscreen. Siri/AppShortcuts
+krijgen vier Nederlandse acties, inclusief start/stopproef; externe inrichting en
+coldstart/lock/Jeepacceptatie eerlijk OPEN. Achtergrondopname alleen afzonderlijke
+opt-in en iOS-toestemming. Een capability is geen verleende toestemming.
+Bron en actuele teststatus: docs/automatic-trips/; ritbewijs is geen definitieve
+logboekrit. Geen verandering van goedgekeurde merkassets, geen productiepublicatie.
 
 ## Aanvulling 1.7 — echte native voorbereiding en installatie-artifact
 

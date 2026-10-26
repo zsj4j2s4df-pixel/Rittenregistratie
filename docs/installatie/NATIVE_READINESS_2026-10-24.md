@@ -1,3 +1,9 @@
+## Nieuwe GPS-ritproefbron — 26 oktober
+
+Lees [de actuele ritproef](../automatic-trips/GPS_TRIAL_2026-10-26.md). De oude
+foreground-only/capabilityverklaringen hieronder zijn historie van24oktober.
+Fysieke installatie/signing blijven OPEN; oorspronkelijke PDF is een24oktobersnapshot.
+
 ## Actualisering 25 oktober
 
 Lees [het actuele uitvoerplan](MAC_NEXT_INSTALL_2026-10-25.md). De specifieke

@@ -1,3 +1,19 @@
+## Geïntegreerde GPS-ritproef vóór installatie — 26 oktober 2026
+
+Eigenaar vraagt de kernfunctie vóór fysieke test zo compleet mogelijk te bouwen.
+[Bron/bewijs/grenzen](docs/automatic-trips/GPS_TRIAL_2026-10-26.md) en
+[klikstappen iPhone](docs/automatic-trips/IPHONE_GPS_TRIAL_STEPS.md).
+Eigen actieve encrypted rit, privé-eerst/expliciete keuzes, echte GPS-punten/
+deelafstand/gaten/routekaart, opt-inbackground en vier Siri-acties gebouwd.
+Expliciete sync naar bestaande journeybewijzen met exacte retries/receipts;
+geen automatische definitieve logboekrit.94Swift/312Node PASS; unsigned device/
+simulator en vier Nederlandse Siri-metadata-acties gecontroleerd. Echte hardware,
+vergrendeling/Focus/Jeep/Coldstart/forcequit/BT-eindtrigger niet bewezen. Geen
+productiepublicatie/signing/fysieke installatie/accountmail of kosten/mainmerge.
+Dennis/Ingridvoorbereiding blijft klaar; beheerlogin ontbreekt.
+Usagecontrole tijdens actieve werkzaamheden: waarschuw eigenaar rond90% vóór95%;
+laatste controle86%vijfuurs/13%week. Geen reset/krediet zonder toestemming.
+
 ## Actueel: gerichte Mac-Siri-validatie en accountvoorbereiding
 
 [PR70 Macbewijs](docs/automatic-trips/MAC_VALIDATION_2026-10-26.md):87Swift-tests,

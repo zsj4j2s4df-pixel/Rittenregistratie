@@ -266,7 +266,9 @@
 				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TrialInfo.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = RitKompas;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Alleen na jouw keuze gebruikt de GPS-ritproef locatie tijdens vergrendeling. Je kunt de proef stoppen; punten blijven lokaal versleuteld totdat je synchronisatie bevestigt.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Na jouw inschakeling meet RitKompas tijdens gebruik GPS voor ritvoorstellen. Observaties blijven versleuteld op dit apparaat totdat je ze naar je eigen RitKompas-backend verzendt.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -299,7 +301,9 @@
 				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TrialInfo.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = RitKompas;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Alleen na jouw keuze gebruikt de GPS-ritproef locatie tijdens vergrendeling. Je kunt de proef stoppen; punten blijven lokaal versleuteld totdat je synchronisatie bevestigt.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Na jouw inschakeling meet RitKompas tijdens gebruik GPS voor ritvoorstellen. Observaties blijven versleuteld op dit apparaat totdat je ze naar je eigen RitKompas-backend verzendt.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
