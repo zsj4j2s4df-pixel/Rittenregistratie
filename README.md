@@ -1,3 +1,10 @@
+## Actueel: gerichte Mac-Siri-validatie en accountvoorbereiding
+
+[PR70 Macbewijs](docs/automatic-trips/MAC_VALIDATION_2026-10-26.md):87Swift-tests,
+unsigned device/simulator en Nederlandse Siri-metadata PASS. Echte iPhone-/lockscreen-
+Siri en automatische ritstart blijven OPEN. [Dennis/Ingrid-accountdraaiboek](docs/auth-email/ACCOUNT_PREPARATION_2026-10-26.md)
+voorbereid; geen uitnodigingen of rechten gewijzigd, wacht op beheerlogin.
+
 ## Actueel: echte iPhone-app voor drie toestellen voorbereid, niet downloadklaar
 
 [Native voorbereiding, actuele status en operatorstappen](docs/installatie/NATIVE_READINESS_2026-10-24.md).
