@@ -26,13 +26,14 @@ public actor TripChoiceWorkflow: TripChoiceStore {
     public init(queue: DurableTripChoiceQueue, delivery: TripChoiceDelivery, scheduler: any TripChoiceScheduler = UnconfiguredTripChoiceScheduler()) {
         self.queue = queue; self.delivery = delivery; self.scheduler = scheduler
     }
-    public func prepare(_ context: TripChoiceContext) async throws {
+    public func prepare(_ context: TripChoiceContext, notify: Bool = true) async throws {
         try Task.checkCancellation()
         try await queue.registerPending(context) // Disk failure must precede any OS notification.
         guard try await queue.hasUnanswered(context) else {
             await scheduler.remove(context)
             throw TripChoiceWorkflowError.alreadyAnswered
         }
+        guard notify else { return } // Voice action persists context without posting another alert.
         do {
             try Task.checkCancellation()
             try await scheduler.schedule(context)

@@ -1,3 +1,7 @@
+## Actuele automatische ritstartopdracht26oktober
+
+Lees docs/automatic-trips/OWNER_REQUEST.md en ASSESSMENT_AND_MAC_TASK.md in dezelfde map. Eerste bron bovenPR69: veilige expliciete Siri-keuze, geen automatische ritstartclaim. Privé-eerst geldt voor toekomstige nieuwe opt-in-autoritten, niet oude unresolved voorstellen.312Node/type/lintPASS, nieuweSwift/Applechecks nogNIETGETEST; gerichte Macopdracht leidend. Geen livewijziging.
+
 ## Actueel: extra Cloudflare-inlog verwijderd, Supabase beschermt ritgegevens
 
 [Exact uitvoeringsbewijs en hervatpunt](docs/TRANSFER/DIRECT_LOGIN_2026-10-24.md).

@@ -24,7 +24,7 @@ public actor UnconfiguredPendingTripChoiceSource: PendingTripChoiceSource {
     public init() {}
     public func pendingChoices(vehicleID: String, expectedViewerID: String) async throws -> NativePendingChoices { throw NativeAPIError.sessionNotConfigured }
 }
-public enum PendingTripChoiceError: Error { case busy, invalidFeed, noCurrentProposal }
+public enum PendingTripChoiceError: Error { case busy, invalidFeed, noCurrentProposal, ambiguousProposal }
 
 // Explicit foreground recovery only. Refresh never schedules a notification;
 // notify accepts an ID from the last verified feed, never raw notification data.
@@ -86,6 +86,35 @@ public actor PendingTripChoiceProducer {
             await workflow.cancelNotification(context)
             throw PendingTripChoiceError.noCurrentProposal
         }
+    }
+    // Voice supplies only the choice, never identity, proposal IDs or authority.
+    // Fetch current server scope, refuse ambiguous/history lists, then durably queue.
+    // This does not start a trip or invent a default classification.
+    public func chooseOnlyPending(_ choice: TripChoice) async throws {
+        let value = try await refresh()
+        guard !busy else { throw PendingTripChoiceError.busy }
+        busy = true; defer { busy = false }
+        let started = generation
+        guard let cached = feed, cached.viewerId == value.viewerId,
+              cached.vehicleId == value.vehicleId, cached.expiresAt == value.expiresAt,
+              cached.proposals.count == 1, !cached.moreAvailable,
+              value.proposals.count == 1, !value.moreAvailable,
+              cached.proposals[0].id == value.proposals[0].id,
+              cached.proposals[0].revision == value.proposals[0].revision else {
+            throw PendingTripChoiceError.ambiguousProposal
+        }
+        let scope = try await binding.verifiedScope(vehicleID: vehicleID)
+        try Task.checkCancellation()
+        guard started == generation, current(value, scope: scope) else {
+            throw PendingTripChoiceError.invalidFeed
+        }
+        let proposal = value.proposals[0]
+        let context = TripChoiceContext(proposalID: proposal.id, vehicleID: vehicleID,
+                                       viewerID: scope.viewerID, revision: proposal.revision)
+        try await workflow.prepare(context, notify: false)
+        try Task.checkCancellation()
+        guard started == generation else { throw PendingTripChoiceError.noCurrentProposal }
+        try await workflow.chooseIfCurrent(choice, context: context)
     }
     public func clear() { generation = UUID(); feed = nil }
 }

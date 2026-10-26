@@ -103,4 +103,38 @@ final class PendingTripChoiceProducerTests: XCTestCase {
         do { try await producer.notify(proposalID: "synthetic-proposal"); XCTFail("No current feed") }
         catch PendingTripChoiceError.noCurrentProposal {}
     }
+    func testVoiceQueuesExplicitChoiceWithoutNotificationOrNetworkDelivery() async throws {
+        for choice in [TripChoice.private, .business] {
+            let binding = PendingBinding(), scheduler = PendingScheduler()
+            let queue = DurableTripChoiceQueue(persistence: PendingDisk(), binding: binding)
+            let workflow = TripChoiceWorkflow(queue: queue, delivery: TripChoiceDelivery(queue: queue, transport: UnconfiguredTripChoiceTransport()), scheduler: scheduler)
+            let producer = PendingTripChoiceProducer(vehicleID: "vehicle", workflow: workflow, binding: binding, source: PendingSource(feed()), clock: { 1000 })
+            try await producer.chooseOnlyPending(choice)
+            let actions = try await workflow.actions(viewerID: "viewer", vehicleID: "vehicle")
+            XCTAssertEqual(actions.count, 1)
+            XCTAssertEqual(actions.first?.choice, choice)
+            let alerts = await scheduler.count(); XCTAssertEqual(alerts, 0)
+        }
+    }
+    func testVoiceRefusesEmptyMultipleAndTruncatedFeeds() async throws {
+        for value in [feed(proposals: []), feed(proposals: [.init(id: "synthetic-proposal", revision: 0), .init(id: "second-proposal-id", revision: 0)]), feed(more: true)] {
+            let (producer, scheduler) = make(PendingSource(value))
+            do { try await producer.chooseOnlyPending(.business); XCTFail("No ambiguous voice classification") }
+            catch PendingTripChoiceError.ambiguousProposal {}
+            let alerts = await scheduler.count(); XCTAssertEqual(alerts, 0)
+        }
+    }
+    func testVoiceRejectsAccountChangeAndClearingDuringRead() async throws {
+        let binding = PendingBinding(), source = PendingSource(feed())
+        let (producer, _) = make(source, binding: binding)
+        await source.switchDuringResponse(binding)
+        do { try await producer.chooseOnlyPending(.private); XCTFail("Changed account") }
+        catch PendingTripChoiceError.invalidFeed {}
+        let held = HeldPendingSource(), (other, _) = make(held)
+        let task = Task { try await other.chooseOnlyPending(.business) }
+        await held.waitForRead(); await other.clear(); await held.finish()
+        do { try await task.value; XCTFail("Cleared account") }
+        catch PendingTripChoiceError.invalidFeed {}
+    }
+
 }
