@@ -1,3 +1,16 @@
+## Mac-uitvoering PR70 en accountvoorbereiding — 26 oktober 2026
+
+[Werkelijk Applebewijs](docs/automatic-trips/MAC_VALIDATION_2026-10-26.md):87Swift
+PASS, unsigned device/simulator PASS, iOS16typecheck en echte Siri-metadata PASS.
+Nederlandse Siri-zinnen werden onder Engels getraind: developmentRegionnaar nl
+gecorrigeerd; beide finale outputs gecontroleerd. Lokale echte AppIntent.perform-
+rooktest PASS; Apple Opdrachten toont beide acties op simulator, uitvoering zonder
+hostcontext geeft generieke fout. Geen succesvolle iPhone-/lockscreenSiriacceptatie.
+[PR68accounts voorbereid](docs/auth-email/ACCOUNT_PREPARATION_2026-10-26.md), geen
+mail/rechtenmutatie. Beheeraanmelding blijft nodig; oude reviewwachtstap geldt niet.
+Automatische ritstart/achtergrond/CarPlay/AUTO01–06 blijven OPEN. Geen livepublicatie,
+signing/fysieke installatie/kosten/mainmerge.
+
 ## Automatische ritstart — nieuwe eigenaaropdracht26oktober2026
 
 Ontvangen bestand ongewijzigd in docs/automatic-trips/OWNER_REQUEST.md. Beoordeling vóór bronwerk, ontbrekende delen en gerichte Macopdracht: docs/automatic-trips/ASSESSMENT_AND_MAC_TASK.md. Basis exactPR69/bce7f5d9214ae18737890badfc1094e0de84cf47. Eerste bron: twee Siri-AppIntents + expliciete unieke geverifieerde pendingkeuze via bestaande durablequeue, zonder extra melding/HTTPwrite. Geen huidige-rit-, coldstart-, achtergrond- of Bluetoothautostartclaim. 312bestaandeNode/type/lintPASS. Nieuwe3Swift-XCTestmethodes voorbereid, Applecompile/runtime NIET GETEST in Cloud. AUTO01–06 OPEN; nieuwe automatische opt-inflow privé-eerst, geen massaclassificatie oudevoorstellen. Geen live/account/config/kosten/mainmerge. Ingrid-uitnodiging apart nog pas klaar na echt verzendbewijs.

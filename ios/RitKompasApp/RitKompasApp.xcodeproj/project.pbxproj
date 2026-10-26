@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A10000000000000000000001 /* RitKompasPreparationUI in Frameworks */ = {isa = PBXBuildFile; productRef = A10000000000000000000002 /* RitKompasPreparationUI */; };
-		A20000000000000000000001 = {isa = PBXBuildFile; productRef = A20000000000000000000002; };
+		A20000000000000000000001 /* RitKompasCore in Frameworks */ = {isa = PBXBuildFile; productRef = A20000000000000000000002 /* RitKompasCore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +29,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A10000000000000000000001 /* RitKompasPreparationUI in Frameworks */,
-                A20000000000000000000001,
+				A20000000000000000000001 /* RitKompasCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,7 +73,7 @@
 			name = RitKompasApp;
 			packageProductDependencies = (
 				A10000000000000000000002 /* RitKompasPreparationUI */,
-                A20000000000000000000002,
+				A20000000000000000000002 /* RitKompasCore */,
 			);
 			productName = RitKompasApp;
 			productReference = 82BC9C4F3087A786004E9C3B /* RitKompasApp.app */;
@@ -95,9 +95,10 @@
 				};
 			};
 			buildConfigurationList = 82BC9C4A3087A786004E9C3B /* Build configuration list for PBXProject "RitKompasApp" */;
-			developmentRegion = en;
+			developmentRegion = nl;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				nl,
 				en,
 				Base,
 			);
@@ -358,7 +359,10 @@
 			package = A10000000000000000000003 /* XCLocalSwiftPackageReference ".." */;
 			productName = RitKompasPreparationUI;
 		};
-		A20000000000000000000002 = {isa = XCSwiftPackageProductDependency; productName = RitKompasCore; };
+		A20000000000000000000002 /* RitKompasCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RitKompasCore;
+		};
 /* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 82BC9C473087A786004E9C3B /* Project object */;

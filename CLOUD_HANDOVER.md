@@ -1,3 +1,16 @@
+## Mac-uitvoering PR70 en accountvoorbereiding — 26 oktober 2026
+
+[Werkelijk Applebewijs](docs/automatic-trips/MAC_VALIDATION_2026-10-26.md):87Swift
+PASS, unsigned device/simulator PASS, iOS16typecheck en echte Siri-metadata PASS.
+Nederlandse Siri-zinnen werden onder Engels getraind: developmentRegionnaar nl
+gecorrigeerd; beide finale outputs gecontroleerd. Lokale echte AppIntent.perform-
+rooktest PASS; Apple Opdrachten toont beide acties op simulator, uitvoering zonder
+hostcontext geeft generieke fout. Geen succesvolle iPhone-/lockscreenSiriacceptatie.
+[PR68accounts voorbereid](docs/auth-email/ACCOUNT_PREPARATION_2026-10-26.md), geen
+mail/rechtenmutatie. Beheeraanmelding blijft nodig; oude reviewwachtstap geldt niet.
+Automatische ritstart/achtergrond/CarPlay/AUTO01–06 blijven OPEN. Geen livepublicatie,
+signing/fysieke installatie/kosten/mainmerge.
+
 ## Actueel 25 oktober: installatievoorbereiding, accounts en ondertekening open
 
 [Direct uitvoerplan en acceptatiematrix](docs/installatie/MAC_NEXT_INSTALL_2026-10-25.md).

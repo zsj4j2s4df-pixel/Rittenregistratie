@@ -9,8 +9,41 @@ private actor PendingBinding: ChoiceSessionBinding {
 }
 private actor PendingDisk: ChoiceQueuePersistence {
     var bytes: Data?
+    var saves = 0
+    let failOnSave: Int?
+    init(failOnSave: Int? = nil) { self.failOnSave = failOnSave }
     func load() async throws -> Data? { bytes }
-    func save(_ value: Data) async throws { bytes = value }
+    func save(_ value: Data) async throws {
+        saves += 1
+        if saves == failOnSave { throw NativeAPIError.connectionUncertain }
+        bytes = value
+    }
+}
+private actor HeldRegistrationDisk: ChoiceQueuePersistence {
+    var bytes: Data?
+    var entered = false
+    var started: CheckedContinuation<Void, Never>?
+    var release: CheckedContinuation<Void, Never>?
+    func load() async throws -> Data? { bytes }
+    func waitForSave() async { if entered { return }; await withCheckedContinuation { started = $0 } }
+    func finish() { release?.resume(); release = nil }
+    func save(_ value: Data) async throws {
+        if !entered {
+            entered = true
+            await withCheckedContinuation { continuation in release = continuation; started?.resume(); started = nil }
+        }
+        bytes = value
+    }
+}
+private actor VoiceRetryTransport: TripChoiceTransport {
+    var sent: [QueuedTripChoice] = []
+    func sendChoice(_ action: QueuedTripChoice) async throws -> TripChoiceServerReceipt {
+        sent.append(action)
+        if sent.count == 1 { throw NativeAPIError.connectionUncertain }
+        return TripChoiceServerReceipt(journeyId: action.context.proposalID, viewerId: action.context.viewerID,
+                                      requestId: action.requestID, revision: action.context.revision + 1, classification: action.choice)
+    }
+    func attempts() -> [QueuedTripChoice] { sent }
 }
 private actor PendingScheduler: TripChoiceScheduler {
     var calls = 0
@@ -24,6 +57,7 @@ private actor PendingSource: PendingTripChoiceSource {
     var bindingToChange: PendingBinding?
     init(_ value: NativePendingChoices) { self.value = value }
     func fail() { fails = true }
+    func replace(_ value: NativePendingChoices) { self.value = value }
     func switchDuringResponse(_ binding: PendingBinding) { bindingToChange = binding }
     func pendingChoices(vehicleID: String, expectedViewerID: String) async throws -> NativePendingChoices {
         if fails { throw NativeAPIError.connectionUncertain }
@@ -135,6 +169,84 @@ final class PendingTripChoiceProducerTests: XCTestCase {
         await held.waitForRead(); await other.clear(); await held.finish()
         do { try await task.value; XCTFail("Cleared account") }
         catch PendingTripChoiceError.invalidFeed {}
+    }
+
+    func testVoiceDiskFailureNeverReportsOrQueuesAChoice() async throws {
+        for failOnSave in [1, 2] {
+            let binding = PendingBinding(), scheduler = PendingScheduler(), disk = PendingDisk(failOnSave: failOnSave)
+            let queue = DurableTripChoiceQueue(persistence: disk, binding: binding)
+            let workflow = TripChoiceWorkflow(queue: queue, delivery: TripChoiceDelivery(queue: queue, transport: UnconfiguredTripChoiceTransport()), scheduler: scheduler)
+            let producer = PendingTripChoiceProducer(vehicleID: "vehicle", workflow: workflow, binding: binding, source: PendingSource(feed()), clock: { 1000 })
+            do { try await producer.chooseOnlyPending(.business); XCTFail("Disk failure must propagate") }
+            catch NativeAPIError.connectionUncertain {}
+            let actions = try await workflow.actions(viewerID: "viewer", vehicleID: "vehicle")
+            XCTAssertTrue(actions.isEmpty)
+            let alerts = await scheduler.count(); XCTAssertEqual(alerts, 0)
+        }
+    }
+
+    func testRepeatedVoiceAndLostResponsePreserveExactRequest() async throws {
+        let binding = PendingBinding(), disk = PendingDisk(), scheduler = PendingScheduler(), transport = VoiceRetryTransport()
+        let queue = DurableTripChoiceQueue(persistence: disk, binding: binding)
+        let workflow = TripChoiceWorkflow(queue: queue, delivery: TripChoiceDelivery(queue: queue, transport: transport), scheduler: scheduler)
+        let producer = PendingTripChoiceProducer(vehicleID: "vehicle", workflow: workflow, binding: binding, source: PendingSource(feed()), clock: { 1000 })
+        try await producer.chooseOnlyPending(.private)
+        let queued = try await workflow.actions(viewerID: "viewer", vehicleID: "vehicle")
+        let original = try XCTUnwrap(queued.first)
+        for choice in [TripChoice.private, .business] {
+            do { try await producer.chooseOnlyPending(choice); XCTFail("Already answered") }
+            catch TripChoiceWorkflowError.alreadyAnswered {}
+        }
+        do { try await workflow.send(original); XCTFail("Lost response") }
+        catch NativeAPIError.connectionUncertain {}
+        let recoveredQueue = DurableTripChoiceQueue(persistence: disk, binding: binding)
+        let recovered = TripChoiceWorkflow(queue: recoveredQueue, delivery: TripChoiceDelivery(queue: recoveredQueue, transport: transport), scheduler: scheduler)
+        let pending = try await recovered.actions(viewerID: "viewer", vehicleID: "vehicle")
+        XCTAssertEqual(pending, [original])
+        try await recovered.send(original)
+        let attempts = await transport.attempts(); XCTAssertEqual(attempts, [original, original])
+        let remaining = try await recovered.actions(viewerID: "viewer", vehicleID: "vehicle"); XCTAssertTrue(remaining.isEmpty)
+    }
+
+    func testVoiceClearDuringRegistrationNeverQueuesLateChoice() async throws {
+        let binding = PendingBinding(), disk = HeldRegistrationDisk(), scheduler = PendingScheduler()
+        let queue = DurableTripChoiceQueue(persistence: disk, binding: binding)
+        let workflow = TripChoiceWorkflow(queue: queue, delivery: TripChoiceDelivery(queue: queue, transport: UnconfiguredTripChoiceTransport()), scheduler: scheduler)
+        let producer = PendingTripChoiceProducer(vehicleID: "vehicle", workflow: workflow, binding: binding, source: PendingSource(feed()), clock: { 1000 })
+        let task = Task { try await producer.chooseOnlyPending(.business) }
+        await disk.waitForSave(); await producer.clear(); await disk.finish()
+        do { try await task.value; XCTFail("Cleared during registration") }
+        catch PendingTripChoiceError.noCurrentProposal {}
+        let actions = try await workflow.actions(viewerID: "viewer", vehicleID: "vehicle"); XCTAssertTrue(actions.isEmpty)
+        let alerts = await scheduler.count(); XCTAssertEqual(alerts, 0)
+    }
+
+    func testVoiceAccountSwitchDuringRegistrationNeverQueuesChoice() async throws {
+        let binding = PendingBinding(), disk = HeldRegistrationDisk(), scheduler = PendingScheduler()
+        let queue = DurableTripChoiceQueue(persistence: disk, binding: binding)
+        let workflow = TripChoiceWorkflow(queue: queue, delivery: TripChoiceDelivery(queue: queue, transport: UnconfiguredTripChoiceTransport()), scheduler: scheduler)
+        let producer = PendingTripChoiceProducer(vehicleID: "vehicle", workflow: workflow, binding: binding, source: PendingSource(feed()), clock: { 1000 })
+        let task = Task { try await producer.chooseOnlyPending(.private) }
+        await disk.waitForSave(); await binding.change(); await disk.finish()
+        do { try await task.value; XCTFail("Account changed during registration") }
+        catch ChoiceQueueError.sessionChanged {}
+        let actions = try await workflow.actions(viewerID: "other", vehicleID: "vehicle"); XCTAssertTrue(actions.isEmpty)
+    }
+
+    func testVoiceRefusesMissingOrNewerRevisionWithoutReplacingStoredChoice() async throws {
+        let binding = PendingBinding(), disk = PendingDisk(), source = PendingSource(feed())
+        let queue = DurableTripChoiceQueue(persistence: disk, binding: binding)
+        let workflow = TripChoiceWorkflow(queue: queue, delivery: TripChoiceDelivery(queue: queue, transport: UnconfiguredTripChoiceTransport()))
+        let producer = PendingTripChoiceProducer(vehicleID: "vehicle", workflow: workflow, binding: binding, source: source, clock: { 1000 })
+        try await producer.chooseOnlyPending(.private)
+        let before = try await workflow.actions(viewerID: "viewer", vehicleID: "vehicle")
+        await source.replace(feed(proposals: []))
+        do { try await producer.chooseOnlyPending(.business); XCTFail("No unresolved proposal") }
+        catch PendingTripChoiceError.ambiguousProposal {}
+        await source.replace(feed(proposals: [.init(id: "synthetic-proposal", revision: 1)]))
+        do { try await producer.chooseOnlyPending(.business); XCTFail("Old choice remains unresolved") }
+        catch ChoiceQueueError.staleProposal {}
+        let after = try await workflow.actions(viewerID: "viewer", vehicleID: "vehicle"); XCTAssertEqual(after, before)
     }
 
 }
