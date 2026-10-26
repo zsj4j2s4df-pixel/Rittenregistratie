@@ -6,7 +6,7 @@ const app=resolve(process.argv[2]??'');
 assert.ok(process.argv[2],'Pass the built RitKompasApp.app path');
 const metadata=join(app,'Metadata.appintents');
 const actions=JSON.parse(readFileSync(join(metadata,'extract.actionsdata'),'utf8')).actions;
-for(const name of ['PrivateTripIntent','BusinessTripIntent']){
+for(const name of ['PrivateTripIntent','BusinessTripIntent','StartTrialTripIntent','StopTrialTripIntent']){
  const action=actions[name]; assert.ok(action,`Missing ${name}`);
  assert.equal(action.openAppWhenRun,false);
  assert.equal(action.availabilityAnnotations.LNPlatformNameIOS.introducedVersion,'16.0');
@@ -18,5 +18,7 @@ assert.match(yaml,/bundleIdentifier: com\.example\.RitKompasApp/);
 assert.match(yaml,/locale: nl/);
 assert.match(yaml,/Privé rit met \$\{\+applicationName\}/);
 assert.match(yaml,/Zakelijke rit met \$\{\+applicationName\}/);
+assert.match(yaml,/Start ritproef met \$\{\+applicationName\}/);
+assert.match(yaml,/Stop ritproef met \$\{\+applicationName\}/);
 assert.doesNotMatch(yaml,/locale: en/);
 console.log('PASS: built iOS16+ private/business actions, no app-open flag or parameters, Dutch training phrases. Not a Siri device-runtime test.');

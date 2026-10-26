@@ -18,9 +18,13 @@ test('native host retains iOS15 and Swift6 without selecting an Apple team',()=>
  assert.doesNotMatch(project,/DEVELOPMENT_TEAM|PROVISIONING_PROFILE|CODE_SIGN_ENTITLEMENTS/);
  assert.match(project,/PRODUCT_BUNDLE_IDENTIFIER = com\.example\.RitKompasApp/);
 });
-test('host does not silently introduce background modes or automatic capture',()=>{
+test('host keeps the authorized background trial separate from automatic startup and unrelated permissions',()=>{
  assert.match(project,/INFOPLIST_KEY_NSLocationWhenInUseUsageDescription/);
- assert.doesNotMatch(project,/UIBackgroundModes|NSLocationAlways|NSBluetooth|com\.apple\.developer\.carplay/);
+ assert.doesNotMatch(project,/NSBluetooth|com\.apple\.developer\.carplay/);
+ assert.match(project,/INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription/);
+ const capture=read('ios/RitKompasApp/RitKompasApp/NativeCaptureView.swift');
+ assert.match(capture,/backgroundEnabled = false/);
+ assert.match(capture,/func startTrip\(allowPermissionPrompt: Bool = false\)/);
  const bootstrap=read('ios/RitKompasApp/RitKompasApp/RitKompasAppApp.swift');
  const view=read('ios/RitKompasApp/RitKompasApp/ContentView.swift');
  assert.match(bootstrap,/@main/);

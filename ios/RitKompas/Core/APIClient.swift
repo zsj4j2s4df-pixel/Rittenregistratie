@@ -121,6 +121,21 @@ public actor APIClient: PendingTripChoiceSource, NativeCaptureTransport {
     }
     private struct ChoiceInput: Encodable { let requestId: String; let expectedRevision: Int; let classification: TripChoice; let reason: String }
     private struct ChoiceEnvelope: Decodable, Sendable { let receipt: TripChoiceServerReceipt }
+    private struct TrialJourneyEnvelope: Decodable, Sendable { let receipt: TrialJourneyReceipt }
+    public func trialJourney(vehicleID: String, journeyID: String?, operation: String, input: TrialJourneyCommand, viewerID: String) async throws -> TrialJourneyReceipt {
+        guard ["create", "join", "close"].contains(operation) else { throw NativeAPIError.invalidPath }
+        var path = ["api", "vehicles", vehicleID, "journeys"]
+        if operation != "create" {
+            guard let journeyID else { throw NativeAPIError.invalidPath }; path += [journeyID, operation]
+        }
+        let result: TrialJourneyEnvelope = try await send(segments: path, method: "POST", body: JSONEncoder().encode(input), expectedViewerID: viewerID)
+        return result.receipt
+    }
+    public func trialChoice(_ action: QueuedTripChoice, reason: String) async throws -> TripChoiceServerReceipt {
+        let input = ChoiceInput(requestId: action.requestID, expectedRevision: action.context.revision, classification: action.choice, reason: reason)
+        let result: ChoiceEnvelope = try await send(segments: ["api", "vehicles", action.context.vehicleID, "journeys", action.context.proposalID, "choice"], method: "POST", body: JSONEncoder().encode(input), expectedViewerID: action.context.viewerID)
+        return result.receipt
+    }
     public func sendChoice(_ action: QueuedTripChoice) async throws -> TripChoiceServerReceipt {
         guard action.context.isValid, UUID(uuidString: action.requestID) != nil else { throw NativeAPIError.invalidPath }
         let input = ChoiceInput(requestId: action.requestID, expectedRevision: action.context.revision, classification: action.choice, reason: "Expliciete keuze via iOS-melding")

@@ -8,14 +8,17 @@ const host=read('ios/RitKompasApp/RitKompasApp/NativeAccountView.swift');
 test('capture is a separate opt-in with explicit private-backend transmission',()=>{
  assert.match(capture,/func start\(\)/);
  const init=capture.slice(capture.indexOf('override init()'),capture.indexOf('func configure'));
- assert.doesNotMatch(init,/startUpdatingLocation|requestWhenInUseAuthorization/);
+ assert.doesNotMatch(init,/startUpdatingLocation|requestWhenInUseAuthorization|requestAlwaysAuthorization/);
  assert.match(capture,/Alleen Verzenden/);assert.match(capture,/Geen achtergrondopname/);
- assert.doesNotMatch(capture,/requestAlwaysAuthorization|allowsBackgroundLocationUpdates = true/);
+ assert.match(capture,/func requestBackgroundPermission\(\)/);
+ assert.match(capture,/manager.allowsBackgroundLocationUpdates = backgroundEnabled/);
+ assert.match(capture,/allowPermissionPrompt && manager.authorizationStatus == \.notDetermined/);
 });
-test('capture closes with the same account and stops on loss of active phase',()=>{
+test('capture closes with the same account and applies explicit background opt-in on phase loss',()=>{
  assert.match(host,/capture\?\.disconnect\(\)/);
  assert.match(host,/await oldCapture\?\.close\(\)/);
- assert.match(host,/if value != \.active \{ resetForm\(\); capture\.stop\(\) \}/);
+ assert.match(host,/if value != \.active \{ resetForm\(\); capture\.sceneInactive\(\) \}/);
+ assert.match(capture,/if tripRecording && backgroundEnabled \{ return \}/);
  assert.match(host,/NativeCaptureOutbox\(persistence: EncryptedChoiceQueuePersistence/);
  assert.match(capture,/sending\?\.cancel\(\)/);
 });
