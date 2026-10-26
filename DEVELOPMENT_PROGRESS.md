@@ -1,3 +1,7 @@
+## Automatische ritstart — nieuwe eigenaaropdracht26oktober2026
+
+Ontvangen bestand ongewijzigd in docs/automatic-trips/OWNER_REQUEST.md. Beoordeling vóór bronwerk, ontbrekende delen en gerichte Macopdracht: docs/automatic-trips/ASSESSMENT_AND_MAC_TASK.md. Basis exactPR69/bce7f5d9214ae18737890badfc1094e0de84cf47. Eerste bron: twee Siri-AppIntents + expliciete unieke geverifieerde pendingkeuze via bestaande durablequeue, zonder extra melding/HTTPwrite. Geen huidige-rit-, coldstart-, achtergrond- of Bluetoothautostartclaim. 312bestaandeNode/type/lintPASS. Nieuwe3Swift-XCTestmethodes voorbereid, Applecompile/runtime NIET GETEST in Cloud. AUTO01–06 OPEN; nieuwe automatische opt-inflow privé-eerst, geen massaclassificatie oudevoorstellen. Geen live/account/config/kosten/mainmerge. Ingrid-uitnodiging apart nog pas klaar na echt verzendbewijs.
+
 ## Actueel 25 oktober: installatievoorbereiding, accounts en ondertekening open
 
 [Direct uitvoerplan en acceptatiematrix](docs/installatie/MAC_NEXT_INSTALL_2026-10-25.md).

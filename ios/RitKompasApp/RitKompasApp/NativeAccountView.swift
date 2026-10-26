@@ -138,6 +138,7 @@ final class NativeAccountModel: ObservableObject {
         guard !busy, vehicles.contains(where: { $0.id == id }), let credentials else { return }
         busy = true; generation = UUID(); let started = generation
         let old = client; let oldAccess = access; let oldProducer = producer; let oldRecovery = recovery; let oldCapture = captureOutbox
+        NativeTripIntentBridge.handler = nil
         capture?.disconnect(); captureOutbox = nil
         client = nil; access = nil; producer = nil; workflow = nil; retry = nil; recovery = nil
         settings = nil; pending = nil; actions = []; viewerID = ""; vehicleID = ""
@@ -176,6 +177,10 @@ final class NativeAccountModel: ObservableObject {
                 directory: directory.appendingPathComponent("Capture-" + recoveryID), keyProvider: key),
                 binding: session, viewerID: scope.viewerID, vehicleID: id)
             captureOutbox = captureStore; capture?.configure(outbox: captureStore, transport: api)
+            NativeTripIntentBridge.handler = { [weak self] choice in
+                guard let self else { throw NativeAPIError.sessionNotConfigured }
+                try await self.chooseUsingVoice(choice)
+            }
             busy = false; message = "Verbonden met de centrale registratie."
         } catch { await failed(error, started: started) }
     }
@@ -220,6 +225,17 @@ final class NativeAccountModel: ObservableObject {
             settings = nil
             await failed(error, started: started)
         }
+    }
+    private func chooseUsingVoice(_ choice: TripChoice) async throws {
+        guard !busy, let producer, let workflow else { throw NativeAPIError.sessionNotConfigured }
+        busy = true; let started = generation
+        defer { if generation == started { busy = false } }
+        try await producer.chooseOnlyPending(choice)
+        guard generation == started else { throw NativeAPIError.sessionNotConfigured }
+        let ready = try await workflow.actions(viewerID: viewerID, vehicleID: vehicleID)
+        guard generation == started else { throw NativeAPIError.sessionNotConfigured }
+        actions = ready
+        message = "Keuze lokaal bewaard. Centrale verzending moet nog worden bevestigd."
     }
     func notify(_ id: String) async {
         guard !busy, let producer else { return }
@@ -267,6 +283,7 @@ final class NativeAccountModel: ObservableObject {
     private func close(clearCredentials: Bool) async -> UUID {
         generation = UUID(); let closedGeneration = generation
         let oldClient = client; let oldAccess = access; let oldCredentials = credentials; let oldProducer = producer; let oldRecovery = recovery; let oldCapture = captureOutbox
+        NativeTripIntentBridge.handler = nil
         capture?.disconnect(); captureOutbox = nil
         client = nil; access = nil; credentials = nil; producer = nil; workflow = nil; retry = nil; recovery = nil
         vehicles = []; vehicleID = ""; viewerID = ""; settings = nil; pending = nil; actions = []
