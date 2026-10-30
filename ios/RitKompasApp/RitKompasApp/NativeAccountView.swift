@@ -320,6 +320,7 @@ struct NativeAccountView: View {
     @Environment(\.scenePhase) private var phase
     @State private var browser: NativeLoginBrowser?
     @State private var showLogin = false
+    @State private var showSettings = false
     @State private var label = ""
     @State private var address = ""
     @State private var reason = ""
@@ -333,12 +334,12 @@ struct NativeAccountView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Centrale registratie")) {
+                Section(header: Text("Welkom")) {
                     HStack(spacing: 14) {
                         Image("RitKompasBrand").resizable().scaledToFit().frame(width: 56, height: 56).cornerRadius(13).accessibilityHidden(true)
                         VStack(alignment: .leading, spacing: 4) {
                             Text("RitKompas").font(.headline)
-                            Text("Persoonlijke testapp").font(.caption).foregroundColor(.secondary)
+                            Text("Testversie · eerst een korte proefrit").font(.caption).foregroundColor(.secondary)
                         }
                     }
                     Text(model.message).accessibilityIdentifier("native-status")
@@ -346,17 +347,24 @@ struct NativeAccountView: View {
                         Button("Aanmelden") {
                             browser = NativeLoginBrowser(origin: NativeAccountModel.origin); showLogin = true
                         }.disabled(model.busy)
-                        Button("Bewaarde sessie openen") { Task { await model.open() } }.disabled(model.busy)
+                        Button("Verder met mijn account") { Task { await model.open() } }.disabled(model.busy)
                     } else {
                         Picker("Voertuig", selection: Binding(get: { model.vehicleID }, set: { id in
                             resetForm(); Task { await model.selectVehicle(id) }
                         })) {
                             ForEach(model.vehicles, id: \.id) { vehicle in Text(vehicle.displayName).tag(vehicle.id) }
                         }.disabled(model.busy)
-                        Button("Vernieuwen en herstelkeuzes laden") { resetForm(); Task { await model.refresh() } }.disabled(model.busy)
+                        Button("Gegevens vernieuwen") { resetForm(); Task { await model.refresh() } }.disabled(model.busy)
                         Button("Uitloggen / ander account") { resetForm(); Task { await model.logout() } }
                     }
                 }
+                if !model.viewerID.isEmpty { NativeCaptureSection(model: capture) }
+                Section {
+                    Link("Mijn ritten en downloads", destination: URL(string: NativeAccountModel.origin.value + "/ritten")!)
+                    Button(showSettings ? "Instellingen sluiten" : "Instellingen en adressen") { showSettings.toggle() }
+                        .frame(minHeight: 44)
+                }
+                if showSettings {
                 Section(header: Text("Appstijl")) {
                     Picker("Kleur van de gehele app", selection: $appearance) {
                         ForEach(NativeAppearanceTheme.allCases) { theme in Text(theme.rawValue).tag(theme.rawValue) }
@@ -425,9 +433,9 @@ struct NativeAccountView: View {
                     if !model.viewerID.isEmpty { Text("Ritdetectie hieronder vereist afzonderlijk inschakelen en iOS-toestemming.") }
                     NavigationLink("Meldingstoestemming", destination: NativeNotificationPreparationView())
                     Link("Ritten, historie en rapporten op de website", destination: URL(string: NativeAccountModel.origin.value + "/beheer")!)
-                    Text("De GPS-ritproef hieronder heeft een eigen actieve rit en keuzemelding. Automatisering via de autoverbinding en Siri moet op jouw iPhone worden ingericht en getest; dit is nog geen bewezen volledige automatische registratie.").font(.footnote)
+                    Text("De GPS-ritproef heeft een eigen actieve rit en keuzemelding. Automatisering via de autoverbinding en Siri moet op jouw iPhone worden ingericht en getest; dit is nog geen bewezen volledige automatische registratie.").font(.footnote)
                 }
-                if !model.viewerID.isEmpty { NativeCaptureSection(model: capture) }
+                } // Settings are separate from everyday trip controls.
             }
             .nativeFormAppearance()
             .navigationTitle("RitKompas")
@@ -450,7 +458,7 @@ struct NativeAccountView: View {
                     }.navigationTitle("Aanmelden")
                     .toolbar {
                         ToolbarItem(placement: .cancellationAction) { Button("Annuleren") { showLogin = false } }
-                        ToolbarItem(placement: .confirmationAction) { Button("Sessie gebruiken") { Task {
+                        ToolbarItem(placement: .confirmationAction) { Button("Verder naar mijn ritten") { Task {
                             do {
                                 let cookie = try await browser.credential()
                                 await browser.clear(); showLogin = false

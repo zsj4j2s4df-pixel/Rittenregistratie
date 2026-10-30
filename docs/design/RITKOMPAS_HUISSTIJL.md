@@ -1,5 +1,15 @@
 # RitKompas — bindende huisstijl
-Versie 1.8 · 26 oktober 2026 · eigenaar: projecteigenaar RitKompas
+Versie 1.9 · 30 oktober 2026 · eigenaar: projecteigenaar RitKompas
+
+## Aanvulling 1.9 — begrijpelijk beginscherm
+
+Eigenaar vindt het testscherm onduidelijk voor zijn vader. Echte ritbediening
+komt direct na aanmelden/voertuig, vóór adresbeheer. Korte labels Start rit,
+Stop rit en Verstuur gestopte rit; lokale opslag is geen centrale ontvangst.
+Instellingen/adressen apart, achtergrondtoestemming en technische proeven
+expliciet uitklapbaar. Ontwerpproef alleen onder ontwikkelaars in DEBUG.
+Bestaande merkassets/thematokens en centrale autorisatie ongewijzigd.
+Cloud-broncontrole is geen Swiftbuild of visuele iPhoneacceptatie.
 
 ## Aanvulling 1.8 — samenhangende native GPS-ritproef
 

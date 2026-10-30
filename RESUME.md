@@ -1,3 +1,13 @@
+## Eenvoudiger native beginscherm — 30 oktober 2026
+
+Basis PR72/b0e4ea1470f46f552213e882a95af78800abec58 werkelijk opgehaald.
+Eigenaar meldt: drie Supabase-accounts gemaakt. Dit is eigenaarinformatie,
+geen nieuwe technische bevestiging van mapping/rechten/drieaccountacceptatie.
+Ritbediening vóór adresbeheer; korte knoppen; instellingen apart; Siri/losse
+GPS-proeven ingeklapt; ontwerpproef DEBUG-only. Auth/ritopslag/synccontracten
+ongewijzigd. Zie docs/TRANSFER/SIMPLE_NATIVE_HOME_2026-10-30.md voor Macchecks.
+Geen livepublicatie/nieuwe installatie/mainmerge of kosten.
+
 ## Geïntegreerde GPS-ritproef vóór installatie — 26 oktober 2026
 
 Eigenaar vraagt de kernfunctie vóór fysieke test zo compleet mogelijk te bouwen.
