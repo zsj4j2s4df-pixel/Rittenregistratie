@@ -6,8 +6,12 @@ struct ContentView: View {
     var body: some View {
         VStack(spacing: 0) {
             NativeAccountView()
-            Button("Afzonderlijke ontwerpproef bekijken") { showDesign = true }
-                .frame(minHeight: 44)
+#if DEBUG
+            DisclosureGroup("Voor ontwikkelaars") {
+                Button("Afzonderlijke ontwerpproef bekijken") { showDesign = true }
+                    .frame(minHeight: 44)
+            }.padding(.horizontal)
+#endif
         }
         .sheet(isPresented: $showDesign) {
             VStack {

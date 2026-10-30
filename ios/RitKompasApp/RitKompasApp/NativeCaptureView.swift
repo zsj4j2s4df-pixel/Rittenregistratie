@@ -237,34 +237,41 @@ final class NativeCaptureModel: NSObject, ObservableObject, CLLocationManagerDel
 struct NativeCaptureSection: View {
     @ObservedObject var model: NativeCaptureModel
     @State private var showRoute = false
+    @State private var showTechnical = false
     var body: some View {
-        Section(header: Text("GPS-ritproef")) {
-            Text("Start alleen stilstaand. Tijdens deze proef worden tijd en precieze GPS-punten versleuteld bewaard. Privé is standaard; meldingsknoppen en Siri wijzigen alleen jouw actieve proefrit. Geen bewezen bestuurder of kilometertellerafstand.").font(.footnote)
-            Toggle("Opnemen bij vergrendeld scherm toestaan", isOn: $model.backgroundEnabled).disabled(model.running)
-            Button("Achtergrondlocatie: iOS-toestemming kiezen") { model.requestBackgroundPermission() }.disabled(model.running)
+        Section(header: Text("Mijn rit")) {
+            Text("1. Start je rit.  2. Kies Privé of Zakelijk.  3. Stop en verstuur.").font(.body)
+            Text("Testversie: begin met één korte rit. Bedien de app alleen als je stilstaat.").font(.footnote)
             if let trip = model.trip {
-                Text(trip.endedAt == nil ? "Open ritproef" : "Gestopte ritproef")
+                Text(trip.endedAt == nil ? "Rit gestart" : "Rit gestopt").font(.headline)
                 Text("\(trip.classification == .private ? "Privé" : "Zakelijk") · \(trip.points.count) GPS-punten · \(trip.gaps) meetgaten")
                 Text(String(format: "Gemeten GPS-deelafstand: %.3f km", trip.distanceMeters / 1000)).font(.footnote)
                 Text("Start: \(Date(timeIntervalSince1970: Double(trip.startedAt)).formatted())").font(.footnote)
                 Text(trip.points.isEmpty ? "Beginlocatie onbekend: nog geen geldige GPS-meting." : "Eerste en laatste gemeten GPS-punt beschikbaar; meetgaten worden niet ingevuld.").font(.footnote)
                 if !trip.points.isEmpty { Button("Gemeten GPS-route bekijken") { showRoute = true } }
-                if trip.syncedJourneyID != nil { Text("Centraal ritbewijs bevestigd; logboekcontrole blijft nodig.") }
+                if trip.syncedJourneyID != nil { Text("Ontvangen door RitKompas. Controleer de rit nog op de website.") }
                 if trip.endedAt == nil {
-                    Button("Privé") { Task { await model.runTrialChoice(.private) } }.disabled(model.busy)
-                    Button("Zakelijk") { Task { await model.runTrialChoice(.business) } }.disabled(model.busy)
+                    Button { Task { await model.runTrialChoice(.private) } } label: { Label("Privé", systemImage: "house").frame(minHeight: 48) }.disabled(model.busy)
+                    Button { Task { await model.runTrialChoice(.business) } } label: { Label("Zakelijk", systemImage: "briefcase").frame(minHeight: 48) }.disabled(model.busy)
                 }
             }
             if model.tripRecording {
-                Button("Ritproef stoppen") { Task { await model.runTrialAction(.stop) } }.disabled(model.busy)
+                Button("Stop rit") { Task { await model.runTrialAction(.stop) } }.frame(minHeight: 48).disabled(model.busy)
             } else {
-                Button("Ritproef starten / hervatten") { Task { await model.runTrialAction(.start) } }.disabled(model.busy || (model.trip?.endedAt != nil && model.trip?.syncedJourneyID == nil))
+                Button("Start rit") { Task { await model.runTrialAction(.start) } }.frame(minHeight: 48).disabled(model.busy || (model.trip?.endedAt != nil && model.trip?.syncedJourneyID == nil))
             }
-            Button("Ritproef synchroniseren / exact herhalen") { Task { await model.syncTrip() } }
+            Button("Verstuur gestopte rit") { Task { await model.syncTrip() } }
                 .disabled(model.busy || model.running || model.trip?.endedAt == nil)
-            Button("Ritproef uit opslag laden") { Task { await model.restoreTrip() } }.disabled(model.busy || model.running)
-            Text(model.message)
+            Text(model.message).accessibilityIdentifier("trip-save-status")
+            DisclosureGroup("Opnemen met het scherm uit") {
+                Text("Je precieze locatie wordt op deze iPhone bewaard. Alleen Verstuur stuurt de gestopte rit naar RitKompas. Privé is de standaardkeuze.").font(.footnote)
+                Toggle("GPS bij vergrendeld scherm", isOn: $model.backgroundEnabled).disabled(model.running)
+                Button("Locatietoestemming instellen") { model.requestBackgroundPermission() }.disabled(model.running)
+            }
+            DisclosureGroup("Uitleg over deze proef") {
+            Button("Bewaarde rit opnieuw laden") { Task { await model.restoreTrip() } }.disabled(model.busy || model.running)
             Text("Deze begrensde proef bewaart maximaal 300 GPS-punten, minstens 15 seconden uit elkaar. Bij volle opslag, verlopen sessie of ontbrekende toestemming stopt de meting met een melding. Apple Kaarten wordt alleen geladen als je de route opent.").font(.footnote)
+            }
         }
         .sheet(isPresented: $showRoute) {
             NavigationView {
@@ -273,13 +280,19 @@ struct NativeCaptureSection: View {
                     .toolbar { Button("Sluiten") { showRoute = false } }
             }
         }
+        Section {
+            DisclosureGroup("Siri en technische proeven", isExpanded: $showTechnical) {
+                Text("Deze functies moeten nog op jouw iPhone worden getest.").font(.footnote)
+            }
+        }
+        if showTechnical {
         Section(header: Text("Siri en Opdrachten — ritproef")) {
             Text("Start ritproef met RitKompas\nPrivé rit met RitKompas\nZakelijke rit met RitKompas\nStop ritproef met RitKompas")
             Text("Eerst persoonlijk aanmelden en de locatietoestemming in de app kiezen. Stemkeuze geldt alleen voor jouw actieve proefrit. Zonder aangemelde host wordt de actie geweigerd. Vergrendeling/CarPlay moeten op jouw iPhone worden getest.").font(.footnote)
             Link("Open Apple Opdrachten", destination: URL(string: "shortcuts://")!)
             Text("Voor een verbindingsproef: Opdrachten → Automatisering → Bluetooth → eigen Jeep → Start ritproef. CarPlay kan verbinden en verbreken gebruiken; kies Stop ritproef voor verbreken. De exacte opties moeten op jouw telefoon worden gecontroleerd; geen algemene Bluetooth-verbreektrigger beloven.").font(.footnote)
         }
-        Section(header: Text("Ritdetectie — proef tijdens gebruik")) {
+        Section(header: Text("Voor ontwikkelaars — losse GPS-metingen")) {
             Text(model.message)
             Text(model.count.map { "Lokaal bewaard: \($0) observaties" } ?? "Bewaarde observaties nog niet gecontroleerd")
             Text("Bij inschakelen wordt je precieze locatie versleuteld op dit apparaat bewaard. Alleen Verzenden stuurt deze observaties naar je eigen RitKompas-backend. Geen achtergrondopname, definitieve rit, automatische bestuurder of Zakelijk/Privé.")
@@ -288,6 +301,7 @@ struct NativeCaptureSection: View {
             else { Button("GPS-proef inschakelen") { model.start() }.disabled(model.busy || model.tripRecording) }
             Button("Bewaarde observaties controleren") { Task { await model.loadCount() } }.disabled(model.busy || model.running)
             Button("Observaties verzenden / exact herhalen") { Task { await model.send() } }.disabled(model.busy || model.running)
+        }
         }
     }
 }
