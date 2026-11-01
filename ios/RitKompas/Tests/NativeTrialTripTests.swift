@@ -33,6 +33,8 @@ private actor TrialServer: NativeTrialTransport {
         RegisteredDevice(id: input.id, userID: expectedViewerID, vehicleID: vehicleID, name: input.name, platform: .ios, active: 1, revision: 0, createdAt: 1000, updatedAt: 1000)
     }
     func ingestCapture(vehicleID: String, deviceID: String, input: DetectionInput, expectedViewerID: String) async throws -> DetectionObservation {
+        // Mirror the real intake contract; permissive mocks previously hid this bug.
+        if input.location != nil && input.source != .gps { throw NativeAPIError.requestRejected(400) }
         struct Payload: Encodable { let observedAt: Int64; let source: ObservationSource; let kind: ObservationKind; let detail: String?; let location: ObservationLocation? }
         let payload = Payload(observedAt: input.observedAt, source: input.source, kind: input.kind, detail: input.detail, location: corruptObservation ? nil : input.location)
         return DetectionObservation(id: input.eventId, vehicleID: vehicleID, userID: expectedViewerID, deviceID: deviceID, eventID: input.eventId,
