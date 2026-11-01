@@ -90,13 +90,13 @@ public actor NativeTrialSync {
         if index == 0 {
             let location = trip.points.first.flatMap { $0.time - trip.startedAt <= 15 ? $0.location : nil }
             return DetectionInput(requestId: ids.requestID, eventId: ids.eventID, observedAt: trip.startedAt,
-                source: .manual, kind: .startCandidate, detail: "explicit_native_trial_start", location: location)
+                source: location == nil ? .manual : .gps, kind: .startCandidate, detail: "explicit_native_trial_start", location: location)
         }
         if index == plan.events.count - 1 {
             let end = trip.endedAt!
             let location = trip.points.last.flatMap { end - $0.time <= 15 ? $0.location : nil }
             return DetectionInput(requestId: ids.requestID, eventId: ids.eventID, observedAt: end,
-                source: .manual, kind: .endCandidate, detail: "explicit_native_trial_stop", location: location)
+                source: location == nil ? .manual : .gps, kind: .endCandidate, detail: "explicit_native_trial_stop", location: location)
         }
         let point = trip.points[index - 1]
         return DetectionInput(requestId: ids.requestID, eventId: ids.eventID, observedAt: point.time,

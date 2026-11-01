@@ -1,3 +1,13 @@
+## Reparatie synchronisatie GPS-ritproef — 1 november 2026
+
+Eigenaarscreenshot: centrale ontvangst niet bevestigd; geen echte foutcode.
+Bewezen contractbug: native start/einde stuurde manual + GPS-locatie, intake
+weigert dat met HTTP400. Bronlabel nu gps als echte locatie wordt meegestuurd,
+anders manual. Bestaande IDs/plan/receipt/autorisation blijven behouden. Striktere
+Swiftmock en echte SQLite-regressie toegevoegd. Zie overdracht hieronder.
+Basis PR73/115793257c7312dc4b8673869e3e59c7dc0e22c4; geen livewijziging.
+[Reparatie, bewijs en Mac-opdracht](docs/TRANSFER/NATIVE_TRIAL_SYNC_FIX_2026-11-01.md).
+
 ## Eenvoudiger native beginscherm — 30 oktober 2026
 
 Basis PR72/b0e4ea1470f46f552213e882a95af78800abec58 werkelijk opgehaald.

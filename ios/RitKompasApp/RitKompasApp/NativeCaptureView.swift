@@ -45,7 +45,15 @@ final class NativeCaptureModel: NSObject, ObservableObject, CLLocationManagerDel
             message = "GPS-punten, ritkeuzes en riteinde centraal bevestigd als ritbewijs. Controle voor definitief logboek blijft nodig."
         } catch {
             guard generation == started else { return }
-            message = "Centrale ritproef niet bevestigd. Exacte aanvragen blijven bewaard; bij conflict/toegangsverlies eerst controleren."
+            let explanation: String
+            if let apiError = error as? NativeAPIError {
+                explanation = apiError.errorDescription ?? "Serverreactie niet bevestigd."
+            } else if error is DecodingError {
+                explanation = "Het bewaarde verzendplan kon niet worden gelezen. Laat dit controleren; wis de app niet."
+            } else {
+                explanation = "Lokale opslag, sessie of ontvangstbewijs kon niet worden bevestigd."
+            }
+            message = "Niet verstuurd: " + explanation + " Je proefrit en herhaalcode blijven bewaard."
         }
     }
     func runTrialAction(_ action: NativeTripIntentBridge.RecordingAction) async {
