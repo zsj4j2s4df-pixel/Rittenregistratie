@@ -25,6 +25,7 @@ private actor TrialServer: NativeTrialTransport {
     var choiceReceipts: [String: TripChoiceServerReceipt] = [:]
     var choices: [(String, String)] = []
     var operations: [String] = []
+    var observations: [DetectionInput] = []
     var loseChoiceResponse = false
     var corruptObservation = false
     func loseNextChoiceResponse() { loseChoiceResponse = true }
@@ -35,6 +36,7 @@ private actor TrialServer: NativeTrialTransport {
     func ingestCapture(vehicleID: String, deviceID: String, input: DetectionInput, expectedViewerID: String) async throws -> DetectionObservation {
         // Mirror the real intake contract; permissive mocks previously hid this bug.
         if input.location != nil && input.source != .gps { throw NativeAPIError.requestRejected(400) }
+        observations.append(input)
         struct Payload: Encodable { let observedAt: Int64; let source: ObservationSource; let kind: ObservationKind; let detail: String?; let location: ObservationLocation? }
         let payload = Payload(observedAt: input.observedAt, source: input.source, kind: input.kind, detail: input.detail, location: corruptObservation ? nil : input.location)
         return DetectionObservation(id: input.eventId, vehicleID: vehicleID, userID: expectedViewerID, deviceID: deviceID, eventID: input.eventId,
@@ -55,6 +57,26 @@ private actor TrialServer: NativeTrialTransport {
     }
     func choiceCalls() -> [(String, String)] { choices }
     func operationCalls() -> [String] { operations }
+    func observationCalls() -> [DetectionInput] { observations }
+}
+
+// Frozen version-1 disk shape from the pre-fix app. Source is derived at send
+// time, not stored in this plan; an update must preserve every existing ID.
+private struct LegacyTrialEventIDs: Codable { let requestID: String; let eventID: String }
+private struct LegacyTrialPlan: Encodable {
+    let version = 1
+    let trip: TrialTrip
+    let registration: DeviceRegistration
+    let events: [LegacyTrialEventIDs]
+    let journeyRequests: [String]
+    let choiceRequests: [String]
+    let registered = true
+    let eventIndex: Int
+    let observationIDs: [String]
+    let journeyID: String?
+    let revision: Int
+    let choiceIndex = 0
+    let closed = false
 }
 
 final class NativeTrialTripTests: XCTestCase {
@@ -120,6 +142,45 @@ final class NativeTrialTripTests: XCTestCase {
         clock.set(1015); _ = try await trial.append(NativeMotionSample(time: 1015, latitude: 52, longitude: 4, accuracy: 5, speed: 0))
         clock.set(1030); let ended = try await trial.stop(); await server.corrupt()
         do { _ = try await sync.sync(ended, using: server); XCTFail("Wrong location receipt") } catch ChoiceQueueError.invalidReceipt {}
+    }
+    func testPreFixVersionOneDiskPlanResumesRejectedStartOrEndWithoutReplacingIDs() async throws {
+        // Cover a failed first observation and a plan that already acknowledged
+        // start + GPS but is blocked at the final observation.
+        for acknowledged in [0, 2] {
+            let clock = TrialClock(), binding = TrialBinding(), trial = make(clock, binding: binding)
+            _ = try await trial.start()
+            clock.set(1015)
+            _ = try await trial.append(NativeMotionSample(time: 1015, latitude: 52, longitude: 4, accuracy: 5, speed: -1))
+            clock.set(1030); let trip = try await trial.stop()
+            let disk = TrialDisk(), server = TrialServer()
+            let events = (0..<3).map { _ in LegacyTrialEventIDs(requestID: UUID().uuidString, eventID: UUID().uuidString) }
+            let saved = LegacyTrialPlan(trip: trip,
+                registration: DeviceRegistration(requestId: UUID().uuidString, id: UUID().uuidString, name: "Synthetic saved plan"),
+                events: events, journeyRequests: events.map { _ in UUID().uuidString },
+                choiceRequests: trip.choices.map { _ in UUID().uuidString },
+                eventIndex: acknowledged, observationIDs: events.prefix(acknowledged).map(\.eventID),
+                journeyID: acknowledged == 0 ? nil : server.journeyID, revision: acknowledged == 0 ? 0 : 1)
+            try await disk.save(JSONEncoder().encode(saved))
+            let reopened = NativeTrialSync(disk: disk, binding: binding, viewerID: "viewer", vehicleID: "vehicle")
+            let result = try await reopened.sync(trip, using: server)
+            XCTAssertEqual(result, server.journeyID)
+            let sent = await server.observationCalls()
+            XCTAssertEqual(sent.map(\.requestId), events.dropFirst(acknowledged).map(\.requestID))
+            XCTAssertEqual(sent.map(\.eventId), events.dropFirst(acknowledged).map(\.eventID))
+            XCTAssertTrue(sent.allSatisfy { $0.source == .gps && $0.location != nil })
+            let loaded = try await disk.load()
+            let bytes = try XCTUnwrap(loaded)
+            let persisted = try JSONSerialization.jsonObject(with: bytes) as! [String: Any]
+            let original = try JSONSerialization.jsonObject(with: JSONEncoder().encode(saved)) as! [String: Any]
+            for key in ["trip", "registration", "events", "journeyRequests", "choiceRequests"] {
+                XCTAssertTrue((persisted[key] as! NSObject).isEqual(original[key]), "Existing \(key) changed")
+            }
+            XCTAssertEqual(persisted["closed"] as? Bool, true)
+            let repeated = try await reopened.sync(trip, using: server)
+            XCTAssertEqual(repeated, result)
+            let callsAfterRetry = await server.observationCalls()
+            XCTAssertEqual(callsAfterRetry.count, sent.count)
+        }
     }
     func testMeasuredDistanceSkipsImpossibleJumpsAndRejectsInaccurateLocations() async throws {
         let clock = TrialClock(), trial = make(clock)
