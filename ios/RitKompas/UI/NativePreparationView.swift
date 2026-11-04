@@ -87,9 +87,12 @@ public struct NativePreparationView: View {
                 }
                 if !model.message.isEmpty { Text(model.message).accessibilityAddTraits(.updatesFrequently) }
             }
+            Section(header: Text("Meldingen")) {
+                NavigationLink("Meldingen beheren") { NativeNotificationPreparationView() }
+            }
             Section(header: Text("Levenscyclus en grenzen")) {
                 Text(model.lifecycle)
-                Text("Geen achtergrondlocatie, Bluetooth-trigger, CarPlay, lokale opslag of automatische verzending geïmplementeerd. Toestemming alleen bewijst geen betrouwbare GPS-meting.")
+                Text("Geen achtergrondlocatie, Bluetooth-trigger, CarPlay of automatische verzending ingeschakeld. Toestemming alleen bewijst geen betrouwbare GPS-meting.")
                 Text("Onbekende routes en ontbrekende segmenten worden niet ingevuld. Hardware-, energie- en herstarttests moeten op een echte iPhone plaatsvinden.")
             }
         }

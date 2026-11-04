@@ -54,6 +54,15 @@ public struct TripChoiceNotifications: Sendable {
     public func requestPermission(center: UNUserNotificationCenter = .current()) async throws -> Bool {
         try await center.requestAuthorization(options: [.alert, .sound])
     }
+    public static func identifier(_ context: TripChoiceContext) -> String {
+        [context.viewerID, context.vehicleID, context.proposalID].map { Data($0.utf8).base64EncodedString() }.joined(separator: ".") + "." + String(context.revision)
+    }
+    public func remove(_ context: TripChoiceContext, center: UNUserNotificationCenter = .current()) {
+        guard Self.valid(context) else { return }
+        let ids = [Self.identifier(context)]
+        center.removePendingNotificationRequests(withIdentifiers: ids)
+        center.removeDeliveredNotifications(withIdentifiers: ids)
+    }
     public func schedule(_ context: TripChoiceContext, center: UNUserNotificationCenter = .current()) async throws {
         guard Self.valid(context) else { throw TripChoiceNotificationError.invalidContext }
         let settings = await center.notificationSettings()
@@ -65,7 +74,7 @@ public struct TripChoiceNotifications: Sendable {
         // No address, location, name or business purpose on the lock screen.
         content.userInfo = ["proposalID": context.proposalID, "vehicleID": context.vehicleID,
                             "viewerID": context.viewerID, "revision": context.revision]
-        let identifier = [context.viewerID, context.vehicleID, context.proposalID].map { Data($0.utf8).base64EncodedString() }.joined(separator: ".")
+        let identifier = Self.identifier(context)
         try await center.add(UNNotificationRequest(identifier: identifier, content: content, trigger: nil))
     }
     // Called by the host application's notification delegate. No foreground flag:
@@ -80,12 +89,7 @@ public struct TripChoiceNotifications: Sendable {
         case UNNotificationDefaultActionIdentifier, UNNotificationDismissActionIdentifier: return
         default: throw TripChoiceNotificationError.unrecognizedAction
         }
-        guard let proposal = userInfo["proposalID"] as? String,
-              let vehicle = userInfo["vehicleID"] as? String,
-              let viewer = userInfo["viewerID"] as? String,
-              let revision = userInfo["revision"] as? Int else { throw TripChoiceNotificationError.invalidContext }
-        let context = TripChoiceContext(proposalID: proposal, vehicleID: vehicle, viewerID: viewer, revision: revision)
-        guard Self.valid(context) else { throw TripChoiceNotificationError.invalidContext }
+        guard let context = TripChoicePayloadDecoder.context(userInfo) else { throw TripChoiceNotificationError.invalidContext }
         try await store.chooseIfCurrent(choice, context: context)
     }
 }

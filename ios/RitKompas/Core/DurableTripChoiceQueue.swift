@@ -100,6 +100,13 @@ public actor DurableTripChoiceQueue: TripChoiceStore {
         try await verify(context); let state = try await load(); try await verify(context)
         return state.actions.filter { $0.context.viewerID == viewerID && $0.context.vehicleID == vehicleID }
     }
+    // Scoped notification lifecycle query; no pending-context creation or data
+    // for another viewer. Already chosen/acknowledged contexts are not unanswered.
+    public func hasUnanswered(_ context: TripChoiceContext) async throws -> Bool {
+        try enter(); defer { busy = false }; try await verify(context)
+        let state = try await load(); try await verify(context)
+        return state.pending.contains(context) && !state.actions.contains(where: { $0.context == context })
+    }
     public func acknowledge(_ receipt: TripChoiceServerReceipt, action: QueuedTripChoice) async throws {
         try enter(); defer { busy = false }; try await verify(action.context)
         guard receipt.journeyId == action.context.proposalID, receipt.viewerId == action.context.viewerID,
