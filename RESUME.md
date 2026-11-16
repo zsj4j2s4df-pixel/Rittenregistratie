@@ -1,3 +1,13 @@
+## Actueel hervatpunt — overdracht 16 november 2026
+
+Lees [START_HERE.md](START_HERE.md) en de
+[Claude/Mac-overdracht](docs/TRANSFER/CLAUDE_HANDOVER_2026-11-16.md).
+Die bevat de nieuwste bekende bewijsstatus uit het Mac-gesprek, de PR75→74→73-basis,
+Apple-profielblokkade en het nog open herstel van de bestaande proefrit.
+Oudere statusblokken hieronder zijn historie; zij zijn geen bewijs dat de app nu
+werkt of dat bestaande accounts opnieuw moeten worden ingericht. Nieuwe live- of
+fysieke acceptatie is bij deze documentoverdracht niet uitgevoerd.
+
 ## Reparatie synchronisatie GPS-ritproef — 1 november 2026
 
 Eigenaarscreenshot: centrale ontvangst niet bevestigd; geen echte foutcode.
